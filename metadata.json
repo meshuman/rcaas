@@ -1,0 +1,6 @@
+{
+  "name": "RCAAS Technology",
+  "description": "RCAAS turns real places into 3D tours, VR, AR and stories that help hotels, schools, developers and heritage sites attract visitors and make lasting impact.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

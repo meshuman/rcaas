@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, PILLARS, INDUSTRIES, CASE_STUDIES, IMAGES } from '../data/siteData';
+import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
+import { CASE_STUDY_CONTENT } from '../content/work';
+import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { HOME_FAQS } from '../content/faq';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
@@ -12,6 +14,20 @@ import { HeritageMotionBackdrop } from '../components/HeritageMotionBackdrop';
 import { TypewriterHeroPhrase } from '../components/TypewriterHeroPhrase';
 import { FaqList } from '../components/GuideParts';
 import { eyebrowClass } from '../components/ui';
+
+// Card copy for "Stories we've told" (docs/copy/home.md §5).
+const HOME_CARD_COPY: Record<string, { tag: string; line: string }> = {
+  'chilancho-stupa-digital-heritage': {
+    tag: 'Heritage',
+    line: 'Documented in 3D to preserve its form and detail for study and for the public.',
+  },
+  'nepathya-school-college-3d-campus-tour': { tag: 'Education', line: 'A campus tour families can take from home.' },
+  'madan-ashrit-polytechnic-3d-campus-tour': {
+    tag: 'Education',
+    line: 'Workshops and labs prospective students can explore for themselves.',
+  },
+  'basera-boutique-hotel-3d-experience': { tag: 'Hospitality', line: 'A hotel guests can look around before they book.' },
+};
 
 interface HomePageProps {
   onNavigate: (path: RoutePath) => void;
@@ -110,7 +126,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
               Don't just look at photos. Walk through the place.
             </h2>
             <p className="mt-4 text-base text-muted leading-relaxed">
-              This is Chilancho Stupa, captured by our team and published on our 3D platform. Move around it on your phone or laptop. No app, no download.
+              <WithPlaceholders text="This is [[TBI: project name]], captured by our team and published on our 3D platform. Move around it on your phone or laptop. No app, no download." />
             </p>
           </div>
 
@@ -120,7 +136,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           {/* Static HTML description for crawlers and accessibility */}
           <div className="mt-6 rounded-md border border-line bg-white p-4 text-xs text-zinc-600 font-mono shadow-sm">
             <p>
-              <strong className="text-zinc-900">Accessibility &amp; Model Overview:</strong> An interactive, photorealistic 3D model of Chilancho Stupa in Kirtipur, Kathmandu Valley, created by RCAAS Technology. Visitors can move freely through the sacred courtyard, stone chaityas, and historic Newari architecture. Built to help conservators, researchers, and visitors experience the historic complex before visiting.
+              <WithPlaceholders text="An interactive, photorealistic 3D model of [[TBI: place name]] in [[TBI: location]], created by RCAAS Technology. Visitors can move freely through [[TBI: spaces shown, e.g. the lobby, rooms and courtyard]]." />
+            </p>
+            <p className="mt-2">
+              <WithPlaceholders text={'Built to help [[TBI: client]] [[TBI: goal, e.g. "show guests the hotel before they book"]].'} />
             </p>
           </div>
 
@@ -264,14 +283,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {CASE_STUDIES.map((study) => (
+            {CASE_STUDY_CONTENT.map((study) => (
               <KineticSpatialCard
-                key={study.id}
-                imageSrc={study.heroImage}
-                title={study.title}
-                location={study.location}
-                tag={study.tag}
-                line={study.line}
+                key={study.slug}
+                imageSrc={study.image}
+                title={study.name}
+                location={study.location ?? 'Location to be confirmed'}
+                tag={HOME_CARD_COPY[study.slug].tag}
+                line={HOME_CARD_COPY[study.slug].line}
                 onClick={() => onNavigate(`/work/${study.slug}/` as RoutePath)}
               />
             ))}
@@ -329,7 +348,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
               {
                 step: '05',
                 title: 'Measure',
-                desc: 'We look at how people engage and refine the experience over time.',
+                desc: 'We look at how people engage and refine the experience over time. [[TBC: keep only if engagement analytics are available]]',
               },
             ].map((s) => (
               <SpotlightCard
@@ -344,7 +363,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                     {s.title}
                   </h3>
                   <p className="mt-2 text-xs text-muted leading-relaxed">
-                    {s.desc}
+                    <WithPlaceholders text={s.desc} />
                   </p>
                 </div>
               </SpotlightCard>
@@ -367,7 +386,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             </h2>
             <p className="mt-4 text-base text-muted leading-relaxed">
               {SITE_METADATA.boilerplate}{' '}
-              <span className="text-ink font-semibold">RCAAS stands for Reality Capture as a Service.</span>
+              <Placeholder>[[TBC: add "RCAAS stands for Reality Capture as a Service." here]]</Placeholder>
             </p>
           </div>
 
@@ -440,29 +459,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
         </div>
       </section>
 
-      {/* 9. Proof Strip #proof */}
-      <section id="proof" className="py-14 border-t border-line bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="p-5 rounded-md border border-line bg-surface">
-              <div className="text-3xl font-bold text-ink font-mono">±5mm</div>
-              <div className="mt-1 text-[11px] text-zinc-500 font-mono">SLAM LiDAR Precision</div>
-            </div>
-            <div className="p-5 rounded-md border border-line bg-surface">
-              <div className="text-3xl font-bold text-ink font-mono">1.4M+</div>
-              <div className="mt-1 text-[11px] text-zinc-500 font-mono">Splats / Experience</div>
-            </div>
-            <div className="p-5 rounded-md border border-line bg-surface">
-              <div className="text-3xl font-bold text-ink font-mono">0 Apps</div>
-              <div className="mt-1 text-[11px] text-zinc-500 font-mono">Zero Download Web</div>
-            </div>
-            <div className="p-5 rounded-md border border-line bg-surface">
-              <div className="text-3xl font-bold text-ink font-mono">100%</div>
-              <div className="mt-1 text-[11px] text-zinc-500 font-mono">Data Ownership Retained</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* 9. Proof strip #proof: hidden until every value is real (Register G17). */}
 
       {/* 10. Short FAQ #faq */}
       <section id="faq" className="py-24 border-t border-line bg-surface">

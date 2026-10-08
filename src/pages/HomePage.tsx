@@ -225,7 +225,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                 </p>
 
                 <div className="mt-6 flex items-center justify-between pt-4 border-t border-[#E4E4E7] text-xs">
-                  <span className="text-zinc-500 font-mono text-[11px]">Proof: {ind.proof.split(',')[0]}</span>
+                  <span className="text-zinc-500 font-mono text-[11px]">
+                    {ind.proof ? `Proof: ${ind.proof.split(',')[0]}` : 'Explore solutions'}
+                  </span>
                   <span className="font-semibold text-zinc-700">&rarr;</span>
                 </div>
               </SpotlightCard>

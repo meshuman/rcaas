@@ -46,8 +46,9 @@ export interface Industry {
   slug: string;
   title: string;
   goalHeadline: string;
+  whoItsFor?: string;
   summary: string;
-  proof: string;
+  proof?: string;
   link: string;
   badge: string;
 }
@@ -60,6 +61,8 @@ export interface CaseStudy {
   line: string;
   location: string;
   clientGoal: string;
+  whatWeCreated?: string;
+  posterAlt?: string;
   resultMetric?: string;
   heroImage: string;
   embedDemoId: 'chilancho' | 'basera' | 'nepathya' | 'madan';

@@ -1,9 +1,11 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, TOOLKIT } from '../data/siteData';
+import { SITE_METADATA, TOOLKIT, IMAGES } from '../data/siteData';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { ValueChainGraphic } from '../components/ValueChainGraphic';
+import { CurvedArchCarousel } from '../components/CurvedArchCarousel';
+import { OneCaptureMultiUseVisualizer } from '../components/OneCaptureMultiUseVisualizer';
 
 interface ServicesPageProps {
   currentPath: RoutePath;
@@ -13,11 +15,15 @@ interface ServicesPageProps {
 
 interface PillarDetail {
   id: string;
+  number: string;
   slug: string;
   title: string;
   promise: string;
   body: string;
   helpsYou: string;
+  image: string;
+  badge: string;
+  iconSvg: React.ReactNode;
   includes: Array<{ label: string; href: string; isRoute: boolean }>;
   exploreLink: RoutePath;
   exploreLabel: string;
@@ -26,11 +32,21 @@ interface PillarDetail {
 const PILLARS_COPY: PillarDetail[] = [
   {
     id: 'immersive-experiences',
+    number: '01',
     slug: 'immersive-experiences',
     title: 'Immersive Experiences',
     promise: 'Let people step inside.',
     body: 'Photorealistic 3D tours that open from a link, VR that puts visitors on site, and interactive experiences built with game-engine tools.',
     helpsYou: 'Win bookings, applications, sales enquiries and visits.',
+    image: IMAGES.baseraHotel,
+    badge: 'Web 3D & VR',
+    iconSvg: (
+      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
+        <ellipse cx="12" cy="12" rx="4" ry="9" strokeWidth="1.5" />
+        <line x1="3" y1="12" x2="21" y2="12" strokeWidth="1.5" />
+      </svg>
+    ),
     includes: [
       {
         label: '3D virtual tours',
@@ -39,18 +55,18 @@ const PILLARS_COPY: PillarDetail[] = [
       },
       {
         label: 'VR experiences',
-        href: '#vr',
-        isRoute: false,
+        href: '/services/immersive-experiences/#vr',
+        isRoute: true,
       },
       {
         label: 'AR experiences',
-        href: '#ar',
-        isRoute: false,
+        href: '/services/immersive-experiences/#ar',
+        isRoute: true,
       },
       {
         label: 'Interactive experiences',
-        href: '#interactive',
-        isRoute: false,
+        href: '/services/immersive-experiences/#interactive',
+        isRoute: true,
       },
     ],
     exploreLink: '/services/immersive-experiences/',
@@ -58,31 +74,41 @@ const PILLARS_COPY: PillarDetail[] = [
   },
   {
     id: 'visual-storytelling',
+    number: '02',
     slug: 'visual-storytelling',
     title: 'Visual Storytelling',
     promise: 'Turn your place into a story.',
     body: 'Guided tours, cinematic fly-through films and social content made from your 3D capture, shaped around what you want your audience to feel and do.',
     helpsYou: 'Run campaigns, raise awareness, attract funding and engage the public.',
+    image: IMAGES.chilanchoStupa,
+    badge: '4K Cinematic',
+    iconSvg: (
+      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth="1.75" />
+        <line x1="3" y1="10" x2="21" y2="10" strokeWidth="1.5" />
+        <polygon points="10,12 15,14.5 10,17" fill="currentColor" strokeWidth="0" />
+      </svg>
+    ),
     includes: [
       {
         label: 'Guided and narrated tours',
-        href: '#guided-tours',
-        isRoute: false,
+        href: '/services/visual-storytelling/#guided-tours',
+        isRoute: true,
       },
       {
         label: 'Fly-through films and renders',
-        href: '#films',
-        isRoute: false,
+        href: '/services/visual-storytelling/#films',
+        isRoute: true,
       },
       {
         label: 'Social content',
-        href: '#social',
-        isRoute: false,
+        href: '/services/visual-storytelling/#social',
+        isRoute: true,
       },
       {
         label: 'Exhibition and event content',
-        href: '#exhibitions',
-        isRoute: false,
+        href: '/services/visual-storytelling/#exhibitions',
+        isRoute: true,
       },
     ],
     exploreLink: '/services/visual-storytelling/',
@@ -90,11 +116,21 @@ const PILLARS_COPY: PillarDetail[] = [
   },
   {
     id: 'digital-twins',
+    number: '03',
     slug: 'digital-twins',
     title: 'Digital Twins & Survey',
     promise: 'Measure, design and plan from reality.',
     body: 'Accurate 3D records of buildings, sites and landscapes, captured with advanced laser and aerial scanning, ready for design, planning and preservation.',
     helpsYou: 'Design with confidence, cut repeat site visits, plan better and preserve what matters.',
+    image: IMAGES.laserField,
+    badge: '±5mm SLAM LiDAR',
+    iconSvg: (
+      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
+        <polygon points="12,6 15,12 12,10 9,12" fill="currentColor" strokeWidth="0" />
+        <polygon points="12,18 9,12 12,14 15,12" fill="currentColor" opacity="0.4" strokeWidth="0" />
+      </svg>
+    ),
     includes: [
       {
         label: '3D laser scanning',
@@ -108,13 +144,13 @@ const PILLARS_COPY: PillarDetail[] = [
       },
       {
         label: 'As-built drawings and CAD/BIM-ready data',
-        href: '#as-built',
-        isRoute: false,
+        href: '/services/digital-twins/#as-built',
+        isRoute: true,
       },
       {
         label: 'Survey and GIS',
-        href: '#survey-gis',
-        isRoute: false,
+        href: '/services/digital-twins/#survey-gis',
+        isRoute: true,
       },
     ],
     exploreLink: '/services/digital-twins/',
@@ -126,6 +162,8 @@ interface GoalMatch {
   goal: string;
   bestFit: string;
   example: string;
+  primaryPillarId: string;
+  sectorTag: 'bookings' | 'education' | 'property' | 'architecture' | 'heritage' | 'planning';
 }
 
 const GOALS_MATRIX: GoalMatch[] = [
@@ -133,55 +171,73 @@ const GOALS_MATRIX: GoalMatch[] = [
     goal: 'More bookings or visits',
     bestFit: 'Immersive Experiences',
     example: 'A 3D tour on your website and booking page',
+    primaryPillarId: 'immersive-experiences',
+    sectorTag: 'bookings',
   },
   {
     goal: 'More applications or enrolments',
     bestFit: 'Immersive Experiences + Visual Storytelling',
     example: 'A campus tour and a short film for admissions campaigns',
+    primaryPillarId: 'immersive-experiences',
+    sectorTag: 'education',
   },
   {
     goal: 'Sell or lease property',
     bestFit: 'Immersive Experiences + Visual Storytelling',
     example: 'A 3D walkthrough of a show flat and fly-through clips for ads',
+    primaryPillarId: 'visual-storytelling',
+    sectorTag: 'property',
   },
   {
     goal: 'Design, renovate or fit out',
     bestFit: 'Digital Twins & Survey',
     example: 'A measured 3D scan and drawings for your design software',
+    primaryPillarId: 'digital-twins',
+    sectorTag: 'architecture',
   },
   {
     goal: 'Preserve heritage',
     bestFit: 'Digital Twins & Survey + Immersive Experiences',
     example: 'A measured record for conservators and a public 3D experience',
+    primaryPillarId: 'digital-twins',
+    sectorTag: 'heritage',
   },
   {
     goal: 'Plan or engage the public',
     bestFit: 'Digital Twins & Survey + Visual Storytelling',
     example: '3D base data for planning and visuals residents understand',
+    primaryPillarId: 'digital-twins',
+    sectorTag: 'planning',
   },
 ];
 
 interface StarterPackage {
+  number: string;
   name: string;
   forWho: string;
   includes: string;
   from: string;
+  popular?: boolean;
 }
 
 const STARTER_PACKAGES: StarterPackage[] = [
   {
+    number: '01',
     name: 'Tour',
     forWho: 'Showing one place online',
     includes: 'Capture, photorealistic 3D tour, hosting, shareable link',
     from: 'Custom quote',
   },
   {
+    number: '02',
     name: 'Tour + Story',
     forWho: 'Campaigns and launches',
     includes: 'Everything in Tour, plus a fly-through film and social clips',
     from: 'Custom quote',
+    popular: true,
   },
   {
+    number: '03',
     name: 'Immersive',
     forWho: 'Events, exhibitions and flagship projects',
     includes: 'Tour + Story, plus VR or an interactive experience',
@@ -189,7 +245,7 @@ const STARTER_PACKAGES: StarterPackage[] = [
   },
 ];
 
-export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavigate, onOpenPlanner }) => {
+export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavigate }) => {
   const isImmersive = currentPath.includes('/immersive-experiences');
   const is3DTours = currentPath.includes('/3d-virtual-tours');
   const isStorytelling = currentPath.includes('/visual-storytelling');
@@ -197,17 +253,29 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
   const isLaserScanning = currentPath.includes('/3d-laser-scanning');
   const isDroneMapping = currentPath.includes('/drone-mapping');
 
+  const [activeGoalFilter, setActiveGoalFilter] = useState<string>('all');
+  const [highlightedPillar, setHighlightedPillar] = useState<string | null>(null);
+
+  const filteredGoals = activeGoalFilter === 'all' 
+    ? GOALS_MATRIX 
+    : GOALS_MATRIX.filter((g) => g.bestFit.toLowerCase().includes(activeGoalFilter));
+
   return (
-    <div className="py-16 md:py-24 bg-[#FFFFFF] text-[#09090B]">
+    <div className="py-16 md:py-24 bg-[#FFFFFF] text-[#09090B] relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb: Home › What we create */}
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-10">
-          <button onClick={() => onNavigate('/')} className="hover:text-zinc-900 transition-colors">
+          <button 
+            type="button" 
+            onClick={() => onNavigate('/')} 
+            className="hover:text-zinc-900 transition-colors"
+          >
             Home
           </button>
-          <span className="text-zinc-400">›</span>
+          <span className="text-zinc-400" aria-hidden="true">›</span>
           <button
+            type="button"
             onClick={() => onNavigate('/services/')}
             className={`transition-colors ${
               currentPath === '/services/' ? 'text-[#09090B] font-semibold' : 'hover:text-zinc-900'
@@ -217,7 +285,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           </button>
           {isImmersive && (
             <>
-              <span className="text-zinc-400">›</span>
+              <span className="text-zinc-400" aria-hidden="true">›</span>
               <span className="text-[#E11D48] font-semibold">
                 {is3DTours ? '3D Virtual Tours' : 'Immersive Experiences'}
               </span>
@@ -225,13 +293,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           )}
           {isStorytelling && (
             <>
-              <span className="text-zinc-400">›</span>
+              <span className="text-zinc-400" aria-hidden="true">›</span>
               <span className="text-[#E11D48] font-semibold">Visual Storytelling</span>
             </>
           )}
           {isDigitalTwins && (
             <>
-              <span className="text-zinc-400">›</span>
+              <span className="text-zinc-400" aria-hidden="true">›</span>
               <span className="text-[#E11D48] font-semibold">
                 {isLaserScanning
                   ? '3D Laser Scanning'
@@ -244,33 +312,50 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </nav>
 
         {/* 1. Hero + intro */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse"></span>
+        <div className="max-w-4xl mb-16 sm:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-sm"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
             <span>Services Hub · Reality Capture as a Service</span>
-          </div>
+          </motion.div>
 
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-[#09090B] font-display">
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance"
+          >
             What we create
-          </h1>
+          </motion.h1>
 
-          <p className="mt-5 text-base sm:text-lg text-[#52525B] leading-relaxed max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-5 text-base sm:text-lg text-[#52525B] leading-relaxed max-w-3xl text-balance"
+          >
             Every project starts with a real place and a clear goal: more bookings, more applications, a better design, a lasting record. From one visit to your site, we can create three kinds of work. Most clients combine them.
-          </p>
+          </motion.p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
             <button
+              type="button"
               onClick={() => onNavigate('/contact/')}
               className="loro-btn-primary px-7 py-3 text-xs font-semibold uppercase tracking-wider"
             >
               Plan your experience &rarr;
             </button>
             <button
+              type="button"
               onClick={() => {
                 const el = document.getElementById('choose');
                 el?.scrollIntoView({ behavior: 'smooth' });
@@ -279,11 +364,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             >
               Which is right for you? &darr;
             </button>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         {/* 2. The three pillars */}
-        <section id="pillars" className="mb-24">
+        <section id="pillars" className="mb-24 sm:mb-32">
           <div className="flex items-center justify-between mb-8">
             <div>
               <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
@@ -298,106 +383,163 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             </span>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {PILLARS_COPY.map((pillar) => (
-              <SpotlightCard
-                key={pillar.id}
-                className="p-7 sm:p-8 flex flex-col justify-between border-[#E4E4E7]"
-              >
-                <div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-[#BE123C] uppercase tracking-wider font-semibold">
-                      {pillar.promise}
-                    </span>
-                  </div>
-
-                  <h2 className="mt-2 text-2xl font-bold text-[#09090B] font-display">
-                    {pillar.title}
-                  </h2>
-
-                  <p className="mt-3 text-sm text-[#52525B] leading-relaxed">
-                    {pillar.body}
-                  </p>
-
-                  {/* Helps you callout */}
-                  <div className="mt-5 rounded-md bg-zinc-50 border border-zinc-200/80 p-3.5">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-1">
-                      Helps you
-                    </div>
-                    <p className="text-xs text-[#09090B] font-medium leading-relaxed">
-                      {pillar.helpsYou}
-                    </p>
-                  </div>
-
-                  {/* Includes list with capability links */}
-                  <div className="mt-6">
-                    <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-2.5">
-                      Includes:
-                    </div>
-                    <ul className="space-y-2 text-xs">
-                      {pillar.includes.map((inc) => (
-                        <li key={inc.label} className="flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
-                          {inc.isRoute ? (
-                            <button
-                              onClick={() => onNavigate(inc.href as RoutePath)}
-                              className="text-zinc-700 hover:text-[#E11D48] hover:underline font-mono transition-colors text-left"
-                            >
-                              {inc.label} &rarr;
-                            </button>
-                          ) : (
-                            <span className="text-zinc-700 font-mono">
-                              {inc.label}
-                            </span>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Card footer CTA link */}
-                <div className="mt-8 pt-5 border-t border-[#E4E4E7]">
-                  <button
-                    onClick={() => onNavigate(pillar.exploreLink)}
-                    className="flex items-center justify-between w-full text-xs font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors group"
+          {/* Optimized Pillar Cards with Circular Top Icons, Index Badges, and Gradient Shading */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {PILLARS_COPY.map((pillar, idx) => {
+              const isHoveredOrTargeted = highlightedPillar === pillar.id;
+              return (
+                <motion.div
+                  key={pillar.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  onMouseEnter={() => setHighlightedPillar(pillar.id)}
+                  onMouseLeave={() => setHighlightedPillar(null)}
+                >
+                  <SpotlightCard
+                    className={`overflow-hidden h-full flex flex-col justify-between border-zinc-200 bg-gradient-to-b from-white via-white to-zinc-50/60 shadow-sm transition-all duration-300 ${
+                      isHoveredOrTargeted
+                        ? 'shadow-xl border-zinc-300 ring-1 ring-[#E11D48]/20 -translate-y-1'
+                        : 'hover:shadow-lg hover:border-zinc-300'
+                    }`}
                   >
-                    <span>{pillar.exploreLabel}</span>
-                    <span className="transform group-hover:translate-x-1 transition-transform">&rarr;</span>
-                  </button>
-                </div>
-              </SpotlightCard>
-            ))}
+                    <div>
+                      {/* Top Image Preview Header with Circular Top Icon and Index Badge */}
+                      <div className="relative h-48 w-full overflow-hidden bg-zinc-900">
+                        <img
+                          src={pillar.image}
+                          alt={pillar.title}
+                          className="w-full h-full object-cover object-center filter brightness-[0.9] contrast-[1.05] transition-transform duration-700 hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#09090B]/90 via-[#09090B]/40 to-transparent" />
+                        
+                        {/* Top Overlay Badges */}
+                        <div className="absolute top-4 inset-x-4 flex items-center justify-between">
+                          {/* Circular Top Icon */}
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-white/20 shadow-md">
+                            {pillar.iconSvg}
+                          </div>
+
+                          {/* Index Counter Badge */}
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 font-mono text-[11px] text-white font-bold">
+                            <span>PILLAR</span>
+                            <span className="text-[#E11D48]">{pillar.number}</span>
+                          </div>
+                        </div>
+
+                        {/* Bottom overlay inside image: Promise & Badge */}
+                        <div className="absolute bottom-3 inset-x-4 flex items-center justify-between text-white">
+                          <span className="text-xs font-mono font-semibold text-rose-300">
+                            {pillar.promise}
+                          </span>
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/20 backdrop-blur-md text-white">
+                            {pillar.badge}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Card Content Body */}
+                      <div className="p-6 sm:p-7">
+                        <h2 className="text-2xl font-bold text-[#09090B] font-display">
+                          {pillar.title}
+                        </h2>
+
+                        <p className="mt-3 text-sm text-[#52525B] leading-relaxed">
+                          {pillar.body}
+                        </p>
+
+                        {/* Helps you callout */}
+                        <div className="mt-5 rounded-lg bg-zinc-50 border border-zinc-200/90 p-4">
+                          <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-1">
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+                            Helps you
+                          </div>
+                          <p className="text-xs text-[#09090B] font-medium leading-relaxed">
+                            {pillar.helpsYou}
+                          </p>
+                        </div>
+
+                        {/* Includes list with capability links */}
+                        <div className="mt-6">
+                          <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-3">
+                            Includes:
+                          </div>
+                          <ul className="space-y-2.5 text-xs">
+                            {pillar.includes.map((inc) => (
+                              <li key={inc.label} className="flex items-center gap-2.5">
+                                <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] flex-shrink-0" />
+                                {inc.isRoute ? (
+                                  <button
+                                    type="button"
+                                    onClick={() => onNavigate(inc.href as RoutePath)}
+                                    className="text-zinc-700 hover:text-[#E11D48] hover:underline font-mono transition-colors text-left"
+                                  >
+                                    {inc.label} &rarr;
+                                  </button>
+                                ) : (
+                                  <span className="text-zinc-600 font-mono">
+                                    {inc.label}
+                                  </span>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Card footer CTA link */}
+                    <div className="p-6 sm:p-7 pt-0 border-t border-zinc-100 mt-2">
+                      <button
+                        type="button"
+                        onClick={() => onNavigate(pillar.exploreLink)}
+                        className="flex items-center justify-between w-full pt-4 text-xs font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors group"
+                      >
+                        <span>{pillar.exploreLabel}</span>
+                        <span className="transform group-hover:translate-x-1 transition-transform font-mono text-base">&rarr;</span>
+                      </button>
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
+              );
+            })}
           </div>
         </section>
 
         {/* 3. One visit, many uses #one-capture */}
-        <section id="one-capture" className="mb-24 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 shadow-sm">
+        <section id="one-capture" className="mb-24 sm:mb-32 rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] p-6 sm:p-12 shadow-sm">
           <div className="max-w-3xl mb-10">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
               The Reality Advantage
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
               One capture, many uses
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
               We capture your place once, carefully and accurately. From that single capture we can build a 3D tour for your website, a VR version for events, a film for social media and measured data for your architect. You get more from one visit, and everything stays consistent.
             </p>
           </div>
 
           {/* Visual: ValueChain graphic: Capture → Create → Tell → Deliver → Measure */}
-          <div className="mt-6">
+          <div className="mb-12">
             <ValueChainGraphic />
+          </div>
+
+          {/* Interactive Single Site Capture -> 4 High-Value Deliverables Engine */}
+          <div className="mt-10">
+            <OneCaptureMultiUseVisualizer onNavigate={onNavigate} />
           </div>
         </section>
 
         {/* 4. Which is right for you? #choose */}
-        <section id="choose" className="mb-24">
-          <div className="max-w-3xl mb-10">
+        <section id="choose" className="mb-24 sm:mb-32">
+          <div className="max-w-3xl mb-8">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
               Decision Guide
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
               Which is right for you?
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[#52525B]">
@@ -405,7 +547,41 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] shadow-sm">
+          {/* Interactive Goal Filter Buttons */}
+          <div className="flex flex-wrap items-center gap-2 mb-6">
+            <span className="text-xs font-mono text-zinc-400 mr-2">Filter by sector:</span>
+            {[
+              { id: 'all', label: 'All Goals' },
+              { id: 'immersive', label: 'Immersive Experiences' },
+              { id: 'storytelling', label: 'Visual Storytelling' },
+              { id: 'survey', label: 'Digital Twins & Survey' },
+            ].map((f) => {
+              const isActive = activeGoalFilter === f.id;
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => setActiveGoalFilter(f.id)}
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-[#E11D48]/30 ${
+                    isActive
+                      ? 'text-white font-semibold'
+                      : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeGoalFilterTab"
+                      className="absolute inset-0 bg-[#09090B] rounded-full z-0"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{f.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
@@ -413,10 +589,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                     <th className="py-3.5 px-5 font-semibold">Your goal</th>
                     <th className="py-3.5 px-5 font-semibold">Best fit</th>
                     <th className="py-3.5 px-5 font-semibold">Example of what you get</th>
+                    <th className="py-3.5 px-5 font-semibold text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E4E4E7]">
-                  {GOALS_MATRIX.map((item, idx) => (
+                  {filteredGoals.map((item) => (
                     <tr
                       key={item.goal}
                       className="hover:bg-zinc-50/60 transition-colors"
@@ -425,13 +602,22 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                         {item.goal}
                       </td>
                       <td className="py-4 px-5">
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[#BE123C] bg-rose-50/60 px-2.5 py-1 rounded border border-rose-200/60">
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[#BE123C] bg-rose-50/70 px-2.5 py-1 rounded border border-rose-200/60">
                           <span className="h-1 w-1 rounded-full bg-[#E11D48]" />
                           {item.bestFit}
                         </span>
                       </td>
                       <td className="py-4 px-5 text-zinc-600 leading-relaxed">
                         {item.example}
+                      </td>
+                      <td className="py-4 px-5 text-right whitespace-nowrap">
+                        <button
+                          type="button"
+                          onClick={() => onNavigate('/contact/')}
+                          className="font-mono text-xs font-semibold text-[#E11D48] hover:underline"
+                        >
+                          Plan this &rarr;
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -442,12 +628,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </section>
 
         {/* 5. Ways to start #ways-to-start */}
-        <section id="ways-to-start" className="mb-24">
+        <section id="ways-to-start" className="mb-24 sm:mb-32">
           <div className="max-w-3xl mb-10">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
               Project Starters
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
               Ways to start
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-zinc-500 font-mono">
@@ -456,17 +642,32 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            {STARTER_PACKAGES.map((pkg, idx) => (
-              <div
+            {STARTER_PACKAGES.map((pkg) => (
+              <motion.div
                 key={pkg.name}
-                className="flex flex-col justify-between rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-7 shadow-sm hover:border-[#BE123C] transition-colors"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.25 }}
+                className={`relative flex flex-col justify-between rounded-xl border p-6 sm:p-8 transition-all duration-300 ${
+                  pkg.popular
+                    ? 'border-[#E11D48] bg-gradient-to-b from-white to-rose-50/30 shadow-md ring-1 ring-[#E11D48]/30'
+                    : 'border-[#E4E4E7] bg-gradient-to-b from-white to-zinc-50/50 shadow-sm hover:border-zinc-300 hover:shadow-md'
+                }`}
               >
+                {pkg.popular && (
+                  <div className="absolute -top-3 right-6 bg-[#E11D48] text-white text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
+                    Most Popular
+                  </div>
+                )}
+
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider">
-                      Package 0{idx + 1}
-                    </span>
-                    <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded bg-zinc-200/70 text-zinc-700">
+                  {/* Circular Top Icon & Index Counter Badge */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-200 bg-white shadow-sm">
+                      <span className="font-mono text-xs font-bold text-[#E11D48]">
+                        {pkg.number}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[11px] font-semibold px-2.5 py-1 rounded bg-zinc-100 text-zinc-700">
                       {pkg.from}
                     </span>
                   </div>
@@ -479,8 +680,8 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                     For: {pkg.forWho}
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-[#E4E4E7]">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-1.5">
+                  <div className="mt-5 pt-4 border-t border-zinc-100">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-2">
                       Includes
                     </div>
                     <p className="text-xs text-zinc-600 leading-relaxed">
@@ -489,25 +690,31 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-[#E4E4E7]">
+                <div className="mt-6 pt-4 border-t border-zinc-100">
                   <button
+                    type="button"
                     onClick={() => onNavigate('/contact/')}
-                    className="w-full text-center text-xs font-semibold py-2.5 px-3 rounded border border-zinc-300 bg-white hover:border-[#E11D48] hover:text-[#E11D48] transition-colors"
+                    className={`w-full text-center text-xs font-semibold py-3 px-4 rounded-lg transition-colors ${
+                      pkg.popular
+                        ? 'loro-btn-primary'
+                        : 'border border-zinc-300 bg-white hover:border-[#E11D48] hover:text-[#E11D48]'
+                    }`}
                   >
                     Ask for a quote &rarr;
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="rounded-md bg-zinc-50 border border-zinc-200 p-4 text-xs text-[#52525B] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="rounded-xl bg-zinc-50 border border-zinc-200 p-5 text-xs text-[#52525B] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <p>
               <strong className="text-zinc-900 font-semibold">Note:</strong> Every project is quoted to its size and goal. Prices shown are starting points.
             </p>
             <button
+              type="button"
               onClick={() => onNavigate('/contact/')}
-              className="text-xs font-semibold text-[#E11D48] hover:underline whitespace-nowrap"
+              className="text-xs font-semibold text-[#E11D48] hover:underline whitespace-nowrap self-start sm:self-auto"
             >
               Ask for a quote &rarr;
             </button>
@@ -515,7 +722,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </section>
 
         {/* Toolkit reference (§12 Verification) */}
-        <div id="toolkit" className="rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] p-8 mb-24 shadow-sm">
+        <div id="toolkit" className="rounded-xl border border-[#E4E4E7] bg-white p-6 sm:p-8 mb-24 sm:mb-32 shadow-sm">
           <div className="max-w-2xl mb-8">
             <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">
               Rigor &amp; Tooling
@@ -539,10 +746,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
               </thead>
               <tbody className="divide-y divide-zinc-200 font-mono text-[11px]">
                 {TOOLKIT.map((t) => (
-                  <tr key={t.category} className="hover:bg-zinc-100 transition-colors">
-                    <td className="py-3 font-bold text-[#09090B]">{t.category}</td>
-                    <td className="py-3 text-zinc-600 font-sans">{t.whatItDoesForYou}</td>
-                    <td className="py-3 text-[#BE123C]">{t.examples.join(', ')}</td>
+                  <tr key={t.category} className="hover:bg-zinc-50 transition-colors">
+                    <td className="py-3.5 font-bold text-[#09090B]">{t.category}</td>
+                    <td className="py-3.5 text-zinc-600 font-sans">{t.whatItDoesForYou}</td>
+                    <td className="py-3.5 text-[#BE123C]">{t.examples.join(', ')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -550,46 +757,58 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           </div>
         </div>
 
-        {/* 6. Proof */}
-        <section id="proof" className="mb-24 rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] p-8 sm:p-12 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="max-w-2xl">
+        {/* 6. Proof with CurvedArchCarousel ("See it in action") */}
+        <section id="proof" className="mb-24 sm:mb-32 rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-white p-6 sm:p-12 shadow-sm">
+          <div className="max-w-2xl mb-8">
             <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
               Delivered Work
             </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#09090B] font-display text-balance">
               See it in action
             </h2>
-            <p className="mt-3 text-sm text-[#52525B] leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
               Explore projects we've delivered for heritage sites, schools, colleges and hotels.
             </p>
           </div>
 
-          <button
-            onClick={() => onNavigate('/work/')}
-            className="loro-btn-secondary px-6 py-3.5 text-xs font-semibold whitespace-nowrap self-start md:self-center"
-          >
-            See our work &rarr;
-          </button>
+          {/* Curved Arch / Fan 3D Ribbon Showcase Visualisation */}
+          <div className="my-6">
+            <CurvedArchCarousel onNavigate={onNavigate} />
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <span className="text-xs text-zinc-500">
+              Want to see measured accuracy datasets or point cloud LAS samples?
+            </span>
+            <button
+              type="button"
+              onClick={() => onNavigate('/work/')}
+              className="loro-btn-secondary px-6 py-3 text-xs font-semibold whitespace-nowrap self-start sm:self-auto"
+            >
+              See all projects &rarr;
+            </button>
+          </div>
         </section>
 
         {/* 7. CTA band */}
-        <section id="cta-band" className="rounded-xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] p-8 sm:p-14 text-center shadow-md">
+        <section id="cta-band" className="rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] p-8 sm:p-14 text-center shadow-md">
           <div className="max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-white text-xs font-mono text-zinc-600 mb-5">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-white text-xs font-mono text-zinc-600 mb-5 shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
               <span>Free consultation &amp; custom proposal</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#09090B] font-display">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#09090B] font-display text-balance">
               Not sure where to start?
             </h2>
 
-            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
               Tell us about your place and what you want people to do. We'll suggest the right mix and send a clear proposal.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
+                type="button"
                 onClick={() => onNavigate('/contact/')}
                 className="loro-btn-primary w-full sm:w-auto px-8 py-3.5 text-xs font-semibold uppercase tracking-wider"
               >
@@ -603,7 +822,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                 className="loro-btn-secondary w-full sm:w-auto px-7 py-3.5 text-xs font-medium flex items-center justify-center gap-2"
               >
                 <span>Chat on WhatsApp</span>
-                <span className="text-emerald-600 font-bold">↗</span>
+                <span className="text-emerald-600 font-bold" aria-hidden="true">↗</span>
               </a>
             </div>
 

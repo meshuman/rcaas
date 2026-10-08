@@ -36,7 +36,7 @@ export const CategoryLabel: React.FC<{ post: BlogPost; onDark?: boolean }> = ({ 
   <span className="inline-flex items-center gap-2">
     <span
       className={`rounded-full px-2.5 py-0.5 text-[11px] font-mono font-semibold ${
-        onDark ? 'bg-white/95 text-[#BE123C]' : 'bg-[#E11D48]/10 text-[#BE123C]'
+        onDark ? 'bg-white/95 text-accent-strong' : 'bg-accent/10 text-accent-strong'
       }`}
     >
       {CATEGORIES[post.category].label}
@@ -57,11 +57,11 @@ export const BlogCard: React.FC<{ post: BlogPost; onNavigate: (path: RoutePath) 
     <a
       href={path}
       onClick={linkHandler(onNavigate, path)}
-      className={`group h-full flex rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-[#A1A1AA] hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] ${
+      className={`group h-full flex rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] ${
         featured ? 'flex-col lg:flex-row' : 'flex-col'
       }`}
     >
-      <div className={`relative overflow-hidden bg-[#F4F4F5] ${featured ? 'aspect-[16/9] lg:aspect-auto lg:w-3/5' : 'aspect-[16/9]'}`}>
+      <div className={`relative overflow-hidden bg-surface-sunken ${featured ? 'aspect-[16/9] lg:aspect-auto lg:w-3/5' : 'aspect-[16/9]'}`}>
         <img
           src={post.heroImage.src}
           alt={altText(post.heroImage.alt)}
@@ -72,9 +72,9 @@ export const BlogCard: React.FC<{ post: BlogPost; onNavigate: (path: RoutePath) 
         </span>
       </div>
       <div className={`flex flex-col flex-1 ${featured ? 'p-6 sm:p-9 lg:justify-center' : 'p-5'}`}>
-        {featured && <p className="text-[11px] font-mono uppercase tracking-wider text-[#E11D48] font-semibold mb-2">Latest story</p>}
+        {featured && <p className="text-[11px] font-mono uppercase tracking-wider text-accent font-semibold mb-2">Latest story</p>}
         <h3
-          className={`font-bold text-zinc-900 font-display leading-snug group-hover:text-[#E11D48] transition-colors ${
+          className={`font-bold text-zinc-900 font-display leading-snug group-hover:text-accent transition-colors ${
             featured ? 'text-2xl sm:text-3xl text-balance' : 'text-lg'
           }`}
         >
@@ -86,7 +86,7 @@ export const BlogCard: React.FC<{ post: BlogPost; onNavigate: (path: RoutePath) 
         <div className="mt-auto pt-5 flex flex-wrap items-center justify-between gap-3">
           <PostMeta post={post} showAuthor={featured} />
           {featured && (
-            <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48]">
+            <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent">
               Read the story <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </span>
           )}

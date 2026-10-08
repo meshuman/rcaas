@@ -333,7 +333,7 @@ const SplatIllustration: React.FC<{ stage: StageId; runId: number }> = ({ stage,
   const layerShift = (layer: number) => (stage === 'viewing' ? pointer * [6, 16, 10][layer] : 0);
 
   return (
-    <div className="relative rounded-xl overflow-hidden border border-[#E4E4E7] bg-[#FAFAFA]">
+    <div className="relative rounded-xl overflow-hidden border border-line bg-surface">
       <svg
         viewBox="0 0 400 260"
         className="w-full h-auto block touch-none"
@@ -404,7 +404,7 @@ const SplatIllustration: React.FC<{ stage: StageId; runId: number }> = ({ stage,
         </g>
       </svg>
 
-      <div className="absolute top-3 left-3 bg-white/95 border border-[#E4E4E7] px-2.5 py-1 rounded-md text-[11px] font-mono text-zinc-700 shadow-xs">
+      <div className="absolute top-3 left-3 bg-white/95 border border-line px-2.5 py-1 rounded-md text-[11px] font-mono text-zinc-700 shadow-xs">
         {stage === 'capture' && 'Photos from many angles'}
         {stage === 'training' && 'Gaussians placed and adjusted'}
         {stage === 'viewing' && 'Blended on screen · move your pointer'}
@@ -458,13 +458,13 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                           onClick={() => selectStage(step.id)}
                           className={`w-full text-left rounded-xl border p-4 flex items-start gap-3 transition-all ${
                             isActive
-                              ? 'border-[#E11D48] bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
-                              : 'border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 hover:bg-white'
+                              ? 'border-accent bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
+                              : 'border-line bg-surface hover:border-zinc-300 hover:bg-white'
                           }`}
                         >
                           <span
                             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                              isActive ? 'bg-[#E11D48] text-white' : 'bg-white border border-[#E4E4E7] text-[#E11D48]'
+                              isActive ? 'bg-accent text-white' : 'bg-white border border-line text-accent'
                             }`}
                           >
                             <Icon className="w-4 h-4" aria-hidden="true" />
@@ -489,7 +489,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                   <button
                     type="button"
                     onClick={() => selectStage('training')}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
                   >
                     <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
                     Replay training
@@ -498,7 +498,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
               </div>
             </div>
 
-            <motion.p {...fadeUp} className="mt-8 max-w-3xl text-sm text-zinc-600 leading-relaxed border-l-2 border-[#E11D48] pl-4">
+            <motion.p {...fadeUp} className="mt-8 max-w-3xl text-sm text-zinc-600 leading-relaxed border-l-2 border-accent pl-4">
               {HISTORY}
             </motion.p>
           </section>
@@ -513,12 +513,12 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                 <SpotlightCard className="h-full" contentClassName="h-full p-6 sm:p-8">
                   <span
                     className={`text-xs font-mono uppercase tracking-wider font-semibold ${
-                      column.tone === 'good' ? 'text-[#E11D48]' : 'text-amber-700'
+                      column.tone === 'good' ? 'text-accent' : 'text-amber-700'
                     }`}
                   >
                     {column.eyebrow}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-6">{column.title}</h2>
+                  <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink font-display mt-1 mb-6">{column.title}</h2>
                   <ul className="space-y-4">
                     {column.items.map((item) => {
                       const Icon = item.icon;
@@ -526,7 +526,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                         <li key={item.lead} className="flex items-start gap-3">
                           <span
                             className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
-                              column.tone === 'good' ? 'bg-[#E11D48]/10 text-[#E11D48]' : 'bg-amber-50 border border-amber-200 text-amber-700'
+                              column.tone === 'good' ? 'bg-accent/10 text-accent' : 'bg-amber-50 border border-amber-200 text-amber-700'
                             }`}
                           >
                             <Icon className="w-4 h-4" aria-hidden="true" />
@@ -548,7 +548,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
             <ComparisonTable eyebrow="How it compares" title="Gaussian splatting vs other 3D methods" columns={METHODS} rows={METHOD_ROWS} />
 
             {/* Pairing: accuracy + looks */}
-            <motion.div {...fadeUp} className="mt-8 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <motion.div {...fadeUp} className="mt-8 rounded-2xl border border-line bg-surface p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <p className="lg:col-span-5 text-sm sm:text-base text-zinc-700 leading-relaxed">{PAIRING}</p>
 
               <div className="lg:col-span-7 grid grid-cols-[1fr_auto_1fr] items-center gap-3" aria-hidden="true">
@@ -558,11 +558,11 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                 ].map((item, i) => (
                   <React.Fragment key={item.title}>
                     {i === 1 && (
-                      <span className="w-9 h-9 rounded-full border border-[#E11D48]/30 bg-white flex items-center justify-center shadow-xs font-mono font-bold text-[#E11D48]">
+                      <span className="w-9 h-9 rounded-full border border-accent/30 bg-white flex items-center justify-center shadow-xs font-mono font-bold text-accent">
                         +
                       </span>
                     )}
-                    <figure className="rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs group">
+                    <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                       <div className="aspect-[4/3] overflow-hidden bg-zinc-900">
                         <img src={item.image} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                       </div>
@@ -585,7 +585,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                 <a
                   href="/services/immersive-experiences/3d-virtual-tours/"
                   onClick={goToLink('/services/immersive-experiences/3d-virtual-tours/')}
-                  className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors"
+                  className="text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors"
                 >
                   3D virtual tours <span aria-hidden="true">→</span>
                 </a>
@@ -593,7 +593,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                 <a
                   href="/platform/"
                   onClick={goToLink('/platform/')}
-                  className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors"
+                  className="text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors"
                 >
                   Our platform <span aria-hidden="true">→</span>
                 </a>
@@ -646,7 +646,7 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
                 href="https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#E11D48] hover:text-[#BE123C] underline underline-offset-2 break-all"
+                className="text-accent hover:text-accent-strong underline underline-offset-2 break-all"
               >
                 https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/
               </a>

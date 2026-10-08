@@ -537,7 +537,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
   return (
     <div
       ref={containerRef}
-      className={`relative w-full overflow-hidden rounded-xl border border-[#27272A] bg-[#0E0E12] shadow-2xl ${
+      className={`relative w-full overflow-hidden rounded-xl border border-zinc-800 bg-[#0E0E12] shadow-2xl ${
         isFullscreen ? 'h-screen rounded-none' : 'h-[520px]'
       }`}
     >
@@ -550,7 +550,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
             className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-black/40 to-black/20" />
 
           {/* Active Canvas Scanlines & Reticles */}
           <div className="absolute inset-0 pointer-events-none">
@@ -589,12 +589,12 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
           </div>
 
           {/* Bottom Telemetry Bar */}
-          <div className="absolute bottom-0 inset-x-0 p-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 bg-gradient-to-t from-[#09090B] to-transparent z-10">
+          <div className="absolute bottom-0 inset-x-0 p-6 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 bg-gradient-to-t from-ink to-transparent z-10">
             <div>
-              <div className="text-[11px] font-mono text-[#FB7185] uppercase tracking-wider">
+              <div className="text-[11px] font-mono text-accent-soft uppercase tracking-wider">
                 {activeSpace.tag} · {activeSpace.location}
               </div>
-              <h3 className="text-xl font-bold text-[#FAFAFA] font-display mt-1">
+              <h3 className="text-xl font-bold text-surface font-display mt-1">
                 {activeSpace.name}
               </h3>
               <p className="mt-1 text-xs text-zinc-300 max-w-lg">
@@ -604,7 +604,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
             <div className="text-right text-xs text-zinc-400 font-mono">
               <div>{activeSpace.splatCount}</div>
-              <div className="text-[#FB7185]">{activeSpace.accuracy}</div>
+              <div className="text-accent-soft">{activeSpace.accuracy}</div>
             </div>
           </div>
         </div>
@@ -617,14 +617,14 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
           <div className="absolute top-4 inset-x-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-20">
             
             {/* Space Switcher */}
-            <div className="flex items-center gap-1 p-1 rounded-md bg-[#09090B]/90 border border-[#27272A] pointer-events-auto">
+            <div className="flex items-center gap-1 p-1 rounded-md bg-ink/90 border border-zinc-800 pointer-events-auto">
               {DEMO_SPACES.map((space) => (
                 <button
                   key={space.id}
                   onClick={() => setActiveSpaceId(space.id)}
                   className={`px-3 py-1.5 text-xs font-mono rounded transition-all ${
                     activeSpaceId === space.id
-                      ? 'bg-[#E11D48] text-white font-medium'
+                      ? 'bg-accent text-white font-medium'
                       : 'text-zinc-400 hover:text-white'
                   }`}
                 >
@@ -636,11 +636,11 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
             {/* Viewport & Motion Modes */}
             <div className="flex items-center gap-2 pointer-events-auto">
               {/* Motion Mode (Flythrough / Walk / Orbit) */}
-              <div className="flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A]">
+              <div className="flex items-center p-1 rounded-md bg-ink/90 border border-zinc-800">
                 <button
                   onClick={() => setMotionMode('flythrough')}
                   className={`px-2.5 py-1 text-[11px] font-mono rounded ${
-                    motionMode === 'flythrough' ? 'bg-[#E11D48] text-white' : 'text-zinc-400 hover:text-white'
+                    motionMode === 'flythrough' ? 'bg-accent text-white' : 'text-zinc-400 hover:text-white'
                   }`}
                   title="Cinematic Dolly Flythrough"
                 >
@@ -649,7 +649,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
                 <button
                   onClick={() => setMotionMode('walk')}
                   className={`px-2.5 py-1 text-[11px] font-mono rounded ${
-                    motionMode === 'walk' ? 'bg-[#E11D48] text-white' : 'text-zinc-400 hover:text-white'
+                    motionMode === 'walk' ? 'bg-accent text-white' : 'text-zinc-400 hover:text-white'
                   }`}
                   title="Interactive Walk Mode"
                 >
@@ -658,7 +658,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
                 <button
                   onClick={() => setMotionMode('orbit')}
                   className={`px-2.5 py-1 text-[11px] font-mono rounded ${
-                    motionMode === 'orbit' ? 'bg-[#E11D48] text-white' : 'text-zinc-400 hover:text-white'
+                    motionMode === 'orbit' ? 'bg-accent text-white' : 'text-zinc-400 hover:text-white'
                   }`}
                   title="360 Orbit"
                 >
@@ -667,7 +667,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               </div>
 
               {/* Render Modes */}
-              <div className="hidden sm:flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A]">
+              <div className="hidden sm:flex items-center p-1 rounded-md bg-ink/90 border border-zinc-800">
                 <button
                   onClick={() => setRenderMode('splat')}
                   className={`px-2 py-1 text-[11px] font-mono rounded ${
@@ -689,7 +689,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               {/* Fullscreen */}
               <button
                 onClick={toggleFullscreen}
-                className="p-2 rounded-md border border-[#27272A] bg-[#09090B]/90 text-xs text-zinc-300 hover:text-white"
+                className="p-2 rounded-md border border-zinc-800 bg-ink/90 text-xs text-zinc-300 hover:text-white"
                 title="Toggle Fullscreen"
               >
                 ⛶
@@ -710,7 +710,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               </button>
               <button
                 onClick={stepForward}
-                className="w-8 h-8 rounded bg-[#E11D48] hover:bg-[#BE123C] text-white text-xs flex items-center justify-center font-bold shadow"
+                className="w-8 h-8 rounded bg-accent hover:bg-accent-strong text-white text-xs flex items-center justify-center font-bold shadow"
                 title="Step Forward into Space"
               >
                 ▲
@@ -750,7 +750,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
           {/* Waypoints Tour Bar */}
           <div className="absolute bottom-16 inset-x-4 flex items-center gap-2 overflow-x-auto pb-1 z-20 pointer-events-auto">
-            <div className="flex items-center gap-1 bg-[#09090B]/90 p-1.5 rounded-lg border border-[#27272A]">
+            <div className="flex items-center gap-1 bg-ink/90 p-1.5 rounded-lg border border-zinc-800">
               <span className="text-[10px] font-mono text-zinc-400 px-2 uppercase hidden sm:inline">
                 Tour Views:
               </span>
@@ -772,11 +772,11 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
           {/* Bottom HUD Overlay */}
           <div className="absolute bottom-4 inset-x-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 pointer-events-none z-20">
-            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] pointer-events-auto max-w-md">
+            <div className="p-3 rounded-md bg-ink/90 border border-zinc-800 pointer-events-auto max-w-md">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-pulse"></span>
+                <span className="h-2 w-2 rounded-full bg-accent animate-pulse"></span>
                 <span className="text-xs font-semibold text-white font-display">{activeSpace.name}</span>
-                <span className="text-[11px] text-[#FB7185] font-mono">({activeSpace.tag})</span>
+                <span className="text-[11px] text-accent-soft font-mono">({activeSpace.tag})</span>
               </div>
               <p className="mt-1 text-xs text-zinc-300">
                 {activeSpace.clientGoal}
@@ -790,8 +790,8 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               </div>
             </div>
 
-            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] font-mono text-[11px] text-right text-zinc-400 pointer-events-auto">
-              <div className="text-[#FB7185] font-medium">{activeSpace.accuracy}</div>
+            <div className="p-3 rounded-md bg-ink/90 border border-zinc-800 font-mono text-[11px] text-right text-zinc-400 pointer-events-auto">
+              <div className="text-accent-soft font-medium">{activeSpace.accuracy}</div>
               <div>{activeSpace.splatCount}</div>
               <div>{activeSpace.coords}</div>
             </div>

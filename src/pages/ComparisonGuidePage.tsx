@@ -7,6 +7,7 @@ import { IMAGES } from '../data/siteData';
 import { isGuidePublished, readingMinutes } from '../data/guides';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { eyebrowClass } from '../components/ui';
 import {
   ComparisonTable,
   FromOurProjects,
@@ -261,7 +262,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
               <a
                 href={COST_GUIDE_PATH}
                 onClick={goToLink(COST_GUIDE_PATH)}
-                className="text-[#E11D48] hover:text-[#BE123C] underline underline-offset-2"
+                className="text-accent hover:text-accent-strong underline underline-offset-2"
               >
                 See our guide to cost and timeline.
               </a>
@@ -292,13 +293,13 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                 return (
                   <motion.div key={format.id} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.1 }}>
                     <SpotlightCard className="h-full group" contentClassName="h-full flex flex-col">
-                      <div className="border-b border-[#E4E4E7] bg-[#FAFAFA] px-4 py-3">
+                      <div className="border-b border-line bg-surface px-4 py-3">
                         <FormatDiagram id={format.id} />
                       </div>
                       <div className="p-6 flex flex-col flex-1">
                         <div className="flex items-center gap-3 mb-3">
-                          <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                            <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                          <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent group-hover:border-accent">
+                            <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                           </span>
                           <h3 className="text-lg font-bold text-zinc-900 font-display">{format.name}</h3>
                         </div>
@@ -307,7 +308,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                           <a
                             href="/learn/what-is-gaussian-splatting/"
                             onClick={goToLink('/learn/what-is-gaussian-splatting/')}
-                            className="mt-auto pt-5 text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors self-start font-mono"
+                            className="mt-auto pt-5 text-xs font-semibold text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors self-start font-mono"
                           >
                             <span>What is Gaussian splatting?</span>
                             <span aria-hidden="true">→</span>
@@ -337,15 +338,15 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                 return (
                   <motion.div key={format.id} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.1 }}>
                     <SpotlightCard className="h-full p-6 sm:p-7 group">
-                      <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center mb-4 transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <h3 className="text-lg font-bold text-zinc-900 font-display mb-4">{choice.heading}</h3>
                       <ul className="space-y-3">
                         {choice.reasons.map((reason) => (
                           <li key={reason} className="flex items-start gap-3 text-sm text-zinc-700 leading-relaxed">
-                            <span className="mt-0.5 w-5 h-5 rounded-full bg-[#E11D48]/10 flex items-center justify-center shrink-0">
-                              <Check className="w-3 h-3 text-[#E11D48]" aria-hidden="true" />
+                            <span className="mt-0.5 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                              <Check className="w-3 h-3 text-accent" aria-hidden="true" />
                             </span>
                             <span>{reason}</span>
                           </li>
@@ -362,11 +363,11 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
           <section className="mb-20 sm:mb-28">
             <motion.div
               {...fadeUp}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-10"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 rounded-2xl border border-line bg-surface p-6 sm:p-10"
             >
               <div className="lg:col-span-5 flex flex-col">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Why not both?</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-4 text-balance">
+                <span className={eyebrowClass}>Why not both?</span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-4 text-balance">
                   The best answer is often a combination
                 </h2>
                 <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">{COMBINATION}</p>
@@ -374,7 +375,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                   <a
                     href="/services/immersive-experiences/3d-virtual-tours/"
                     onClick={goToLink('/services/immersive-experiences/3d-virtual-tours/')}
-                    className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors"
+                    className="text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors"
                   >
                     3D virtual tours <span aria-hidden="true">→</span>
                   </a>
@@ -382,7 +383,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                   <a
                     href="/services/visual-storytelling/"
                     onClick={goToLink('/services/visual-storytelling/')}
-                    className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors"
+                    className="text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors"
                   >
                     Visual Storytelling <span aria-hidden="true">→</span>
                   </a>
@@ -392,7 +393,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
               {/* Visual: film draws attention, 3D tour helps decide, both from one capture */}
               <div className="lg:col-span-7">
                 <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
-                  <figure className="rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs group">
+                  <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
                       <img
                         src={IMAGES.filmCinematography}
@@ -406,14 +407,14 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                     </figcaption>
                   </figure>
 
-                  <div className="flex sm:flex-col items-center justify-center gap-1 text-[#E11D48]" aria-hidden="true">
-                    <span className="w-9 h-9 rounded-full border border-[#E11D48]/30 bg-white flex items-center justify-center shadow-xs rotate-90 sm:rotate-0">
+                  <div className="flex sm:flex-col items-center justify-center gap-1 text-accent" aria-hidden="true">
+                    <span className="w-9 h-9 rounded-full border border-accent/30 bg-white flex items-center justify-center shadow-xs rotate-90 sm:rotate-0">
                       <ArrowRight className="w-4 h-4" />
                     </span>
                     <span className="text-[10px] font-mono text-zinc-500">links to</span>
                   </div>
 
-                  <figure className="rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs group">
+                  <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
                       <img
                         src={IMAGES.tourInterface}
@@ -428,8 +429,8 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                   </figure>
                 </div>
 
-                <div className="mt-3 rounded-xl border border-dashed border-[#E11D48]/40 bg-white px-4 py-3 flex items-center justify-center gap-2 text-xs font-mono text-zinc-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" aria-hidden="true" />
+                <div className="mt-3 rounded-xl border border-dashed border-accent/40 bg-white px-4 py-3 flex items-center justify-center gap-2 text-xs font-mono text-zinc-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                   Both from the same 3D capture · one site visit
                 </div>
               </div>

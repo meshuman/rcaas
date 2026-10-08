@@ -135,7 +135,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
       ref={containerRef}
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className={`relative w-full overflow-hidden select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E11D48] rounded-xl ${className}`}
+      className={`relative w-full overflow-hidden select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-xl ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       role="region"
@@ -144,8 +144,8 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
       {/* Top Header & Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-[#E11D48] font-semibold">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+          <div className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-accent font-semibold">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
             Curated Deployments ({totalCards} Sites)
           </div>
           <p className="mt-1 text-xs sm:text-sm text-zinc-500">
@@ -158,7 +158,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
           <button
             type="button"
             onClick={handlePrev}
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white hover:border-[#E11D48] hover:text-[#E11D48] text-zinc-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#E11D48]/20"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white hover:border-accent hover:text-accent text-zinc-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent/20"
             aria-label="Previous project"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -171,7 +171,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
           <button
             type="button"
             onClick={handleNext}
-            className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white hover:border-[#E11D48] hover:text-[#E11D48] text-zinc-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#E11D48]/20"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-zinc-200 bg-white hover:border-accent hover:text-accent text-zinc-700 shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-accent/20"
             aria-label="Next project"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -247,7 +247,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
                 }}
                 className={`absolute w-[280px] sm:w-[340px] h-[410px] sm:h-[450px] rounded-2xl overflow-hidden cursor-pointer transition-shadow duration-300 touch-pan-y ${
                   isCurrent
-                    ? 'ring-2 ring-[#E11D48] shadow-2xl shadow-rose-950/20'
+                    ? 'ring-2 ring-accent shadow-2xl shadow-rose-950/20'
                     : 'shadow-lg hover:shadow-xl opacity-80 hover:opacity-100'
                 }`}
               >
@@ -260,15 +260,15 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
                     loading="lazy"
                   />
                   {/* High contrast gradient vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-[#09090B]/60 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#09090B]/50 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-transparent to-transparent" />
                 </div>
 
                 {/* Card Top: Circular Icon & Number Badge */}
                 <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between">
                   {/* Circular Top Icon Emblem */}
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/30 border border-white/20 text-white shadow-inner">
-                    <span className="font-mono text-xs font-bold text-[#E11D48]">
+                    <span className="font-mono text-xs font-bold text-accent">
                       {card.number}
                     </span>
                   </div>
@@ -295,7 +295,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
 
                   {/* Result Metric Banner */}
                   <div className="p-2.5 rounded-lg bg-white/30 border border-white/15 mb-3 flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-ping" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
                     <span className="font-mono text-[11px] text-zinc-100 font-medium">
                       {card.metric}
                     </span>
@@ -337,9 +337,9 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
               key={card.id}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#E11D48]/40 ${
+              className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-accent/40 ${
                 idx === activeIndex
-                  ? 'w-7 h-2 bg-[#E11D48]'
+                  ? 'w-7 h-2 bg-accent'
                   : 'w-2 h-2 bg-zinc-300 hover:bg-zinc-400'
               }`}
               aria-label={`Jump to ${card.title}`}

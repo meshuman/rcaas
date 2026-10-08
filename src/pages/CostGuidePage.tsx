@@ -277,13 +277,13 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                       onClick={() => toggleFactor(factor.id)}
                       className={`group h-full w-full text-left rounded-lg border p-5 flex items-start gap-4 transition-all ${
                         isOn
-                          ? 'border-[#E11D48] bg-[#E11D48]/[0.04] shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
-                          : 'border-[#E4E4E7] bg-white hover:border-[#A1A1AA] hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)]'
+                          ? 'border-accent bg-accent/[0.04] shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
+                          : 'border-line bg-white hover:border-line-strong hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)]'
                       }`}
                     >
                       <span
                         className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                          isOn ? 'bg-[#E11D48] text-white' : 'border border-[#E4E4E7] bg-[#FAFAFA] text-[#E11D48]'
+                          isOn ? 'bg-accent text-white' : 'border border-line bg-surface text-accent'
                         }`}
                       >
                         <Icon className="w-4.5 h-4.5" aria-hidden="true" />
@@ -293,7 +293,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                           <span className="text-base font-bold text-zinc-900 font-display">{factor.factor}</span>
                           <span
                             className={`w-5 h-5 rounded border flex items-center justify-center shrink-0 transition-colors ${
-                              isOn ? 'bg-[#E11D48] border-[#E11D48]' : 'border-zinc-300 bg-white'
+                              isOn ? 'bg-accent border-accent' : 'border-zinc-300 bg-white'
                             }`}
                             aria-hidden="true"
                           >
@@ -309,16 +309,16 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
             </div>
 
             {/* Running summary */}
-            <div className="mt-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="mt-6 rounded-xl border border-line bg-surface p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex-1">
                 <p className="text-sm font-semibold text-zinc-900 font-display" aria-live="polite">
                   {selectedFactors.length === 0
                     ? 'Select the factors that apply, then ask for a quote.'
                     : `${selectedFactors.length} of ${COST_FACTORS.length} factors apply to your place`}
                 </p>
-                <div className="mt-2 h-1.5 rounded-full bg-white border border-[#E4E4E7] overflow-hidden" aria-hidden="true">
+                <div className="mt-2 h-1.5 rounded-full bg-white border border-line overflow-hidden" aria-hidden="true">
                   <motion.div
-                    className="h-full w-full origin-left bg-[#E11D48]"
+                    className="h-full w-full origin-left bg-accent"
                     initial={false}
                     animate={{ scaleX: selectedFactors.length / COST_FACTORS.length }}
                     transition={{ duration: 0.3 }}
@@ -383,7 +383,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
             </div>
 
             <p className="mt-6 text-sm text-zinc-600 flex items-start gap-2">
-              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#E11D48] shrink-0" aria-hidden="true" />
+              <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
               <span>{PROJECTS_NOTE}</span>
             </p>
           </section>
@@ -394,7 +394,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
 
             <ol className="relative grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {/* Connecting rail on large screens */}
-              <span className="hidden lg:block absolute left-[8%] right-[8%] top-6 h-px bg-[#E4E4E7]" aria-hidden="true" />
+              <span className="hidden lg:block absolute left-[8%] right-[8%] top-6 h-px bg-line" aria-hidden="true" />
               {STAGES.map((stage, i) => {
                 const Icon = stage.icon;
                 return (
@@ -404,7 +404,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                         className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
                           stage.optional
                             ? 'border-2 border-dashed border-zinc-300 bg-white text-zinc-500'
-                            : 'border border-[#E4E4E7] bg-white text-[#E11D48] shadow-xs'
+                            : 'border border-line bg-white text-accent shadow-xs'
                         }`}
                       >
                         <Icon className="w-5 h-5" aria-hidden="true" />
@@ -413,7 +413,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                         <span className="font-mono text-[11px] text-zinc-400">0{i + 1}</span>
                         <h3 className="text-sm font-bold text-zinc-900 font-display">{stage.stage}</h3>
                         <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-mono text-zinc-800">
-                          <CalendarClock className="w-3.5 h-3.5 text-[#E11D48] shrink-0" aria-hidden="true" />
+                          <CalendarClock className="w-3.5 h-3.5 text-accent shrink-0" aria-hidden="true" />
                           {stage.time ?? <Placeholder>{stage.timeHint ? `[[TBI: ${stage.timeHint}]]` : '[[TBI]]'}</Placeholder>}
                         </p>
                         <p className="mt-2 text-xs text-zinc-600 leading-relaxed">{stage.what}</p>
@@ -426,9 +426,9 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
 
             <motion.div
               {...fadeUp}
-              className="mt-8 rounded-xl border border-[#E11D48]/25 bg-[#E11D48]/[0.04] p-5 flex items-start gap-3"
+              className="mt-8 rounded-xl border border-accent/25 bg-accent/[0.04] p-5 flex items-start gap-3"
             >
-              <CalendarClock className="w-5 h-5 text-[#E11D48] shrink-0 mt-0.5" aria-hidden="true" />
+              <CalendarClock className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
               <p className="text-sm text-zinc-700 leading-relaxed">
                 <strong className="text-zinc-900">Tip:</strong> If your experience is for a launch, admissions season or a
                 tourism fair, contact us at least <Placeholder>[[TBI: lead time]]</Placeholder> before.
@@ -440,7 +440,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
           <section className="mb-20 sm:mb-28">
             <motion.div
               {...fadeUp}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] overflow-hidden"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-surface overflow-hidden"
             >
               <div className="lg:col-span-5 relative min-h-[240px] bg-zinc-900">
                 <img
@@ -449,11 +449,11 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="absolute bottom-5 left-5 right-5 bg-white/95 border border-[#E4E4E7] p-4 rounded-xl shadow-sm">
+                <div className="absolute bottom-5 left-5 right-5 bg-white/95 border border-line p-4 rounded-xl shadow-sm">
                   <p className="text-xs font-mono text-zinc-500 mb-1.5" aria-live="polite">
                     {prepDone.length} of {PREPARATION.length} ready
                   </p>
-                  <div className="h-1.5 rounded-full bg-[#F4F4F5] overflow-hidden" aria-hidden="true">
+                  <div className="h-1.5 rounded-full bg-surface-sunken overflow-hidden" aria-hidden="true">
                     <motion.div
                       className="h-full w-full origin-left bg-emerald-500"
                       initial={false}
@@ -465,11 +465,11 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
               </div>
 
               <div className="lg:col-span-7 p-6 sm:p-10">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold inline-flex items-center gap-1.5">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold inline-flex items-center gap-1.5">
                   <ClipboardCheck className="w-3.5 h-3.5" aria-hidden="true" />
                   Checklist
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-6 text-balance">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-6 text-balance">
                   How to prepare for capture day
                 </h2>
 
@@ -480,7 +480,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                       <li key={item.lead}>
                         <label
                           className={`flex items-start gap-3 rounded-lg border p-3.5 cursor-pointer transition-colors ${
-                            done ? 'border-emerald-300 bg-emerald-50/60' : 'border-[#E4E4E7] bg-white hover:border-zinc-300'
+                            done ? 'border-emerald-300 bg-emerald-50/60' : 'border-line bg-white hover:border-zinc-300'
                           }`}
                         >
                           <input
@@ -511,7 +511,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
               <a
                 href="/learn/3d-virtual-tour-vs-360-tour-vs-video/"
                 onClick={goToLink('/learn/3d-virtual-tour-vs-360-tour-vs-video/')}
-                className="shrink-0 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1 transition-colors"
+                className="shrink-0 text-xs font-mono font-semibold text-accent hover:text-accent-strong inline-flex items-center gap-1 transition-colors"
               >
                 3D tour vs 360° tour vs video <span aria-hidden="true">→</span>
               </a>
@@ -522,7 +522,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                 <motion.div key={item.question} {...fadeUp} transition={{ duration: 0.4, delay: (i % 2) * 0.06 }}>
                   <SpotlightCard className="h-full p-5 sm:p-6 group">
                     <div className="flex items-start gap-4">
-                      <span className="font-mono text-sm font-bold text-[#E11D48] w-7 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="font-mono text-sm font-bold text-accent w-7 shrink-0">{String(i + 1).padStart(2, '0')}</span>
                       <div>
                         <dt className="text-base font-bold text-zinc-900 font-display">{item.question}</dt>
                         <dd className="mt-1.5 text-sm text-zinc-600 leading-relaxed">{item.why}</dd>

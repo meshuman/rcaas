@@ -6,6 +6,7 @@ import { RoutePath } from '../types';
 import { SITE_METADATA } from '../data/siteData';
 import { Placeholder } from '../components/Placeholder';
 import { linkHandler, pageShellClass } from '../components/GuideParts';
+import { buttonClass } from '../components/ui';
 
 interface ContactPageProps {
   currentPath: RoutePath;
@@ -69,7 +70,7 @@ const track = (event: string, data: Record<string, unknown> = {}) => {
 const submitEnquiry = async (_data: Record<string, string>) => {};
 
 const inputClass =
-  'w-full rounded-lg border border-[#E4E4E7] bg-white px-3.5 py-2.5 text-sm text-[#09090B] placeholder-zinc-400 focus:border-[#E11D48] focus:ring-2 focus:ring-[#E11D48]/10 focus:outline-none transition-shadow';
+  'w-full rounded-lg border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder-zinc-400 focus:border-accent focus:ring-2 focus:ring-accent/10 focus:outline-none transition-shadow';
 const labelClass = 'block text-xs font-mono text-zinc-700 mb-1.5';
 
 export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigate }) => {
@@ -168,7 +169,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
             Home
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             Contact
           </span>
         </nav>
@@ -179,7 +180,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span className="font-semibold text-zinc-900">Contact</span>
@@ -191,9 +192,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
           >
-            Tell us about your place <span className="text-[#E11D48]">and your goal.</span>
+            Tell us about your place <span className="text-accent">and your goal.</span>
           </motion.h1>
 
           <motion.p
@@ -215,7 +216,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             aria-label="Enquiry form"
-            className="lg:col-span-7 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-9 shadow-sm scroll-mt-24"
+            className="lg:col-span-7 rounded-2xl border border-line bg-surface p-6 sm:p-9 shadow-sm scroll-mt-24"
           >
             <form onSubmit={handleSubmit} className="space-y-8">
               <p className="text-xs text-zinc-500">Fields marked with an asterisk (*) are required.</p>
@@ -223,7 +224,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               {/* Goal first */}
               <fieldset>
                 <legend className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-[#E11D48] text-white font-mono text-[11px] font-bold flex items-center justify-center">1</span>
+                  <span className="w-6 h-6 rounded-full bg-accent text-white font-mono text-[11px] font-bold flex items-center justify-center">1</span>
                   <span className="text-sm font-bold text-zinc-900 font-display">Your goal</span>
                 </legend>
                 <p id="c-goal-label" className={labelClass}>
@@ -241,14 +242,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                         onClick={() => setForm((prev) => ({ ...prev, goal: goal.label }))}
                         className={`text-left rounded-lg border px-3.5 py-2.5 text-sm transition-all ${
                           selected
-                            ? 'border-[#E11D48] bg-white text-zinc-900 font-semibold shadow-[0_4px_14px_-6px_rgba(225,29,72,0.35)]'
-                            : 'border-[#E4E4E7] bg-white text-zinc-600 hover:border-zinc-300'
+                            ? 'border-accent bg-white text-zinc-900 font-semibold shadow-[0_4px_14px_-6px_rgba(225,29,72,0.35)]'
+                            : 'border-line bg-white text-zinc-600 hover:border-zinc-300'
                         }`}
                       >
                         <span className="flex items-center gap-2">
                           <span
                             className={`w-3.5 h-3.5 rounded-full border-2 shrink-0 ${
-                              selected ? 'border-[#E11D48] bg-[#E11D48] shadow-[inset_0_0_0_2px_white]' : 'border-zinc-300'
+                              selected ? 'border-accent bg-accent shadow-[inset_0_0_0_2px_white]' : 'border-zinc-300'
                             }`}
                             aria-hidden="true"
                           />
@@ -263,7 +264,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               {/* Then the place */}
               <fieldset>
                 <legend className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-[#E11D48] text-white font-mono text-[11px] font-bold flex items-center justify-center">2</span>
+                  <span className="w-6 h-6 rounded-full bg-accent text-white font-mono text-[11px] font-bold flex items-center justify-center">2</span>
                   <span className="text-sm font-bold text-zinc-900 font-display">Your place</span>
                 </legend>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -332,7 +333,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               {/* Then you */}
               <fieldset>
                 <legend className="flex items-center gap-2 mb-4">
-                  <span className="w-6 h-6 rounded-full bg-[#E11D48] text-white font-mono text-[11px] font-bold flex items-center justify-center">3</span>
+                  <span className="w-6 h-6 rounded-full bg-accent text-white font-mono text-[11px] font-bold flex items-center justify-center">3</span>
                   <span className="text-sm font-bold text-zinc-900 font-display">About you</span>
                 </legend>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -387,11 +388,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                   required
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-zinc-300 accent-[#E11D48] shrink-0"
+                  className="mt-0.5 h-4 w-4 rounded border-zinc-300 accent-accent shrink-0"
                 />
                 <label htmlFor="c-consent" className="text-xs text-zinc-600 leading-relaxed">
                   I agree to RCAAS Technology contacting me about my enquiry. See our{' '}
-                  <a href="/privacy/" onClick={goToLink('/privacy/')} className="text-[#E11D48] hover:text-[#BE123C] underline underline-offset-2">
+                  <a href="/privacy/" onClick={goToLink('/privacy/')} className="text-accent hover:text-accent-strong underline underline-offset-2">
                     Privacy Policy
                   </a>
                   . *
@@ -415,7 +416,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98] disabled:opacity-60"
+                className={buttonClass('primary', 'lg', 'w-full sm:w-auto')}
               >
                 <Send className="w-4 h-4" aria-hidden="true" />
                 <span>{status === 'sending' ? 'Sending…' : 'Send my enquiry'}</span>
@@ -432,9 +433,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
             aria-labelledby="direct-heading"
             className="lg:col-span-5 space-y-5 scroll-mt-24"
           >
-            <div className="rounded-2xl border border-[#E4E4E7] bg-white shadow-sm overflow-hidden lg:sticky lg:top-28">
+            <div className="rounded-2xl border border-line bg-white shadow-sm overflow-hidden lg:sticky lg:top-28">
               <div className="px-6 pt-6 pb-4">
-                <h2 id="direct-heading" className="text-2xl font-bold tracking-tight text-[#09090B] font-display">
+                <h2 id="direct-heading" className="text-2xl font-bold tracking-tight text-ink font-display">
                   Prefer to talk?
                 </h2>
                 <p className="mt-1 text-sm text-zinc-600">
@@ -442,19 +443,19 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                 </p>
               </div>
 
-              <dl className="divide-y divide-[#E4E4E7] border-t border-[#E4E4E7]">
+              <dl className="divide-y divide-line border-t border-line">
                 {directRows.map((row) => {
                   const Icon = row.icon;
                   const content = (
                     <>
-                      <span className="w-9 h-9 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-4 h-4 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-9 h-9 rounded-lg border border-line bg-surface flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-4 h-4 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <span className="flex-1 min-w-0">
                         <dt className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">{row.label}</dt>
                         <dd className="text-sm text-zinc-900 font-medium break-words">{row.value}</dd>
                       </span>
-                      {row.href && <ArrowRight className="w-4 h-4 text-zinc-300 transition-all group-hover:text-[#E11D48] group-hover:translate-x-0.5" aria-hidden="true" />}
+                      {row.href && <ArrowRight className="w-4 h-4 text-zinc-300 transition-all group-hover:text-accent group-hover:translate-x-0.5" aria-hidden="true" />}
                     </>
                   );
                   return row.href ? (
@@ -464,7 +465,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                       target={row.href.startsWith('http') ? '_blank' : undefined}
                       rel={row.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                       onClick={() => row.event && track(row.event)}
-                      className="group flex items-center gap-4 px-6 py-4 hover:bg-[#FAFAFA] transition-colors"
+                      className="group flex items-center gap-4 px-6 py-4 hover:bg-surface transition-colors"
                     >
                       {content}
                     </a>
@@ -477,13 +478,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               </dl>
 
               {/* Map: static map image linking to Google Maps once the office address is confirmed. */}
-              <div className="border-t border-[#E4E4E7] p-4">
+              <div className="border-t border-line p-4">
                 <a
                   href={SITE_METADATA.mapsUrl ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Map showing the RCAAS Technology office in Kathmandu"
-                  className={`relative block aspect-[16/9] rounded-xl overflow-hidden border border-[#E4E4E7] bg-[#F4F4F5] ${
+                  className={`relative block aspect-[16/9] rounded-xl overflow-hidden border border-line bg-surface-sunken ${
                     SITE_METADATA.mapsUrl ? 'hover:border-zinc-300' : 'pointer-events-none'
                   }`}
                 >
@@ -503,7 +504,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                     animate={{ y: [0, -4, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <MapPin className="w-8 h-8 text-[#E11D48] fill-[#E11D48]/20" aria-hidden="true" />
+                    <MapPin className="w-8 h-8 text-accent fill-accent/20" aria-hidden="true" />
                   </motion.span>
                   {!SITE_METADATA.mapsUrl && (
                     <span className="absolute bottom-2 left-2">
@@ -518,9 +519,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
 
         {/* 4. WHAT HAPPENS NEXT */}
         <section className="mb-16 sm:mb-20">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-8">What happens next</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mb-8">What happens next</h2>
           <ol className="relative grid grid-cols-1 md:grid-cols-3 gap-5">
-            <span className="hidden md:block absolute left-[16%] right-[16%] top-5 h-px bg-[#E4E4E7]" aria-hidden="true" />
+            <span className="hidden md:block absolute left-[16%] right-[16%] top-5 h-px bg-line" aria-hidden="true" />
             {NEXT_STEPS.map((step, i) => (
               <motion.li
                 key={step.title}
@@ -530,10 +531,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                 transition={{ duration: 0.4, delay: i * 0.1 }}
                 className="relative flex md:flex-col md:items-center md:text-center gap-4"
               >
-                <span className="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-[#E11D48] flex items-center justify-center font-mono text-sm font-bold text-[#E11D48] shrink-0">
+                <span className="relative z-10 w-10 h-10 rounded-full bg-white border-2 border-accent flex items-center justify-center font-mono text-sm font-bold text-accent shrink-0">
                   {i + 1}
                 </span>
-                <div className="rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 flex-1 w-full">
+                <div className="rounded-xl border border-line bg-surface p-5 flex-1 w-full">
                   <h3 className="text-sm font-bold text-zinc-900 font-display mb-1">{step.title}</h3>
                   <p className="text-sm text-zinc-600 leading-relaxed">{step.line}</p>
                 </div>
@@ -543,13 +544,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
         </section>
 
         {/* 5. PARTNERS AND RESEARCHERS */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-white p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center gap-4 shadow-xs">
-          <span className="w-11 h-11 rounded-xl bg-[#E11D48]/10 flex items-center justify-center shrink-0">
-            <Handshake className="w-5 h-5 text-[#E11D48]" aria-hidden="true" />
+        <section className="rounded-2xl border border-line bg-white p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center gap-4 shadow-xs">
+          <span className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+            <Handshake className="w-5 h-5 text-accent" aria-hidden="true" />
           </span>
           <p className="text-sm text-zinc-700 leading-relaxed flex-1">
             Exploring a partnership, joint venture or research project? Choose "Partnership" above, or{' '}
-            <a href="/about/#partner" onClick={goToLink('/about/#partner' as RoutePath)} className="text-[#E11D48] hover:text-[#BE123C] font-semibold underline underline-offset-2">
+            <a href="/about/#partner" onClick={goToLink('/about/#partner' as RoutePath)} className="text-accent hover:text-accent-strong font-semibold underline underline-offset-2">
               read how we work with partners →
             </a>
           </p>
@@ -559,7 +560,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
               setForm((prev) => ({ ...prev, goal: 'Partnership' }));
               document.getElementById('form')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono font-semibold text-zinc-800 hover:border-[#E11D48] hover:text-[#E11D48] transition-colors"
+            className="shrink-0 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg border border-line bg-surface text-xs font-mono font-semibold text-zinc-800 hover:border-accent hover:text-accent transition-colors"
           >
             Choose Partnership
           </button>

@@ -168,8 +168,8 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
         {COVERS.map((item) => {
           const Icon = item.icon;
           return (
-            <li key={item.text} className="flex items-start gap-3 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
-              <Icon className="w-4 h-4 text-[#E11D48] mt-0.5 shrink-0" aria-hidden="true" />
+            <li key={item.text} className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4">
+              <Icon className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
               <span className="text-sm text-zinc-700 leading-relaxed">{item.text}</span>
             </li>
           );
@@ -184,9 +184,9 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
         {COLLECT.map((item) => {
           const Icon = item.icon;
           return (
-            <div key={item.lead} className="rounded-xl border border-[#E4E4E7] bg-white p-5 shadow-xs">
-              <span className="w-9 h-9 rounded-lg bg-[#E11D48]/10 flex items-center justify-center mb-3">
-                <Icon className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+            <div key={item.lead} className="rounded-xl border border-line bg-white p-5 shadow-xs">
+              <span className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+                <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
               </span>
               <p className="text-sm text-zinc-600 leading-relaxed">
                 <strong className="text-zinc-900 font-semibold">{item.lead}</strong> <WithPlaceholders text={item.text} />
@@ -204,7 +204,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
       <ul className="space-y-2 mb-4">
         {USES.map((use) => (
           <li key={use} className={`flex items-start gap-3 ${legalBodyClass}`}>
-            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#E11D48] shrink-0" aria-hidden="true" />
+            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
             {use}
           </li>
         ))}
@@ -239,7 +239,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
         We share personal information only with service providers that help us run our business, under appropriate
         safeguards:
       </p>
-      <dl className="rounded-xl border border-[#E4E4E7] divide-y divide-[#E4E4E7] overflow-hidden mb-4">
+      <dl className="rounded-xl border border-line divide-y divide-line overflow-hidden mb-4">
         {PROVIDERS.map((provider) => (
           <div key={provider.what} className="grid grid-cols-[1fr_auto] sm:grid-cols-[14rem_1fr] gap-3 px-4 py-3 bg-white">
             <dt className="text-sm text-zinc-700">{provider.what}</dt>
@@ -276,7 +276,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
     <LegalSection section={SECTIONS[7]} number={8}>
       <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {RETENTION.map((item) => (
-          <div key={item.what} className="rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
+          <div key={item.what} className="rounded-xl border border-line bg-surface p-4">
             <dt className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">{item.what}</dt>
             <dd className="mt-1.5 text-sm text-zinc-800 font-medium">
               <WithPlaceholders text={item.period} />
@@ -307,9 +307,9 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
         {RIGHTS.map((right) => {
           const Icon = right.icon;
           return (
-            <li key={right.text} className="flex items-start gap-3 rounded-xl border border-[#E4E4E7] bg-white p-4 shadow-xs">
-              <span className="w-8 h-8 rounded-lg bg-[#E11D48]/10 flex items-center justify-center shrink-0">
-                <Icon className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+            <li key={right.text} className="flex items-start gap-3 rounded-xl border border-line bg-white p-4 shadow-xs">
+              <span className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
               </span>
               <span className="text-sm text-zinc-700 leading-relaxed pt-1">{right.text}</span>
             </li>
@@ -319,8 +319,8 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
       <p className={`${legalBodyClass} mb-5`}>
         <WithPlaceholders text={RIGHTS_PROCESS} />
       </p>
-      <div className="flex items-start gap-3 rounded-xl border border-[#E11D48]/25 bg-[#E11D48]/[0.04] p-5">
-        <UserX className="w-5 h-5 text-[#E11D48] shrink-0 mt-0.5" aria-hidden="true" />
+      <div className="flex items-start gap-3 rounded-xl border border-accent/25 bg-accent/[0.04] p-5">
+        <UserX className="w-5 h-5 text-accent shrink-0 mt-0.5" aria-hidden="true" />
         <p className="text-sm text-zinc-700 leading-relaxed">
           <WithPlaceholders
             text={`If you appear in one of our published experiences and want to be removed or blurred, contact us at ${EMAIL} and we will [[TBI: response commitment]].`}
@@ -342,7 +342,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onNavigate }) => (
 
     {/* 12 */}
     <LegalSection section={SECTIONS[11]} number={12}>
-      <address className="not-italic rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 text-sm text-zinc-700 leading-relaxed">
+      <address className="not-italic rounded-xl border border-line bg-surface p-5 text-sm text-zinc-700 leading-relaxed">
         <WithPlaceholders text={`${EMAIL} · ${PHONE} · RCAAS Technology Pvt. Ltd., ${ADDRESS}, Kathmandu, Nepal`} />
       </address>
       <p className={`${legalBodyClass} mt-3`}>

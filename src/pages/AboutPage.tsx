@@ -27,6 +27,7 @@ import { TEAM_MEMBERS, isMemberPublished } from '../content/team';
 import type { TeamMember } from '../content/team';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { buttonClass, eyebrowClass } from '../components/ui';
 import {
   SectionHeading,
   fadeUp,
@@ -176,10 +177,10 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   return (
     <article
       id={member.slug}
-      className="group h-full flex flex-col rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-[#A1A1AA] hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] scroll-mt-24"
+      className="group h-full flex flex-col rounded-2xl border border-line bg-white overflow-hidden shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-line-strong hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] scroll-mt-24"
     >
       {/* Portrait */}
-      <div className="relative aspect-[4/5] overflow-hidden bg-[#F4F4F5]">
+      <div className="relative aspect-[4/5] overflow-hidden bg-surface-sunken">
         {member.photo && (
           <img
             src={member.photo}
@@ -190,8 +191,8 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-zinc-950/20 to-transparent" />
 
         {/* Discipline badge */}
-        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-[#E4E4E7] pl-1.5 pr-2.5 py-1 text-[11px] font-mono text-zinc-800 shadow-xs">
-          <span className="w-5 h-5 rounded-full bg-[#E11D48] flex items-center justify-center">
+        <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-white/95 border border-line pl-1.5 pr-2.5 py-1 text-[11px] font-mono text-zinc-800 shadow-xs">
+          <span className="w-5 h-5 rounded-full bg-accent flex items-center justify-center">
             <DisciplineIcon className="w-3 h-3 text-white" aria-hidden="true" />
           </span>
           {member.discipline ?? <Placeholder>[[TBI]]</Placeholder>}
@@ -204,7 +205,7 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${member.name ?? 'Team member'} on LinkedIn`}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 border border-[#E4E4E7] flex items-center justify-center text-zinc-700 shadow-xs transition-all hover:bg-[#E11D48] hover:border-[#E11D48] hover:text-white sm:opacity-0 sm:-translate-y-1 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 focus-visible:opacity-100"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 border border-line flex items-center justify-center text-zinc-700 shadow-xs transition-all hover:bg-accent hover:border-accent hover:text-white sm:opacity-0 sm:-translate-y-1 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 focus-visible:opacity-100"
           >
             <Linkedin className="w-3.5 h-3.5" aria-hidden="true" />
           </a>
@@ -232,7 +233,7 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
         </div>
 
         {/* Accent bar */}
-        <span className="absolute bottom-0 left-0 h-1 w-0 bg-[#E11D48] transition-all duration-500 group-hover:w-full" aria-hidden="true" />
+        <span className="absolute bottom-0 left-0 h-1 w-0 bg-accent transition-all duration-500 group-hover:w-full" aria-hidden="true" />
       </div>
 
       {/* Bio */}
@@ -251,7 +252,7 @@ const TeamCard: React.FC<{ member: TeamMember }> = ({ member }) => {
               href={member.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-zinc-600 hover:text-[#E11D48] transition-colors"
+              className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-zinc-600 hover:text-accent transition-colors"
             >
               LinkedIn <span aria-hidden="true">↗</span>
             </a>
@@ -288,7 +289,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Home
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             About
           </span>
         </nav>
@@ -300,9 +301,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span>About RCAAS Technology</span>
             </motion.div>
 
@@ -310,9 +311,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
             >
-              We turn real places into <span className="text-[#E11D48]">experiences that last.</span>
+              We turn real places into <span className="text-accent">experiences that last.</span>
             </motion.h1>
 
             {/* Entity boilerplate: keep wording stable and identical to Google Business Profile and LinkedIn. */}
@@ -335,15 +336,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             aria-labelledby="at-a-glance-heading"
-            className="lg:col-span-5 rounded-2xl border border-[#E4E4E7] bg-white shadow-sm overflow-hidden scroll-mt-24"
+            className="lg:col-span-5 rounded-2xl border border-line bg-white shadow-sm overflow-hidden scroll-mt-24"
           >
-            <div className="flex items-center gap-2 px-5 py-3.5 border-b border-[#E4E4E7] bg-[#FAFAFA]">
+            <div className="flex items-center gap-2 px-5 py-3.5 border-b border-line bg-surface">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true" />
               <h2 id="at-a-glance-heading" className="text-xs font-mono uppercase tracking-wider text-zinc-900 font-semibold">
                 At a glance
               </h2>
             </div>
-            <dl className="divide-y divide-[#E4E4E7]">
+            <dl className="divide-y divide-line">
               {AT_A_GLANCE.map((row) => (
                 <div key={row.label} className="grid grid-cols-[7.5rem_1fr] gap-3 px-5 py-3">
                   <dt className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 pt-0.5">{row.label}</dt>
@@ -358,7 +359,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <section id="story" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div
             {...fadeUp}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] overflow-hidden"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-surface overflow-hidden"
           >
             <div className="lg:col-span-5 relative min-h-[260px] bg-zinc-900">
               <img
@@ -367,14 +368,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <span className="absolute bottom-4 left-4 bg-white/95 border border-[#E4E4E7] px-3 py-1.5 rounded-md text-xs font-mono text-zinc-900 shadow-xs">
+              <span className="absolute bottom-4 left-4 bg-white/95 border border-line px-3 py-1.5 rounded-md text-xs font-mono text-zinc-900 shadow-xs">
                 Monuments weather and change
               </span>
             </div>
 
             <div className="lg:col-span-7 p-6 sm:p-10">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Our story</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-6">
+              <span className={eyebrowClass}>Our story</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-6">
                 Why we started
               </h2>
 
@@ -407,7 +408,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <a
                 href="/how-we-work/"
                 onClick={goToLink('/how-we-work/')}
-                className="mt-6 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                className="mt-6 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
               >
                 See how we work <span aria-hidden="true">→</span>
               </a>
@@ -425,13 +426,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     key={half.title}
                     {...fadeUp}
                     transition={{ duration: 0.45, delay: i * 0.1 }}
-                    className="relative rounded-2xl overflow-hidden border border-[#E4E4E7] bg-zinc-900 aspect-[4/5] group"
+                    className="relative rounded-2xl overflow-hidden border border-line bg-zinc-900 aspect-[4/5] group"
                   >
                     <img src={half.image} alt="" className="absolute inset-0 w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
                     <figcaption className="absolute bottom-4 left-4 right-4">
                       <span className="w-9 h-9 rounded-lg bg-white/95 flex items-center justify-center shadow-xs mb-2">
-                        <Icon className="w-4 h-4 text-[#E11D48]" />
+                        <Icon className="w-4 h-4 text-accent" />
                       </span>
                       <p className="text-lg font-bold text-white font-display">{half.title}</p>
                       <p className="text-xs text-white/80">{half.line}</p>
@@ -439,7 +440,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                   </motion.figure>
                 );
               })}
-              <span className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border border-[#E4E4E7] bg-white shadow-md items-center justify-center font-mono text-lg font-bold text-[#E11D48]">
+              <span className="hidden sm:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border border-line bg-white shadow-md items-center justify-center font-mono text-lg font-bold text-accent">
                 +
               </span>
             </div>
@@ -467,7 +468,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 <motion.div key={item.label} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.1 }}>
                   <SpotlightCard className="h-full p-7 sm:p-9 group">
                     <div className="flex items-center gap-3 mb-5">
-                      <span className="w-11 h-11 rounded-xl bg-[#E11D48] flex items-center justify-center shadow-sm">
+                      <span className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center shadow-sm">
                         <Icon className="w-5 h-5 text-white" aria-hidden="true" />
                       </span>
                       <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-900 font-semibold">{item.label}</h3>
@@ -496,8 +497,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 >
                   <SpotlightCard className="h-full p-6 group">
                     <div className="flex items-center justify-between mb-4">
-                      <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <span className="font-mono text-xs text-zinc-400">{String(i + 1).padStart(2, '0')}</span>
                     </div>
@@ -510,8 +511,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
             {/* Eighth tile completes the grid */}
             <motion.div {...fadeUp} transition={{ duration: 0.4, delay: 0.18 }} className="hidden lg:block">
-              <div className="h-full rounded-lg border border-dashed border-[#E11D48]/40 bg-[#E11D48]/[0.03] p-6 flex flex-col justify-between">
-                <MapPinned className="w-6 h-6 text-[#E11D48]" aria-hidden="true" />
+              <div className="h-full rounded-lg border border-dashed border-accent/40 bg-accent/[0.03] p-6 flex flex-col justify-between">
+                <MapPinned className="w-6 h-6 text-accent" aria-hidden="true" />
                 <p className="text-sm font-bold text-zinc-900 font-display">Based in Kathmandu. Working with places across Nepal.</p>
               </div>
             </motion.div>
@@ -530,9 +531,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
           {/* Interactive roadmap; every goal stays in the DOM */}
           <div className="relative">
-            <div className="hidden md:block absolute left-0 right-0 top-[1.375rem] h-1 rounded-full bg-[#F4F4F5]" aria-hidden="true">
+            <div className="hidden md:block absolute left-0 right-0 top-[1.375rem] h-1 rounded-full bg-surface-sunken" aria-hidden="true">
               <motion.div
-                className="h-full w-full origin-left rounded-full bg-[#E11D48]"
+                className="h-full w-full origin-left rounded-full bg-accent"
                 initial={false}
                 animate={{ scaleX: activeGoal / (GOALS.length - 1) }}
                 transition={{ duration: 0.4 }}
@@ -554,10 +555,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                       <span
                         className={`relative z-10 flex w-11 h-11 rounded-full items-center justify-center font-mono text-xs font-bold border-2 transition-colors ${
                           isActive
-                            ? 'bg-[#E11D48] border-[#E11D48] text-white shadow-[0_0_0_6px_rgba(225,29,72,0.12)]'
+                            ? 'bg-accent border-accent text-white shadow-[0_0_0_6px_rgba(225,29,72,0.12)]'
                             : isPast
-                              ? 'bg-white border-[#E11D48] text-[#E11D48]'
-                              : 'bg-white border-[#E4E4E7] text-zinc-500'
+                              ? 'bg-white border-accent text-accent'
+                              : 'bg-white border-line text-zinc-500'
                         }`}
                       >
                         {String(i + 1).padStart(2, '0')}
@@ -565,11 +566,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                       <span
                         className={`mt-4 block rounded-xl border p-5 transition-all ${
                           isActive
-                            ? 'border-[#E11D48] bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
-                            : 'border-[#E4E4E7] bg-[#FAFAFA] group-hover:border-zinc-300'
+                            ? 'border-accent bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
+                            : 'border-line bg-surface group-hover:border-zinc-300'
                         }`}
                       >
-                        <span className="block text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">{goal.when}</span>
+                        <span className="block text-xs font-mono uppercase tracking-wider text-accent font-semibold">{goal.when}</span>
                         <span className="mt-2 block text-sm text-zinc-700 leading-relaxed">{goal.goal}</span>
                       </span>
                     </button>
@@ -609,10 +610,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
           <motion.div
             {...fadeUp}
-            className="mt-8 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 flex flex-col sm:flex-row sm:items-center gap-3"
+            className="mt-8 rounded-xl border border-line bg-surface p-5 flex flex-col sm:flex-row sm:items-center gap-3"
           >
-            <span className="w-9 h-9 rounded-lg bg-white border border-[#E4E4E7] flex items-center justify-center shrink-0">
-              <Users className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+            <span className="w-9 h-9 rounded-lg bg-white border border-line flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4 text-accent" aria-hidden="true" />
             </span>
             <p className="text-sm text-zinc-700 leading-relaxed">
               <strong className="text-zinc-900">Join us.</strong> We're always glad to hear from engineers, game developers
@@ -635,7 +636,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-3">How we can work together</h3>
                 <ul className="flex flex-wrap gap-2">
                   {WAYS_TO_PARTNER.map((way) => (
-                    <li key={way} className="rounded-md border border-[#E4E4E7] bg-white px-3 py-1.5 text-xs text-zinc-700">
+                    <li key={way} className="rounded-md border border-line bg-white px-3 py-1.5 text-xs text-zinc-700">
                       {way}
                     </li>
                   ))}
@@ -645,7 +646,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('/contact/?type=partnership' as RoutePath)}
-                className="mt-8 inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'md', 'mt-8')}
               >
                 <Handshake className="w-4 h-4 mr-2" aria-hidden="true" />
                 <span>Start a conversation</span>
@@ -667,8 +668,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                     >
                       <SpotlightCard className="h-full p-5 group">
                         <div className="flex items-start gap-4">
-                          <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                            <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                          <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent group-hover:border-accent">
+                            <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                           </span>
                           <div>
                             <dt className="text-sm font-bold text-zinc-900 font-display">{partner.partner}</dt>
@@ -688,9 +689,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         </section>
 
         {/* 10. CALL TO ACTION BAND */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center relative overflow-hidden">
+        <section className="rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center relative overflow-hidden">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4 text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-4 text-balance">
               Have a place with a story to tell?
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 mb-8 leading-relaxed">

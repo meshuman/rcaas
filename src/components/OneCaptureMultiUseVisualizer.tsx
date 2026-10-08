@@ -139,11 +139,11 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
       {/* Header explanation */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-zinc-200">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono text-[#E11D48] font-semibold mb-2">
-            <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-ping" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-mono text-accent font-semibold mb-2">
+            <span className="h-2 w-2 rounded-full bg-accent animate-ping" />
             Interactive Output Switcher
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold font-display text-[#09090B]">
+          <h3 className="text-xl sm:text-2xl font-bold font-display text-ink">
             From 1 Single Site Visit &rarr; 4 High-Value Deliverables
           </h3>
           <p className="mt-1.5 text-xs sm:text-sm text-zinc-500 max-w-2xl">
@@ -158,21 +158,21 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
             onClick={() => setIsLidarMode(!isLidarMode)}
             className={`px-3 py-2 rounded-xl border text-xs font-mono transition-all flex items-center gap-2 ${
               isLidarMode
-                ? 'bg-[#09090B] text-white border-[#09090B] shadow-sm'
+                ? 'bg-ink text-white border-ink shadow-sm'
                 : 'bg-zinc-50 text-zinc-700 border-zinc-200 hover:bg-zinc-100'
             }`}
             title="Toggle LiDAR laser scan sweep view"
           >
             <span
               className={`h-2 w-2 rounded-full ${
-                isLidarMode ? 'bg-[#E11D48] animate-pulse' : 'bg-zinc-400'
+                isLidarMode ? 'bg-accent animate-pulse' : 'bg-zinc-400'
               }`}
             />
             <span>{isLidarMode ? 'LiDAR Sweep Active' : 'Inspect LiDAR Beam'}</span>
           </button>
 
           <div className="flex items-center gap-3 bg-zinc-50 p-2.5 px-3.5 rounded-xl border border-zinc-200/80">
-            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E11D48]/10 text-[#E11D48] font-mono text-xs font-bold border border-[#E11D48]/20">
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent font-mono text-xs font-bold border border-accent/20">
               4x
             </div>
             <div>
@@ -203,7 +203,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                 }}
                 className={`w-full text-left p-4 sm:p-5 rounded-xl border transition-all duration-200 flex items-start gap-4 relative ${
                   isSelected
-                    ? 'border-[#E11D48] bg-rose-50/40 shadow-sm ring-1 ring-[#E11D48]/30 -translate-y-0.5'
+                    ? 'border-accent bg-rose-50/40 shadow-sm ring-1 ring-accent/30 -translate-y-0.5'
                     : 'border-zinc-200 hover:border-zinc-300 bg-white hover:bg-zinc-50/60'
                 }`}
               >
@@ -211,7 +211,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                 <div
                   className={`flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-full border transition-colors ${
                     isSelected
-                      ? 'border-[#E11D48] bg-[#E11D48] text-white shadow-sm'
+                      ? 'border-accent bg-accent text-white shadow-sm'
                       : 'border-zinc-200 bg-zinc-100 text-zinc-600'
                   }`}
                 >
@@ -228,7 +228,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                     <span
                       className={`text-[10px] font-mono px-2 py-0.5 rounded font-medium ${
                         isSelected
-                          ? 'bg-rose-100 text-[#BE123C]'
+                          ? 'bg-rose-100 text-accent-strong'
                           : 'bg-zinc-100 text-zinc-500'
                       }`}
                     >
@@ -238,7 +238,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
 
                   <h4
                     className={`text-base font-bold font-display mt-1 ${
-                      isSelected ? 'text-[#E11D48]' : 'text-zinc-900'
+                      isSelected ? 'text-accent' : 'text-zinc-900'
                     }`}
                   >
                     {item.name}
@@ -275,7 +275,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                 {/* Simulated LiDAR Scan Beam Sweep (if active) */}
                 {isLidarMode && (
                   <motion.div
-                    className="absolute inset-x-0 h-1 bg-[#E11D48] shadow-[0_0_15px_#E11D48] pointer-events-none z-20"
+                    className="absolute inset-x-0 h-1 bg-accent shadow-[0_0_15px_#E11D48] pointer-events-none z-20"
                     animate={{
                       top: ['0%', '100%', '0%'],
                     }}
@@ -285,7 +285,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                       ease: 'easeInOut',
                     }}
                   >
-                    <div className="absolute top-1 right-3 font-mono text-[9px] text-[#E11D48] bg-black/80 px-2 py-0.5 rounded">
+                    <div className="absolute top-1 right-3 font-mono text-[9px] text-accent bg-black/80 px-2 py-0.5 rounded">
                       SLAM LASER SWEEP · ±5mm ACCURACY
                     </div>
                   </motion.div>
@@ -303,11 +303,11 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                       <button
                         type="button"
                         onClick={() => setActiveHotspotId(isOpen ? null : spot.id)}
-                        className="group/pin relative flex items-center justify-center w-7 h-7 rounded-full bg-white/90 border border-[#E11D48] shadow-lg hover:scale-110 transition-transform focus:outline-none"
+                        className="group/pin relative flex items-center justify-center w-7 h-7 rounded-full bg-white/90 border border-accent shadow-lg hover:scale-110 transition-transform focus:outline-none"
                         aria-label={`Inspect ${spot.title}`}
                       >
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#E11D48] animate-ping absolute" />
-                        <span className="w-2 h-2 rounded-full bg-[#E11D48] relative" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-accent animate-ping absolute" />
+                        <span className="w-2 h-2 rounded-full bg-accent relative" />
                       </button>
 
                       {/* Hotspot Popover Tooltip */}
@@ -430,7 +430,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                         key={item}
                         className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-white border border-zinc-200 text-xs font-mono text-zinc-800 shadow-sm"
                       >
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                         {item}
                       </span>
                     ))}

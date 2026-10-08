@@ -36,9 +36,9 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
         >
-          Thank you. <span className="text-[#E11D48]">We've got your message.</span>
+          Thank you. <span className="text-accent">We've got your message.</span>
         </motion.h1>
 
         <motion.p
@@ -84,7 +84,7 @@ export const ThankYouPage: React.FC<ThankYouPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 + i * 0.1 }}
-              className="group relative block aspect-[4/3] rounded-2xl overflow-hidden border border-[#E4E4E7] bg-zinc-900"
+              className="group relative block aspect-[4/3] rounded-2xl overflow-hidden border border-line bg-zinc-900"
             >
               <img src={work.image} alt={`3D view of ${work.name}`} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
               <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />

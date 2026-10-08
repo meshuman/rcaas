@@ -11,6 +11,7 @@ import { SpatialBackgroundScan } from '../components/SpatialBackgroundScan';
 import { HeritageMotionBackdrop } from '../components/HeritageMotionBackdrop';
 import { TypewriterHeroPhrase } from '../components/TypewriterHeroPhrase';
 import { FaqList } from '../components/GuideParts';
+import { eyebrowClass } from '../components/ui';
 
 interface HomePageProps {
   onNavigate: (path: RoutePath) => void;
@@ -26,7 +27,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
   };
 
   return (
-    <div className="relative overflow-hidden bg-[#FFFFFF] text-[#09090B]">
+    <div className="relative overflow-hidden bg-white text-ink">
       {/* Ambient Spatial Scanning Grid */}
       <SpatialBackgroundScan />
       
@@ -41,13 +42,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           >
             
             {/* Loro Technical Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse"></span>
               <span>Reality Capture as a Service · Kathmandu, Nepal</span>
             </div>
 
             {/* H1 Tagline */}
-            <h1 className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-6xl lg:text-7xl font-display leading-[1.12] sm:leading-[1.08] text-balance">
+            <h1 className="text-4xl font-extrabold tracking-tight text-ink sm:text-6xl lg:text-7xl font-display leading-[1.12] sm:leading-[1.08] text-balance">
               {/* Full sentence for Google, AI assistants, and screen readers */}
               <span className="sr-only">
                 Turn real places into experiences that move people to act.
@@ -61,7 +62,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             </h1>
 
             {/* Subhead */}
-            <p className="mt-6 text-base sm:text-lg lg:text-xl leading-relaxed text-[#52525B] text-balance max-w-3xl mx-auto">
+            <p className="mt-6 text-base sm:text-lg lg:text-xl leading-relaxed text-muted text-balance max-w-3xl mx-auto">
               We capture your hotel, campus, property or heritage site in photorealistic 3D, then turn it into tours, VR, AR and stories that help people decide to book, enrol, invest or visit.
             </p>
 
@@ -85,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
 
             {/* Trust Line */}
             <div className="mt-7 text-xs text-zinc-500 font-mono flex items-center justify-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-accent"></span>
               <span>Engineers and game developers, based in Kathmandu.</span>
             </div>
 
@@ -98,17 +99,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       <InfiniteMarquee />
 
       {/* 2. Live experience #live-experience */}
-      <section id="live-experience" className="py-24 border-t border-[#E4E4E7] bg-[#FAFAFA]">
+      <section id="live-experience" className="py-24 border-t border-line bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-12">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Step inside
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               Don't just look at photos. Walk through the place.
             </h2>
-            <p className="mt-4 text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-base text-muted leading-relaxed">
               This is Chilancho Stupa, captured by our team and published on our 3D platform. Move around it on your phone or laptop. No app, no download.
             </p>
           </div>
@@ -117,7 +118,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           <SplatEmbed initialDemo="chilancho" />
 
           {/* Static HTML description for crawlers and accessibility */}
-          <div className="mt-6 rounded-md border border-[#E4E4E7] bg-[#FFFFFF] p-4 text-xs text-zinc-600 font-mono shadow-sm">
+          <div className="mt-6 rounded-md border border-line bg-white p-4 text-xs text-zinc-600 font-mono shadow-sm">
             <p>
               <strong className="text-zinc-900">Accessibility &amp; Model Overview:</strong> An interactive, photorealistic 3D model of Chilancho Stupa in Kirtipur, Kathmandu Valley, created by RCAAS Technology. Visitors can move freely through the sacred courtyard, stone chaityas, and historic Newari architecture. Built to help conservators, researchers, and visitors experience the historic complex before visiting.
             </p>
@@ -127,17 +128,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 3. What we create #what-we-create */}
-      <section id="what-we-create" className="py-24 border-t border-[#E4E4E7] bg-[#FFFFFF]">
+      <section id="what-we-create" className="py-24 border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-2xl mb-16">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Three Pillars
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               What we create
             </h2>
-            <p className="mt-4 text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-base text-muted leading-relaxed">
               Every project starts with a real place and ends with something people can experience, share and act on.
             </p>
           </div>
@@ -149,13 +150,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                 className="flex flex-col justify-between p-7"
               >
                 <div>
-                  <div className="text-[11px] font-mono text-[#BE123C] uppercase tracking-wider font-semibold">
+                  <div className="text-[11px] font-mono text-accent-strong uppercase tracking-wider font-semibold">
                     {pillar.promise}
                   </div>
-                  <h3 className="mt-2 text-2xl font-bold text-[#09090B] font-display">
+                  <h3 className="mt-2 text-2xl font-bold text-ink font-display">
                     {pillar.title}
                   </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-[#52525B]">
+                  <p className="mt-4 text-sm leading-relaxed text-muted">
                     {pillar.body}
                   </p>
                   
@@ -170,10 +171,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                   </div>
                 </div>
 
-                <div className="mt-8 pt-5 border-t border-[#E4E4E7]">
+                <div className="mt-8 pt-5 border-t border-line">
                   <button
                     onClick={() => onNavigate(pillar.link as RoutePath)}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-ink hover:text-accent transition-colors"
                   >
                     <span>Explore {pillar.title.toLowerCase()}</span>
                     <span>&rarr;</span>
@@ -187,17 +188,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 4. Built for your goal #industries */}
-      <section id="industries" className="py-24 border-t border-[#E4E4E7] bg-[#FAFAFA]">
+      <section id="industries" className="py-24 border-t border-line bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-2xl mb-16">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Industry Solutions
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               Built around your goal
             </h2>
-            <p className="mt-4 text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-base text-muted leading-relaxed">
               Tell us what you want people to do. We will design the experience around it.
             </p>
           </div>
@@ -210,19 +211,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                 className="cursor-pointer p-6"
               >
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-[#09090B] font-semibold">{ind.title}</span>
+                  <span className="text-ink font-semibold">{ind.title}</span>
                   <span className="text-zinc-500 text-[11px] bg-zinc-100 px-2 py-0.5 rounded">{ind.badge}</span>
                 </div>
 
-                <h3 className="mt-3 text-lg font-bold text-[#09090B] font-display hover:text-[#E11D48] transition-colors">
+                <h3 className="mt-3 text-lg font-bold text-ink font-display hover:text-accent transition-colors">
                   {ind.goalHeadline}
                 </h3>
 
-                <p className="mt-3 text-xs leading-relaxed text-[#52525B]">
+                <p className="mt-3 text-xs leading-relaxed text-muted">
                   {ind.summary}
                 </p>
 
-                <div className="mt-6 flex items-center justify-between pt-4 border-t border-[#E4E4E7] text-xs">
+                <div className="mt-6 flex items-center justify-between pt-4 border-t border-line text-xs">
                   <span className="text-zinc-500 font-mono text-[11px]">
                     {ind.proof ? `Proof: ${ind.proof.split(',')[0]}` : 'Explore solutions'}
                   </span>
@@ -236,18 +237,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 5. Stories we've told #work */}
-      <section id="work" className="py-24 border-t border-[#E4E4E7] bg-[#FFFFFF]">
+      <section id="work" className="py-24 border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+              <span className={eyebrowClass}>
                 Case Studies
               </span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
                 Stories we've told
               </h2>
-              <p className="mt-3 text-base text-[#52525B]">
+              <p className="mt-3 text-base text-muted">
                 Real places, real clients, each with a clear goal.
               </p>
             </div>
@@ -280,22 +281,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 6. How it works #how-it-works */}
-      <section id="how-it-works" className="py-24 border-t border-[#E4E4E7] bg-[#FAFAFA]">
+      <section id="how-it-works" className="py-24 border-t border-line bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+              <span className={eyebrowClass}>
                 Five-Step Value Chain
               </span>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
                 From real place to finished experience
               </h2>
             </div>
             <div>
               <button
                 onClick={() => onNavigate('/how-we-work/')}
-                className="text-xs font-mono font-semibold text-[#E11D48] hover:underline flex items-center gap-1.5"
+                className="text-xs font-mono font-semibold text-accent hover:underline flex items-center gap-1.5"
               >
                 <span>See how we work</span>
                 <span>&rarr;</span>
@@ -336,13 +337,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                 className="p-6 flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-mono text-2xl font-bold text-[#E11D48]">
+                  <span className="font-mono text-2xl font-bold text-accent">
                     {s.step}
                   </span>
-                  <h3 className="mt-3 text-base font-bold text-[#09090B] font-display">
+                  <h3 className="mt-3 text-base font-bold text-ink font-display">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-xs text-[#52525B] leading-relaxed">
+                  <p className="mt-2 text-xs text-muted leading-relaxed">
                     {s.desc}
                   </p>
                 </div>
@@ -354,19 +355,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 7. Why RCAAS #why-rcaas */}
-      <section id="why-rcaas" className="py-24 border-t border-[#E4E4E7] bg-[#FFFFFF]">
+      <section id="why-rcaas" className="py-24 border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="max-w-3xl mb-16">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               The RCAAS Advantage
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               Why RCAAS
             </h2>
-            <p className="mt-4 text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-base text-muted leading-relaxed">
               {SITE_METADATA.boilerplate}{' '}
-              <span className="text-[#09090B] font-semibold">RCAAS stands for Reality Capture as a Service.</span>
+              <span className="text-ink font-semibold">RCAAS stands for Reality Capture as a Service.</span>
             </p>
           </div>
 
@@ -393,14 +394,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                 key={idx}
                 className="p-7 flex items-start gap-4"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-[#F4F4F5] border border-[#E4E4E7] text-[#09090B] font-mono text-xs font-bold">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-surface-sunken border border-line text-ink font-mono text-xs font-bold">
                   0{idx + 1}
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-[#09090B] font-display">
+                  <h3 className="text-base font-bold text-ink font-display">
                     {point.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-[#52525B]">
+                  <p className="mt-2 text-xs leading-relaxed text-muted">
                     {point.desc}
                   </p>
                 </div>
@@ -412,19 +413,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 8. Heritage Band #heritage */}
-      <section id="heritage" className="relative py-28 border-t border-[#E4E4E7] bg-[#FAFAFA] overflow-hidden">
+      <section id="heritage" className="relative py-28 border-t border-line bg-surface overflow-hidden">
         {/* Active Heritage Aerial Point Cloud & Radar Motion Backdrop */}
         <HeritageMotionBackdrop />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#BE123C] font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-accent-strong font-semibold">
               Lasting impact
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               Nepal's heritage, recorded for the next generation.
             </h2>
-            <p className="mt-4 text-base text-[#52525B] leading-relaxed">
+            <p className="mt-4 text-base text-muted leading-relaxed">
               Temples, stupas and historic towns change with weather, earthquakes and time. We document them in 3D, measurable for conservators and explorable for everyone, so they can be studied, cared for and shared long after today.
             </p>
             <div className="mt-8">
@@ -440,23 +441,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 9. Proof Strip #proof */}
-      <section id="proof" className="py-14 border-t border-[#E4E4E7] bg-[#FFFFFF]">
+      <section id="proof" className="py-14 border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div className="p-5 rounded-md border border-[#E4E4E7] bg-[#FAFAFA]">
-              <div className="text-3xl font-bold text-[#09090B] font-mono">±5mm</div>
+            <div className="p-5 rounded-md border border-line bg-surface">
+              <div className="text-3xl font-bold text-ink font-mono">±5mm</div>
               <div className="mt-1 text-[11px] text-zinc-500 font-mono">SLAM LiDAR Precision</div>
             </div>
-            <div className="p-5 rounded-md border border-[#E4E4E7] bg-[#FAFAFA]">
-              <div className="text-3xl font-bold text-[#09090B] font-mono">1.4M+</div>
+            <div className="p-5 rounded-md border border-line bg-surface">
+              <div className="text-3xl font-bold text-ink font-mono">1.4M+</div>
               <div className="mt-1 text-[11px] text-zinc-500 font-mono">Splats / Experience</div>
             </div>
-            <div className="p-5 rounded-md border border-[#E4E4E7] bg-[#FAFAFA]">
-              <div className="text-3xl font-bold text-[#09090B] font-mono">0 Apps</div>
+            <div className="p-5 rounded-md border border-line bg-surface">
+              <div className="text-3xl font-bold text-ink font-mono">0 Apps</div>
               <div className="mt-1 text-[11px] text-zinc-500 font-mono">Zero Download Web</div>
             </div>
-            <div className="p-5 rounded-md border border-[#E4E4E7] bg-[#FAFAFA]">
-              <div className="text-3xl font-bold text-[#09090B] font-mono">100%</div>
+            <div className="p-5 rounded-md border border-line bg-surface">
+              <div className="text-3xl font-bold text-ink font-mono">100%</div>
               <div className="mt-1 text-[11px] text-zinc-500 font-mono">Data Ownership Retained</div>
             </div>
           </div>
@@ -464,14 +465,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 10. Short FAQ #faq */}
-      <section id="faq" className="py-24 border-t border-[#E4E4E7] bg-[#FAFAFA]">
+      <section id="faq" className="py-24 border-t border-line bg-surface">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               FAQ
             </span>
-            <h2 className="mt-2 text-3xl font-bold tracking-tight text-[#09090B] sm:text-5xl font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               Questions people ask first
             </h2>
           </div>
@@ -481,7 +482,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           <div className="mt-8 text-center">
             <button
               onClick={() => onNavigate('/faq/')}
-              className="text-xs font-mono font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors"
+              className="text-xs font-mono font-semibold text-ink hover:text-accent transition-colors"
             >
               More questions &rarr;
             </button>
@@ -491,13 +492,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
       </section>
 
       {/* 11. Closing CTA #cta */}
-      <section id="cta" className="py-24 border-t border-[#E4E4E7] bg-[#FFFFFF]">
+      <section id="cta" className="py-24 border-t border-line bg-white">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
           
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl font-display">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display">
             Have a place with a story to tell?
           </h2>
-          <p className="mt-4 max-w-2xl mx-auto text-base text-[#52525B] leading-relaxed">
+          <p className="mt-4 max-w-2xl mx-auto text-base text-muted leading-relaxed">
             Tell us about your place and what you want people to do after they've seen it. We'll suggest the right experience and send a clear proposal.
           </p>
 

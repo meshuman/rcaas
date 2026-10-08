@@ -68,7 +68,7 @@ const Bullets: React.FC<{ items: string[] }> = ({ items }) => (
   <ul className="space-y-2.5">
     {items.map((item) => (
       <li key={item} className={`flex items-start gap-3 ${legalBodyClass}`}>
-        <Ban className="w-4 h-4 text-[#E11D48] mt-0.5 shrink-0" aria-hidden="true" />
+        <Ban className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
         <span>
           <WithPlaceholders text={item} />
         </span>
@@ -102,8 +102,8 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
             text={`These terms apply to your use of ${DOMAIN} (the "website"), operated by RCAAS Technology Pvt. Ltd. ("RCAAS", "we", "us"), ${ADDRESS}, Kathmandu, Nepal. By using the website, you agree to these terms. If you don't agree, please don't use the website.`}
           />
         </p>
-        <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
-          <FileSignature className="w-4 h-4 text-[#E11D48] mt-0.5 shrink-0" aria-hidden="true" />
+        <div className="mt-4 flex items-start gap-3 rounded-xl border border-line bg-surface p-4">
+          <FileSignature className="w-4 h-4 text-accent mt-0.5 shrink-0" aria-hidden="true" />
           <p className="text-sm text-zinc-700 leading-relaxed">
             These are terms for using the website. If you commission a project from us, your proposal or contract sets
             out its scope, price, ownership and hosting, and it takes priority over these terms if they conflict.
@@ -132,9 +132,9 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
             </p>
             <p className="text-sm text-emerald-900/80 leading-relaxed">Share links to pages and experiences on the website.</p>
           </div>
-          <div className="rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
+          <div className="rounded-xl border border-line bg-surface p-4">
             <p className="flex items-center gap-2 text-sm font-semibold text-zinc-900 mb-1">
-              <Mail className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+              <Mail className="w-4 h-4 text-accent" aria-hidden="true" />
               Ask us first
             </p>
             <p className="text-sm text-zinc-600 leading-relaxed">Any other use needs our written permission.</p>
@@ -197,7 +197,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
       <LegalSection section={SECTIONS[7]} number={8}>
         <p className={legalBodyClass}>
           Our{' '}
-          <a href="/privacy/" onClick={goToLink('/privacy/')} className="text-[#E11D48] hover:text-[#BE123C] font-semibold underline underline-offset-2">
+          <a href="/privacy/" onClick={goToLink('/privacy/')} className="text-accent hover:text-accent-strong font-semibold underline underline-offset-2">
             Privacy Policy
           </a>{' '}
           explains how we handle personal information.
@@ -229,7 +229,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
             '[[TBC: if a Nepali version is published, state which version applies if they differ]]',
           ].map((item) => (
             <li key={item} className={`flex items-start gap-3 ${legalBodyClass}`}>
-              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#E11D48] shrink-0" aria-hidden="true" />
+              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
               <span>
                 <WithPlaceholders text={item} />
               </span>
@@ -240,7 +240,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
       {/* 12 */}
       <LegalSection section={SECTIONS[11]} number={12}>
-        <address className="not-italic rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 text-sm text-zinc-700 leading-relaxed">
+        <address className="not-italic rounded-xl border border-line bg-surface p-5 text-sm text-zinc-700 leading-relaxed">
           <WithPlaceholders text={`${EMAIL} · RCAAS Technology Pvt. Ltd., ${ADDRESS}, Kathmandu, Nepal`} />
         </address>
       </LegalSection>

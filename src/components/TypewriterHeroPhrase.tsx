@@ -155,7 +155,7 @@ export const TypewriterHeroPhrase: React.FC = () => {
   // If visitor has enabled "reduce motion", render the final phrase static with no animation
   if (isReducedMotion) {
     return (
-      <span className="block mt-1 sm:mt-0 sm:inline-block font-bold text-[#E11D48]">
+      <span className="block mt-1 sm:mt-0 sm:inline-block font-bold text-accent">
         {PHRASES[PHRASES.length - 1]}
       </span>
     );
@@ -163,7 +163,7 @@ export const TypewriterHeroPhrase: React.FC = () => {
 
   return (
     <span
-      className="block mt-1 sm:mt-0 sm:inline-grid grid-cols-1 grid-rows-1 text-left align-baseline relative font-bold text-[#E11D48]"
+      className="block mt-1 sm:mt-0 sm:inline-grid grid-cols-1 grid-rows-1 text-left align-baseline relative font-bold text-accent"
       aria-hidden="true"
     >
       {/* 
@@ -179,7 +179,7 @@ export const TypewriterHeroPhrase: React.FC = () => {
       </span>
 
       {/* Visible Active Typewriter Layer */}
-      <span className="col-start-1 row-start-1 inline-flex items-baseline whitespace-nowrap font-bold text-[#E11D48]">
+      <span className="col-start-1 row-start-1 inline-flex items-baseline whitespace-nowrap font-bold text-accent">
         <span>{displayText}</span>
       </span>
     </span>

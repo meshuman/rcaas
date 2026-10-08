@@ -6,6 +6,7 @@ import { findCaseStudy } from '../content/work';
 import { CaseStudyPage } from './CaseStudyPage';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { pageShellClass } from '../components/ui';
 
 interface WorkPageProps {
   currentPath: RoutePath;
@@ -61,7 +62,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
     : CASE_STUDIES.filter((c) => c.tag === filterTag);
 
   return (
-    <div className="py-16 md:py-24 bg-white text-[#09090B]">
+    <div className={pageShellClass}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation */}
@@ -82,7 +83,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
           {currentProject && (
             <>
               <span className="text-zinc-400">›</span>
-              <span className="text-[#E11D48] font-semibold">{currentProject.title}</span>
+              <span className="text-accent font-semibold">{currentProject.title}</span>
             </>
           )}
         </nav>
@@ -99,13 +100,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-3xl mb-12 sm:mb-14"
             >
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                 Portfolio &amp; Showcase
               </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display">
                 Step inside our work
               </h1>
-              <p className="mt-4 text-base sm:text-xl text-[#52525B] leading-relaxed">
+              <p className="mt-4 text-base sm:text-xl text-muted leading-relaxed">
                 Every project here started with a real place and a clear goal. Open any of them, move around, and see what your audience would see.
               </p>
 
@@ -117,7 +118,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     onClick={() => setFilterTag(tag)}
                     className={`px-3 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
                       filterTag === tag
-                        ? 'bg-[#E11D48] text-white font-medium shadow-xs'
+                        ? 'bg-accent text-white font-medium shadow-xs'
                         : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
                     }`}
                   >
@@ -130,13 +131,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 2. EXPERIENCE SHOWCASE (#showcase) */}
             <section id="showcase" className="mb-20">
               <div className="mb-6">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-1">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-1">
                   Interactive Spatial Models
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display">
                   Explore in 3D
                 </h2>
-                <p className="mt-1 text-xs sm:text-sm text-[#52525B]">
+                <p className="mt-1 text-xs sm:text-sm text-muted">
                   Tap any place to open it. Nothing to install.
                 </p>
               </div>
@@ -162,7 +163,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                         <span className="px-2.5 py-1 rounded bg-black/75 text-white border border-white/20">
                           {project.tag}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-[#E11D48]/90 text-white text-[10px] uppercase font-semibold">
+                        <span className="px-2 py-0.5 rounded bg-accent/90 text-white text-[10px] uppercase font-semibold">
                           Explorable 3D
                         </span>
                       </div>
@@ -206,10 +207,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 3. THE STORIES BEHIND THEM (#stories) */}
             <section id="stories" className="mb-20 pt-8 border-t border-zinc-200">
               <div className="mb-8">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-1">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-1">
                   Context, Scope &amp; Craft
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display">
                   The stories behind them
                 </h2>
               </div>
@@ -225,22 +226,22 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     <div>
                       {/* Tag & Location */}
                       <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-3">
-                        <span className="text-[#E11D48] font-semibold">{project.tag}</span>
+                        <span className="text-accent font-semibold">{project.tag}</span>
                         <span>{project.location}</span>
                       </div>
 
                       {/* Project Title */}
-                      <h3 className="text-xl font-bold text-[#09090B] font-display group-hover:text-[#E11D48] transition-colors">
+                      <h3 className="text-xl font-bold text-ink font-display group-hover:text-accent transition-colors">
                         {project.title}
                       </h3>
 
                       {/* Goal */}
-                      <div className="mt-3 text-xs leading-relaxed text-[#52525B]">
+                      <div className="mt-3 text-xs leading-relaxed text-muted">
                         <span className="font-semibold text-zinc-700">Goal:</span> {project.clientGoal}
                       </div>
 
                       {/* What we created */}
-                      <div className="mt-2 text-xs leading-relaxed text-[#52525B]">
+                      <div className="mt-2 text-xs leading-relaxed text-muted">
                         <span className="font-semibold text-zinc-700">What we created:</span> {project.whatWeCreated || 'Interactive 3D tour model.'}
                       </div>
                       
@@ -249,7 +250,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
 
                     {/* Link */}
                     <div className="mt-6 pt-4 border-t border-zinc-200/80 flex items-center justify-between text-xs font-medium text-zinc-700">
-                      <span className="text-[#E11D48] font-semibold group-hover:underline">
+                      <span className="text-accent font-semibold group-hover:underline">
                         Read the story →
                       </span>
                       <span className="text-zinc-400 group-hover:translate-x-0.5 transition-transform">
@@ -284,13 +285,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 6. CTA BAND */}
             <section className="rounded-xl border border-zinc-200 bg-zinc-50/70 p-8 sm:p-12 shadow-xs">
               <div className="max-w-2xl">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                   Initiate a Capture
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display tracking-tight">
                   Your place could be next
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-[#52525B] leading-relaxed">
+                <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
                   Tell us about your place and what you want people to do. We'll show you what's possible and send a clear proposal.
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -339,7 +340,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
               {/* Modal Header */}
               <div className="px-5 py-3.5 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/90 text-white">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
                   <span className="font-bold text-sm sm:text-base font-display">{activeModalProject.title}</span>
                   <span className="text-xs font-mono text-zinc-400 hidden sm:inline">· {activeModalProject.location}</span>
                 </div>
@@ -369,7 +370,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     setActiveModalProject(null);
                     onNavigate(`/work/${slug}/` as RoutePath);
                   }}
-                  className="text-[#E11D48] hover:text-rose-400 font-semibold"
+                  className="text-accent hover:text-rose-400 font-semibold"
                 >
                   View full case study →
                 </button>

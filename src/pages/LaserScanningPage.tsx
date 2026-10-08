@@ -4,6 +4,7 @@ import { RoutePath } from '../types';
 import { IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
+import { buttonClass } from '../components/ui';
 
 interface LaserScanningPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -159,7 +160,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
   }, []);
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen font-['Comfortaa',ui-sans-serif,system-ui,sans-serif] selection:bg-[#E11D48] selection:text-white">
+    <div className="bg-white text-zinc-900 min-h-screen selection:bg-accent selection:text-white">
       {/* 1. HERO + ANSWER SUMMARY */}
       <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-zinc-200 overflow-hidden">
         {/* Subtle grid backdrop */}
@@ -211,7 +212,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-8">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+                <span className="w-2 h-2 rounded-full bg-accent" />
                 <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">
                   Capability · 3D Laser Scanning (SLAM LiDAR)
                 </span>
@@ -229,7 +230,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onNavigate('/contact/')}
-                  className="px-6 py-3.5 bg-zinc-900 hover:bg-[#E11D48] text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm flex items-center space-x-2 cursor-pointer"
+                  className={buttonClass('dark', 'md')}
                 >
                   <span>Get a scanning quote</span>
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -241,7 +242,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                   href="#showcase"
                   className="px-6 py-3.5 bg-white hover:bg-zinc-50 text-zinc-900 text-sm font-semibold rounded-lg border border-zinc-300 transition-colors flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
@@ -254,7 +255,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
             <div className="lg:col-span-4 bg-zinc-50 border border-zinc-200 rounded-xl p-6 relative">
               <div className="font-mono text-xs uppercase tracking-wider text-zinc-600 mb-4 pb-2 border-b border-zinc-200 flex justify-between items-center">
                 <span>SLAM Scanner Toolkit</span>
-                <span className="text-[#E11D48] font-bold">XGRIDS Lixel K1</span>
+                <span className="text-accent font-bold">XGRIDS Lixel K1</span>
               </div>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center justify-between text-zinc-700">
@@ -285,7 +286,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                   href="https://wa.me/9779801234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-[#E11D48] hover:underline"
+                  className="text-xs font-semibold text-accent hover:underline"
                 >
                   WhatsApp survey team →
                 </a>
@@ -339,7 +340,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-zinc-200">
             <div>
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Point Cloud &amp; As-Built Inspection
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -416,7 +417,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                       max="120"
                       value={elevationSlice}
                       onChange={(e) => setElevationSlice(Number(e.target.value))}
-                      className="w-32 accent-[#E11D48] cursor-pointer"
+                      className="w-32 accent-accent cursor-pointer"
                       aria-label="Cut plane height slider"
                     />
                     <span className="font-mono text-zinc-300 text-xs w-10">+{elevationSlice}cm</span>
@@ -434,7 +435,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                 </div>
                 <button
                   onClick={() => setShowcaseView('textured')}
-                  className="mt-2 sm:mt-0 font-mono text-xs text-[#E11D48] hover:underline cursor-pointer"
+                  className="mt-2 sm:mt-0 font-mono text-xs text-accent hover:underline cursor-pointer"
                 >
                   View 3D Tour Mode →
                 </button>
@@ -454,7 +455,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                 </div>
                 <button
                   onClick={() => setShowcaseView('pointcloud')}
-                  className="font-mono text-[#E11D48] hover:underline cursor-pointer"
+                  className="font-mono text-accent hover:underline cursor-pointer"
                 >
                   Return to Point Cloud View →
                 </button>
@@ -469,7 +470,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       <section id="why-scan" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Efficiency &amp; Accuracy Shift
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
@@ -488,7 +489,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                   <tr className="bg-zinc-50 border-b border-zinc-200 font-mono text-xs uppercase tracking-wider text-zinc-700">
                     <th className="py-4 px-6 font-semibold w-1/3">Survey Task</th>
                     <th className="py-4 px-6 font-semibold w-1/3 text-zinc-500">Traditional Tape &amp; Sketch</th>
-                    <th className="py-4 px-6 font-semibold w-1/3 text-[#E11D48]">Handheld SLAM Laser Scan</th>
+                    <th className="py-4 px-6 font-semibold w-1/3 text-accent">Handheld SLAM Laser Scan</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-200">
@@ -501,7 +502,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                         {row.tape}
                       </td>
                       <td className="py-4 px-6 font-medium text-zinc-900">
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#E11D48] mr-2" />
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
                         {row.slam}
                       </td>
                     </tr>
@@ -518,7 +519,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7">
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Technology Explained
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-6">
@@ -544,21 +545,21 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               </div>
               <ul className="space-y-4 text-xs sm:text-sm text-zinc-700">
                 <li className="flex items-start space-x-3">
-                  <span className="font-mono font-bold text-[#E11D48] text-sm">01</span>
+                  <span className="font-mono font-bold text-accent text-sm">01</span>
                   <div>
                     <strong className="text-zinc-900 block">Walking Pace Capture:</strong>
                     No tripod relocations or leveling delay; move through doors and up stairs continuously.
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="font-mono font-bold text-[#E11D48] text-sm">02</span>
+                  <span className="font-mono font-bold text-accent text-sm">02</span>
                   <div>
                     <strong className="text-zinc-900 block">Shadow Minimisation:</strong>
                     Continuous operator motion fills in scanner shadow behind columns and partitions.
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <span className="font-mono font-bold text-[#E11D48] text-sm">03</span>
+                  <span className="font-mono font-bold text-accent text-sm">03</span>
                   <div>
                     <strong className="text-zinc-900 block">Seamless Multi-Floor Trajectory:</strong>
                     Ties ground floor, narrow spiral staircases, and upper attics into one single coordinate file.
@@ -574,7 +575,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       <section id="deliverables" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Deliverables Package
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -588,7 +589,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 01</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 01</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">3D Point Cloud</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   Full millimeter-accurate point cloud of your building or space, indexed for rapid viewport navigation.
@@ -601,7 +602,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 02</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 02</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">Architectural CAD Drawings</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   Measured floor plans, reflected ceiling plans, building sections, and exterior facade elevations drafted directly from the scan data.
@@ -614,7 +615,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 03</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 03</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">CAD/BIM Reference Clips</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   Cropped, coordinate-locked slices prepared for direct insertion into Autodesk Revit, AutoCAD, and ArchiCAD modeling templates.
@@ -627,7 +628,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 04</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 04</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">Shareable 3D Web Link</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   A secure link that opens in any browser on phone, tablet or desktop, allowing clients and contractors to inspect and measure without CAD licenses.
@@ -640,7 +641,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 05</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 05</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">3D Mesh or Scan-to-BIM</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   Optional parametric Revit family model (LOD 200/300) or high-density textured polygon mesh for visualisation and clash detection.
@@ -653,7 +654,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs text-[#E11D48] font-bold uppercase mb-2">Deliverable 06</div>
+                <div className="font-mono text-xs text-accent font-bold uppercase mb-2">Deliverable 06</div>
                 <h3 className="text-lg font-bold text-zinc-900 mb-2">Optional: 3D Virtual Tour</h3>
                 <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-4">
                   From the exact same reality capture visit, we can produce a photorealistic 3D virtual tour for your marketing and leasing team.
@@ -671,7 +672,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       <section id="uses" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Project Applications
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -689,7 +690,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                 className="bg-zinc-50 border border-zinc-200 rounded-xl p-6 hover:bg-white hover:border-zinc-300 transition-all shadow-xs"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#E11D48]">
+                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent">
                     {uc.badge}
                   </span>
                 </div>
@@ -707,14 +708,14 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => onNavigate('/industries/real-estate-architecture/')}
-                className="font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                className="font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
               >
                 For architects and developers →
               </button>
               <span className="text-zinc-300">·</span>
               <button
                 onClick={() => onNavigate('/industries/heritage-culture/')}
-                className="font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                className="font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
               >
                 For heritage &amp; conservation →
               </button>
@@ -722,7 +723,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
             <button
               onClick={() => onNavigate('/contact/')}
-              className="text-[#E11D48] font-semibold hover:underline cursor-pointer"
+              className="text-accent font-semibold hover:underline cursor-pointer"
             >
               Discuss your building with our surveyors →
             </button>
@@ -734,7 +735,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       <section id="process" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Workflow Protocol
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -752,7 +753,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
                 className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between"
               >
                 <div>
-                  <div className="font-mono text-2xl font-bold text-[#E11D48] mb-3">
+                  <div className="font-mono text-2xl font-bold text-accent mb-3">
                     {step.step}
                   </div>
                   <h3 className="text-base font-bold text-zinc-900 mb-2">
@@ -772,7 +773,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
           <div className="mt-8 text-center">
             <button
               onClick={() => onNavigate('/how-we-work/')}
-              className="font-mono text-xs text-[#E11D48] hover:underline cursor-pointer font-semibold"
+              className="font-mono text-xs text-accent hover:underline cursor-pointer font-semibold"
             >
               See our full field capture &amp; quality check protocol →
             </button>
@@ -785,10 +786,10 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Hardware &amp; Software Rig
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
                 Our scanning toolkit
               </h2>
               <p className="text-base text-zinc-600 leading-relaxed mb-6">
@@ -797,14 +798,14 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
                 <button
                   onClick={() => onNavigate('/services/digital-twins/drone-mapping/')}
-                  className="text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                  className="text-zinc-900 hover:text-accent underline cursor-pointer"
                 >
                   Drone mapping →
                 </button>
                 <span className="text-zinc-300">·</span>
                 <button
                   onClick={() => onNavigate('/how-we-work/')}
-                  className="text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                  className="text-zinc-900 hover:text-accent underline cursor-pointer"
                 >
                   Full toolkit specifications →
                 </button>
@@ -812,7 +813,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
             </div>
 
             <div className="lg:col-span-4 bg-zinc-50 border border-zinc-200 rounded-xl p-5 text-center">
-              <div className="text-2xl font-bold font-mono text-[#E11D48] mb-1">XGRIDS Lixel K1</div>
+              <div className="text-2xl font-bold font-mono text-accent mb-1">XGRIDS Lixel K1</div>
               <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Field Certified</div>
               <p className="text-xs text-zinc-600 leading-relaxed">
                 Integrated high-frequency LiDAR, panoramic visual cameras, and inertial measurement unit (IMU) for continuous SLAM tracking.
@@ -825,10 +826,10 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       {/* 10. FEATURED PROJECT */}
       <section className="py-16 md:py-20 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+          <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
             In Practice
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-8">
             Case Study: Chilancho Stupa
           </h2>
 
@@ -869,7 +870,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
 
               <button
                 onClick={() => onNavigate('/work/chilancho-stupa-digital-heritage/')}
-                className="px-5 py-2.5 bg-zinc-900 hover:bg-[#E11D48] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer self-start"
+                className={buttonClass('dark', 'sm', 'self-start')}
               >
                 See the project →
               </button>
@@ -882,7 +883,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       <section id="faq" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Engineering FAQ
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -897,17 +898,17 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
       {/* 12. CTA BAND */}
       <section className="py-20 bg-zinc-900 text-white relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E11D48]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-800 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+            <span className="w-2 h-2 rounded-full bg-accent" />
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
               Start Your As-Built Survey
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-6">
             Start your design from reality
           </h2>
 
@@ -918,7 +919,7 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('/contact/')}
-              className="px-8 py-4 bg-[#E11D48] hover:bg-[#be123c] text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-red-900/30 cursor-pointer flex items-center space-x-2 text-sm"
+              className={buttonClass('primary', 'lg', 'shadow-lg hover:shadow-red-900/30')}
             >
               <span>Get a scanning quote</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -956,13 +957,13 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               onClick={() => onNavigate('/services/digital-twins/drone-mapping/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 Drone Mapping &amp; Aerial Survey
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Add roofs, grounds and the whole site from above with sub-centimeter orthomosaics.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 Explore drone mapping →
               </span>
             </div>
@@ -971,13 +972,13 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               onClick={() => onNavigate('/services/digital-twins/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 As-Built Drawings &amp; BIM
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Convert your point cloud into 2D plans, sections, elevations, and Revit BIM models.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 View digital twins hub →
               </span>
             </div>
@@ -986,13 +987,13 @@ export const LaserScanningPage: React.FC<LaserScanningPageProps> = ({ onNavigate
               onClick={() => onNavigate('/services/immersive-experiences/3d-virtual-tours/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 3D Virtual Tours
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Show the same space to clients and stakeholders as an interactive, photorealistic walkthrough.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 Explore 3D tours →
               </span>
             </div>

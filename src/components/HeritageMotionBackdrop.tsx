@@ -111,7 +111,7 @@ export const HeritageMotionBackdrop: React.FC = () => {
         className="h-full w-full object-cover opacity-12 filter grayscale scale-105 animate-[pulse_8s_ease-in-out_infinite]"
       />
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FAFAFA] via-[#FAFAFA]/95 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/95 to-transparent" />
     </div>
   );
 };

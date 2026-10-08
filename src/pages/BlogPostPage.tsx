@@ -26,7 +26,7 @@ const altText = (alt: string) => (alt.startsWith('[[') ? '' : alt);
 const Block: React.FC<{ block: BlogBlock }> = ({ block }) => {
   switch (block.type) {
     case 'h2':
-      return <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#09090B] font-display mt-12 mb-4 text-balance">{block.text}</h2>;
+      return <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink font-display mt-12 mb-4 text-balance">{block.text}</h2>;
     case 'p':
       return (
         <p className="text-base sm:text-lg text-zinc-700 leading-[1.75] mb-5">
@@ -38,7 +38,7 @@ const Block: React.FC<{ block: BlogBlock }> = ({ block }) => {
         <ul className="mb-6 space-y-2">
           {block.items.map((item) => (
             <li key={item} className="flex items-start gap-3 text-base sm:text-lg text-zinc-700 leading-relaxed">
-              <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#E11D48] shrink-0" aria-hidden="true" />
+              <span className="mt-3 h-1.5 w-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
               <WithPlaceholders text={item} />
             </li>
           ))}
@@ -47,7 +47,7 @@ const Block: React.FC<{ block: BlogBlock }> = ({ block }) => {
     case 'image':
       return (
         <figure className="my-10">
-          <div className="rounded-2xl overflow-hidden border border-[#E4E4E7] bg-[#F4F4F5] aspect-[16/9]">
+          <div className="rounded-2xl overflow-hidden border border-line bg-surface-sunken aspect-[16/9]">
             <img src={block.src} alt={altText(block.alt)} className="w-full h-full object-cover" />
           </div>
           {block.caption && (
@@ -84,16 +84,16 @@ const RelatedGroup: React.FC<{ links?: BlogLink[]; kind: string; icon: LucideIco
           key={link.path}
           href={link.path}
           onClick={linkHandler(onNavigate, link.path)}
-          className="group flex items-center gap-3 rounded-xl border border-[#E4E4E7] bg-white p-4 hover:border-[#E11D48] transition-colors"
+          className="group flex items-center gap-3 rounded-xl border border-line bg-white p-4 hover:border-accent transition-colors"
         >
-          <span className="w-9 h-9 rounded-lg bg-[#E11D48]/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48]">
-            <Icon className="w-4 h-4 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+          <span className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent">
+            <Icon className="w-4 h-4 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
           </span>
           <span className="flex-1 min-w-0">
             <span className="block text-[10px] font-mono uppercase tracking-wider text-zinc-400">{kind}</span>
             <span className="block text-sm font-semibold text-zinc-900 truncate">{link.label}</span>
           </span>
-          <ArrowRight className="w-4 h-4 text-zinc-300 transition-all group-hover:text-[#E11D48] group-hover:translate-x-0.5" aria-hidden="true" />
+          <ArrowRight className="w-4 h-4 text-zinc-300 transition-all group-hover:text-accent group-hover:translate-x-0.5" aria-hidden="true" />
         </a>
       ))}
     </>
@@ -139,7 +139,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
             Blog
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold truncate" aria-current="page">
+          <span className="text-accent font-semibold truncate" aria-current="page">
             {post.title}
           </span>
         </nav>
@@ -162,7 +162,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-3xl sm:text-5xl font-bold tracking-tight text-[#09090B] font-display text-balance leading-[1.15]"
+              className="text-3xl sm:text-5xl font-bold tracking-tight text-ink font-display text-balance leading-[1.15]"
             >
               {post.title}
             </motion.h1>
@@ -175,8 +175,8 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
               <WithPlaceholders text={post.summary} />
             </motion.p>
 
-            <div className="mt-7 pt-6 border-t border-[#E4E4E7] flex items-center gap-3">
-              <span className="w-10 h-10 rounded-full overflow-hidden bg-[#F4F4F5] border border-[#E4E4E7] shrink-0">
+            <div className="mt-7 pt-6 border-t border-line flex items-center gap-3">
+              <span className="w-10 h-10 rounded-full overflow-hidden bg-surface-sunken border border-line shrink-0">
                 {author?.photo && <img src={author.photo} alt="" className="w-full h-full object-cover" />}
               </span>
               <p className="text-xs sm:text-sm font-mono text-zinc-600 flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -214,7 +214,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
             transition={{ duration: 0.6, delay: 0.2 }}
             className="max-w-5xl mx-auto mb-12"
           >
-            <div className="rounded-2xl overflow-hidden border border-[#E4E4E7] bg-[#F4F4F5] aspect-[16/9]">
+            <div className="rounded-2xl overflow-hidden border border-line bg-surface-sunken aspect-[16/9]">
               <img src={post.heroImage.src} alt={altText(post.heroImage.alt)} className="w-full h-full object-cover" />
             </div>
             {post.heroImage.alt.startsWith('[[') && (
@@ -234,7 +234,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
 
             {/* 8. RELATED BOX */}
             {hasRelated && (
-              <motion.aside {...fadeUp} className="mt-12 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6">
+              <motion.aside {...fadeUp} className="mt-12 rounded-2xl border border-line bg-surface p-6">
                 <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-4">From this story</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <RelatedGroup links={post.relatedWork} kind="Case study" icon={Briefcase} onNavigate={onNavigate} />
@@ -245,21 +245,21 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
             )}
 
             {/* 9. AUTHOR BOX */}
-            <motion.aside {...fadeUp} className="mt-8 rounded-2xl border border-[#E4E4E7] bg-white p-6 flex flex-col sm:flex-row gap-5 shadow-xs">
-              <span className="w-20 h-20 rounded-2xl overflow-hidden bg-[#F4F4F5] border border-[#E4E4E7] shrink-0">
+            <motion.aside {...fadeUp} className="mt-8 rounded-2xl border border-line bg-white p-6 flex flex-col sm:flex-row gap-5 shadow-xs">
+              <span className="w-20 h-20 rounded-2xl overflow-hidden bg-surface-sunken border border-line shrink-0">
                 {author?.photo && <img src={author.photo} alt="" className="w-full h-full object-cover" />}
               </span>
               <div className="flex-1">
                 <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold">Written by</h2>
                 <p className="mt-1 text-lg font-bold text-zinc-900 font-display">{author?.name ?? <Placeholder>[[TBI: author]]</Placeholder>}</p>
-                <p className="text-xs font-mono text-[#BE123C]">{author?.discipline ?? <Placeholder>[[TBI: discipline]]</Placeholder>}</p>
+                <p className="text-xs font-mono text-accent-strong">{author?.discipline ?? <Placeholder>[[TBI: discipline]]</Placeholder>}</p>
                 <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
                   {author?.bio ? author.bio.split('. ')[0].replace(/\.?$/, '.') : <Placeholder>[[TBI: one-line bio]]</Placeholder>}
                 </p>
                 <a
                   href="/about/#team"
                   onClick={goToLink('/about/#team' as RoutePath)}
-                  className="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
                 >
                   Meet the team <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
@@ -267,7 +267,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
             </motion.aside>
 
             {/* 10. SHARE */}
-            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 py-6 border-y border-[#E4E4E7]">
+            <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4 py-6 border-y border-line">
               <p className="text-sm font-semibold text-zinc-900 font-display">Share this story</p>
               <div className="flex flex-wrap gap-2">
                 {shareLinks.map((share) => {
@@ -279,7 +279,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => track('blog_share', { network: share.network, post: post.slug })}
-                      className="inline-flex items-center gap-2 rounded-lg border border-[#E4E4E7] bg-white px-3.5 py-2 text-xs font-medium text-zinc-700 hover:border-[#E11D48] hover:text-[#E11D48] transition-colors"
+                      className="inline-flex items-center gap-2 rounded-lg border border-line bg-white px-3.5 py-2 text-xs font-medium text-zinc-700 hover:border-accent hover:text-accent transition-colors"
                     >
                       <Icon className="w-3.5 h-3.5" aria-hidden="true" />
                       {share.label}
@@ -290,7 +290,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                   type="button"
                   onClick={copyLink}
                   className={`inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 text-xs font-medium transition-colors ${
-                    copied ? 'border-emerald-300 bg-emerald-50 text-emerald-800' : 'border-[#E4E4E7] bg-white text-zinc-700 hover:border-[#E11D48] hover:text-[#E11D48]'
+                    copied ? 'border-emerald-300 bg-emerald-50 text-emerald-800' : 'border-line bg-white text-zinc-700 hover:border-accent hover:text-accent'
                   }`}
                 >
                   {copied ? <Check className="w-3.5 h-3.5" aria-hidden="true" /> : <Link2 className="w-3.5 h-3.5" aria-hidden="true" />}
@@ -302,7 +302,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
             <a
               href="/blog/"
               onClick={goToLink('/blog/')}
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-mono text-zinc-600 hover:text-[#E11D48]"
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-mono text-zinc-600 hover:text-accent"
             >
               <ArrowLeft className="w-4 h-4" aria-hidden="true" /> All stories
             </a>
@@ -310,8 +310,8 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
         </article>
 
         {/* 11. CTA BAND (per category) */}
-        <section className="mt-16 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-8 text-balance">{category.ctaTitle}</h2>
+        <section className="mt-16 rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-8 text-balance">{category.ctaTitle}</h2>
           <button type="button" onClick={() => onNavigate(category.ctaPath)} className={primaryButtonClass}>
             <span>{category.ctaLabel}</span>
             <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -321,7 +321,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
         {/* 12. MORE FROM THE BLOG */}
         {related.length > 0 && (
           <section className="mt-20">
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#09090B] font-display mb-8">More from the blog</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mb-8">More from the blog</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {related.map((relatedPost, i) => (
                 <motion.div key={relatedPost.slug} {...fadeUp} transition={{ duration: 0.4, delay: i * 0.06 }}>

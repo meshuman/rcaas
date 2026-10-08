@@ -29,6 +29,7 @@ import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { buttonClass, eyebrowClass } from '../components/ui';
 
 interface HowWeWorkPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -322,7 +323,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="py-14 sm:py-20 md:py-24 bg-[#FFFFFF] text-[#09090B] relative font-['Comfortaa',ui-sans-serif,system-ui,sans-serif]">
+    <div className="py-14 sm:py-20 md:py-24 bg-white text-ink relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* BREADCRUMB NAVIGATION */}
@@ -335,7 +336,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
             About
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             How we work
           </span>
         </nav>
@@ -347,9 +348,9 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span className="font-semibold text-zinc-900">How we work</span>
               <span className="text-zinc-400">·</span>
               <span>Process &amp; standards</span>
@@ -359,9 +360,9 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
             >
-              How we turn a place into <span className="text-[#E11D48]">an experience</span>
+              How we turn a place into <span className="text-accent">an experience</span>
             </motion.h1>
 
             <motion.p
@@ -384,7 +385,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={planProject}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'md')}
               >
                 <span>Plan your experience</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -395,10 +396,10 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                   e.preventDefault();
                   document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs active:scale-[0.98]"
+                className={buttonClass('secondary', 'md')}
               >
                 <span>See the five steps</span>
-                <span className="ml-2 font-mono text-[#E11D48]" aria-hidden="true">↓</span>
+                <span className="ml-2 font-mono text-accent" aria-hidden="true">↓</span>
               </a>
             </motion.div>
           </div>
@@ -408,8 +409,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         <section id="process" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div {...fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div className="max-w-2xl">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Our process</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 text-balance">
+              <span className={eyebrowClass}>Our process</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 text-balance">
                 Five steps from real place to finished experience
               </h2>
             </div>
@@ -433,13 +434,13 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                   onClick={() => setActiveStep(idx)}
                   className={`group relative flex flex-col items-center sm:items-start gap-2 rounded-xl border p-3 sm:p-4 text-left transition-all ${
                     isActive
-                      ? 'border-[#E11D48] bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
-                      : 'border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 hover:bg-white'
+                      ? 'border-accent bg-white shadow-[0_8px_24px_-6px_rgba(225,29,72,0.18)]'
+                      : 'border-line bg-surface hover:border-zinc-300 hover:bg-white'
                   }`}
                 >
                   <span
                     className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
-                      isActive ? 'bg-[#E11D48] text-white' : isDone ? 'bg-[#E11D48]/10 text-[#E11D48]' : 'bg-white border border-[#E4E4E7] text-zinc-500'
+                      isActive ? 'bg-accent text-white' : isDone ? 'bg-accent/10 text-accent' : 'bg-white border border-line text-zinc-500'
                     }`}
                   >
                     <Icon className="w-4 h-4" aria-hidden="true" />
@@ -455,9 +456,9 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Progress rail */}
-          <div className="h-1 rounded-full bg-[#F4F4F5] mb-6 overflow-hidden" aria-hidden="true">
+          <div className="h-1 rounded-full bg-surface-sunken mb-6 overflow-hidden" aria-hidden="true">
             <motion.div
-              className="h-full w-full origin-left bg-[#E11D48] rounded-full"
+              className="h-full w-full origin-left bg-accent rounded-full"
               initial={false}
               animate={{ scaleX: (activeStep + 1) / PROCESS.length }}
               transition={{ duration: 0.35 }}
@@ -480,18 +481,18 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden shadow-sm"
+                  className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-white overflow-hidden shadow-sm"
                 >
                   <div className="lg:col-span-5 relative min-h-[220px] bg-zinc-900">
                     <img src={step.image} alt={step.imageAlt} className="absolute inset-0 w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-4 left-4 bg-white/95 border border-[#E4E4E7] px-3 py-1.5 rounded-md text-xs font-mono text-zinc-900 shadow-xs">
+                    <div className="absolute bottom-4 left-4 bg-white/95 border border-line px-3 py-1.5 rounded-md text-xs font-mono text-zinc-900 shadow-xs">
                       Step {step.number} · {step.title}
                     </div>
                   </div>
 
                   <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col">
-                    <span className="font-mono text-xs text-[#BE123C] font-semibold">Step {step.number} of 05</span>
+                    <span className="font-mono text-xs text-accent-strong font-semibold">Step {step.number} of 05</span>
                     <h3 className="text-2xl font-bold text-zinc-900 font-display mt-1 mb-4">{step.title}</h3>
 
                     <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-2">What happens</h4>
@@ -499,18 +500,18 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
 
                     <dl className={`grid grid-cols-1 ${step.youProvide ? 'sm:grid-cols-2' : ''} gap-3 mb-6`}>
                       {step.youProvide && (
-                        <div className="rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
+                        <div className="rounded-xl border border-line bg-surface p-4">
                           <dt className="text-xs font-mono uppercase tracking-wider text-zinc-500 mb-1">You provide</dt>
                           <dd className="text-sm text-zinc-700 leading-relaxed">{step.youProvide}</dd>
                         </div>
                       )}
-                      <div className="rounded-xl border border-[#E11D48]/25 bg-[#E11D48]/[0.04] p-4">
-                        <dt className="text-xs font-mono uppercase tracking-wider text-[#E11D48] mb-1">You receive</dt>
+                      <div className="rounded-xl border border-accent/25 bg-accent/[0.04] p-4">
+                        <dt className="text-xs font-mono uppercase tracking-wider text-accent mb-1">You receive</dt>
                         <dd className="text-sm text-zinc-900 font-medium leading-relaxed">{step.youReceive}</dd>
                       </div>
                     </dl>
 
-                    <div className="mt-auto flex items-center justify-between pt-4 border-t border-[#E4E4E7]">
+                    <div className="mt-auto flex items-center justify-between pt-4 border-t border-line">
                       <button
                         type="button"
                         onClick={() => setActiveStep(Math.max(0, idx - 1))}
@@ -524,7 +525,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                         <button
                           type="button"
                           onClick={() => setActiveStep(idx + 1)}
-                          className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                          className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
                         >
                           <span>Next: {PROCESS[idx + 1].title}</span>
                           <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -533,7 +534,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                         <button
                           type="button"
                           onClick={planProject}
-                          className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                          className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
                         >
                           <span>Start with step one</span>
                           <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -550,8 +551,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         {/* 3. TWO DISCIPLINES, ONE TEAM (#team-approach) */}
         <section id="team-approach" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div {...fadeUp} className="max-w-2xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Two disciplines, one team</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 text-balance">
+            <span className={eyebrowClass}>Two disciplines, one team</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 text-balance">
               Engineering precision. Game-development craft.
             </h2>
           </motion.div>
@@ -571,7 +572,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       <div className="absolute bottom-4 left-5 flex items-center gap-2.5">
                         <span className="w-9 h-9 rounded-lg bg-white/95 flex items-center justify-center shadow-xs">
-                          <Icon className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+                          <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
                         </span>
                         <div>
                           <p className="text-[11px] font-mono uppercase tracking-wider text-white/80">{discipline.tag}</p>
@@ -582,8 +583,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                     <ul className="p-6 space-y-3">
                       {discipline.items.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-sm text-zinc-700 leading-relaxed">
-                          <span className="mt-0.5 w-5 h-5 rounded-full bg-[#E11D48]/10 flex items-center justify-center shrink-0">
-                            <Check className="w-3 h-3 text-[#E11D48]" aria-hidden="true" />
+                          <span className="mt-0.5 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                            <Check className="w-3 h-3 text-accent" aria-hidden="true" />
                           </span>
                           <span>{item}</span>
                         </li>
@@ -596,7 +597,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
 
             {/* Join badge between the two cards */}
             <div
-              className="hidden md:flex absolute left-1/2 top-44 -translate-x-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border border-[#E4E4E7] bg-white shadow-md items-center justify-center font-mono text-sm font-bold text-[#E11D48]"
+              className="hidden md:flex absolute left-1/2 top-44 -translate-x-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border border-line bg-white shadow-md items-center justify-center font-mono text-sm font-bold text-accent"
               aria-hidden="true"
             >
               +
@@ -605,12 +606,12 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
 
           <motion.div
             {...fadeUp}
-            className="mt-6 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6"
+            className="mt-6 rounded-2xl border border-line bg-surface p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6"
           >
             <div className="max-w-2xl">
               <p className="text-base sm:text-lg text-zinc-900 font-display font-semibold leading-relaxed">
                 Accuracy without engagement is a file no one opens. Engagement without accuracy is a pretty picture you
-                can't trust. <span className="text-[#E11D48]">We do both.</span>
+                can't trust. <span className="text-accent">We do both.</span>
               </p>
               <p className="mt-3">
                 <Placeholder>[[TBC: add other disciplines if relevant, e.g. 3D artists, storytellers, videographers]]</Placeholder>
@@ -619,9 +620,9 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
             <a
               href="/about/#team"
               onClick={goToLink('/about/#team' as RoutePath)}
-              className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs"
+              className={buttonClass('secondary', 'md', 'shrink-0')}
             >
-              <Users className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+              <Users className="w-4 h-4 text-accent" aria-hidden="true" />
               <span>Meet the team</span>
               <span className="font-mono" aria-hidden="true">→</span>
             </a>
@@ -632,8 +633,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         <section id="toolkit" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div {...fadeUp} className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Toolkit</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">Our toolkit</h2>
+              <span className={eyebrowClass}>Toolkit</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">Our toolkit</h2>
             </div>
             <p className="text-xs sm:text-sm text-zinc-500 max-w-md">
               We choose tools for the job. These are the categories we work with, and examples of what we use.
@@ -646,12 +647,12 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               return (
                 <motion.div key={row.category} {...fadeUp} transition={{ duration: 0.4, delay: (i % 4) * 0.06 }}>
                   <SpotlightCard className="h-full group" contentClassName="h-full p-6 flex flex-col">
-                    <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                      <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                    <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center mb-4 transition-colors group-hover:bg-accent group-hover:border-accent">
+                      <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                     </span>
                     <h3 className="text-base font-bold text-zinc-900 font-display mb-2">{row.category}</h3>
                     <p className="text-xs text-zinc-600 leading-relaxed mb-5">{row.whatItDoes}</p>
-                    <div className="mt-auto pt-4 border-t border-[#E4E4E7]">
+                    <div className="mt-auto pt-4 border-t border-line">
                       <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 mb-1">Examples</p>
                       <p className="text-xs font-mono text-zinc-800 leading-relaxed">{row.examples}</p>
                     </div>
@@ -664,14 +665,14 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={planProject}
-                className="h-full w-full rounded-lg border border-dashed border-[#E11D48]/40 bg-[#E11D48]/[0.03] p-6 flex flex-col text-left hover:bg-[#E11D48]/[0.06] hover:border-[#E11D48] transition-colors"
+                className="h-full w-full rounded-lg border border-dashed border-accent/40 bg-accent/[0.03] p-6 flex flex-col text-left hover:bg-accent/[0.06] hover:border-accent transition-colors"
               >
-                <span className="w-10 h-10 rounded-lg bg-[#E11D48] flex items-center justify-center mb-4">
+                <span className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mb-4">
                   <MessageCircleQuestion className="w-4.5 h-4.5 text-white" aria-hidden="true" />
                 </span>
                 <h3 className="text-base font-bold text-zinc-900 font-display mb-2">Not sure what your place needs?</h3>
                 <p className="text-xs text-zinc-600 leading-relaxed">Tell us your goal. We choose tools for the job.</p>
-                <span className="mt-auto pt-4 text-xs font-mono font-semibold text-[#E11D48]">Plan your experience →</span>
+                <span className="mt-auto pt-4 text-xs font-mono font-semibold text-accent">Plan your experience →</span>
               </button>
             </motion.div>
           </div>
@@ -681,12 +682,12 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         <section id="accuracy" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div
             {...fadeUp}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] overflow-hidden"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-surface overflow-hidden"
           >
-            <div className="lg:col-span-5 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#E4E4E7] flex flex-col justify-between bg-white">
+            <div className="lg:col-span-5 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-line flex flex-col justify-between bg-white">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Accuracy</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+                <span className={eyebrowClass}>Accuracy</span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
                   Accuracy you can trust
                 </h2>
               </div>
@@ -696,7 +697,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                 {[100, 72, 44].map((size, i) => (
                   <motion.span
                     key={size}
-                    className="absolute rounded-full border border-[#E11D48]"
+                    className="absolute rounded-full border border-accent"
                     style={{
                       width: `${size}%`,
                       height: `${size}%`,
@@ -710,7 +711,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                 ))}
                 <span className="absolute left-1/2 top-0 bottom-0 w-px bg-zinc-300" />
                 <span className="absolute top-1/2 left-0 right-0 h-px bg-zinc-300" />
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#E11D48] shadow-[0_0_0_6px_rgba(225,29,72,0.15)]" />
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-accent shadow-[0_0_0_6px_rgba(225,29,72,0.15)]" />
               </div>
             </div>
 
@@ -723,7 +724,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
 
               <ol className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3" aria-label="How we handle accuracy">
                 {ACCURACY_CHECKPOINTS.map((checkpoint, i) => (
-                  <li key={checkpoint.label} className="relative rounded-xl border border-[#E4E4E7] bg-white p-4">
+                  <li key={checkpoint.label} className="relative rounded-xl border border-line bg-white p-4">
                     <span className="font-mono text-[11px] text-zinc-400">0{i + 1}</span>
                     <p className="text-base font-bold text-zinc-900 font-display">{checkpoint.label}</p>
                     <p className="text-xs text-zinc-600">{checkpoint.line}</p>
@@ -732,16 +733,16 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               </ol>
 
               {accuracyConfirmed && (
-                <div className="mt-6 rounded-xl border border-[#E4E4E7] bg-white overflow-x-auto">
+                <div className="mt-6 rounded-xl border border-line bg-white overflow-x-auto">
                   <table className="w-full min-w-[480px] text-left">
-                    <thead className="border-b border-[#E4E4E7]">
+                    <thead className="border-b border-line">
                       <tr className="text-xs font-mono uppercase tracking-wider text-zinc-500">
                         <th scope="col" className="px-5 py-3 font-semibold">Method</th>
                         <th scope="col" className="px-5 py-3 font-semibold">Typical accuracy</th>
                         <th scope="col" className="px-5 py-3 font-semibold">Conditions</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#E4E4E7]">
+                    <tbody className="divide-y divide-line">
                       {ACCURACY_ROWS.map((row) => (
                         <tr key={row.method}>
                           <th scope="row" className="px-5 py-3.5 text-sm font-bold text-zinc-900 font-display">{row.method}</th>
@@ -760,8 +761,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         {/* 6. OUR PROMISE (#quality) */}
         <section id="quality" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div {...fadeUp} className="max-w-2xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Our promise</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 text-balance">
+            <span className={eyebrowClass}>Our promise</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 text-balance">
               Our quality, privacy and data promise
             </h2>
           </motion.div>
@@ -773,8 +774,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                 <motion.div key={promise.title} {...fadeUp} transition={{ duration: 0.4, delay: (i % 3) * 0.07 }}>
                   <SpotlightCard className="h-full p-6 group">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <dt className="text-base font-bold text-zinc-900 font-display">{promise.title}</dt>
                     </div>
@@ -789,8 +790,8 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         {/* 7. EXPLAINED SIMPLY (#explained) */}
         <section id="explained" className="mb-20 sm:mb-28 scroll-mt-20">
           <motion.div {...fadeUp} className="max-w-2xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Explained simply</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>Explained simply</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               The technology, in plain words
             </h2>
           </motion.div>
@@ -813,7 +814,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                     <a
                       href={explainer.linkPath}
                       onClick={goToLink(explainer.linkPath)}
-                      className="mt-auto text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] flex items-center gap-1 transition-colors self-start font-mono"
+                      className="mt-auto text-xs font-semibold text-accent hover:text-accent-strong flex items-center gap-1 transition-colors self-start font-mono"
                     >
                       <span>{explainer.linkLabel}</span>
                       <span aria-hidden="true">→</span>
@@ -826,19 +827,19 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
         </section>
 
         {/* 8. CALL TO ACTION BAND */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center relative overflow-hidden">
+        <section className="rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center relative overflow-hidden">
           {/* Decorative step dots echoing the five-step process */}
           <div className="flex items-center justify-center gap-2 mb-6" aria-hidden="true">
             {PROCESS.map((step, i) => (
               <React.Fragment key={step.number}>
-                <span className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-[#E11D48]' : 'bg-zinc-300'}`} />
+                <span className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-accent' : 'bg-zinc-300'}`} />
                 {i < PROCESS.length - 1 && <span className="w-6 h-px bg-zinc-300" />}
               </React.Fragment>
             ))}
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4 text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-4 text-balance">
               Let's start with your goal
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 mb-8 leading-relaxed">
@@ -850,7 +851,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={planProject}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'lg', 'w-full sm:w-auto')}
               >
                 <span>Plan your experience</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -860,7 +861,7 @@ export const HowWeWorkPage: React.FC<HowWeWorkPageProps> = ({ onNavigate }) => {
                 href={SITE_METADATA.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs active:scale-[0.98]"
+                className={buttonClass('secondary', 'lg', 'w-full sm:w-auto')}
               >
                 <span>Chat on WhatsApp</span>
                 <span aria-hidden="true">↗</span>

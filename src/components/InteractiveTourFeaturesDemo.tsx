@@ -74,14 +74,14 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
   };
 
   return (
-    <div className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-4 sm:p-6 lg:p-8 shadow-sm">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-[#E4E4E7]">
+    <div className="rounded-2xl border border-line bg-surface p-4 sm:p-6 lg:p-8 shadow-sm">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-line">
         <div>
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#FFFFFF] border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-white border border-line text-xs font-mono text-zinc-600 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             <span>Interactive Feature Sandbox</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-[#09090B] font-display">
+          <h3 className="text-xl sm:text-2xl font-bold text-ink font-display">
             Interactive Hotspots, Measure & Dollhouse
           </h3>
           <p className="text-sm text-zinc-600 max-w-2xl mt-1">
@@ -90,13 +90,13 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
         </div>
 
         {/* Feature Mode Switcher */}
-        <div className="flex flex-wrap items-center gap-1.5 bg-[#FFFFFF] p-1.5 rounded-xl border border-[#E4E4E7] self-start lg:self-center shadow-xs">
+        <div className="flex flex-wrap items-center gap-1.5 bg-white p-1.5 rounded-xl border border-line self-start lg:self-center shadow-xs">
           <button
             type="button"
             onClick={() => { setActiveTab('hotspots'); setViewMode('3d'); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeTab === 'hotspots'
-                ? 'bg-[#09090B] text-[#FFFFFF] shadow-sm'
+                ? 'bg-ink text-white shadow-sm'
                 : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
@@ -107,7 +107,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
             onClick={() => { setActiveTab('measure'); setViewMode('3d'); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeTab === 'measure'
-                ? 'bg-[#09090B] text-[#FFFFFF] shadow-sm'
+                ? 'bg-ink text-white shadow-sm'
                 : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
@@ -118,7 +118,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
             onClick={() => { setActiveTab('floorplan'); setViewMode('dollhouse'); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeTab === 'floorplan'
-                ? 'bg-[#09090B] text-[#FFFFFF] shadow-sm'
+                ? 'bg-ink text-white shadow-sm'
                 : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
@@ -132,7 +132,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
             }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               activeTab === 'autoplay'
-                ? 'bg-[#E11D48] text-[#FFFFFF] shadow-sm'
+                ? 'bg-accent text-white shadow-sm'
                 : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
             }`}
           >
@@ -187,13 +187,13 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                     <span className="relative flex h-8 w-8 items-center justify-center">
                       <span
                         className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${
-                          hs.category === 'Booking' ? 'bg-[#E11D48]' : 'bg-white'
+                          hs.category === 'Booking' ? 'bg-accent' : 'bg-white'
                         }`}
                       />
                       <span
                         className={`relative inline-flex rounded-full h-7 w-7 items-center justify-center text-xs font-bold text-white shadow-lg transition-transform duration-200 group-hover/pin:scale-110 border ${
                           isSelected
-                            ? 'bg-[#E11D48] border-white scale-110 ring-4 ring-[#E11D48]/30'
+                            ? 'bg-accent border-white scale-110 ring-4 ring-accent/30'
                             : 'bg-zinc-900/90 border-white/50'
                         }`}
                       >
@@ -205,7 +205,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                     <span
                       className={`absolute left-1/2 -translate-x-1/2 top-9 px-2 py-0.5 rounded text-[10px] font-medium whitespace-nowrap shadow-md transition-all ${
                         isSelected
-                          ? 'bg-[#09090B] text-white border border-[#E11D48]'
+                          ? 'bg-ink text-white border border-accent'
                           : 'bg-black/70 text-white/90 border border-white/10 opacity-80 group-hover/pin:opacity-100'
                       }`}
                     >
@@ -240,7 +240,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                       width="100"
                       height="30"
                     >
-                      <div className="bg-[#09090B]/90 border border-[#E11D48] text-white text-[11px] font-mono font-bold px-2 py-0.5 rounded shadow text-center inline-block">
+                      <div className="bg-ink/90 border border-accent text-white text-[11px] font-mono font-bold px-2 py-0.5 rounded shadow text-center inline-block">
                         {m.value}
                       </div>
                     </foreignObject>
@@ -248,7 +248,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                 ))}
               </svg>
               <div className="absolute bottom-4 left-4 bg-black/80 border border-white/10 rounded-lg p-2.5 text-xs text-white">
-                <span className="font-mono text-[#E11D48] font-bold">● MEASUREMENT TOOL:</span> Click any two surface points in 3D to derive millimeter-accurate distance.
+                <span className="font-mono text-accent font-bold">● MEASUREMENT TOOL:</span> Click any two surface points in 3D to derive millimeter-accurate distance.
               </div>
             </div>
           )}
@@ -291,8 +291,8 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                     className="absolute z-20 flex flex-col items-center pointer-events-none"
                     style={{ left: '50%', top: '48%' }}
                   >
-                    <div className="w-4 h-4 rounded-full bg-[#E11D48] ring-4 ring-[#E11D48]/40 shadow-lg" />
-                    <div className="w-24 h-24 -mt-2 bg-gradient-to-t from-[#E11D48]/30 to-transparent clip-path-cone" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
+                    <div className="w-4 h-4 rounded-full bg-accent ring-4 ring-accent/40 shadow-lg" />
+                    <div className="w-24 h-24 -mt-2 bg-gradient-to-t from-accent/30 to-transparent clip-path-cone" style={{ clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)' }} />
                   </motion.div>
                 </div>
               </div>
@@ -301,8 +301,8 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
 
           {/* Autoplay Highlight Notice */}
           {isPlayingReel && (
-            <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#09090B]/90 border border-[#E11D48] text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-30 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping" />
+            <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-ink/90 border border-accent text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-30 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
               <span>Cinematic Guided Tour · Waypoint 2 of 5 (Courtyard Colonnade)</span>
             </div>
           )}
@@ -314,10 +314,10 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                className="absolute bottom-4 left-4 right-4 z-40 bg-[#09090B] border border-[#E11D48] text-white text-xs px-3.5 py-2.5 rounded-lg shadow-xl flex items-center justify-between"
+                className="absolute bottom-4 left-4 right-4 z-40 bg-ink border border-accent text-white text-xs px-3.5 py-2.5 rounded-lg shadow-xl flex items-center justify-between"
               >
                 <span>{bookingToast}</span>
-                <span className="font-mono text-[#E11D48] text-[10px] uppercase font-bold">Interactive Event</span>
+                <span className="font-mono text-accent text-[10px] uppercase font-bold">Interactive Event</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -325,15 +325,15 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
 
         {/* Right: Detail Card & Spatial Controls */}
         <div className="lg:col-span-4 flex flex-col gap-4">
-          <div className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-5 shadow-xs">
-            <div className="flex items-center justify-between pb-3 border-b border-[#E4E4E7] mb-3">
+          <div className="bg-white border border-line rounded-xl p-5 shadow-xs">
+            <div className="flex items-center justify-between pb-3 border-b border-line mb-3">
               <span className="text-xs font-mono font-semibold uppercase text-zinc-500">
                 Selected Hotspot
               </span>
               <span
                 className={`text-[10px] font-mono px-2 py-0.5 rounded font-bold uppercase ${
                   selectedHotspot?.category === 'Booking'
-                    ? 'bg-rose-100 text-[#E11D48]'
+                    ? 'bg-rose-100 text-accent'
                     : 'bg-zinc-100 text-zinc-700'
                 }`}
               >
@@ -341,20 +341,20 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
               </span>
             </div>
 
-            <h4 className="text-base font-bold text-[#09090B] font-display mb-1.5">
+            <h4 className="text-base font-bold text-ink font-display mb-1.5">
               {selectedHotspot?.title}
             </h4>
             <p className="text-xs text-zinc-600 leading-relaxed mb-4">
               {selectedHotspot?.description}
             </p>
 
-            <div className="bg-[#FAFAFA] rounded-lg p-3 border border-[#E4E4E7] mb-4 space-y-1.5">
+            <div className="bg-surface rounded-lg p-3 border border-line mb-4 space-y-1.5">
               <div className="text-[11px] font-mono text-zinc-500 uppercase font-semibold">
                 Spatial Attributes
               </div>
               {selectedHotspot?.detailSpecs?.map((spec, i) => (
                 <div key={i} className="text-xs text-zinc-800 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                   <span>{spec}</span>
                 </div>
               ))}
@@ -363,7 +363,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
             <button
               type="button"
               onClick={() => selectedHotspot && triggerAction(selectedHotspot)}
-              className="w-full py-2.5 px-4 rounded-lg bg-[#09090B] text-white hover:bg-[#E11D48] transition-colors text-xs font-medium flex items-center justify-center gap-2 shadow-sm"
+              className="w-full py-2.5 px-4 rounded-lg bg-ink text-white hover:bg-accent transition-colors text-xs font-medium flex items-center justify-center gap-2 shadow-sm"
             >
               <span>{selectedHotspot?.ctaText}</span>
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -373,9 +373,9 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
           </div>
 
           {/* Embed snippet explanation */}
-          <div className="bg-[#FFFFFF] border border-[#E4E4E7] rounded-xl p-4 text-xs text-zinc-600 shadow-xs">
+          <div className="bg-white border border-line rounded-xl p-4 text-xs text-zinc-600 shadow-xs">
             <div className="font-semibold text-zinc-900 font-display mb-1 flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
               <span>Single-line CMS Embed</span>

@@ -26,10 +26,10 @@ export const LegalSection: React.FC<{ section: LegalSectionMeta; number: number;
   return (
     <section id={section.id} className="scroll-mt-24">
       <h2 className="flex items-center gap-3 mb-4">
-        <span className="w-9 h-9 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center shrink-0">
-          <Icon className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+        <span className="w-9 h-9 rounded-lg border border-line bg-surface flex items-center justify-center shrink-0">
+          <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
         </span>
-        <span className="text-lg sm:text-xl font-bold tracking-tight text-[#09090B] font-display">
+        <span className="text-lg sm:text-xl font-bold tracking-tight text-ink font-display">
           <span className="font-mono text-sm text-zinc-400 mr-2">{number}.</span>
           {section.title}
         </span>
@@ -82,7 +82,7 @@ export const LegalLayout: React.FC<{
             Home
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             {title}
           </span>
         </nav>
@@ -100,21 +100,21 @@ export const LegalLayout: React.FC<{
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
           >
-            <ShieldCheck className="w-3.5 h-3.5 text-[#E11D48]" aria-hidden="true" />
+            <ShieldCheck className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
             <span>{SITE_METADATA.legalName}</span>
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display leading-[1.12]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display leading-[1.12]"
           >
             {title}
           </motion.h1>
           <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500">
-            <CalendarClock className="w-3.5 h-3.5 text-[#E11D48]" aria-hidden="true" />
+            <CalendarClock className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
             Last updated {lastUpdated ?? <Placeholder>[[TBI: date]]</Placeholder>}
           </p>
 
@@ -127,10 +127,10 @@ export const LegalLayout: React.FC<{
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.15 + i * 0.06 }}
-                  className="flex items-center gap-2.5 rounded-xl border border-[#E4E4E7] bg-white px-3.5 py-3 shadow-xs"
+                  className="flex items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 py-3 shadow-xs"
                 >
-                  <span className="w-8 h-8 rounded-lg bg-[#E11D48]/10 flex items-center justify-center shrink-0">
-                    <Icon className="w-4 h-4 text-[#E11D48]" aria-hidden="true" />
+                  <span className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                    <Icon className="w-4 h-4 text-accent" aria-hidden="true" />
                   </span>
                   <span className="text-xs sm:text-sm font-semibold text-zinc-800">{item.label}</span>
                 </motion.li>
@@ -153,10 +153,10 @@ export const LegalLayout: React.FC<{
                         href={`#${section.id}`}
                         onClick={jumpTo(section.id)}
                         className={`flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ${
-                          isActive ? 'bg-[#E11D48]/[0.06] text-zinc-900 font-semibold' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
+                          isActive ? 'bg-accent/[0.06] text-zinc-900 font-semibold' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
                         }`}
                       >
-                        <span className={`font-mono text-[11px] w-5 ${isActive ? 'text-[#E11D48]' : 'text-zinc-400'}`}>{i + 1}</span>
+                        <span className={`font-mono text-[11px] w-5 ${isActive ? 'text-accent' : 'text-zinc-400'}`}>{i + 1}</span>
                         {section.title}
                       </a>
                     </li>

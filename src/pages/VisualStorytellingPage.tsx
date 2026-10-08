@@ -4,6 +4,7 @@ import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
+import { buttonClass } from '../components/ui';
 
 interface VisualStorytellingPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -195,7 +196,7 @@ const OUTCOME_TILES = [
     title: 'Give people a reason to care',
     line: 'Facts inform. Stories persuade. We turn your place into the second.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
@@ -204,7 +205,7 @@ const OUTCOME_TILES = [
     title: 'Show what matters, in the right order',
     line: 'Lead your audience from first impression to the detail that decides.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
       </svg>
     ),
@@ -213,7 +214,7 @@ const OUTCOME_TILES = [
     title: 'Feed every channel',
     line: 'Films, clips and stills for your website, ads, social media and presentations.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
       </svg>
     ),
@@ -222,7 +223,7 @@ const OUTCOME_TILES = [
     title: 'Make it last',
     line: 'A story told today, from a record that stays accurate for years.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -396,7 +397,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
   }, []);
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen font-['Comfortaa',ui-sans-serif,system-ui,sans-serif] selection:bg-[#E11D48] selection:text-white">
+    <div className="bg-white text-zinc-900 min-h-screen selection:bg-accent selection:text-white">
       {/* 1. HERO + ANSWER SUMMARY */}
       <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-zinc-200 overflow-hidden">
         {/* Subtle architectural grid backdrop */}
@@ -437,7 +438,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-8">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+                <span className="w-2 h-2 rounded-full bg-accent" />
                 <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">
                   Service Pillar · Visual Storytelling
                 </span>
@@ -455,7 +456,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onNavigate('/contact/')}
-                  className="px-6 py-3.5 bg-zinc-900 hover:bg-[#E11D48] text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm flex items-center space-x-2 cursor-pointer"
+                  className={buttonClass('dark', 'md')}
                 >
                   <span>Plan your story</span>
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -467,7 +468,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                   href="#showcase"
                   className="px-6 py-3.5 bg-white hover:bg-zinc-50 text-zinc-900 text-sm font-semibold rounded-lg border border-zinc-300 transition-colors flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -509,7 +510,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                   href="https://wa.me/9779801234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-[#E11D48] hover:underline"
+                  className="text-xs font-semibold text-accent hover:underline"
                 >
                   WhatsApp us →
                 </a>
@@ -565,7 +566,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-zinc-200">
             <div>
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Featured Experience Showcase
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -640,7 +641,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                     <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto">
                       <button
                         onClick={() => setIsPlayingFacade(true)}
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 hover:bg-[#E11D48] text-zinc-900 hover:text-white transition-all transform hover:scale-105 flex items-center justify-center shadow-2xl cursor-pointer group"
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/95 hover:bg-accent text-zinc-900 hover:text-white transition-all transform hover:scale-105 flex items-center justify-center shadow-2xl cursor-pointer group"
                         aria-label="Play fly-through preview"
                       >
                         <svg className="w-8 h-8 ml-1 text-zinc-900 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
@@ -737,7 +738,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 </div>
                 <button
                   onClick={() => setShowcaseMode('film')}
-                  className="font-mono text-[#E11D48] hover:underline cursor-pointer"
+                  className="font-mono text-accent hover:underline cursor-pointer"
                 >
                   Switch back to Film Facade →
                 </button>
@@ -752,7 +753,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <section id="why-story" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               The Strategic Framework
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
@@ -769,13 +770,13 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
             <div className="lg:col-span-7 bg-white border border-zinc-200 rounded-2xl overflow-hidden shadow-xs">
               <div className="px-6 py-4 bg-zinc-50 border-b border-zinc-200 font-mono text-xs uppercase tracking-wider text-zinc-600 flex justify-between items-center">
                 <span>The Four Narrative Pillars</span>
-                <span className="text-[#E11D48]">RCAAS Story Methodology</span>
+                <span className="text-accent">RCAAS Story Methodology</span>
               </div>
               <div className="divide-y divide-zinc-200">
                 {FOUR_QUESTIONS.map((item, idx) => (
                   <div key={idx} className="p-6 hover:bg-zinc-50/50 transition-colors">
                     <div className="flex items-start space-x-4">
-                      <span className="font-mono text-sm font-bold text-[#E11D48] pt-0.5">
+                      <span className="font-mono text-sm font-bold text-accent pt-0.5">
                         0{idx + 1}
                       </span>
                       <div className="flex-1">
@@ -866,7 +867,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
 
                 <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200">
                   <div className="font-semibold text-zinc-900 mb-1">4. Action they take:</div>
-                  <div className="text-zinc-600 font-medium text-[#E11D48]">
+                  <div className="text-zinc-600 font-medium text-accent">
                     {activePersona === 'hotel' && FOUR_QUESTIONS[3].hotelExample}
                     {activePersona === 'education' && FOUR_QUESTIONS[3].educationExample}
                     {activePersona === 'property' && FOUR_QUESTIONS[3].propertyExample}
@@ -882,7 +883,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <section id="capabilities" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Comprehensive Story Formats
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -938,7 +939,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                         <ul className="space-y-2 text-xs sm:text-sm text-zinc-700">
                           {cap.youReceive.map((item, idx) => (
                             <li key={idx} className="flex items-start space-x-2">
-                              <svg className="w-4 h-4 text-[#E11D48] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                               </svg>
                               <span>{item}</span>
@@ -974,7 +975,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
 
                       <button
                         onClick={() => onNavigate('/contact/')}
-                        className="px-4 py-2 bg-zinc-900 hover:bg-[#E11D48] text-white font-semibold rounded-lg transition-colors cursor-pointer shrink-0 self-start sm:self-auto"
+                        className={buttonClass('dark', 'sm', 'shrink-0 self-start sm:self-auto')}
                       >
                         Enquire about this format →
                       </button>
@@ -1004,7 +1005,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                         <div className="mb-6 p-4 rounded-xl bg-white border border-zinc-200 shadow-xs">
                           <div className="font-mono text-xs uppercase tracking-wider text-zinc-500 mb-2 flex justify-between">
                             <span>Interactive Split Comparison</span>
-                            <span className="text-[#E11D48] font-bold">{sliderPosition}% Slider</span>
+                            <span className="text-accent font-bold">{sliderPosition}% Slider</span>
                           </div>
 
                           {/* Slider Graphic */}
@@ -1030,7 +1031,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                                 className="absolute inset-0 w-full h-full object-cover"
                                 style={{ width: '100%', maxWidth: 'none' }}
                               />
-                              <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-[#E11D48] text-white text-[10px] font-mono">
+                              <div className="absolute top-2 right-2 px-2 py-0.5 rounded bg-accent text-white text-[10px] font-mono">
                                 2024: Post-Restoration Twin
                               </div>
                             </div>
@@ -1053,7 +1054,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                             max="100"
                             value={sliderPosition}
                             onChange={(e) => setSliderPosition(Number(e.target.value))}
-                            className="w-full mt-3 accent-[#E11D48] cursor-pointer"
+                            className="w-full mt-3 accent-accent cursor-pointer"
                             aria-label="Before and after split slider"
                           />
                           <p className="text-[11px] text-zinc-500 text-center mt-1">
@@ -1095,7 +1096,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <section id="industries" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Industry Applications
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -1114,7 +1115,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs font-bold text-[#E11D48] uppercase tracking-wider">
+                    <span className="font-mono text-xs font-bold text-accent uppercase tracking-wider">
                       {ind.sector}
                     </span>
                     <span className="text-xs font-mono text-zinc-400">
@@ -1149,7 +1150,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                   <span className="text-zinc-500 font-medium">{ind.metric}</span>
                   <button
                     onClick={() => onNavigate('/contact/')}
-                    className="text-[#E11D48] font-semibold hover:underline cursor-pointer"
+                    className="text-accent font-semibold hover:underline cursor-pointer"
                   >
                     Discuss project →
                   </button>
@@ -1164,7 +1165,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <section id="process" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Production Workflow
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -1182,7 +1183,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 className="bg-zinc-50 border border-zinc-200 rounded-xl p-5 relative flex flex-col justify-between hover:bg-white hover:border-zinc-300 transition-all shadow-xs"
               >
                 <div>
-                  <div className="font-mono text-2xl font-bold text-[#E11D48] mb-3">
+                  <div className="font-mono text-2xl font-bold text-accent mb-3">
                     {step.step}
                   </div>
                   <h3 className="text-base font-bold text-zinc-900 mb-2">
@@ -1205,7 +1206,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <section id="faq" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Clear Answers
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -1220,17 +1221,17 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       {/* 9. CALL TO ACTION BAND */}
       <section className="py-20 bg-zinc-900 text-white relative overflow-hidden">
         {/* Background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E11D48]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-800 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+            <span className="w-2 h-2 rounded-full bg-accent" />
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
               Start Your Narrative Project
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-6">
             Ready to turn your place into a story?
           </h2>
 
@@ -1241,7 +1242,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('/contact/')}
-              className="px-8 py-4 bg-[#E11D48] hover:bg-[#be123c] text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-red-900/30 cursor-pointer flex items-center space-x-2 text-sm"
+              className={buttonClass('primary', 'lg', 'shadow-lg hover:shadow-red-900/30')}
             >
               <span>Plan your story</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

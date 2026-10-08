@@ -4,6 +4,7 @@ import { RoutePath } from '../types';
 import { IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
+import { buttonClass } from '../components/ui';
 
 interface DroneMappingPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -193,7 +194,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
   }, []);
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen font-['Comfortaa',ui-sans-serif,system-ui,sans-serif] selection:bg-[#E11D48] selection:text-white">
+    <div className="bg-white text-zinc-900 min-h-screen selection:bg-accent selection:text-white">
       {/* 1. HERO + ANSWER SUMMARY */}
       <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-zinc-200 overflow-hidden">
         {/* Subtle grid backdrop */}
@@ -245,7 +246,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             <div className="lg:col-span-8">
               <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-200 bg-zinc-50 mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+                <span className="w-2 h-2 rounded-full bg-accent" />
                 <span className="font-mono text-xs uppercase tracking-wider text-zinc-600">
                   Capability · Drone Mapping &amp; Aerial Survey
                 </span>
@@ -263,7 +264,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
               <div className="flex flex-wrap items-center gap-4">
                 <button
                   onClick={() => onNavigate('/contact/')}
-                  className="px-6 py-3.5 bg-zinc-900 hover:bg-[#E11D48] text-white text-sm font-semibold rounded-lg transition-all duration-200 shadow-sm flex items-center space-x-2 cursor-pointer"
+                  className={buttonClass('dark', 'md')}
                 >
                   <span>Get a survey quote</span>
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -275,7 +276,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                   href="#showcase"
                   className="px-6 py-3.5 bg-white hover:bg-zinc-50 text-zinc-900 text-sm font-semibold rounded-lg border border-zinc-300 transition-colors flex items-center space-x-2 cursor-pointer"
                 >
-                  <svg className="w-4 h-4 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
@@ -288,7 +289,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
             <div className="lg:col-span-4 bg-zinc-50 border border-zinc-200 rounded-xl p-6 relative">
               <div className="font-mono text-xs uppercase tracking-wider text-zinc-600 mb-4 pb-2 border-b border-zinc-200 flex justify-between items-center">
                 <span>Aerial Survey Profile</span>
-                <span className="text-[#E11D48] font-bold">RTK Drone</span>
+                <span className="text-accent font-bold">RTK Drone</span>
               </div>
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center justify-between text-zinc-700">
@@ -319,7 +320,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                   href="https://wa.me/9779801234567"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-[#E11D48] hover:underline"
+                  className="text-xs font-semibold text-accent hover:underline"
                 >
                   WhatsApp flight team →
                 </a>
@@ -373,7 +374,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-zinc-200">
             <div>
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Aerial Data Showcase
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -434,7 +435,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                 </div>
                 <button
                   onClick={() => setShowcaseMode('ortho')}
-                  className="font-mono text-[#E11D48] hover:underline cursor-pointer"
+                  className="font-mono text-accent hover:underline cursor-pointer"
                 >
                   Return to Orthomosaic View →
                 </button>
@@ -483,7 +484,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                       max="100"
                       value={contourDensity}
                       onChange={(e) => setContourDensity(Number(e.target.value))}
-                      className="w-32 accent-[#E11D48] cursor-pointer"
+                      className="w-32 accent-accent cursor-pointer"
                       aria-label="Contour interval adjustment"
                     />
                     <span className="font-mono text-zinc-300 text-xs w-10">{(contourDensity / 100).toFixed(2)}m</span>
@@ -501,7 +502,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                 </div>
                 <button
                   onClick={() => setShowcaseMode('3d')}
-                  className="mt-2 sm:mt-0 font-mono text-xs text-[#E11D48] hover:underline cursor-pointer"
+                  className="mt-2 sm:mt-0 font-mono text-xs text-accent hover:underline cursor-pointer"
                 >
                   View in 3D Mode →
                 </button>
@@ -515,7 +516,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <section id="why-drone" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Aerial Advantage
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 leading-tight">
@@ -534,7 +535,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                   <tr className="bg-zinc-50 border-b border-zinc-200 font-mono text-xs uppercase tracking-wider text-zinc-700">
                     <th className="py-4 px-6 font-semibold w-1/3">Survey Challenge</th>
                     <th className="py-4 px-6 font-semibold w-1/3 text-zinc-500">Ground Survey Alone</th>
-                    <th className="py-4 px-6 font-semibold w-1/3 text-[#E11D48]">Drone Mapping &amp; Aerial Survey</th>
+                    <th className="py-4 px-6 font-semibold w-1/3 text-accent">Drone Mapping &amp; Aerial Survey</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-zinc-200">
@@ -547,7 +548,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                         {row.ground}
                       </td>
                       <td className="py-4 px-6 font-medium text-zinc-900">
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#E11D48] mr-2" />
+                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2" />
                         {row.drone}
                       </td>
                     </tr>
@@ -572,7 +573,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <section id="deliverables" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Deliverables Package
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -606,7 +607,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                       <td className="py-4 px-6 text-zinc-600 leading-relaxed">
                         {item.useItFor}
                       </td>
-                      <td className="py-4 px-6 font-mono text-xs text-[#E11D48] font-semibold whitespace-nowrap">
+                      <td className="py-4 px-6 font-mono text-xs text-accent font-semibold whitespace-nowrap">
                         {item.formats}
                       </td>
                     </tr>
@@ -622,7 +623,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <section id="uses" className="py-16 md:py-24 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Application Sectors
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -640,7 +641,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                 className="bg-white border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between"
               >
                 <div>
-                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#E11D48] block mb-2">
+                  <span className="font-mono text-xs font-semibold uppercase tracking-wider text-accent block mb-2">
                     {uc.badge}
                   </span>
                   <h3 className="text-lg font-bold text-zinc-900 mb-2">
@@ -658,21 +659,21 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => onNavigate('/industries/government-municipalities/')}
-                className="font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                className="font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
               >
                 For municipalities &amp; public bodies →
               </button>
               <span className="text-zinc-300">·</span>
               <button
                 onClick={() => onNavigate('/industries/heritage-culture/')}
-                className="font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                className="font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
               >
                 For heritage &amp; culture →
               </button>
               <span className="text-zinc-300">·</span>
               <button
                 onClick={() => onNavigate('/industries/real-estate-architecture/')}
-                className="font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                className="font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
               >
                 For property developers →
               </button>
@@ -680,7 +681,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
 
             <button
               onClick={() => onNavigate('/contact/')}
-              className="text-[#E11D48] font-semibold hover:underline cursor-pointer"
+              className="text-accent font-semibold hover:underline cursor-pointer"
             >
               Discuss your site perimeter →
             </button>
@@ -692,7 +693,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <section id="process" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mb-16">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Workflow Protocol
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -710,7 +711,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                 className="bg-zinc-50 border border-zinc-200 rounded-xl p-6 shadow-xs flex flex-col justify-between"
               >
                 <div>
-                  <div className="font-mono text-2xl font-bold text-[#E11D48] mb-3">
+                  <div className="font-mono text-2xl font-bold text-accent mb-3">
                     {step.step}
                   </div>
                   <h3 className="text-base font-bold text-zinc-900 mb-2">
@@ -730,7 +731,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           <div className="mt-8 text-center">
             <button
               onClick={() => onNavigate('/how-we-work/')}
-              className="font-mono text-xs text-[#E11D48] hover:underline cursor-pointer font-semibold"
+              className="font-mono text-xs text-accent hover:underline cursor-pointer font-semibold"
             >
               See our full field procedures &amp; quality check protocol →
             </button>
@@ -743,10 +744,10 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8">
-              <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+              <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                 Survey Hardware &amp; Photogrammetry
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
                 Our aerial toolkit
               </h2>
               <p className="text-base text-zinc-600 leading-relaxed mb-6">
@@ -755,14 +756,14 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold">
                 <button
                   onClick={() => onNavigate('/services/digital-twins/3d-laser-scanning/')}
-                  className="text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                  className="text-zinc-900 hover:text-accent underline cursor-pointer"
                 >
                   3D laser scanning →
                 </button>
                 <span className="text-zinc-300">·</span>
                 <button
                   onClick={() => onNavigate('/how-we-work/')}
-                  className="text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                  className="text-zinc-900 hover:text-accent underline cursor-pointer"
                 >
                   Full survey toolkit →
                 </button>
@@ -770,7 +771,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
             </div>
 
             <div className="lg:col-span-4 bg-white border border-zinc-200 rounded-xl p-5 text-center shadow-xs">
-              <div className="text-2xl font-bold font-mono text-[#E11D48] mb-1">DJI Mavic 3E</div>
+              <div className="text-2xl font-bold font-mono text-accent mb-1">DJI Mavic 3E</div>
               <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-3">Mechanical Shutter RTK</div>
               <p className="text-xs text-zinc-600 leading-relaxed">
                 4/3 CMOS sensor with 0.7-second interval shooting, eliminating rolling shutter distortion at high flight speeds.
@@ -786,10 +787,10 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-8 sm:p-10 shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-8">
-                <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+                <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
                   Dual-Use Project Value
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
                   Maps for your engineers, visuals for your audience
                 </h2>
                 <p className="text-base text-zinc-600 leading-relaxed mb-6">
@@ -797,14 +798,14 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
                 </p>
                 <button
                   onClick={() => onNavigate('/services/visual-storytelling/')}
-                  className="text-xs font-semibold text-zinc-900 hover:text-[#E11D48] underline cursor-pointer"
+                  className="text-xs font-semibold text-zinc-900 hover:text-accent underline cursor-pointer"
                 >
                   Explore Visual Storytelling &amp; Fly-Through Films →
                 </button>
               </div>
 
               <div className="lg:col-span-4 bg-white border border-zinc-200 rounded-xl p-5 text-center shadow-xs">
-                <div className="text-3xl font-bold font-mono text-[#E11D48] mb-1">1 Flight Mission</div>
+                <div className="text-3xl font-bold font-mono text-accent mb-1">1 Flight Mission</div>
                 <div className="text-xs font-mono text-zinc-500 uppercase tracking-wider mb-2">Dual Project Output</div>
                 <p className="text-xs text-zinc-600 leading-relaxed">
                   Engineers get GeoTIFF maps &amp; contours. Marketing gets 4K cinematic launch reels.
@@ -818,10 +819,10 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       {/* 10. FEATURED PROJECT */}
       <section className="py-16 md:py-20 border-b border-zinc-200 bg-zinc-50/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+          <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
             In Practice
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 mb-8">
             Case Study: Chilancho Stupa
           </h2>
 
@@ -862,7 +863,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
 
               <button
                 onClick={() => onNavigate('/work/chilancho-stupa-digital-heritage/')}
-                className="px-5 py-2.5 bg-zinc-900 hover:bg-[#E11D48] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer self-start"
+                className={buttonClass('dark', 'sm', 'self-start')}
               >
                 See the project →
               </button>
@@ -875,7 +876,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <section id="faq" className="py-16 md:py-24 border-b border-zinc-200 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="font-mono text-xs uppercase tracking-wider text-[#E11D48] font-semibold mb-2">
+            <div className="font-mono text-xs uppercase tracking-wider text-accent font-semibold mb-2">
               Regulatory &amp; Technical FAQ
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900">
@@ -890,17 +891,17 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       {/* 12. CTA BAND */}
       <section className="py-20 bg-zinc-900 text-white relative overflow-hidden">
         {/* Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E11D48]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-zinc-700 bg-zinc-800 mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#E11D48]" />
+            <span className="w-2 h-2 rounded-full bg-accent" />
             <span className="font-mono text-xs uppercase tracking-wider text-zinc-300">
               Flight Scoping &amp; Survey Quotation
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-6">
             Map your site with confidence
           </h2>
 
@@ -911,7 +912,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           <div className="flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('/contact/')}
-              className="px-8 py-4 bg-[#E11D48] hover:bg-[#be123c] text-white font-semibold rounded-lg transition-all shadow-lg hover:shadow-red-900/30 cursor-pointer flex items-center space-x-2 text-sm"
+              className={buttonClass('primary', 'lg', 'shadow-lg hover:shadow-red-900/30')}
             >
               <span>Get a survey quote</span>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -949,13 +950,13 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
               onClick={() => onNavigate('/services/digital-twins/3d-laser-scanning/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 3D Laser Scanning
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Add dense millimeter interior point clouds and as-built drawings to your aerial survey.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 Explore laser scanning →
               </span>
             </div>
@@ -964,13 +965,13 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
               onClick={() => onNavigate('/services/digital-twins/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 Survey and GIS
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Geodetic ground control, topographic spot heights, and GIS cadastral layers.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 View digital twins hub →
               </span>
             </div>
@@ -979,13 +980,13 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
               onClick={() => onNavigate('/services/visual-storytelling/')}
               className="bg-white border border-zinc-200 rounded-xl p-6 hover:border-zinc-300 transition-all cursor-pointer shadow-xs group"
             >
-              <h4 className="text-base font-bold text-zinc-900 group-hover:text-[#E11D48] transition-colors mb-2">
+              <h4 className="text-base font-bold text-zinc-900 group-hover:text-accent transition-colors mb-2">
                 Visual Storytelling
               </h4>
               <p className="text-xs sm:text-sm text-zinc-600 mb-4">
                 Cinematic fly-through films and promotional aerial reels from the same mission.
               </p>
-              <span className="text-xs font-semibold text-[#E11D48]">
+              <span className="text-xs font-semibold text-accent">
                 Explore storytelling →
               </span>
             </div>

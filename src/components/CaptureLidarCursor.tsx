@@ -371,25 +371,25 @@ export const CaptureLidarCursor: React.FC = () => {
             {/* Top-Left Bracket */}
             <span
               className={`absolute left-0 top-0 h-2.5 w-2.5 border-l-2 border-t-2 transition-colors duration-150 ${
-                isHovered ? 'border-[#E11D48]' : 'border-zinc-900'
+                isHovered ? 'border-accent' : 'border-zinc-900'
               }`}
             />
             {/* Top-Right Bracket */}
             <span
               className={`absolute right-0 top-0 h-2.5 w-2.5 border-r-2 border-t-2 transition-colors duration-150 ${
-                isHovered ? 'border-[#E11D48]' : 'border-zinc-900'
+                isHovered ? 'border-accent' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Left Bracket */}
             <span
               className={`absolute bottom-0 left-0 h-2.5 w-2.5 border-b-2 border-l-2 transition-colors duration-150 ${
-                isHovered ? 'border-[#E11D48]' : 'border-zinc-900'
+                isHovered ? 'border-accent' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Right Bracket */}
             <span
               className={`absolute bottom-0 right-0 h-2.5 w-2.5 border-b-2 border-r-2 transition-colors duration-150 ${
-                isHovered ? 'border-[#E11D48]' : 'border-zinc-900'
+                isHovered ? 'border-accent' : 'border-zinc-900'
               }`}
             />
           </div>
@@ -399,23 +399,23 @@ export const CaptureLidarCursor: React.FC = () => {
             {/* Horizontal Hair */}
             <div
               className={`h-[1px] w-3 transition-colors duration-150 ${
-                isHovered ? 'bg-[#E11D48]' : 'bg-zinc-800'
+                isHovered ? 'bg-accent' : 'bg-zinc-800'
               }`}
             />
             {/* Vertical Hair */}
             <div
               className={`absolute h-3 w-[1px] transition-colors duration-150 ${
-                isHovered ? 'bg-[#E11D48]' : 'bg-zinc-800'
+                isHovered ? 'bg-accent' : 'bg-zinc-800'
               }`}
             />
             {/* Center LiDAR Laser Dot */}
             <div
               className={`absolute h-1.5 w-1.5 rounded-full transition-transform duration-150 ${
                 isHovered
-                  ? 'bg-[#E11D48] scale-125 shadow-[0_0_8px_#E11D48]'
+                  ? 'bg-accent scale-125 shadow-[0_0_8px_#E11D48]'
                   : isClicking
                   ? 'bg-zinc-950 scale-150'
-                  : 'bg-[#E11D48]'
+                  : 'bg-accent'
               }`}
             />
           </div>
@@ -425,21 +425,21 @@ export const CaptureLidarCursor: React.FC = () => {
             className="absolute -top-6 -right-16 select-none rounded bg-white/90 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-zinc-700 shadow-sm border border-zinc-200 backdrop-blur-sm whitespace-nowrap"
             style={{ letterSpacing: '0.02em' }}
           >
-            <span className="text-[#E11D48] mr-1">XYZ</span>
+            <span className="text-accent mr-1">XYZ</span>
             {simX},{simY},{simZ}m
           </div>
 
           {/* Target Capture Status Badge (Bottom Right when hovering) */}
           {isHovered && (
             <div className="absolute -bottom-6 -right-14 select-none rounded bg-zinc-950 px-1.5 py-0.5 font-mono text-[8px] font-bold text-white shadow-md flex items-center gap-1 border border-zinc-800 whitespace-nowrap">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-ping" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
               <span>CAPTURE</span>
             </div>
           )}
 
           {/* Click Pulse Shutter Effect */}
           {isClicking && (
-            <div className="absolute inset-0 animate-ping rounded-full border border-[#E11D48] opacity-75" />
+            <div className="absolute inset-0 animate-ping rounded-full border border-accent opacity-75" />
           )}
         </div>
       </div>

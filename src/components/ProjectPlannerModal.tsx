@@ -38,7 +38,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-2xl overflow-hidden rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] p-6 sm:p-8 shadow-2xl">
+      <div className="relative w-full max-w-2xl overflow-hidden rounded-lg border border-line bg-white p-6 sm:p-8 shadow-2xl">
         
         {/* Close Button */}
         <button
@@ -53,10 +53,10 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
           <div>
             {/* Header */}
             <div className="mb-6">
-              <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#E11D48]">
+              <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-accent">
                 Plan Your Experience · Step {step} of 2
               </span>
-              <h2 className="mt-1 text-2xl font-bold text-[#09090B] font-display">
+              <h2 className="mt-1 text-2xl font-bold text-ink font-display">
                 {step === 1 ? 'Configure your place & deliverables' : 'Tell us about your project & timeline'}
               </h2>
               <p className="mt-1 text-xs text-zinc-500">
@@ -89,8 +89,8 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                         onClick={() => setSpaceType(type)}
                         className={`p-3 text-left rounded-md text-xs border transition-all ${
                           spaceType === type
-                            ? 'border-[#E11D48] bg-rose-50/50 text-[#BE123C] font-semibold'
-                            : 'border-[#E4E4E7] bg-[#FAFAFA] text-zinc-700 hover:border-zinc-400'
+                            ? 'border-accent bg-rose-50/50 text-accent-strong font-semibold'
+                            : 'border-line bg-surface text-zinc-700 hover:border-zinc-400'
                         }`}
                       >
                         {type}
@@ -116,8 +116,8 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                         onClick={() => setScaleArea(scale)}
                         className={`p-2.5 text-center rounded-md text-xs border transition-all ${
                           scaleArea === scale
-                            ? 'border-[#E11D48] bg-rose-50/50 text-[#BE123C] font-semibold'
-                            : 'border-[#E4E4E7] bg-[#FAFAFA] text-zinc-700 hover:border-zinc-400'
+                            ? 'border-accent bg-rose-50/50 text-accent-strong font-semibold'
+                            : 'border-line bg-surface text-zinc-700 hover:border-zinc-400'
                         }`}
                       >
                         {scale}
@@ -148,13 +148,13 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                           onClick={() => toggleDeliverable(del.name)}
                           className={`flex items-start gap-2.5 p-3 rounded-md text-left border transition-all ${
                             active
-                              ? 'border-[#E11D48] bg-rose-50/50 text-[#09090B]'
-                              : 'border-[#E4E4E7] bg-[#FAFAFA] text-zinc-600 hover:border-zinc-400'
+                              ? 'border-accent bg-rose-50/50 text-ink'
+                              : 'border-line bg-surface text-zinc-600 hover:border-zinc-400'
                           }`}
                         >
                           <div
                             className={`mt-0.5 h-3.5 w-3.5 rounded shrink-0 flex items-center justify-center border ${
-                              active ? 'bg-[#E11D48] border-[#E11D48]' : 'border-zinc-400'
+                              active ? 'bg-accent border-accent' : 'border-zinc-400'
                             }`}
                           >
                             {active && <span className="text-white text-[9px]">✓</span>}
@@ -170,7 +170,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                 </div>
 
                 {/* Step 1 Actions */}
-                <div className="pt-4 flex items-center justify-between border-t border-[#E4E4E7]">
+                <div className="pt-4 flex items-center justify-between border-t border-line">
                   <span className="text-xs font-mono text-zinc-500">
                     Selected: {deliverables.length} deliverable(s)
                   </span>
@@ -199,7 +199,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       value={contactName}
                       onChange={(e) => setContactName(e.target.value)}
                       placeholder="e.g. Ramesh Shrestha"
-                      className="w-full rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3.5 py-2 text-xs text-[#09090B] focus:border-[#E11D48] focus:outline-none focus:bg-white"
+                      className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-xs text-ink focus:border-accent focus:outline-none focus:bg-white"
                     />
                   </div>
                   <div>
@@ -212,7 +212,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       value={contactEmail}
                       onChange={(e) => setContactEmail(e.target.value)}
                       placeholder="e.g. ramesh@organization.np"
-                      className="w-full rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3.5 py-2 text-xs text-[#09090B] focus:border-[#E11D48] focus:outline-none focus:bg-white"
+                      className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-xs text-ink focus:border-accent focus:outline-none focus:bg-white"
                     />
                   </div>
                 </div>
@@ -228,7 +228,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       value={contactPhone}
                       onChange={(e) => setContactPhone(e.target.value)}
                       placeholder="+977 98XXXXXXXX"
-                      className="w-full rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3.5 py-2 text-xs text-[#09090B] focus:border-[#E11D48] focus:outline-none focus:bg-white"
+                      className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-xs text-ink focus:border-accent focus:outline-none focus:bg-white"
                     />
                   </div>
                   <div>
@@ -240,7 +240,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       value={organization}
                       onChange={(e) => setOrganization(e.target.value)}
                       placeholder="e.g. Basera Boutique Hotel"
-                      className="w-full rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3.5 py-2 text-xs text-[#09090B] focus:border-[#E11D48] focus:outline-none focus:bg-white"
+                      className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-xs text-ink focus:border-accent focus:outline-none focus:bg-white"
                     />
                   </div>
                 </div>
@@ -254,24 +254,24 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="Provide details about the space, location in Nepal, timing, and any specific goals you have..."
-                    className="w-full rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3.5 py-2 text-xs text-[#09090B] focus:border-[#E11D48] focus:outline-none focus:bg-white resize-none"
+                    className="w-full rounded-lg border border-line bg-surface px-3.5 py-2 text-xs text-ink focus:border-accent focus:outline-none focus:bg-white resize-none"
                   />
                 </div>
 
                 {/* Configuration Summary Badge */}
-                <div className="p-3 rounded-md bg-[#F4F4F5] border border-[#E4E4E7] text-xs font-mono text-zinc-600">
+                <div className="p-3 rounded-md bg-surface-sunken border border-line text-xs font-mono text-zinc-600">
                   <div className="flex justify-between">
                     <span>Scope:</span>
-                    <span className="text-[#09090B] font-semibold">{spaceType} ({scaleArea})</span>
+                    <span className="text-ink font-semibold">{spaceType} ({scaleArea})</span>
                   </div>
                   <div className="flex justify-between mt-1">
                     <span>Deliverables:</span>
-                    <span className="text-[#BE123C] font-semibold">{deliverables.length} selected</span>
+                    <span className="text-accent-strong font-semibold">{deliverables.length} selected</span>
                   </div>
                 </div>
 
                 {/* Step 2 Actions */}
-                <div className="pt-4 flex items-center justify-between border-t border-[#E4E4E7]">
+                <div className="pt-4 flex items-center justify-between border-t border-line">
                   <button
                     type="button"
                     onClick={() => setStep(1)}
@@ -300,7 +300,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
               </svg>
             </div>
             
-            <h3 className="mt-4 text-xl font-bold text-[#09090B] font-display">
+            <h3 className="mt-4 text-xl font-bold text-ink font-display">
               Proposal Request Received
             </h3>
             

@@ -35,7 +35,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#A1A1AA] hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] active:scale-[0.99] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-line bg-white shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-line-strong hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] active:scale-[0.99] ${className}`}
     >
       {/* Subtle cursor spotlight glow */}
       <div

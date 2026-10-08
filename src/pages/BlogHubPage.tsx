@@ -50,7 +50,7 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
             Home
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             Blog
           </span>
         </nav>
@@ -68,9 +68,9 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
             <span className="font-semibold text-zinc-900">Blog</span>
             {page > 1 && (
               <>
@@ -85,9 +85,9 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
           >
-            Stories from <span className="text-[#E11D48]">the field</span>
+            Stories from <span className="text-accent">the field</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -113,8 +113,8 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
                 onClick={() => setFilter(chip.id)}
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-all ${
                   active
-                    ? 'border-[#E11D48] bg-[#E11D48] text-white shadow-[0_4px_14px_-6px_rgba(225,29,72,0.5)]'
-                    : 'border-[#E4E4E7] bg-white text-zinc-700 hover:border-zinc-300'
+                    ? 'border-accent bg-accent text-white shadow-[0_4px_14px_-6px_rgba(225,29,72,0.5)]'
+                    : 'border-line bg-white text-zinc-700 hover:border-zinc-300'
                 }`}
               >
                 {chip.label}
@@ -126,12 +126,12 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
 
         {/* FEATURED + GRID */}
         {filtered.length === 0 ? (
-          <div className="mb-20 rounded-2xl border border-dashed border-[#E4E4E7] bg-[#FAFAFA] p-10 text-center">
+          <div className="mb-20 rounded-2xl border border-dashed border-line bg-surface p-10 text-center">
             <p className="text-base font-bold text-zinc-900 font-display">No posts here yet.</p>
             <button
               type="button"
               onClick={() => setFilter('all')}
-              className="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+              className="mt-3 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
             >
               See all stories <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </button>
@@ -164,14 +164,14 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
         {pageCount > 1 && (
           <nav aria-label="Blog pages" className="-mt-12 mb-20 flex items-center justify-between">
             {page > 1 ? (
-              <a href={pagePath(page - 1)} onClick={goToLink(pagePath(page - 1))} className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-700 hover:text-[#E11D48]">
+              <a href={pagePath(page - 1)} onClick={goToLink(pagePath(page - 1))} className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-700 hover:text-accent">
                 <ArrowLeft className="w-4 h-4" aria-hidden="true" /> Newer stories
               </a>
             ) : (
               <span />
             )}
             {page < pageCount && (
-              <a href={pagePath(page + 1)} onClick={goToLink(pagePath(page + 1))} className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-700 hover:text-[#E11D48]">
+              <a href={pagePath(page + 1)} onClick={goToLink(pagePath(page + 1))} className="inline-flex items-center gap-1.5 text-sm font-mono text-zinc-700 hover:text-accent">
                 Older stories <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </a>
             )}
@@ -180,33 +180,33 @@ export const BlogHubPage: React.FC<BlogHubPageProps> = ({ page, onNavigate }) =>
 
         {/* LEARN + FOLLOW */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <motion.section {...fadeUp} className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-7 sm:p-9 flex flex-col">
-            <span className="w-11 h-11 rounded-xl bg-[#E11D48] flex items-center justify-center shadow-sm mb-5">
+          <motion.section {...fadeUp} className="rounded-2xl border border-line bg-surface p-7 sm:p-9 flex flex-col">
+            <span className="w-11 h-11 rounded-xl bg-accent flex items-center justify-center shadow-sm mb-5">
               <BookOpen className="w-5 h-5 text-white" aria-hidden="true" />
             </span>
-            <h2 className="text-2xl font-bold tracking-tight text-[#09090B] font-display">Looking for straight answers?</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-ink font-display">Looking for straight answers?</h2>
             <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
               Our guides explain 3D tours, Gaussian splatting and planning a project.
             </p>
             <a
               href="/learn/"
               onClick={goToLink('/learn/')}
-              className="mt-6 inline-flex w-fit items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+              className="mt-6 inline-flex w-fit items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
             >
               Visit Learn <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
             </a>
           </motion.section>
 
-          <motion.section {...fadeUp} transition={{ duration: 0.45, delay: 0.1 }} className="rounded-2xl border border-[#E4E4E7] bg-white p-7 sm:p-9 flex flex-col shadow-xs">
-            <span className="w-11 h-11 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-5">
-              <Share2 className="w-5 h-5 text-[#E11D48]" aria-hidden="true" />
+          <motion.section {...fadeUp} transition={{ duration: 0.45, delay: 0.1 }} className="rounded-2xl border border-line bg-white p-7 sm:p-9 flex flex-col shadow-xs">
+            <span className="w-11 h-11 rounded-xl border border-line bg-surface flex items-center justify-center mb-5">
+              <Share2 className="w-5 h-5 text-accent" aria-hidden="true" />
             </span>
-            <h2 className="text-2xl font-bold tracking-tight text-[#09090B] font-display">Follow our work</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-ink font-display">Follow our work</h2>
             <p className="mt-2 text-sm text-zinc-600 leading-relaxed">
               We share capture days and new projects on <Placeholder>[[TBI: LinkedIn, Facebook, Instagram, YouTube links]]</Placeholder>.
             </p>
             {BLOG_LAUNCHED ? (
-              <a href="/blog/rss.xml" className="mt-6 inline-flex w-fit items-center gap-1.5 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]">
+              <a href="/blog/rss.xml" className="mt-6 inline-flex w-fit items-center gap-1.5 text-xs font-mono font-semibold text-accent hover:text-accent-strong">
                 <Rss className="w-3.5 h-3.5" aria-hidden="true" /> RSS feed
               </a>
             ) : (

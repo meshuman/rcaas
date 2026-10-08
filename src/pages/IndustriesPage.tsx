@@ -5,6 +5,7 @@ import { INDUSTRIES, CASE_STUDIES, SITE_METADATA } from '../data/siteData';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { findIndustryContent } from '../content/industries';
 import { IndustryPage } from './IndustryPage';
+import { pageShellClass } from '../components/ui';
 
 interface IndustriesPageProps {
   currentPath: RoutePath;
@@ -23,7 +24,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
 
 
   return (
-    <div className="py-16 md:py-24 bg-white text-[#09090B]">
+    <div className={pageShellClass}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation */}
@@ -44,7 +45,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
           {currentIndustry && (
             <>
               <span className="text-zinc-400">›</span>
-              <span className="text-[#E11D48] font-semibold">{currentIndustry.title}</span>
+              <span className="text-accent font-semibold">{currentIndustry.title}</span>
             </>
           )}
         </nav>
@@ -61,13 +62,13 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-3xl mb-14 sm:mb-16"
             >
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                 Industries Hub
               </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display">
                 Built for your goal
               </h1>
-              <p className="mt-5 text-base sm:text-xl text-[#52525B] leading-relaxed">
+              <p className="mt-5 text-base sm:text-xl text-muted leading-relaxed">
                 A hotel wants bookings. A college wants applications. A conservator wants a record that lasts. We start with what you need people to do, then choose the experience, the story and the data that will help them do it.
               </p>
               <div className="mt-8">
@@ -92,7 +93,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
                     <div>
                       {/* Card Header: Sector & Who it's for */}
                       <div className="flex items-start justify-between gap-3 text-xs font-mono">
-                        <span className="text-[#09090B] font-semibold tracking-tight">{ind.title}</span>
+                        <span className="text-ink font-semibold tracking-tight">{ind.title}</span>
                         <span className="text-zinc-500 text-[10px] bg-zinc-100 border border-zinc-200/60 px-2 py-0.5 rounded shrink-0">
                           {ind.badge}
                         </span>
@@ -106,12 +107,12 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
                       )}
 
                       {/* Goal Headline */}
-                      <h2 className="mt-4 text-xl font-bold text-[#09090B] font-display group-hover:text-[#E11D48] transition-colors leading-snug">
+                      <h2 className="mt-4 text-xl font-bold text-ink font-display group-hover:text-accent transition-colors leading-snug">
                         {ind.goalHeadline}
                       </h2>
 
                       {/* Line */}
-                      <p className="mt-3 text-xs sm:text-sm text-[#52525B] leading-relaxed">
+                      <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed">
                         {ind.summary}
                       </p>
                     </div>
@@ -127,7 +128,7 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
                           Explore solutions
                         </span>
                       )}
-                      <span className="text-[#E11D48] font-semibold group-hover:translate-x-0.5 transition-transform">
+                      <span className="text-accent font-semibold group-hover:translate-x-0.5 transition-transform">
                         &rarr;
                       </span>
                     </div>
@@ -139,13 +140,13 @@ export const IndustriesPage: React.FC<IndustriesPageProps> = ({ currentPath, onN
             {/* 3. CLOSING CTA BAND */}
             <section className="rounded-xl border border-zinc-200 bg-zinc-50/70 p-8 sm:p-12 shadow-xs">
               <div className="max-w-2xl">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                   Tailored Recommendation
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-ink font-display tracking-tight">
                   Not sure which experience fits your goal?
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-[#52525B] leading-relaxed">
+                <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
                   Tell us what you want people to do after they see your place. We'll recommend the right mix of tour, film and data.
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-4">

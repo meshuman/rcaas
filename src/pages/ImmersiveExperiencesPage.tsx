@@ -6,6 +6,7 @@ import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
 import { FaqList } from '../components/GuideParts';
+import { buttonClass } from '../components/ui';
 
 interface ImmersiveExperiencesPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -138,7 +139,7 @@ const OUTCOME_TILES = [
     title: 'Answer "what is it really like?"',
     body: 'Show the real space, at real scale, instead of a few chosen photos.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
       </svg>
@@ -148,7 +149,7 @@ const OUTCOME_TILES = [
     title: 'Reach people who can\'t visit',
     body: 'Families abroad, guests planning a trip, investors in another city.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
         <ellipse cx="12" cy="12" rx="4" ry="9" strokeWidth="1.5" />
         <line x1="3" y1="12" x2="21" y2="12" strokeWidth="1.5" />
@@ -159,7 +160,7 @@ const OUTCOME_TILES = [
     title: 'Invite exploring, not scrolling',
     body: 'People move through your place at their own pace and in their own order.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.75" d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
@@ -168,7 +169,7 @@ const OUTCOME_TILES = [
     title: 'Create once, use everywhere',
     body: 'One capture powers your website, social media, events and sales conversations.',
     icon: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <rect x="4" y="4" width="16" height="16" rx="2" strokeWidth="1.75" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 9h6v6H9z" />
       </svg>
@@ -277,7 +278,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
   };
 
   return (
-    <div className="py-14 sm:py-20 md:py-24 bg-[#FFFFFF] text-[#09090B] relative">
+    <div className="py-14 sm:py-20 md:py-24 bg-white text-ink relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation: Home › What we create › Immersive Experiences */}
@@ -298,7 +299,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             What we create
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             Immersive Experiences
           </span>
         </nav>
@@ -309,9 +310,9 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
             <span className="font-semibold text-zinc-900">Immersive Experiences</span>
             <span className="text-zinc-400">·</span>
             <span>Pillar 01</span>
@@ -321,7 +322,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6"
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6"
           >
             Let people step inside your place.
           </motion.h1>
@@ -330,7 +331,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="bg-[#FAFAFA] border-l-4 border-[#E11D48] p-5 sm:p-6 rounded-r-xl border-y border-r border-[#E4E4E7] mb-8"
+            className="bg-surface border-l-4 border-accent p-5 sm:p-6 rounded-r-xl border-y border-r border-line mb-8"
           >
             <p className="text-base sm:text-lg text-zinc-700 leading-relaxed font-sans">
               Immersive experiences let your audience explore a real place as if they were there, on a phone, in a browser or in a VR headset. RCAAS Technology creates photorealistic 3D tours, VR, AR and interactive experiences from real places across Nepal, designed to help hotels, schools, property developers and heritage sites turn interest into action.
@@ -347,7 +348,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             <button
               type="button"
               onClick={() => onNavigate('/contact/')}
-              className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+              className={buttonClass('primary', 'md')}
             >
               <span>Plan your experience</span>
               <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -356,7 +357,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             <button
               type="button"
               onClick={() => scrollToAnchor('showcase')}
-              className="inline-flex items-center justify-center px-5 py-3.5 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs active:scale-[0.98]"
+              className={buttonClass('secondary', 'md')}
             >
               <span>Explore a live tour</span>
               <span className="ml-2 font-mono text-zinc-400">↓</span>
@@ -372,7 +373,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           </motion.div>
 
           {/* Trust Attributes Strip */}
-          <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-zinc-500 border-t border-[#E4E4E7]">
+          <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-zinc-500 border-t border-line">
             <span className="flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
               Zero App Download Required
@@ -393,10 +394,10 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {OUTCOME_TILES.map((tile, idx) => (
               <SpotlightCard key={idx} className="p-6">
-                <div className="w-10 h-10 rounded-lg bg-zinc-50 border border-[#E4E4E7] flex items-center justify-center mb-4">
+                <div className="w-10 h-10 rounded-lg bg-zinc-50 border border-line flex items-center justify-center mb-4">
                   {tile.icon}
                 </div>
-                <h3 className="text-sm font-bold text-[#09090B] font-display mb-2 leading-snug">
+                <h3 className="text-sm font-bold text-ink font-display mb-2 leading-snug">
                   {tile.title}
                 </h3>
                 <p className="text-xs text-zinc-600 leading-relaxed font-sans">
@@ -410,12 +411,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 3. Showcase Section (#showcase) */}
         <section id="showcase" className="mb-20 sm:mb-28 scroll-mt-24">
           <div className="mb-8 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 03</span>
               <span className="text-zinc-400">·</span>
               <span>Interactive Spatial Player</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               See it for yourself
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -424,7 +425,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           </div>
 
           {/* Interactive SplatEmbed Player */}
-          <div className="rounded-2xl border border-[#E4E4E7] bg-white p-2 sm:p-4 shadow-sm mb-4">
+          <div className="rounded-2xl border border-line bg-white p-2 sm:p-4 shadow-sm mb-4">
             <SplatEmbed initialDemo="basera" />
           </div>
 
@@ -443,12 +444,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 4. Four Ways to Step Inside (#what-we-create, #3d-tours, #vr, #ar, #interactive) */}
         <section className="mb-20 sm:mb-28 scroll-mt-24" id="what-we-create">
           <div className="mb-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 04</span>
               <span className="text-zinc-400">·</span>
               <span>Delivery Formats</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               Four ways to step inside
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -457,7 +458,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           </div>
 
           {/* Quick Pillar Jump Navigation */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-[#E4E4E7]">
+          <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 border-b border-line">
             {CAPABILITIES.map((cap) => (
               <button
                 key={cap.id}
@@ -468,7 +469,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                 }}
                 className={`px-4 py-2 rounded-lg text-xs font-mono whitespace-nowrap transition-all ${
                   activePillarTab === cap.id
-                    ? 'bg-[#09090B] text-white shadow-sm'
+                    ? 'bg-ink text-white shadow-sm'
                     : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
                 }`}
               >
@@ -484,7 +485,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
               <div
                 key={cap.id}
                 id={cap.anchor}
-                className="scroll-mt-24 rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs hover:border-zinc-300 transition-all duration-200"
+                className="scroll-mt-24 rounded-2xl border border-line bg-white overflow-hidden shadow-xs hover:border-zinc-300 transition-all duration-200"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch">
                   
@@ -492,7 +493,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                   <div className="lg:col-span-5 bg-zinc-950 text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-4">
-                        <span className="text-xs font-mono text-[#E11D48] font-bold">
+                        <span className="text-xs font-mono text-accent font-bold">
                           FORMAT {cap.number}
                         </span>
                         <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/10">
@@ -554,7 +555,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                       {/* What it is */}
                       <div className="mb-6">
                         <div className="text-xs font-mono font-semibold uppercase text-zinc-500 mb-1.5 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                           <span>What It Is</span>
                         </div>
                         <p className="text-base text-zinc-900 font-medium leading-relaxed font-sans">
@@ -563,7 +564,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                       </div>
 
                       {/* What your audience experiences */}
-                      <div className="mb-6 bg-[#FAFAFA] p-4 sm:p-5 rounded-xl border border-[#E4E4E7]">
+                      <div className="mb-6 bg-surface p-4 sm:p-5 rounded-xl border border-line">
                         <div className="text-xs font-mono font-semibold uppercase text-zinc-500 mb-1.5">
                           What Your Audience Experiences
                         </div>
@@ -580,7 +581,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                         <ul className="space-y-2.5">
                           {cap.youReceive.map((item, idx) => (
                             <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-800">
-                              <svg className="w-4 h-4 text-[#E11D48] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg className="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                               </svg>
                               <span>{item}</span>
@@ -591,12 +592,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                     </div>
 
                     {/* Bottom Action Button */}
-                    <div className="pt-6 border-t border-[#E4E4E7] flex flex-wrap items-center justify-between gap-4">
+                    <div className="pt-6 border-t border-line flex flex-wrap items-center justify-between gap-4">
                       {cap.actionLink ? (
                         <button
                           type="button"
                           onClick={() => onNavigate(cap.actionLink!)}
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-strong transition-colors"
                         >
                           <span>{cap.actionLabel}</span>
                           <span className="font-mono" aria-hidden="true">→</span>
@@ -605,7 +606,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                         <button
                           type="button"
                           onClick={() => onNavigate('/contact/')}
-                          className="inline-flex items-center gap-2 text-sm font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-accent-strong transition-colors"
                         >
                           <span>Request quote for this format</span>
                           <span className="font-mono" aria-hidden="true">→</span>
@@ -627,12 +628,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 5. Built-in Features (#hotspots) */}
         <section id="hotspots" className="mb-20 sm:mb-28 scroll-mt-24">
           <div className="mb-8 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 05</span>
               <span className="text-zinc-400">·</span>
               <span>Tour Features & Capabilities</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               Everything your visitors need to decide
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -646,16 +647,16 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           </div>
 
           {/* Features Matrix Table */}
-          <div className="overflow-x-auto rounded-xl border border-[#E4E4E7] bg-white shadow-xs">
+          <div className="overflow-x-auto rounded-xl border border-line bg-white shadow-xs">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#FAFAFA] border-b border-[#E4E4E7] text-zinc-700 font-mono text-xs">
+              <thead className="bg-surface border-b border-line text-zinc-700 font-mono text-xs">
                 <tr>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold w-1/4">Feature</th>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold w-2/5">What it does</th>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold">Why it matters</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E4E4E7] text-zinc-700 font-sans">
+              <tbody className="divide-y divide-line text-zinc-700 font-sans">
                 <tr className="hover:bg-zinc-50/60 transition-colors">
                   <td className="py-3.5 px-4 sm:px-6 font-bold text-zinc-900 font-display">
                     Interactive Hotspots
@@ -730,12 +731,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 6. Comparison Table */}
         <section className="mb-20 sm:mb-28">
           <div className="mb-8 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 06</span>
               <span className="text-zinc-400">·</span>
               <span>Technology Comparison</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               Why photorealistic 3D outperforms static media
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -743,17 +744,17 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-xl border border-[#E4E4E7] bg-white shadow-xs">
+          <div className="overflow-x-auto rounded-xl border border-line bg-white shadow-xs">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-[#FAFAFA] border-b border-[#E4E4E7] text-zinc-700 font-mono text-xs">
+              <thead className="bg-surface border-b border-line text-zinc-700 font-mono text-xs">
                 <tr>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold w-1/5">Capability</th>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold text-zinc-500">Standard Photos</th>
                   <th className="py-3.5 px-4 sm:px-6 font-semibold text-zinc-500">360 Panorama Tours</th>
-                  <th className="py-3.5 px-4 sm:px-6 font-bold text-[#E11D48] bg-rose-50/50">RCAAS Photorealistic 3D</th>
+                  <th className="py-3.5 px-4 sm:px-6 font-bold text-accent bg-rose-50/50">RCAAS Photorealistic 3D</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E4E4E7] font-sans">
+              <tbody className="divide-y divide-line font-sans">
                 {COMPARISON_ROWS.map((row, i) => (
                   <tr key={i} className="hover:bg-zinc-50/40 transition-colors">
                     <td className="py-3.5 px-4 sm:px-6 font-bold text-zinc-900 font-display">
@@ -767,7 +768,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                     </td>
                     <td className="py-3.5 px-4 sm:px-6 font-medium text-zinc-900 bg-rose-50/30">
                       <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48]" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                         <span>{row.rcaas}</span>
                       </div>
                     </td>
@@ -781,12 +782,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 7. Who it helps (#industries) */}
         <section id="industries" className="mb-20 sm:mb-28 scroll-mt-24">
           <div className="mb-8 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 07</span>
               <span className="text-zinc-400">·</span>
               <span>Industry Impact</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               Designed for places where seeing is believing
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -802,14 +803,14 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                     <span className="text-xs font-mono font-semibold uppercase text-zinc-500">
                       {ind.tag}
                     </span>
-                    <span className="text-xs font-mono text-[#E11D48] font-bold">
+                    <span className="text-xs font-mono text-accent font-bold">
                       Sector 0{i + 1}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#09090B] font-display mb-1.5">
+                  <h3 className="text-xl font-bold text-ink font-display mb-1.5">
                     {ind.name}
                   </h3>
-                  <div className="text-xs font-semibold text-[#E11D48] mb-3">
+                  <div className="text-xs font-semibold text-accent mb-3">
                     Goal: {ind.goal}
                   </div>
                   <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed font-sans mb-6">
@@ -817,11 +818,11 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E4E4E7] flex items-center justify-between">
+                <div className="pt-4 border-t border-line flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => onNavigate(ind.link)}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:text-accent transition-colors"
                   >
                     <span>View {ind.name} solutions</span>
                     <span className="font-mono" aria-hidden="true">→</span>
@@ -842,12 +843,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 8. Simple, proven process */}
         <section className="mb-20 sm:mb-28">
           <div className="mb-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 08</span>
               <span className="text-zinc-400">·</span>
               <span>Workflow</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               From site visit to live tour
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -856,7 +857,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-            <div className="rounded-xl border border-[#E4E4E7] bg-white p-6 shadow-xs relative">
+            <div className="rounded-xl border border-line bg-white p-6 shadow-xs relative">
               <span className="text-2xl font-black font-mono text-zinc-200 block mb-3">01</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mb-2">
                 1. Capture (Single visit)
@@ -866,7 +867,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
               </p>
             </div>
 
-            <div className="rounded-xl border border-[#E4E4E7] bg-white p-6 shadow-xs relative">
+            <div className="rounded-xl border border-line bg-white p-6 shadow-xs relative">
               <span className="text-2xl font-black font-mono text-zinc-200 block mb-3">02</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mb-2">
                 2. Reconstruct & Optimise
@@ -876,7 +877,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
               </p>
             </div>
 
-            <div className="rounded-xl border border-[#E4E4E7] bg-white p-6 shadow-xs relative">
+            <div className="rounded-xl border border-line bg-white p-6 shadow-xs relative">
               <span className="text-2xl font-black font-mono text-zinc-200 block mb-3">03</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mb-2">
                 3. Enrich with Hotspots
@@ -886,7 +887,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
               </p>
             </div>
 
-            <div className="rounded-xl border border-[#E4E4E7] bg-white p-6 shadow-xs relative">
+            <div className="rounded-xl border border-line bg-white p-6 shadow-xs relative">
               <span className="text-2xl font-black font-mono text-zinc-200 block mb-3">04</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mb-2">
                 4. Launch & Share
@@ -901,12 +902,12 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
         {/* 9. Frequently asked questions (#faq) */}
         <section id="faq" className="mb-20 sm:mb-28 scroll-mt-24">
           <div className="mb-8 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-[#E4E4E7] text-xs font-mono text-zinc-600 mb-3">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-line text-xs font-mono text-zinc-600 mb-3">
               <span>Section 09</span>
               <span className="text-zinc-400">·</span>
               <span>FAQ</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-3">
               Frequently asked questions
             </h2>
             <p className="text-base text-zinc-600 font-sans">
@@ -919,15 +920,15 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
 
         {/* 10. Call to action Band */}
         <section className="rounded-2xl border border-zinc-900 bg-zinc-950 text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-xl">
-          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-[#E11D48]/15 blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-accent/15 blur-3xl pointer-events-none" />
           
           <div className="relative z-10 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/10 border border-white/10 text-xs font-mono text-zinc-300 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E11D48] animate-ping" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
               <span>Let's collaborate</span>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-bold font-display text-white mb-5 tracking-tight text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold font-display text-white mb-5 tracking-tight text-balance">
               Ready to let people step inside your place?
             </h2>
             
@@ -939,7 +940,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
               <button
                 type="button"
                 onClick={() => onNavigate('/contact/')}
-                className="px-6 py-3.5 rounded-lg bg-[#E11D48] text-white text-sm font-semibold hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'md')}
               >
                 <span>Plan your experience</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>

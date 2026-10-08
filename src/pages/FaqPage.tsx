@@ -119,7 +119,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
             About
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             FAQ
           </span>
         </nav>
@@ -131,9 +131,9 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span className="font-semibold text-zinc-900">{totalQuestions} answers</span>
               <span className="text-zinc-400">·</span>
               <span>{FAQ_GROUPS.length} topics</span>
@@ -143,9 +143,9 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
             >
-              Frequently asked <span className="text-[#E11D48]">questions</span>
+              Frequently asked <span className="text-accent">questions</span>
             </motion.h1>
 
             <motion.p
@@ -158,14 +158,14 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
               <a
                 href="/contact/?type=question"
                 onClick={goToLink('/contact/?type=question' as RoutePath)}
-                className="text-[#E11D48] hover:text-[#BE123C] underline underline-offset-4"
+                className="text-accent hover:text-accent-strong underline underline-offset-4"
               >
                 Ask us directly.
               </a>
             </motion.p>
 
             <p className="mt-5 inline-flex items-center gap-1.5 text-xs font-mono text-zinc-500">
-              <CalendarCheck className="w-3.5 h-3.5 text-[#E11D48]" aria-hidden="true" />
+              <CalendarCheck className="w-3.5 h-3.5 text-accent" aria-hidden="true" />
               Last updated <time dateTime={FAQ_UPDATED}>{updatedLabel}</time>
             </p>
           </div>
@@ -174,7 +174,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-5 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-5 sm:p-6 shadow-sm"
+            className="lg:col-span-5 rounded-2xl border border-line bg-surface p-5 sm:p-6 shadow-sm"
           >
             <label htmlFor="faq-search" className="block text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-2">
               Search the answers
@@ -187,7 +187,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="e.g. mobile, hosting, VR"
-                className="w-full rounded-lg border border-[#E4E4E7] bg-white pl-10 pr-10 py-3 text-sm text-[#09090B] placeholder-zinc-400 focus:border-[#E11D48] focus:outline-none"
+                className="w-full rounded-lg border border-line bg-white pl-10 pr-10 py-3 text-sm text-ink placeholder-zinc-400 focus:border-accent focus:outline-none"
               />
               {query && (
                 <button
@@ -205,13 +205,13 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
             </p>
 
             {/* Jump links */}
-            <div className="mt-4 pt-4 border-t border-[#E4E4E7] flex flex-wrap gap-2">
+            <div className="mt-4 pt-4 border-t border-line flex flex-wrap gap-2">
               {jumpLinks.map((link) => (
                 <a
                   key={link.id}
                   href={`#${link.id}`}
                   onClick={jumpTo(link.id)}
-                  className="rounded-md border border-[#E4E4E7] bg-white px-2.5 py-1 text-xs text-zinc-700 hover:border-[#E11D48] hover:text-[#E11D48] transition-colors"
+                  className="rounded-md border border-line bg-white px-2.5 py-1 text-xs text-zinc-700 hover:border-accent hover:text-accent transition-colors"
                 >
                   {link.title}
                 </a>
@@ -234,10 +234,10 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
                     href={`#${link.id}`}
                     onClick={jumpTo(link.id)}
                     className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
-                      isActive ? 'bg-[#E11D48]/[0.06] text-zinc-900 font-semibold' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
+                      isActive ? 'bg-accent/[0.06] text-zinc-900 font-semibold' : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900'
                     } ${count === 0 ? 'opacity-40' : ''}`}
                   >
-                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-[#E11D48]' : 'text-zinc-400'}`} aria-hidden="true" />
+                    <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-accent' : 'text-zinc-400'}`} aria-hidden="true" />
                     <span className="flex-1">{link.title}</span>
                     {count !== undefined && <span className="font-mono text-[11px] text-zinc-400">{count}</span>}
                   </a>
@@ -253,10 +253,10 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
               return (
                 <section key={group.id} id={group.id} className={`scroll-mt-24 ${hasMatches ? '' : 'hidden'}`}>
                   <div className="flex items-center gap-3 mb-5">
-                    <span className="w-10 h-10 rounded-lg bg-[#E11D48] flex items-center justify-center shadow-sm">
+                    <span className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center shadow-sm">
                       <Icon className="w-4.5 h-4.5 text-white" aria-hidden="true" />
                     </span>
-                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#09090B] font-display">{group.title}</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-ink font-display">{group.title}</h2>
                     <span className="ml-auto font-mono text-xs text-zinc-400">
                       {visibleCounts[group.id]}/{group.items.length}
                     </span>
@@ -270,25 +270,25 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
                           // Re-mount when searching so matches open automatically.
                           key={`${item.question}-${trimmed ? 'search' : 'browse'}`}
                           open={trimmed ? true : idx === 0 && group.id === FAQ_GROUPS[0].id}
-                          className={`group rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs hover:border-zinc-300 transition-colors ${
+                          className={`group rounded-xl border border-line bg-white overflow-hidden shadow-xs hover:border-zinc-300 transition-colors ${
                             isMatch ? '' : 'hidden'
                           }`}
                         >
                           <summary className="list-none [&::-webkit-details-marker]:hidden cursor-pointer p-5 flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors">
                             <h3 className="text-sm sm:text-base font-semibold text-zinc-900 font-display">{item.question}</h3>
-                            <span className="w-6 h-6 rounded bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center text-zinc-500 shrink-0 transition-transform group-open:rotate-180 group-open:text-[#E11D48]">
+                            <span className="w-6 h-6 rounded bg-surface border border-line flex items-center justify-center text-zinc-500 shrink-0 transition-transform group-open:rotate-180 group-open:text-accent">
                               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                               </svg>
                             </span>
                           </summary>
-                          <div className="px-5 pb-5 pt-4 text-sm text-zinc-600 leading-relaxed border-t border-[#E4E4E7]">
+                          <div className="px-5 pb-5 pt-4 text-sm text-zinc-600 leading-relaxed border-t border-line">
                             <WithPlaceholders text={item.answer} />
                             {item.link && (
                               <a
                                 href={item.link.path}
                                 onClick={goToLink(item.link.path)}
-                                className="mt-3 flex w-fit items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C] transition-colors"
+                                className="mt-3 flex w-fit items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
                               >
                                 {item.link.label}
                                 <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
@@ -304,14 +304,14 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
             })}
 
             {trimmed && totalVisible === 0 && (
-              <div className="rounded-2xl border border-dashed border-[#E4E4E7] bg-[#FAFAFA] p-8 text-center">
-                <MessageCircleQuestion className="w-8 h-8 text-[#E11D48] mx-auto mb-3" aria-hidden="true" />
+              <div className="rounded-2xl border border-dashed border-line bg-surface p-8 text-center">
+                <MessageCircleQuestion className="w-8 h-8 text-accent mx-auto mb-3" aria-hidden="true" />
                 <p className="text-base font-bold text-zinc-900 font-display">No answers match "{trimmed}"</p>
                 <p className="mt-1 text-sm text-zinc-600">Try another word, or ask us directly.</p>
                 <button
                   type="button"
                   onClick={() => onNavigate('/contact/?type=question' as RoutePath)}
-                  className="mt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+                  className="mt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
                 >
                   Ask a question <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </button>
@@ -330,13 +330,13 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
                 <motion.div key={topic.path} {...fadeUp} transition={{ duration: 0.4, delay: (i % 5) * 0.05 }}>
                   <a href={topic.path} onClick={goToLink(topic.path)} className="block h-full group">
                     <SpotlightCard className="h-full" contentClassName="h-full p-5 flex flex-col">
-                      <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center mb-4 transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
-                      <span className="text-sm font-bold text-zinc-900 font-display group-hover:text-[#E11D48] transition-colors">
+                      <span className="text-sm font-bold text-zinc-900 font-display group-hover:text-accent transition-colors">
                         {topic.topic}
                       </span>
-                      <span className="mt-auto pt-4 inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 group-hover:text-[#E11D48] transition-colors">
+                      <span className="mt-auto pt-4 inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 group-hover:text-accent transition-colors">
                         Read answers
                         <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                       </span>
@@ -349,12 +349,12 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onNavigate }) => {
         </section>
 
         {/* CTA BAND */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center relative overflow-hidden">
-          <span className="mx-auto mb-6 w-12 h-12 rounded-xl bg-[#E11D48] flex items-center justify-center shadow-sm">
+        <section className="rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center relative overflow-hidden">
+          <span className="mx-auto mb-6 w-12 h-12 rounded-xl bg-accent flex items-center justify-center shadow-sm">
             <MessageCircleQuestion className="w-5 h-5 text-white" aria-hidden="true" />
           </span>
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4 text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-4 text-balance">
               Still have a question?
             </h2>
             <p className="text-sm sm:text-base text-zinc-600 mb-8 leading-relaxed">

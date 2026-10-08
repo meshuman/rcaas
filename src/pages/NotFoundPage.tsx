@@ -76,9 +76,9 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+          className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
         >
-          This place hasn't been <span className="text-[#E11D48]">captured yet.</span>
+          This place hasn't been <span className="text-accent">captured yet.</span>
         </motion.h1>
 
         <motion.p
@@ -104,10 +104,10 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
                 className="block group"
               >
                 <SpotlightCard className="h-full" contentClassName="p-5 flex flex-col gap-4">
-                  <span className="w-10 h-10 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                    <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                  <span className="w-10 h-10 rounded-lg border border-line bg-surface flex items-center justify-center transition-colors group-hover:bg-accent group-hover:border-accent">
+                    <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                   </span>
-                  <span className="flex items-center justify-between gap-2 text-sm font-bold text-zinc-900 font-display group-hover:text-[#E11D48] transition-colors">
+                  <span className="flex items-center justify-between gap-2 text-sm font-bold text-zinc-900 font-display group-hover:text-accent transition-colors">
                     {link.label}
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>

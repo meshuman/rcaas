@@ -1349,7 +1349,7 @@ export default function App() {
       />
 
       {/* Mobile Sticky Action Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-between border-t border-[#E4E4E7] bg-white/95 px-4 py-2.5 backdrop-blur-lg sm:hidden text-zinc-900 shadow-sm">
+      <div className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-between border-t border-line bg-white/95 px-4 py-2.5 backdrop-blur-lg sm:hidden text-zinc-900 shadow-sm">
         <button
           onClick={() => setPlannerOpen(true)}
           className="loro-btn-primary px-4 py-2 text-xs font-semibold"

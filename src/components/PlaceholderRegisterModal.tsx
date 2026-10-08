@@ -23,14 +23,14 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] shadow-2xl">
+      <div className="relative w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden rounded-lg border border-line bg-white shadow-2xl">
         
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-[#E4E4E7] px-6 py-4 bg-[#FAFAFA]">
+        <div className="flex items-center justify-between border-b border-line px-6 py-4 bg-surface">
           <div>
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-[#E11D48]"></span>
-              <h2 className="text-base font-bold text-[#09090B] font-display">
+              <span className="h-2 w-2 rounded-full bg-accent"></span>
+              <h2 className="text-base font-bold text-ink font-display">
                 Placeholder Register (§13 Specification Audit)
               </h2>
             </div>
@@ -47,7 +47,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
         </div>
 
         {/* Filter bar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E4E4E7] px-6 py-3 bg-[#FFFFFF]">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-6 py-3 bg-white">
           <div className="flex items-center gap-1.5">
             {(['ALL', 'B', 'H', 'N'] as const).map((p) => (
               <button
@@ -55,7 +55,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
                 onClick={() => setFilterPriority(p)}
                 className={`px-3 py-1 text-xs font-mono font-medium rounded transition-all ${
                   filterPriority === p
-                    ? 'bg-[#E11D48] text-white'
+                    ? 'bg-accent text-white'
                     : 'text-zinc-600 hover:text-zinc-900 bg-zinc-100 hover:bg-zinc-200'
                 }`}
               >
@@ -69,7 +69,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search register id, item, location..."
-            className="rounded-md border border-[#E4E4E7] bg-[#FAFAFA] px-3 py-1 text-xs text-[#09090B] placeholder-zinc-400 focus:border-[#E11D48] focus:outline-none focus:bg-white"
+            className="rounded-md border border-line bg-surface px-3 py-1 text-xs text-ink placeholder-zinc-400 focus:border-accent focus:outline-none focus:bg-white"
           />
         </div>
 
@@ -77,7 +77,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
         <div className="overflow-y-auto p-6">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#E4E4E7] text-zinc-500 font-mono">
+              <tr className="border-b border-line text-zinc-500 font-mono">
                 <th className="pb-2 font-medium">ID</th>
                 <th className="pb-2 font-medium">Priority</th>
                 <th className="pb-2 font-medium">Item Name</th>
@@ -89,7 +89,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
             <tbody className="divide-y divide-zinc-100 font-mono text-[11px]">
               {filtered.map((item) => (
                 <tr key={item.id} className="hover:bg-zinc-50 transition-colors">
-                  <td className="py-2.5 font-bold text-[#E11D48]">{item.id}</td>
+                  <td className="py-2.5 font-bold text-accent">{item.id}</td>
                   <td className="py-2.5">
                     <span
                       className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${
@@ -119,7 +119,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
         </div>
 
         {/* Footer */}
-        <div className="border-t border-[#E4E4E7] px-6 py-3 bg-[#FAFAFA] text-right">
+        <div className="border-t border-line px-6 py-3 bg-surface text-right">
           <button
             onClick={onClose}
             className="loro-btn-secondary px-4 py-1.5 text-xs"

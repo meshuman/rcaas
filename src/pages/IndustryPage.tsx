@@ -7,6 +7,7 @@ import type { IndustryContent, IndustryTrack } from '../content/industries';
 import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { SplatEmbed } from '../components/SplatEmbed';
+import { buttonClass, eyebrowClass } from '../components/ui';
 import {
   GuideFaq,
   SectionHeading,
@@ -26,7 +27,7 @@ interface IndustryPageProps {
 const QuestionStack: React.FC<{ questions: string[] }> = ({ questions }) => {
   const [answered, setAnswered] = useState(false);
   return (
-    <div className="relative rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-8 overflow-hidden">
+    <div className="relative rounded-2xl border border-line bg-surface p-6 sm:p-8 overflow-hidden">
       <div className="absolute inset-0 opacity-50 [background-image:linear-gradient(#E4E4E7_1px,transparent_1px),linear-gradient(90deg,#E4E4E7_1px,transparent_1px)] [background-size:24px_24px]" aria-hidden="true" />
       <div className="relative space-y-3">
         {questions.map((question, i) => (
@@ -37,11 +38,11 @@ const QuestionStack: React.FC<{ questions: string[] }> = ({ questions }) => {
             transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
             className={`flex items-center gap-3 rounded-xl border bg-white px-4 py-3 shadow-xs transition-colors ${
               i % 2 ? 'ml-8' : 'mr-8'
-            } ${answered ? 'border-emerald-300' : 'border-[#E4E4E7]'}`}
+            } ${answered ? 'border-emerald-300' : 'border-line'}`}
           >
             <span
               className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                answered ? 'bg-emerald-500 text-white' : 'bg-[#E11D48]/10 text-[#E11D48]'
+                answered ? 'bg-emerald-500 text-white' : 'bg-accent/10 text-accent'
               }`}
             >
               {answered ? <Check className="w-4 h-4" aria-hidden="true" /> : <HelpCircle className="w-4 h-4" aria-hidden="true" />}
@@ -54,7 +55,7 @@ const QuestionStack: React.FC<{ questions: string[] }> = ({ questions }) => {
           onClick={() => setAnswered((a) => !a)}
           aria-pressed={answered}
           className={`mt-2 w-full rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
-            answered ? 'bg-emerald-500 text-white' : 'bg-[#09090B] text-white hover:bg-zinc-800'
+            answered ? 'bg-emerald-500 text-white' : 'bg-ink text-white hover:bg-zinc-800'
           }`}
         >
           {answered ? 'Answered by stepping inside' : 'Step inside to find out'}
@@ -70,21 +71,21 @@ const TrackSection: React.FC<{ track: IndustryTrack; onNavigate: (path: RoutePat
   return (
     <section
       id={track.id}
-      className={`mb-20 sm:mb-24 scroll-mt-24 rounded-3xl p-6 sm:p-10 lg:p-12 ${
-        dark ? 'bg-[#09090B] text-white' : 'border border-[#E4E4E7] bg-[#FAFAFA]'
+      className={`mb-20 sm:mb-24 scroll-mt-24 rounded-2xl p-6 sm:p-10 lg:p-12 ${
+        dark ? 'bg-ink text-white' : 'border border-line bg-surface'
       }`}
     >
       <div className="flex items-center gap-3 mb-8">
-        <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${dark ? 'bg-white/10' : 'bg-[#E11D48]'}`}>
-          <Icon className={`w-5 h-5 ${dark ? 'text-[#FB7185]' : 'text-white'}`} aria-hidden="true" />
+        <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${dark ? 'bg-white/10' : 'bg-accent'}`}>
+          <Icon className={`w-5 h-5 ${dark ? 'text-accent-soft' : 'text-white'}`} aria-hidden="true" />
         </span>
-        <p className={`text-sm font-mono uppercase tracking-wider font-semibold ${dark ? 'text-[#FB7185]' : 'text-[#E11D48]'}`}>{track.label}</p>
+        <p className={`text-sm font-mono uppercase tracking-wider font-semibold ${dark ? 'text-accent-soft' : 'text-accent'}`}>{track.label}</p>
       </div>
 
       {/* The challenge */}
       <motion.div {...fadeUp} className="max-w-3xl mb-10">
         <span className={`text-xs font-mono uppercase tracking-wider ${dark ? 'text-zinc-400' : 'text-zinc-500'}`}>The challenge</span>
-        <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight font-display mt-1 mb-4 text-balance ${dark ? 'text-white' : 'text-[#09090B]'}`}>
+        <h2 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight font-display mt-1 mb-4 text-balance ${dark ? 'text-white' : 'text-ink'}`}>
           {track.challengeTitle}
         </h2>
         <p className={`text-base sm:text-lg leading-relaxed ${dark ? 'text-zinc-300' : 'text-zinc-600'}`}>{track.challengeBody}</p>
@@ -101,15 +102,15 @@ const TrackSection: React.FC<{ track: IndustryTrack; onNavigate: (path: RoutePat
               {...fadeUp}
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className={`group rounded-xl p-5 transition-colors ${
-                dark ? 'border border-white/10 bg-white/[0.04] hover:border-white/25' : 'border border-[#E4E4E7] bg-white hover:border-[#A1A1AA]'
+                dark ? 'border border-white/10 bg-white/[0.04] hover:border-white/25' : 'border border-line bg-white hover:border-line-strong'
               }`}
             >
               <span
                 className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 transition-colors ${
-                  dark ? 'bg-white/10 group-hover:bg-[#E11D48]' : 'bg-[#E11D48]/10 group-hover:bg-[#E11D48]'
+                  dark ? 'bg-white/10 group-hover:bg-accent' : 'bg-accent/10 group-hover:bg-accent'
                 }`}
               >
-                <ItemIcon className={`w-4.5 h-4.5 transition-colors group-hover:text-white ${dark ? 'text-[#FB7185]' : 'text-[#E11D48]'}`} aria-hidden="true" />
+                <ItemIcon className={`w-4.5 h-4.5 transition-colors group-hover:text-white ${dark ? 'text-accent-soft' : 'text-accent'}`} aria-hidden="true" />
               </span>
               <dt className={`text-base font-bold font-display mb-1.5 ${dark ? 'text-white' : 'text-zinc-900'}`}>
                 <WithPlaceholders text={item.what} />
@@ -129,7 +130,7 @@ const TrackSection: React.FC<{ track: IndustryTrack; onNavigate: (path: RoutePat
               {list.items.map((item) => (
                 <li
                   key={item}
-                  className={`rounded-full px-3 py-1 text-xs ${dark ? 'border border-white/15 text-zinc-200' : 'border border-[#E4E4E7] bg-white text-zinc-700'}`}
+                  className={`rounded-full px-3 py-1 text-xs ${dark ? 'border border-white/15 text-zinc-200' : 'border border-line bg-white text-zinc-700'}`}
                 >
                   {item}
                 </li>
@@ -140,14 +141,14 @@ const TrackSection: React.FC<{ track: IndustryTrack; onNavigate: (path: RoutePat
       </div>
 
       {track.links && (
-        <div className={`mt-8 pt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono font-semibold border-t ${dark ? 'border-white/10' : 'border-[#E4E4E7]'}`}>
+        <div className={`mt-8 pt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-mono font-semibold border-t ${dark ? 'border-white/10' : 'border-line'}`}>
           {track.links.map((link, i) => (
             <React.Fragment key={link.path}>
               {i > 0 && <span className={dark ? 'text-zinc-600' : 'text-zinc-300'} aria-hidden="true">·</span>}
               <a
                 href={link.path}
                 onClick={linkHandler(onNavigate, link.path)}
-                className={`inline-flex items-center gap-1 ${dark ? 'text-[#FB7185] hover:text-white' : 'text-[#E11D48] hover:text-[#BE123C]'}`}
+                className={`inline-flex items-center gap-1 ${dark ? 'text-accent-soft hover:text-white' : 'text-accent hover:text-accent-strong'}`}
               >
                 {link.label} <span aria-hidden="true">→</span>
               </a>
@@ -172,8 +173,8 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                   <motion.div key={item.space} {...fadeUp} transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}>
                     <SpotlightCard className="h-full p-6 group">
                       <div className="flex items-start justify-between mb-4">
-                        <span className="w-11 h-11 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                          <Icon className="w-5 h-5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                        <span className="w-11 h-11 rounded-xl border border-line bg-surface flex items-center justify-center transition-colors group-hover:bg-accent group-hover:border-accent">
+                          <Icon className="w-5 h-5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                         </span>
                         <span className="font-mono text-xs text-zinc-300">{String(i + 1).padStart(2, '0')}</span>
                       </div>
@@ -207,7 +208,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
             Industries
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             {industry.name}
           </span>
         </nav>
@@ -219,16 +220,16 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span className="font-semibold text-zinc-900">{industry.name}</span>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
             >
               {industry.h1}
             </motion.h1>
@@ -249,7 +250,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               <button
                 type="button"
                 onClick={() => onNavigate(industry.primaryCta.path)}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'md')}
               >
                 <span>{industry.primaryCta.label}</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -257,10 +258,10 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               <a
                 href={`#${industry.secondaryCta.anchor}`}
                 onClick={scrollTo(industry.secondaryCta.anchor)}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs"
+                className={buttonClass('secondary', 'md')}
               >
                 {industry.secondaryCta.label}
-                <span className="ml-2 font-mono text-[#E11D48]" aria-hidden="true">↓</span>
+                <span className="ml-2 font-mono text-accent" aria-hidden="true">↓</span>
               </a>
             </motion.div>
           </div>
@@ -274,12 +275,12 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
         <motion.section
           {...fadeUp}
           id={industry.challenge.id}
-          className="mb-20 sm:mb-24 max-w-4xl border-l-4 border-[#E11D48] pl-6 sm:pl-8 scroll-mt-24"
+          className="mb-20 sm:mb-24 max-w-4xl border-l-4 border-accent pl-6 sm:pl-8 scroll-mt-24"
         >
-          <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">
+          <span className={eyebrowClass}>
             {industry.challenge.eyebrow ?? 'The challenge'}
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-4 text-balance">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-4 text-balance">
             {industry.challenge.title}
           </h2>
           <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">{industry.challenge.body}</p>
@@ -300,7 +301,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               {industry.experience.links.map((link, i) => (
                 <React.Fragment key={link.path}>
                   {i > 0 && <span className="text-zinc-300" aria-hidden="true">·</span>}
-                  <a href={link.path} onClick={goToLink(link.path)} className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1">
+                  <a href={link.path} onClick={goToLink(link.path)} className="text-accent hover:text-accent-strong inline-flex items-center gap-1">
                     {link.label} <span aria-hidden="true">→</span>
                   </a>
                 </React.Fragment>
@@ -313,8 +314,8 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               return (
                 <motion.div key={item.what} {...fadeUp} transition={{ duration: 0.4, delay: i * 0.06 }}>
                   <SpotlightCard className="h-full p-6 group">
-                    <span className="w-11 h-11 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                      <Icon className="w-5 h-5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                    <span className="w-11 h-11 rounded-xl border border-line bg-surface flex items-center justify-center mb-4 transition-colors group-hover:bg-accent group-hover:border-accent">
+                      <Icon className="w-5 h-5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                     </span>
                     <dt className="text-base font-bold text-zinc-900 font-display mb-2">
                       <WithPlaceholders text={item.what} />
@@ -337,17 +338,17 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
         {industry.oneVisit && (
           <motion.section {...fadeUp} className="mb-20 sm:mb-24 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5">
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">One visit, two uses</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-4 text-balance">
+              <span className={eyebrowClass}>One visit, two uses</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-4 text-balance">
                 {industry.oneVisit.title}
               </h2>
               <p className="text-base text-zinc-600 leading-relaxed">{industry.oneVisit.body}</p>
             </div>
             {/* Visual: one capture splitting into two outputs */}
-            <div className="lg:col-span-7 rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-8" aria-hidden="true">
+            <div className="lg:col-span-7 rounded-2xl border border-line bg-surface p-6 sm:p-8" aria-hidden="true">
               <div className="flex flex-col items-center">
-                <span className="inline-flex items-center gap-2 rounded-xl bg-[#09090B] text-white px-4 py-3 text-sm font-semibold shadow-sm">
-                  <ScanLine className="w-4 h-4 text-[#E11D48]" />
+                <span className="inline-flex items-center gap-2 rounded-xl bg-ink text-white px-4 py-3 text-sm font-semibold shadow-sm">
+                  <ScanLine className="w-4 h-4 text-accent" />
                   One site visit
                 </span>
                 <svg viewBox="0 0 200 48" className="w-48 h-12" preserveAspectRatio="none">
@@ -367,9 +368,9 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                   {industry.oneVisit.outputs.map((output) => {
                     const Icon = output.icon;
                     return (
-                      <div key={output.label} className="rounded-xl border border-[#E4E4E7] bg-white p-4 text-center shadow-xs">
-                        <span className="mx-auto mb-2 w-10 h-10 rounded-lg bg-[#E11D48]/10 flex items-center justify-center">
-                          <Icon className="w-5 h-5 text-[#E11D48]" />
+                      <div key={output.label} className="rounded-xl border border-line bg-white p-4 text-center shadow-xs">
+                        <span className="mx-auto mb-2 w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+                          <Icon className="w-5 h-5 text-accent" />
                         </span>
                         <p className="text-sm font-bold text-zinc-900 font-display">{output.label}</p>
                         <p className="text-xs text-zinc-500">{output.line}</p>
@@ -395,18 +396,18 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                     key={column.title}
                     {...fadeUp}
                     transition={{ duration: 0.45, delay: ci * 0.1 }}
-                    className={`rounded-3xl p-6 sm:p-8 ${dark ? 'bg-[#09090B] text-white' : 'border border-[#E4E4E7] bg-[#FAFAFA]'}`}
+                    className={`rounded-2xl p-6 sm:p-8 ${dark ? 'bg-ink text-white' : 'border border-line bg-surface'}`}
                   >
                     <div className="flex items-center gap-3 mb-6">
-                      <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${dark ? 'bg-white/10' : 'bg-[#E11D48]'}`}>
-                        <Icon className={`w-5 h-5 ${dark ? 'text-[#FB7185]' : 'text-white'}`} aria-hidden="true" />
+                      <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${dark ? 'bg-white/10' : 'bg-accent'}`}>
+                        <Icon className={`w-5 h-5 ${dark ? 'text-accent-soft' : 'text-white'}`} aria-hidden="true" />
                       </span>
                       <h3 className={`text-lg sm:text-xl font-bold font-display ${dark ? 'text-white' : 'text-zinc-900'}`}>{column.title}</h3>
                     </div>
                     <ul className="space-y-3">
                       {column.items.map((item) => (
                         <li key={item} className={`flex items-start gap-3 text-sm sm:text-base leading-relaxed ${dark ? 'text-zinc-300' : 'text-zinc-700'}`}>
-                          <Check className={`w-4 h-4 mt-1 shrink-0 ${dark ? 'text-[#FB7185]' : 'text-[#E11D48]'}`} aria-hidden="true" />
+                          <Check className={`w-4 h-4 mt-1 shrink-0 ${dark ? 'text-accent-soft' : 'text-accent'}`} aria-hidden="true" />
                           <span>
                             <WithPlaceholders text={item} />
                           </span>
@@ -417,7 +418,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                 );
               })}
               <span
-                className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-full border border-[#E4E4E7] bg-white px-4 py-2 shadow-md text-xs font-mono font-semibold text-[#E11D48] whitespace-nowrap"
+                className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 rounded-full border border-line bg-white px-4 py-2 shadow-md text-xs font-mono font-semibold text-accent whitespace-nowrap"
                 aria-hidden="true"
               >
                 One capture
@@ -462,7 +463,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute bottom-4 left-5 flex items-center gap-3">
                       <span className="w-10 h-10 rounded-lg bg-white/95 flex items-center justify-center shadow-xs">
-                        <Icon className="w-5 h-5 text-[#E11D48]" aria-hidden="true" />
+                        <Icon className="w-5 h-5 text-accent" aria-hidden="true" />
                       </span>
                       <h3 className="text-xl font-bold text-white font-display">{audience.title}</h3>
                     </div>
@@ -473,7 +474,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                       <h4 className="text-[11px] font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-3">What to capture</h4>
                       <ul className="flex flex-wrap gap-2">
                         {audience.capture.map((item) => (
-                          <li key={item} className="rounded-full border border-[#E4E4E7] bg-[#FAFAFA] px-3 py-1 text-xs text-zinc-700">
+                          <li key={item} className="rounded-full border border-line bg-surface px-3 py-1 text-xs text-zinc-700">
                             <WithPlaceholders text={item} />
                           </li>
                         ))}
@@ -494,13 +495,13 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
           <section id={industry.record.id} className="mb-20 sm:mb-24 scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-5">
               <SectionHeading eyebrow="The record" title={industry.record.title} className="mb-6" />
-              <div className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-5">
+              <div className="rounded-2xl border border-line bg-surface p-5">
                 <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-2">Made with</h3>
                 <p className="text-sm text-zinc-700 leading-relaxed">{industry.record.madeWith}</p>
                 <a
                   href={industry.record.link.path}
                   onClick={goToLink(industry.record.link.path)}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
                 >
                   {industry.record.link.label} <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                 </a>
@@ -512,9 +513,9 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                   key={item}
                   {...fadeUp}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="flex items-start gap-4 rounded-xl border border-[#E4E4E7] bg-white p-4 sm:p-5 shadow-xs"
+                  className="flex items-start gap-4 rounded-xl border border-line bg-white p-4 sm:p-5 shadow-xs"
                 >
-                  <span className="w-8 h-8 rounded-full bg-[#E11D48]/10 flex items-center justify-center shrink-0 font-mono text-xs font-bold text-[#E11D48]">
+                  <span className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 font-mono text-xs font-bold text-accent">
                     {i + 1}
                   </span>
                   <span className="text-sm sm:text-base text-zinc-700 leading-relaxed pt-1">
@@ -534,7 +535,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               key={section.id}
               id={section.id}
               {...fadeUp}
-              className="mb-20 sm:mb-24 scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-3xl border border-[#E4E4E7] bg-[#FAFAFA] overflow-hidden"
+              className="mb-20 sm:mb-24 scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-surface overflow-hidden"
             >
               {section.image && (
                 <div className="lg:col-span-5 relative min-h-[240px] bg-zinc-900">
@@ -542,11 +543,11 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                 </div>
               )}
               <div className={`${section.image ? 'lg:col-span-7' : 'lg:col-span-12'} p-6 sm:p-10`}>
-                <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">
+                <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold">
                   <Icon className="w-4 h-4" aria-hidden="true" />
                   {section.eyebrow}
                 </span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1 mb-4 text-balance">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1 mb-4 text-balance">
                   {section.title}
                 </h2>
                 <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
@@ -557,7 +558,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                     {section.links.map((link, i) => (
                       <React.Fragment key={link.path}>
                         {i > 0 && <span className="text-zinc-300" aria-hidden="true">·</span>}
-                        <a href={link.path} onClick={goToLink(link.path)} className="text-[#E11D48] hover:text-[#BE123C] inline-flex items-center gap-1">
+                        <a href={link.path} onClick={goToLink(link.path)} className="text-accent hover:text-accent-strong inline-flex items-center gap-1">
                           {link.label} <span aria-hidden="true">→</span>
                         </a>
                       </React.Fragment>
@@ -577,8 +578,8 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                 return (
                   <motion.section key={section.id} id={section.id} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.08 }} className="scroll-mt-24">
                     <SpotlightCard className="h-full group" contentClassName="h-full p-6 sm:p-7 flex flex-col">
-                      <span className="w-11 h-11 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] flex items-center justify-center mb-4 transition-colors group-hover:bg-[#E11D48] group-hover:border-[#E11D48]">
-                        <Icon className="w-5 h-5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-11 h-11 rounded-xl border border-line bg-surface flex items-center justify-center mb-4 transition-colors group-hover:bg-accent group-hover:border-accent">
+                        <Icon className="w-5 h-5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">{section.eyebrow}</span>
                       <h2 className="mt-1 text-xl font-bold text-zinc-900 font-display mb-3 text-balance">{section.title}</h2>
@@ -589,7 +590,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                         <a
                           href={section.cta.path}
                           onClick={goToLink(section.cta.path)}
-                          className="mt-auto pt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48] hover:text-[#BE123C]"
+                          className="mt-auto pt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong"
                         >
                           {section.cta.label} <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                         </a>
@@ -613,10 +614,10 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                   key={item.channel}
                   {...fadeUp}
                   transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-                  className="group flex items-start gap-4 rounded-xl border border-[#E4E4E7] bg-white p-5 hover:border-[#A1A1AA] transition-colors"
+                  className="group flex items-start gap-4 rounded-xl border border-line bg-white p-5 hover:border-line-strong transition-colors"
                 >
-                  <span className="w-10 h-10 rounded-lg bg-[#E11D48]/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-[#E11D48]">
-                    <Icon className="w-4.5 h-4.5 text-[#E11D48] transition-colors group-hover:text-white" aria-hidden="true" />
+                  <span className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 transition-colors group-hover:bg-accent">
+                    <Icon className="w-4.5 h-4.5 text-accent transition-colors group-hover:text-white" aria-hidden="true" />
                   </span>
                   <div>
                     <dt className="text-sm font-bold text-zinc-900 font-display">{item.channel}</dt>
@@ -631,16 +632,16 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
 
         {/* WAYS TO WORK TOGETHER (optional) */}
         {industry.workTogether && (
-          <section id={industry.workTogether.id} className="mb-20 sm:mb-24 scroll-mt-24 rounded-3xl bg-[#09090B] text-white p-6 sm:p-10 lg:p-12">
+          <section id={industry.workTogether.id} className="mb-20 sm:mb-24 scroll-mt-24 rounded-2xl bg-ink text-white p-6 sm:p-10 lg:p-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
               <div className="max-w-2xl">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#FB7185] font-semibold">Ways to work together</span>
+                <span className="text-xs font-mono uppercase tracking-wider text-accent-soft font-semibold">Ways to work together</span>
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight font-display mt-1 text-balance">{industry.workTogether.title}</h2>
               </div>
               <a
                 href={industry.workTogether.cta.path}
                 onClick={goToLink(industry.workTogether.cta.path)}
-                className="shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors"
+                className={buttonClass('primary', 'md', 'shrink-0')}
               >
                 {industry.workTogether.cta.label}
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -657,8 +658,8 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                     className="group rounded-xl border border-white/10 bg-white/[0.04] p-5 hover:border-white/25 transition-colors"
                   >
                     <div className="flex items-center justify-between mb-4">
-                      <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center transition-colors group-hover:bg-[#E11D48]">
-                        <Icon className="w-4.5 h-4.5 text-[#FB7185] transition-colors group-hover:text-white" aria-hidden="true" />
+                      <span className="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center transition-colors group-hover:bg-accent">
+                        <Icon className="w-4.5 h-4.5 text-accent-soft transition-colors group-hover:text-white" aria-hidden="true" />
                       </span>
                       <span className="font-mono text-xs text-zinc-500">{String(i + 1).padStart(2, '0')}</span>
                     </div>
@@ -686,7 +687,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                 key={card.path}
                 href={card.path}
                 onClick={goToLink(card.path)}
-                className={`group grid grid-cols-1 rounded-2xl border border-[#E4E4E7] bg-white overflow-hidden hover:border-[#A1A1AA] hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] transition-all ${
+                className={`group grid grid-cols-1 rounded-2xl border border-line bg-white overflow-hidden hover:border-line-strong hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] transition-all ${
                   industry.proof.cards.length > 1 ? '' : 'md:grid-cols-12'
                 }`}
               >
@@ -706,7 +707,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                       <Placeholder>{card.pending}</Placeholder>
                     </p>
                   )}
-                  <span className="mt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48]">
+                  <span className="mt-5 inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent">
                     See the story <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                   </span>
                 </div>
@@ -722,9 +723,9 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
         </div>
 
         {/* 9. CTA BAND */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center">
+        <section className="rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center">
           <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4 text-balance">{industry.cta.title}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-4 text-balance">{industry.cta.title}</h2>
             <p className="text-sm sm:text-base text-zinc-600 mb-8 leading-relaxed">{industry.cta.body}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button type="button" onClick={() => onNavigate(industry.primaryCta.path)} className={primaryButtonClass}>

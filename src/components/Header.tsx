@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA } from '../data/siteData';
+import { BLOG_LAUNCHED } from '../content/blog';
+
+// About ▾ (spec §4.1). Blog stays hidden until the blog launches.
+const ABOUT_MENU: { label: string; path: RoutePath }[] = [
+  { label: 'About us', path: '/about/' },
+  { label: 'How we work', path: '/how-we-work/' },
+  { label: 'Learn', path: '/learn/' },
+  ...(BLOG_LAUNCHED ? [{ label: 'Blog', path: '/blog/' as RoutePath }] : []),
+  { label: 'FAQ', path: '/faq/' },
+  { label: 'Partner with us', path: '/about/#partner' as RoutePath },
+  { label: 'Contact', path: '/contact/' },
+];
 
 interface HeaderProps {
   currentPath: RoutePath;
@@ -259,30 +271,15 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                   transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute right-0 top-full w-52 rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] p-2 shadow-xl backdrop-blur-xl"
                 >
-                  <button
-                    onClick={() => handleNav('/about/')}
-                    className="w-full rounded-md px-3 py-1.5 text-left text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
-                  >
-                    Company &amp; Story
-                  </button>
-                  <button
-                    onClick={() => handleNav('/about/')}
-                    className="w-full rounded-md px-3 py-1.5 text-left text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
-                  >
-                    Leadership &amp; Engineers
-                  </button>
-                  <button
-                    onClick={() => handleNav('/learn/')}
-                    className="w-full rounded-md px-3 py-1.5 text-left text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
-                  >
-                    Knowledge &amp; Guides
-                  </button>
-                  <button
-                    onClick={() => handleNav('/faq/')}
-                    className="w-full rounded-md px-3 py-1.5 text-left text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
-                  >
-                    Frequently Asked Questions
-                  </button>
+                  {ABOUT_MENU.map((item) => (
+                    <button
+                      key={item.label}
+                      onClick={() => handleNav(item.path)}
+                      className="w-full rounded-md px-3 py-1.5 text-left text-xs font-medium text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -346,9 +343,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="border-b border-[#E4E4E7] bg-[#FFFFFF] px-4 py-6 lg:hidden max-h-[80vh] overflow-y-auto"
           >
             <div className="flex flex-col gap-3">
@@ -394,6 +392,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
               >
                 Learn Guides
               </button>
+              {BLOG_LAUNCHED && (
+                <button
+                  onClick={() => handleNav('/blog/')}
+                  className="text-left font-medium text-zinc-700 py-1.5 hover:text-[#E11D48]"
+                >
+                  Blog
+                </button>
+              )}
               <button
                 onClick={() => handleNav('/about/')}
                 className="text-left font-medium text-zinc-700 py-1.5 hover:text-[#E11D48]"

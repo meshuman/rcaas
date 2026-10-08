@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
+import { FaqList } from '../components/GuideParts';
 
 interface VisualStorytellingPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -373,7 +374,6 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
   const [sliderPosition, setSliderPosition] = useState<number>(50);
 
   // FAQ state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const waypoints = [
     { title: 'Courtyard Arrival', time: '0:12', note: 'Establishing scale through traditional Newari carved brickwork.' },
@@ -415,7 +415,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 </button>
               </li>
               <li>
-                <span className="text-zinc-400">/</span>
+                <span className="text-zinc-400" aria-hidden="true">›</span>
               </li>
               <li>
                 <button
@@ -426,7 +426,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 </button>
               </li>
               <li>
-                <span className="text-zinc-400">/</span>
+                <span className="text-zinc-400" aria-hidden="true">›</span>
               </li>
               <li className="text-zinc-900 font-semibold" aria-current="page">
                 Visual Storytelling
@@ -694,7 +694,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                         Pause / Reset
                       </button>
                     </div>
-                    <div className="absolute bottom-4 left-6 right-6 z-20 bg-black/80 backdrop-blur-sm p-3 rounded-lg border border-zinc-800 flex items-center justify-between text-xs">
+                    <div className="absolute bottom-4 left-6 right-6 z-20 bg-black/80 p-3 rounded-lg border border-zinc-800 flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-3">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                         <span className="font-mono text-zinc-300">
@@ -1213,43 +1213,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="bg-white border border-zinc-200 rounded-xl overflow-hidden transition-all shadow-xs"
-                >
-                  <button
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-zinc-900 hover:text-[#E11D48] transition-colors cursor-pointer"
-                    aria-expanded={isOpen}
-                  >
-                    <span>{faq.question}</span>
-                    <span className="ml-4 font-mono text-zinc-400 text-lg">
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="px-6 pb-6 text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 pt-4">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+          <FaqList items={FAQS} />
         </div>
       </section>
 

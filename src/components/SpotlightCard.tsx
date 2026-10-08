@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
+  contentClassName?: string;
   onClick?: () => void;
   spotlightColor?: string;
 }
@@ -10,6 +11,7 @@ interface SpotlightCardProps {
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = '',
+  contentClassName = '',
   onClick,
   spotlightColor = 'rgba(225, 29, 72, 0.04)',
 }) => {
@@ -43,7 +45,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
           background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      <div className="relative z-10">{children}</div>
+      <div className={`relative z-10 ${contentClassName}`}>{children}</div>
     </div>
   );
 };

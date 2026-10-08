@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
+import { FaqList } from '../components/GuideParts';
 
 interface VirtualToursPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -194,7 +195,6 @@ const FAQS: FaqItem[] = [
 
 export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, onOpenPlanner }) => {
   const [activeSector, setActiveSector] = useState<string>('hospitality');
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [selectedScene, setSelectedScene] = useState<'basera' | 'chilancho'>('basera');
 
   const selectedSectorData = SECTOR_USE_CASES.find((s) => s.id === activeSector) || SECTOR_USE_CASES[0];
@@ -331,12 +331,12 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md border border-[#E4E4E7] px-3 py-1 rounded-md text-xs font-mono text-zinc-900 flex items-center gap-2 shadow-xs">
+                <div className="absolute top-4 left-4 bg-white/90 border border-[#E4E4E7] px-3 py-1 rounded-md text-xs font-mono text-zinc-900 flex items-center gap-2 shadow-xs">
                   <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-ping" />
                   <span>Real-Scale 3D Walkthrough</span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md border border-[#E4E4E7] p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-[#E4E4E7] p-3.5 rounded-xl flex items-center justify-between shadow-sm">
                   <div>
                     <p className="text-xs font-semibold text-zinc-900 font-display">Continuous Free Exploration</p>
                     <p className="text-[11px] text-zinc-500 font-mono">Mobile, tablet & desktop ready</p>
@@ -734,7 +734,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-xs font-medium text-white bg-black/60 backdrop-blur-md p-2.5 rounded-lg border border-white/10 font-mono">
+                  <div className="absolute bottom-3 left-3 right-3 text-xs font-medium text-white bg-black/75 p-2.5 rounded-lg border border-white/10 font-mono">
                     {selectedSectorData.sampleClient || selectedSectorData.name}
                   </div>
                 </div>
@@ -834,46 +834,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
-            {FAQS.map((faq, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs"
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                >
-                  <span className="text-sm sm:text-base font-semibold text-zinc-900 font-display">{faq.question}</span>
-                  <div
-                    className={`w-6 h-6 rounded bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center text-zinc-500 shrink-0 transition-transform ${
-                      openFaqIndex === idx ? 'rotate-180 text-[#E11D48]' : ''
-                    }`}
-                  >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {openFaqIndex === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="p-5 pt-0 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-[#E4E4E7]">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
+          <FaqList items={FAQS} />
         </section>
 
         {/* 10. RELATED CAPABILITIES & COMBINATIONS */}

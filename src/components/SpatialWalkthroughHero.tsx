@@ -592,7 +592,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
 
         {/* 2. Top Technical Status Bar */}
         <div className="absolute top-4 inset-x-6 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 rounded-md bg-black/75 px-3 py-1.5 border border-white/10 text-white backdrop-blur-md shadow-sm">
+          <div className="flex items-center gap-2 rounded-md bg-black/75 px-3 py-1.5 border border-white/10 text-white shadow-sm">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E11D48] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E11D48]"></span>
@@ -605,7 +605,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="flex items-center gap-1 rounded-md bg-black/75 p-1 border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1 rounded-md bg-black/75 p-1 border border-white/10">
             <button
               onClick={() => setCameraMode('dolly')}
               className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
@@ -644,7 +644,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
         </div>
 
         {/* 4. Left Telemetry Readout (Aviation & Survey HUD) */}
-        <div className="pointer-events-none absolute left-6 top-20 hidden md:flex flex-col gap-1 text-[11px] font-mono text-zinc-300 bg-black/60 p-2.5 rounded border border-white/10 backdrop-blur-md">
+        <div className="pointer-events-none absolute left-6 top-20 hidden md:flex flex-col gap-1 text-[11px] font-mono text-zinc-300 bg-black/75 p-2.5 rounded border border-white/10">
           <div className="text-[10px] uppercase text-zinc-400 font-semibold tracking-wider mb-0.5">
             Spatial Telemetry
           </div>
@@ -672,7 +672,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
 
         {/* 5. Bottom Waypoints Bar (Interactive Jump Points) */}
         <div className="absolute bottom-16 inset-x-6 flex items-center justify-between gap-2 overflow-x-auto pb-1">
-          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10">
             <span className="text-[10px] font-mono uppercase text-zinc-400 px-2 font-semibold hidden sm:inline">
               Waypoints:
             </span>
@@ -692,7 +692,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
           </div>
 
           {/* Speed & Pause Controls */}
-          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="px-2.5 py-1 text-xs font-mono text-zinc-200 hover:text-white rounded hover:bg-white/10"

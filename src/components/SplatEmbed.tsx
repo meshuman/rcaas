@@ -617,7 +617,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
           <div className="absolute top-4 inset-x-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-20">
             
             {/* Space Switcher */}
-            <div className="flex items-center gap-1 p-1 rounded-md bg-[#09090B]/90 border border-[#27272A] backdrop-blur-md pointer-events-auto">
+            <div className="flex items-center gap-1 p-1 rounded-md bg-[#09090B]/90 border border-[#27272A] pointer-events-auto">
               {DEMO_SPACES.map((space) => (
                 <button
                   key={space.id}
@@ -636,7 +636,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
             {/* Viewport & Motion Modes */}
             <div className="flex items-center gap-2 pointer-events-auto">
               {/* Motion Mode (Flythrough / Walk / Orbit) */}
-              <div className="flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A] backdrop-blur-md">
+              <div className="flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A]">
                 <button
                   onClick={() => setMotionMode('flythrough')}
                   className={`px-2.5 py-1 text-[11px] font-mono rounded ${
@@ -667,7 +667,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               </div>
 
               {/* Render Modes */}
-              <div className="hidden sm:flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A] backdrop-blur-md">
+              <div className="hidden sm:flex items-center p-1 rounded-md bg-[#09090B]/90 border border-[#27272A]">
                 <button
                   onClick={() => setRenderMode('splat')}
                   className={`px-2 py-1 text-[11px] font-mono rounded ${
@@ -689,7 +689,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               {/* Fullscreen */}
               <button
                 onClick={toggleFullscreen}
-                className="p-2 rounded-md border border-[#27272A] bg-[#09090B]/90 text-xs text-zinc-300 backdrop-blur-md hover:text-white"
+                className="p-2 rounded-md border border-[#27272A] bg-[#09090B]/90 text-xs text-zinc-300 hover:text-white"
                 title="Toggle Fullscreen"
               >
                 ⛶
@@ -698,7 +698,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
           </div>
 
           {/* On-Screen Locomotion Navigation Pad (Move / Walk through Space) */}
-          <div className="absolute right-4 bottom-24 flex flex-col items-center gap-1 bg-black/85 p-2 rounded-xl border border-white/10 backdrop-blur-md z-20 pointer-events-auto">
+          <div className="absolute right-4 bottom-24 flex flex-col items-center gap-1 bg-black/85 p-2 rounded-xl border border-white/10 z-20 pointer-events-auto">
             <span className="text-[9px] font-mono uppercase text-zinc-400 mb-0.5">Locomotion</span>
             <div className="flex gap-1">
               <button
@@ -750,7 +750,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
           {/* Waypoints Tour Bar */}
           <div className="absolute bottom-16 inset-x-4 flex items-center gap-2 overflow-x-auto pb-1 z-20 pointer-events-auto">
-            <div className="flex items-center gap-1 bg-[#09090B]/90 p-1.5 rounded-lg border border-[#27272A] backdrop-blur-md">
+            <div className="flex items-center gap-1 bg-[#09090B]/90 p-1.5 rounded-lg border border-[#27272A]">
               <span className="text-[10px] font-mono text-zinc-400 px-2 uppercase hidden sm:inline">
                 Tour Views:
               </span>
@@ -772,7 +772,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
           {/* Bottom HUD Overlay */}
           <div className="absolute bottom-4 inset-x-4 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3 pointer-events-none z-20">
-            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] backdrop-blur-md pointer-events-auto max-w-md">
+            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] pointer-events-auto max-w-md">
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-pulse"></span>
                 <span className="text-xs font-semibold text-white font-display">{activeSpace.name}</span>
@@ -790,7 +790,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               </div>
             </div>
 
-            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] backdrop-blur-md font-mono text-[11px] text-right text-zinc-400 pointer-events-auto">
+            <div className="p-3 rounded-md bg-[#09090B]/90 border border-[#27272A] font-mono text-[11px] text-right text-zinc-400 pointer-events-auto">
               <div className="text-[#FB7185] font-medium">{activeSpace.accuracy}</div>
               <div>{activeSpace.splatCount}</div>
               <div>{activeSpace.coords}</div>

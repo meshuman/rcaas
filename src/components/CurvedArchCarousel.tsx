@@ -267,14 +267,14 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
                 {/* Card Top: Circular Icon & Number Badge */}
                 <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between">
                   {/* Circular Top Icon Emblem */}
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-inner">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/30 border border-white/20 text-white shadow-inner">
                     <span className="font-mono text-xs font-bold text-[#E11D48]">
                       {card.number}
                     </span>
                   </div>
 
                   {/* Status / Category Tag */}
-                  <div className="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/15 text-[10px] font-mono uppercase tracking-wider text-white/90">
+                  <div className="px-2.5 py-1 rounded-full bg-black/75 border border-white/15 text-[10px] font-mono uppercase tracking-wider text-white/90">
                     {card.category}
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export const CurvedArchCarousel: React.FC<CurvedArchCarouselProps> = ({
                   </p>
 
                   {/* Result Metric Banner */}
-                  <div className="p-2.5 rounded-lg bg-white/10 backdrop-blur-md border border-white/15 mb-3 flex items-center gap-2">
+                  <div className="p-2.5 rounded-lg bg-white/30 border border-white/15 mb-3 flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-ping" />
                     <span className="font-mono text-[11px] text-zinc-100 font-medium">
                       {card.metric}

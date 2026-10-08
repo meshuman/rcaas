@@ -204,11 +204,11 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
 
         {/* Top Badges */}
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-          <span className="rounded px-2.5 py-1 text-[11px] font-mono font-medium bg-white/90 text-zinc-900 shadow-sm backdrop-blur-md border border-white/40">
+          <span className="rounded px-2.5 py-1 text-[11px] font-mono font-medium bg-white/90 text-zinc-900 shadow-sm border border-white/40">
             {tag}
           </span>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 border border-white/20 text-[10px] font-mono text-zinc-200 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 border border-white/20 text-[10px] font-mono text-zinc-200">
             <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
             <span>3D FLYTHROUGH</span>
           </div>

@@ -159,12 +159,12 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
 
           {/* Top HUD Bar */}
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none z-20">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono text-white/90">
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-black/75 border border-white/10 text-[11px] font-mono text-white/90">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <span>LIVE 3D ENGINE · 60 FPS</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono text-white/70 bg-black/60 backdrop-blur-md px-2 py-1 rounded border border-white/10">
+              <span className="text-[11px] font-mono text-white/70 bg-black/75 px-2 py-1 rounded border border-white/10">
                 LOD: 100% (Sub-centimetre)
               </span>
             </div>
@@ -206,7 +206,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                       className={`absolute left-1/2 -translate-x-1/2 top-9 px-2 py-0.5 rounded text-[10px] font-medium whitespace-nowrap shadow-md transition-all ${
                         isSelected
                           ? 'bg-[#09090B] text-white border border-[#E11D48]'
-                          : 'bg-black/70 backdrop-blur-xs text-white/90 border border-white/10 opacity-80 group-hover/pin:opacity-100'
+                          : 'bg-black/70 text-white/90 border border-white/10 opacity-80 group-hover/pin:opacity-100'
                       }`}
                     >
                       {hs.title}
@@ -240,14 +240,14 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
                       width="100"
                       height="30"
                     >
-                      <div className="bg-[#09090B]/90 backdrop-blur-sm border border-[#E11D48] text-white text-[11px] font-mono font-bold px-2 py-0.5 rounded shadow text-center inline-block">
+                      <div className="bg-[#09090B]/90 border border-[#E11D48] text-white text-[11px] font-mono font-bold px-2 py-0.5 rounded shadow text-center inline-block">
                         {m.value}
                       </div>
                     </foreignObject>
                   </g>
                 ))}
               </svg>
-              <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 rounded-lg p-2.5 text-xs text-white">
+              <div className="absolute bottom-4 left-4 bg-black/80 border border-white/10 rounded-lg p-2.5 text-xs text-white">
                 <span className="font-mono text-[#E11D48] font-bold">● MEASUREMENT TOOL:</span> Click any two surface points in 3D to derive millimeter-accurate distance.
               </div>
             </div>
@@ -255,7 +255,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
 
           {/* Mode 3: Mini-Map / Floor Plan Overlay */}
           {activeTab === 'floorplan' && (
-            <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50 backdrop-blur-xs">
+            <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/75">
               <div className="w-[85%] h-[85%] bg-zinc-900/90 border border-zinc-700 rounded-xl p-4 relative shadow-2xl overflow-hidden">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-mono font-semibold text-white">ARCHITECTURAL 2D FLOOR PLAN & RADAR</span>
@@ -301,7 +301,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
 
           {/* Autoplay Highlight Notice */}
           {isPlayingReel && (
-            <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#09090B]/90 backdrop-blur-md border border-[#E11D48] text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-30 flex items-center gap-2">
+            <div className="absolute top-12 left-1/2 -translate-x-1/2 bg-[#09090B]/90 border border-[#E11D48] text-white text-xs px-3 py-1.5 rounded-full shadow-lg z-30 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#E11D48] animate-ping" />
               <span>Cinematic Guided Tour · Waypoint 2 of 5 (Courtyard Colonnade)</span>
             </div>

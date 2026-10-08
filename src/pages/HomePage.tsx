@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, PILLARS, INDUSTRIES, CASE_STUDIES, FAQ_ITEMS, IMAGES } from '../data/siteData';
+import { SITE_METADATA, PILLARS, INDUSTRIES, CASE_STUDIES, IMAGES } from '../data/siteData';
+import { HOME_FAQS } from '../content/faq';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InfiniteMarquee } from '../components/InfiniteMarquee';
@@ -9,6 +10,7 @@ import { KineticSpatialCard } from '../components/KineticSpatialCard';
 import { SpatialBackgroundScan } from '../components/SpatialBackgroundScan';
 import { HeritageMotionBackdrop } from '../components/HeritageMotionBackdrop';
 import { TypewriterHeroPhrase } from '../components/TypewriterHeroPhrase';
+import { FaqList } from '../components/GuideParts';
 
 interface HomePageProps {
   onNavigate: (path: RoutePath) => void;
@@ -16,11 +18,7 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner }) => {
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
-  const toggleFaq = (index: number) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
 
   const scrollToLive = () => {
     const el = document.getElementById('live-experience');
@@ -478,44 +476,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             </h2>
           </div>
 
-          <div className="space-y-3">
-            {FAQ_ITEMS.map((item, index) => {
-              const isOpen = openFaqIndex === index;
-              return (
-                <div
-                  key={index}
-                  className="rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] overflow-hidden transition-colors hover:border-zinc-400 shadow-sm"
-                >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-5 text-left"
-                  >
-                    <span className="text-sm font-semibold text-[#09090B] font-display">
-                      {item.q}
-                    </span>
-                    <span className="ml-4 font-mono text-zinc-500 text-sm">
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                      >
-                        <div className="px-5 pb-5 pt-1 text-xs text-[#52525B] leading-relaxed border-t border-[#E4E4E7]">
-                          {item.a}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+          <FaqList items={HOME_FAQS} firstOpen={false} />
 
           <div className="mt-8 text-center">
             <button

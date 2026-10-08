@@ -1,6 +1,7 @@
 import React from 'react';
 import { RoutePath } from '../types';
 import { SITE_METADATA } from '../data/siteData';
+import { BLOG_LAUNCHED } from '../content/blog';
 
 interface FooterProps {
   onNavigate: (path: RoutePath) => void;
@@ -191,6 +192,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   Guides &amp; Articles
                 </button>
               </li>
+              {BLOG_LAUNCHED && (
+                <li>
+                  <button
+                    onClick={() => onNavigate('/blog/')}
+                    className="hover:text-[#09090B] text-left transition-colors"
+                  >
+                    Blog
+                  </button>
+                </li>
+              )}
               <li>
                 <button
                   onClick={() => onNavigate('/faq/')}

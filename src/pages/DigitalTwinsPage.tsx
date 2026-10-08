@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
+import { FaqList } from '../components/GuideParts';
 
 interface DigitalTwinsPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -392,7 +393,6 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   // FAQ state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Hash anchor scrolling
   useEffect(() => {
@@ -432,7 +432,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
                 </button>
               </li>
               <li>
-                <span className="text-zinc-400">/</span>
+                <span className="text-zinc-400" aria-hidden="true">›</span>
               </li>
               <li>
                 <button
@@ -443,7 +443,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
                 </button>
               </li>
               <li>
-                <span className="text-zinc-400">/</span>
+                <span className="text-zinc-400" aria-hidden="true">›</span>
               </li>
               <li className="text-zinc-900 font-semibold" aria-current="page">
                 Digital Twins &amp; Survey
@@ -665,7 +665,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
                 </div>
 
                 {/* Real-time Coordinate Simulator readout */}
-                <div className="absolute bottom-4 left-4 right-4 bg-black/85 backdrop-blur-md p-4 rounded-xl border border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
+                <div className="absolute bottom-4 left-4 right-4 bg-black/85 p-4 rounded-xl border border-zinc-800 flex flex-col md:flex-row md:items-center justify-between gap-4 text-xs">
                   <div>
                     <div className="font-semibold text-white mb-1">
                       Elevation Section Slice: {elevationSlice}m AOD (Above Ordnance Datum)
@@ -1264,43 +1264,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
             </h2>
           </div>
 
-          <div className="space-y-4">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="bg-white border border-zinc-200 rounded-xl overflow-hidden transition-all shadow-xs"
-                >
-                  <button
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between text-base font-bold text-zinc-900 hover:text-[#E11D48] transition-colors cursor-pointer"
-                    aria-expanded={isOpen}
-                  >
-                    <span>{faq.question}</span>
-                    <span className="ml-4 font-mono text-zinc-400 text-lg">
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-
-                  <AnimatePresence>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <div className="px-6 pb-6 text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 pt-4">
-                          {faq.answer}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </div>
+          <FaqList items={FAQS} />
         </div>
       </section>
 

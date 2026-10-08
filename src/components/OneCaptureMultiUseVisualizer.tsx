@@ -285,7 +285,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                       ease: 'easeInOut',
                     }}
                   >
-                    <div className="absolute top-1 right-3 font-mono text-[9px] text-[#E11D48] bg-black/80 px-2 py-0.5 rounded backdrop-blur-sm">
+                    <div className="absolute top-1 right-3 font-mono text-[9px] text-[#E11D48] bg-black/80 px-2 py-0.5 rounded">
                       SLAM LASER SWEEP · ±5mm ACCURACY
                     </div>
                   </motion.div>
@@ -315,7 +315,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                         <motion.div
                           initial={{ opacity: 0, scale: 0.9, y: 4 }}
                           animate={{ opacity: 1, scale: 1, y: 0 }}
-                          className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 p-2.5 rounded-lg bg-black/90 backdrop-blur-md border border-white/20 text-white z-30 shadow-2xl"
+                          className="absolute bottom-8 left-1/2 -translate-x-1/2 w-48 p-2.5 rounded-lg bg-black/90 border border-white/20 text-white z-30 shadow-2xl"
                         >
                           <div className="text-[11px] font-bold font-display text-white">
                             {spot.title}
@@ -334,11 +334,11 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                   <>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[11px] text-white">
-                      <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20">
+                      <div className="flex items-center gap-2 bg-black/75 px-3 py-1.5 rounded-lg border border-white/20">
                         <span className="h-2 w-2 rounded-full bg-emerald-400" />
                         <span>Interactive 3D Walkthrough Mode</span>
                       </div>
-                      <div className="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20">
+                      <div className="bg-black/75 px-3 py-1.5 rounded-lg border border-white/20">
                         Zero Plugins · 60 FPS
                       </div>
                     </div>
@@ -360,7 +360,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                         <span>FLY-THROUGH CRANE TRACK A</span>
                       </div>
                     </div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/30 border border-white/40 flex items-center justify-center text-white">
                       <svg className="w-6 h-6 fill-current ml-0.5" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
@@ -380,7 +380,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                       </div>
                     </div>
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between font-mono text-[11px] text-white">
-                      <div className="bg-cyan-950/80 text-cyan-200 border border-cyan-500/40 px-3 py-1.5 rounded-lg backdrop-blur-md">
+                      <div className="bg-cyan-950/80 text-cyan-200 border border-cyan-500/40 px-3 py-1.5 rounded-lg">
                         Spatial 6DoF Mode · Headset Active
                       </div>
                       <div className="bg-black/60 px-3 py-1.5 rounded-lg border border-white/20">
@@ -395,10 +395,10 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                     <div 
                       className="absolute inset-0 bg-[linear-gradient(to_right,#06b6d415_1px,transparent_1px),linear-gradient(to_bottom,#06b6d415_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" 
                     />
-                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-cyan-400/40 text-cyan-300 font-mono text-[11px] px-3 py-1.5 rounded">
+                    <div className="absolute top-4 left-4 bg-black/80 border border-cyan-400/40 text-cyan-300 font-mono text-[11px] px-3 py-1.5 rounded">
                       TERRESTRIAL SLAM LIDAR: ±5mm ACCURACY
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md border border-zinc-700 text-zinc-300 font-mono text-[10px] px-3 py-1.5 rounded">
+                    <div className="absolute bottom-4 right-4 bg-black/80 border border-zinc-700 text-zinc-300 font-mono text-[10px] px-3 py-1.5 rounded">
                       CAD / BIM DWG · IFC READY
                     </div>
                   </>

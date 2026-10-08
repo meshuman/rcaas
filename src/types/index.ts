@@ -28,7 +28,9 @@ export type RoutePath =
   | '/faq/'
   | '/contact/'
   | '/privacy/'
-  | '/terms/';
+  | '/terms/'
+  | '/thank-you/'
+  | '/blog/';
 
 export interface Pillar {
   id: string;
@@ -74,14 +76,6 @@ export interface ToolkitItem {
   category: string;
   whatItDoesForYou: string;
   examples: string[];
-}
-
-export interface TeamMember {
-  name: string;
-  discipline: 'Engineering' | 'Game Development';
-  role: string;
-  bio: string;
-  linkedin: string;
 }
 
 export interface PlaceholderItem {

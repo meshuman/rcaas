@@ -1,6 +1,13 @@
 import React from 'react';
+import { motion } from 'motion/react';
+import { ArrowRight, MessageCircleQuestion } from 'lucide-react';
 import { RoutePath } from '../types';
+import { PUBLISHED_GUIDES } from '../data/guides';
+import { ComparisonGuidePage, READING_MINUTES as COMPARISON_MINUTES } from './ComparisonGuidePage';
+import { GaussianGuidePage, READING_MINUTES as GAUSSIAN_MINUTES } from './GaussianGuidePage';
+import { CostGuidePage, READING_MINUTES as COST_MINUTES } from './CostGuidePage';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { Placeholder } from '../components/Placeholder';
 
 interface LearnPageProps {
   currentPath: RoutePath;
@@ -8,231 +15,169 @@ interface LearnPageProps {
   onOpenPlanner: () => void;
 }
 
-export const LearnPage: React.FC<LearnPageProps> = ({ currentPath, onNavigate, onOpenPlanner }) => {
+
+// Reading times worked out from each guide's own text.
+const AUTO_READING_TIMES: Partial<Record<RoutePath, string>> = {
+  '/learn/3d-virtual-tour-vs-360-tour-vs-video/': `${COMPARISON_MINUTES} min read`,
+  '/learn/what-is-gaussian-splatting/': `${GAUSSIAN_MINUTES} min read`,
+  '/learn/planning-a-3d-experience-cost-and-timeline/': `${COST_MINUTES} min read`,
+};
+
+const fadeUp = {
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.45 },
+};
+
+const LearnHub: React.FC<{ onNavigate: (path: RoutePath) => void }> = ({ onNavigate }) => {
+  const goToLink = (path: RoutePath) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    onNavigate(path);
+  };
+
+  return (
+    <div className="py-14 sm:py-20 md:py-24 bg-[#FFFFFF] text-[#09090B] relative font-['Comfortaa',ui-sans-serif,system-ui,sans-serif]">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        {/* BREADCRUMB NAVIGATION */}
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-10 overflow-x-auto whitespace-nowrap pb-1">
+          <button type="button" onClick={() => onNavigate('/')} className="hover:text-zinc-900 transition-colors">
+            Home
+          </button>
+          <span className="text-zinc-400" aria-hidden="true">›</span>
+          <span className="text-[#E11D48] font-semibold" aria-current="page">
+            Learn
+          </span>
+        </nav>
+
+        {/* 1. INTRO */}
+        <section className="max-w-3xl mb-14 sm:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <span className="font-semibold text-zinc-900">Guides</span>
+            <span className="text-zinc-400">·</span>
+            <span>Written from real projects</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display mb-6 leading-[1.12]"
+          >
+            Learn
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
+            className="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl"
+          >
+            Straight answers to the questions people ask us most, written by our team from real projects. No jargon
+            unless we explain it.
+          </motion.p>
+        </section>
+
+        {/* 2. GUIDES */}
+        <section aria-label="Guides" className="mb-20 sm:mb-28">
+          <div className={`grid grid-cols-1 gap-6 ${PUBLISHED_GUIDES.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-3'}`}>
+            {PUBLISHED_GUIDES.map((guide, i) => (
+              <motion.div key={guide.path} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.1 }}>
+                <a href={guide.path} onClick={goToLink(guide.path)} className="block h-full group">
+                  <SpotlightCard className="h-full" contentClassName="h-full flex flex-col">
+                    <div className="relative h-52 overflow-hidden bg-zinc-900">
+                      <img
+                        src={guide.image}
+                        alt={guide.imageAlt}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                      <span className="absolute top-4 left-4 bg-white/95 border border-[#E4E4E7] px-2.5 py-1 rounded-md text-[11px] font-mono text-zinc-900 shadow-xs">
+                        Guide {String(i + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+
+                    <article className="p-6 sm:p-8 flex flex-col flex-1">
+                      <h2 className="text-xl sm:text-2xl font-bold text-zinc-900 font-display mb-3 group-hover:text-[#E11D48] transition-colors">
+                        {guide.title}
+                      </h2>
+                      <p className="text-sm text-zinc-600 leading-relaxed mb-6">{guide.line}</p>
+
+                      <div className="mt-auto pt-4 border-t border-[#E4E4E7] flex flex-wrap items-center justify-between gap-3">
+                        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-mono text-zinc-500">
+                          <span>{guide.author ?? <Placeholder>[[TBI: author]]</Placeholder>}</span>
+                          <span className="text-zinc-400" aria-hidden="true">·</span>
+                          <span>{guide.readingTime ?? AUTO_READING_TIMES[guide.path] ?? <Placeholder>[[TBI: reading time]]</Placeholder>}</span>
+                          <span className="text-zinc-400" aria-hidden="true">·</span>
+                          <span>Updated {guide.updated ?? <Placeholder>[[TBI: date]]</Placeholder>}</span>
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-xs font-mono font-semibold text-[#E11D48]">
+                          Read the guide
+                          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                        </span>
+                      </div>
+                    </article>
+                  </SpotlightCard>
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. CALL TO ACTION BAND */}
+        <motion.section
+          {...fadeUp}
+          className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center relative overflow-hidden"
+        >
+          <div className="max-w-2xl mx-auto">
+            <span className="mx-auto mb-6 w-12 h-12 rounded-xl bg-[#E11D48] flex items-center justify-center shadow-sm">
+              <MessageCircleQuestion className="w-5 h-5 text-white" aria-hidden="true" />
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4 text-balance">
+              Have a question we haven't answered?
+            </h2>
+            <p className="text-sm sm:text-base text-zinc-600 mb-8 leading-relaxed">
+              Ask us. If it's useful to others, it may become our next guide.
+            </p>
+            <button
+              type="button"
+              onClick={() => onNavigate('/contact/?type=question' as RoutePath)}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+            >
+              <span>Ask a question</span>
+              <span className="ml-2 font-mono" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </motion.section>
+      </div>
+    </div>
+  );
+};
+
+export const LearnPage: React.FC<LearnPageProps> = ({ currentPath, onNavigate }) => {
   const isComparison = currentPath.includes('3d-virtual-tour-vs-360-tour-vs-video');
   const isGaussian = currentPath.includes('what-is-gaussian-splatting');
   const isCost = currentPath.includes('planning-a-3d-experience-cost-and-timeline');
 
-  return (
-    <div className="py-16 md:py-24 bg-[#FFFFFF] text-[#09090B]">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* Breadcrumbs */}
-        <nav className="flex items-center gap-2 text-xs font-mono text-zinc-500 mb-8">
-          <button onClick={() => onNavigate('/')} className="hover:text-zinc-900">Home</button>
-          <span>/</span>
-          <button onClick={() => onNavigate('/learn/')} className="hover:text-zinc-900">Learn</button>
-          {isComparison && (
-            <>
-              <span>/</span>
-              <span className="text-[#E11D48] font-semibold">3D Tour vs 360 vs Video</span>
-            </>
-          )}
-          {isGaussian && (
-            <>
-              <span>/</span>
-              <span className="text-[#E11D48] font-semibold">What is Gaussian Splatting</span>
-            </>
-          )}
-          {isCost && (
-            <>
-              <span>/</span>
-              <span className="text-[#E11D48] font-semibold">Cost &amp; Timeline</span>
-            </>
-          )}
-        </nav>
+  if (isComparison) {
+    return <ComparisonGuidePage onNavigate={onNavigate} />;
+  }
 
-        {isComparison ? (
-          /* Guide 1: 3D Tour vs 360 Tour vs Video */
-          <article className="max-w-4xl mx-auto">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
-              Buyer Guide · Decision Framework
-            </span>
-            <h1 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight text-[#09090B] font-display">
-              3D Virtual Tour vs 360° Tour vs Video: Which Should You Choose?
-            </h1>
-            <div className="mt-4 flex items-center gap-4 text-xs font-mono text-zinc-500 border-b border-[#E4E4E7] pb-6">
-              <span>By RCAAS Engineering Team</span>
-              <span>·</span>
-              <span>Updated October 2026</span>
-              <span>·</span>
-              <span>6 min read</span>
-            </div>
+  if (isGaussian) {
+    return <GaussianGuidePage onNavigate={onNavigate} />;
+  }
 
-            <div className="mt-8 space-y-6 text-sm text-[#52525B] leading-relaxed">
-              <p className="text-base font-medium text-zinc-800">
-                When deciding how to showcase a physical property in Nepal, stakeholders often debate between three mediums: conventional 2D promotional video, 360° panoramic photos, and modern interactive 3D virtual tours. Here is our direct, objective engineering breakdown.
-              </p>
+  // Drafts still render at their URL for review; they are kept off the hub and out of search.
+  if (isCost) {
+    return <CostGuidePage onNavigate={onNavigate} />;
+  }
 
-              <h2 className="text-xl font-bold text-[#09090B] font-display pt-4">
-                Comparison Matrix
-              </h2>
-              
-              <div className="overflow-x-auto rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] p-4 shadow-sm">
-                <table className="w-full text-left text-xs">
-                  <thead>
-                    <tr className="border-b border-[#E4E4E7] text-zinc-600 font-mono">
-                      <th className="pb-2 font-medium">Dimension</th>
-                      <th className="pb-2 font-medium">Conventional Video</th>
-                      <th className="pb-2 font-medium">360° Bubble Photos</th>
-                      <th className="pb-2 font-medium text-[#BE123C]">RCAAS 3D Tour</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-zinc-200 font-mono text-[11px]">
-                    <tr>
-                      <td className="py-2.5 font-sans font-medium text-zinc-900">Viewer Autonomy</td>
-                      <td className="py-2.5 text-zinc-600">Zero (Passive watching)</td>
-                      <td className="py-2.5 text-zinc-600">Fixed node hop-only</td>
-                      <td className="py-2.5 font-bold text-[#BE123C]">100% Free continuous walk</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-sans font-medium text-zinc-900">Spatial Depth Understanding</td>
-                      <td className="py-2.5 text-zinc-600">Low (Curated angles)</td>
-                      <td className="py-2.5 text-zinc-600">Distorted fisheye spheres</td>
-                      <td className="py-2.5 font-bold text-[#BE123C]">Photorealistic 3D Depth</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-sans font-medium text-zinc-900">Engineering Measurement</td>
-                      <td className="py-2.5 text-zinc-600">None</td>
-                      <td className="py-2.5 text-zinc-600">Unreliable approximations</td>
-                      <td className="py-2.5 font-bold text-[#BE123C]">±5mm SLAM LiDAR precision</td>
-                    </tr>
-                    <tr>
-                      <td className="py-2.5 font-sans font-medium text-zinc-900">Average Engagement Duration</td>
-                      <td className="py-2.5 text-zinc-600">30–45 seconds</td>
-                      <td className="py-2.5 text-zinc-600">1–2 minutes</td>
-                      <td className="py-2.5 font-bold text-[#BE123C]">4.5+ minutes</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-xl font-bold text-[#09090B] font-display pt-4">
-                The Verdict for Different Goals
-              </h2>
-              <ul className="space-y-3 list-disc pl-5">
-                <li>
-                  <strong className="text-zinc-900">Choose Promotional Video</strong> for fast-paced Instagram and TikTok broadcast ads where immediate emotional music and pacing drive awareness.
-                </li>
-                <li>
-                  <strong className="text-zinc-900">Choose 3D Virtual Tours</strong> when your viewer is at the evaluation stage (booking a high-value hotel suite, choosing an engineering college, or buying a home) and wants to inspect the space thoroughly.
-                </li>
-              </ul>
-            </div>
-          </article>
-        ) : isGaussian ? (
-          /* Guide 2: What is Gaussian Splatting */
-          <article className="max-w-4xl mx-auto">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
-              Technology Deep Dive
-            </span>
-            <h1 className="mt-2 text-3xl sm:text-5xl font-bold tracking-tight text-[#09090B] font-display">
-              What is 3D Gaussian Splatting and Why Does It Matter for Real Places?
-            </h1>
-            <div className="mt-4 flex items-center gap-4 text-xs font-mono text-zinc-500 border-b border-[#E4E4E7] pb-6">
-              <span>By Geomatics &amp; 3D Graphics Lab</span>
-              <span>·</span>
-              <span>Updated October 2026</span>
-              <span>·</span>
-              <span>5 min read</span>
-            </div>
-
-            <div className="mt-8 space-y-6 text-sm text-[#52525B] leading-relaxed">
-              <p className="text-base font-medium text-zinc-800">
-                3D Gaussian Splatting (3DGS) represents the biggest breakthrough in neural reality capture since photogrammetry. Unlike mesh models that simplify intricate details, Gaussian Splats preserve specular reflections, brass glints, fine Newari stone carvings, and delicate greenery.
-              </p>
-
-              <h2 className="text-xl font-bold text-[#09090B] font-display pt-4">
-                How It Works in Practice
-              </h2>
-              <p>
-                Instead of forcing surfaces into flat geometric triangles with stretched textures, 3DGS optimizes millions of semi-transparent, anisotropic 3D Gaussians (ellipsoids) in space. Each splat carries position, covariance (orientation and shape), color, and opacity.
-              </p>
-
-              <div className="rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] p-6 shadow-sm">
-                <h3 className="text-base font-bold text-[#09090B] font-display mb-2">
-                  The RCAAS Hybrid Approach
-                </h3>
-                <p className="text-xs text-[#52525B] leading-relaxed">
-                  We combine SLAM LiDAR laser scanning with drone photogrammetry and Gaussian Splatting. The LiDAR provides an unshakeable millimeter-accurate geometric skeleton (±5mm), ensuring scale integrity, while the Gaussian radiance fields render lifelike materials, ambient bounce lighting, and true-to-life atmosphere.
-                </p>
-              </div>
-            </div>
-          </article>
-        ) : (
-          /* Knowledge Hub List View */
-          <div>
-            <div className="max-w-3xl mb-14">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
-                Knowledge &amp; Frameworks
-              </span>
-              <h1 className="mt-2 text-4xl sm:text-6xl font-bold tracking-tight text-[#09090B] font-display">
-                Guides to 3D Tours, VR &amp; Digital Twins
-              </h1>
-              <p className="mt-4 text-base sm:text-lg text-[#52525B] leading-relaxed">
-                Objective buyer frameworks, technology deep dives, and practical execution guides for hospitality, education, and heritage leaders.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-              <SpotlightCard
-                onClick={() => onNavigate('/learn/3d-virtual-tour-vs-360-tour-vs-video/')}
-                className="p-7 cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-mono text-zinc-500 uppercase">Framework · 6 min</span>
-                  <h2 className="mt-2 text-xl font-bold text-[#09090B] font-display hover:text-[#E11D48] transition-colors">
-                    3D Virtual Tour vs 360° Tour vs Video
-                  </h2>
-                  <p className="mt-3 text-xs text-[#52525B] leading-relaxed">
-                    Which medium drives actual bookings, applications, and engagement? A side-by-side comparison.
-                  </p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-xs font-semibold text-[#09090B]">
-                  Read framework &rarr;
-                </div>
-              </SpotlightCard>
-
-              <SpotlightCard
-                onClick={() => onNavigate('/learn/what-is-gaussian-splatting/')}
-                className="p-7 cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-mono text-zinc-500 uppercase">Technology · 5 min</span>
-                  <h2 className="mt-2 text-xl font-bold text-[#09090B] font-display hover:text-[#E11D48] transition-colors">
-                    What is 3D Gaussian Splatting?
-                  </h2>
-                  <p className="mt-3 text-xs text-[#52525B] leading-relaxed">
-                    Why neural radiance fields deliver unmatched photorealism for historical monuments and luxury interiors.
-                  </p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-xs font-semibold text-[#09090B]">
-                  Read deep dive &rarr;
-                </div>
-              </SpotlightCard>
-
-              <SpotlightCard
-                onClick={() => onNavigate('/learn/planning-a-3d-experience-cost-and-timeline/')}
-                className="p-7 cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <span className="text-xs font-mono text-zinc-500 uppercase">Planning · 4 min</span>
-                  <h2 className="mt-2 text-xl font-bold text-[#09090B] font-display hover:text-[#E11D48] transition-colors">
-                    Planning a 3D Project: Cost &amp; Timeline
-                  </h2>
-                  <p className="mt-3 text-xs text-[#52525B] leading-relaxed">
-                    How scanning square metres, multi-floor layouts, and deliverables influence overall project turnaround.
-                  </p>
-                </div>
-                <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-xs font-semibold text-[#09090B]">
-                  Read guide &rarr;
-                </div>
-              </SpotlightCard>
-            </div>
-          </div>
-        )}
-
-      </div>
-    </div>
-  );
+  return <LearnHub onNavigate={onNavigate} />;
 };

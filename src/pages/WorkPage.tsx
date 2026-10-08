@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath, CaseStudy } from '../types';
 import { CASE_STUDIES, SITE_METADATA } from '../data/siteData';
+import { findCaseStudy } from '../content/work';
+import { CaseStudyPage } from './CaseStudyPage';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 
@@ -36,6 +38,12 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
       document.body.style.overflow = 'unset';
     };
   }, [activeModalProject]);
+
+  // /work/{slug}/ renders the story-led case study template (src/content/work).
+  const caseStudy = findCaseStudy(currentPath.split(/[?#]/)[0].replace(/^\/work\//, '').replace(/\/$/, ''));
+  if (caseStudy) {
+    return <CaseStudyPage key={caseStudy.slug} study={caseStudy} onNavigate={onNavigate} />;
+  }
 
   const handleOpen3DModal = (project: CaseStudy) => {
     setActiveModalProject(project);
@@ -79,102 +87,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
           )}
         </nav>
 
-        {currentProject ? (
-          /* ==============================================================
-             SINGLE CASE STUDY VIEW
-             ============================================================== */
-          <div>
-            {/* Hero Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl mb-12"
-            >
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-zinc-200/80 text-xs font-mono text-zinc-700 uppercase tracking-wider mb-4">
-                <span className="text-[#E11D48] font-semibold">{currentProject.tag}</span>
-                <span className="text-zinc-300">·</span>
-                <span>{currentProject.location}</span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display">
-                {currentProject.title}
-              </h1>
-              <p className="mt-4 text-base sm:text-lg text-[#52525B] leading-relaxed">
-                {currentProject.line}
-              </p>
-            </motion.div>
-
-            {/* Interactive 3D Viewer */}
-            <div className="mb-14 rounded-xl overflow-hidden border border-zinc-200 shadow-xs">
-              <div className="bg-zinc-100 px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between text-xs font-mono text-zinc-600">
-                <span>Interactive 3D Walkthrough Model</span>
-                <span className="text-[#E11D48] font-semibold">Gaussian Splats · Zero App Required</span>
-              </div>
-              <SplatEmbed initialDemo={currentProject.embedDemoId} autoStart={true} />
-            </div>
-
-            {/* Case Study Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">01 · Goal</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Client Objective</h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#52525B]">
-                  {currentProject.clientGoal}
-                </p>
-              </SpotlightCard>
-
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">02 · What We Created</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Delivered Assets</h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#52525B]">
-                  {currentProject.whatWeCreated || 'Interactive 3D experience and measured survey records.'}
-                </p>
-                <div className="mt-4 space-y-1.5 text-xs text-zinc-700">
-                  {currentProject.deliverables.map((d) => (
-                    <div key={d} className="flex items-center gap-1.5">
-                      <span className="text-[#E11D48] font-semibold">✓</span>
-                      <span>{d}</span>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
-
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">03 · Technology</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Equipment &amp; Tools</h3>
-                <div className="mt-3 space-y-1.5 text-xs text-[#52525B] font-mono">
-                  {currentProject.techUsed.map((t) => (
-                    <div key={t} className="flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
-            </div>
-
-            {/* Navigation and CTA */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-8">
-              <button
-                onClick={() => onNavigate('/work/')}
-                className="text-xs font-mono text-zinc-600 hover:text-zinc-950 flex items-center gap-1.5 transition-colors"
-              >
-                <span>&larr;</span>
-                <span>Back to all work</span>
-              </button>
-
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => onNavigate('/contact/')}
-                  className="loro-btn-primary px-5 py-2.5 text-xs uppercase tracking-wider"
-                >
-                  Plan your experience &rarr;
-                </button>
-              </div>
-            </div>
-
-          </div>
-        ) : (
+        {(
           /* ==============================================================
              OUR WORK SHOWCASE HUB (/work/) - SPEC §6.7
              ============================================================== */
@@ -246,7 +159,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
 
                       {/* Top Badges */}
                       <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono">
-                        <span className="px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-white border border-white/20">
+                        <span className="px-2.5 py-1 rounded bg-black/75 text-white border border-white/20">
                           {project.tag}
                         </span>
                         <span className="px-2 py-0.5 rounded bg-[#E11D48]/90 text-white text-[10px] uppercase font-semibold">
@@ -273,7 +186,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                           </button>
                           <button
                             onClick={() => onNavigate(`/work/${project.slug}/` as RoutePath)}
-                            className="px-3 py-2 text-xs uppercase tracking-wider font-mono text-zinc-300 hover:text-white bg-white/10 hover:bg-white/20 rounded backdrop-blur-sm transition-colors cursor-pointer"
+                            className="px-3 py-2 text-xs uppercase tracking-wider font-mono text-zinc-300 hover:text-white bg-white/30 hover:bg-white/30 rounded transition-colors cursor-pointer"
                           >
                             Case story
                           </button>

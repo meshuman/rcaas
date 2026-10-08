@@ -5,6 +5,7 @@ import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
+import { FaqList } from '../components/GuideParts';
 
 interface ImmersiveExperiencesPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -266,7 +267,6 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
   onNavigate,
   onOpenPlanner,
 }) => {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activePillarTab, setActivePillarTab] = useState<string>('3d-tours');
 
   const scrollToAnchor = (id: string) => {
@@ -512,7 +512,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                         <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono text-white/90">
-                          <span className="bg-black/60 px-2 py-0.5 rounded backdrop-blur-xs">
+                          <span className="bg-black/75 px-2 py-0.5 rounded">
                             RCAAS SPATIAL CAPTURE
                           </span>
                           <span className="text-emerald-400">● 60 FPS</span>
@@ -914,39 +914,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
             </p>
           </div>
 
-          <div className="divide-y divide-[#E4E4E7] rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div key={idx} className="p-5 sm:p-6">
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(isOpen ? null : idx)}
-                    className="w-full flex items-center justify-between text-left gap-4 focus:outline-none"
-                    aria-expanded={isOpen}
-                  >
-                    <span className="text-sm sm:text-base font-bold text-[#09090B] font-display">
-                      {faq.q}
-                    </span>
-                    <span className="text-zinc-400 font-mono text-base shrink-0">
-                      {isOpen ? '−' : '+'}
-                    </span>
-                  </button>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="mt-3 text-xs sm:text-sm text-zinc-600 font-sans leading-relaxed pr-8"
-                    >
-                      {faq.a}
-                    </motion.div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          <FaqList items={FAQS.map((faq) => ({ question: faq.q, answer: faq.a }))} />
         </section>
 
         {/* 10. Call to action Band */}

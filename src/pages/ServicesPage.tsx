@@ -418,12 +418,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                         {/* Top Overlay Badges */}
                         <div className="absolute top-4 inset-x-4 flex items-center justify-between">
                           {/* Circular Top Icon */}
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-white/20 shadow-md">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/95 border border-white/20 shadow-md">
                             {pillar.iconSvg}
                           </div>
 
                           {/* Index Counter Badge */}
-                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 font-mono text-[11px] text-white font-bold">
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 border border-white/20 font-mono text-[11px] text-white font-bold">
                             <span>PILLAR</span>
                             <span className="text-[#E11D48]">{pillar.number}</span>
                           </div>
@@ -434,7 +434,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                           <span className="text-xs font-mono font-semibold text-rose-300">
                             {pillar.promise}
                           </span>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/20 backdrop-blur-md text-white">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/30 text-white">
                             {pillar.badge}
                           </span>
                         </div>

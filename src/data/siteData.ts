@@ -1,4 +1,4 @@
-import { Pillar, Industry, CaseStudy, ToolkitItem, TeamMember, PlaceholderItem } from '../types';
+import { Pillar, Industry, CaseStudy, ToolkitItem, PlaceholderItem } from '../types';
 
 export const SITE_METADATA = {
   legalName: 'RCAAS Technology Pvt. Ltd.',
@@ -9,11 +9,19 @@ export const SITE_METADATA = {
   nameMeaning: 'Reality Capture as a Service',
   location: 'Kathmandu, Nepal',
   address: 'Thapathali, Kathmandu 44600, Nepal',
+  // G06: phone, WhatsApp, email and address are not confirmed yet. While false, the Contact and
+  // Thank-you pages and the contactPoint schema show [[TBI]] placeholders instead of these values.
+  // Once real details are in, set to true so every page reads the same NAP from here.
+  contactConfirmed: false,
+  officeHours: null as string | null,
+  responseTime: null as string | null,
+  mapsUrl: null as string | null,
   phone: '+977 1 4256789',
   whatsapp: '+977 9801234567',
   whatsappUrl: 'https://wa.me/9779801234567?text=Hello%20RCAAS%2C%20I%20would%20like%20to%20discuss%20a%203D%20reality%20capture%20project.',
   email: 'contact@rcaas.tech',
-  foundingYear: '2024',
+  // G09: founding year still to be input.
+  foundingYear: null as string | null,
   boilerplate:
     'RCAAS Technology is a Kathmandu-based reality capture and immersive experience company. Our engineers and game developers capture real places with advanced laser and aerial scanning, then turn them into 3D tours, VR, AR and visual stories that help organisations win customers, engage audiences and preserve what matters.',
 };
@@ -220,67 +228,6 @@ export const TOOLKIT: ToolkitItem[] = [
     category: 'Delivery',
     whatItDoesForYou: 'Instant zero-download web viewer on mobile and laptop, plus standalone VR headset compatibility.',
     examples: ['RCAAS platform, Meta Quest 3, Apple Vision Pro web standards'],
-  },
-];
-
-export const TEAM: TeamMember[] = [
-  {
-    name: 'Gaurav Pandey',
-    discipline: 'Engineering',
-    role: 'Lead Geomatics & Reality Capture Engineer',
-    bio: 'Specialist in SLAM LiDAR surveying, GNSS geodesy, and high-precision spatial point cloud processing.',
-    linkedin: 'https://linkedin.com/in/gaurav-pandey-8ab880328',
-  },
-  {
-    name: 'Suman Baral',
-    discipline: 'Engineering',
-    role: 'Spatial Systems & Reality Capture Specialist',
-    bio: 'Expert in aerial photogrammetry, 3D laser workflows, and cultural heritage documentation across Nepal.',
-    linkedin: 'https://linkedin.com/in/sumanbaral',
-  },
-  {
-    name: 'Prabhat Bhusal',
-    discipline: 'Engineering',
-    role: 'Geodesy & Field Survey Operations',
-    bio: 'Oversees precision geospatial data collection, RTK flight planning, and point-cloud feature extraction.',
-    linkedin: 'https://linkedin.com/in/prabhat-bhusal-302672322',
-  },
-  {
-    name: 'Kabiraj Rokaya',
-    discipline: 'Engineering',
-    role: 'Reality Capture & Photogrammetry Engineer',
-    bio: 'Focuses on multispectral aerial mapping, high-density point cloud registration, and GIS deliverables.',
-    linkedin: 'https://linkedin.com/in/kabiraj-rokaya-14310a163',
-  },
-  {
-    name: 'Interactive Tech & Game Dev Team',
-    discipline: 'Game Development',
-    role: '3D Web & Interactive Experience Engineers',
-    bio: 'Crafts real-time shaders, Gaussian splat rendering pipelines, interactive hotspots, and immersive VR interfaces.',
-    linkedin: 'https://linkedin.com/company/rcaas-technology',
-  },
-];
-
-export const FAQ_ITEMS = [
-  {
-    q: 'How much does a 3D experience cost?',
-    a: 'It depends on the size of the place, what you want to create and where it will be used. Projects range from single-space hospitality suites and school campuses to multi-hectare heritage sites. Tell us your goal and we will send a clear proposal tailored to your requirements.',
-    category: 'Getting started',
-  },
-  {
-    q: 'Do people need an app or a headset?',
-    a: 'No. Our 3D tours open from a single link in any modern browser on a phone, tablet or computer with zero installation. A headset is only needed if you wish to experience the immersive VR mode.',
-    category: 'Your audience',
-  },
-  {
-    q: 'How long does a project take?',
-    a: 'Capturing a site usually takes from a few hours to a day, depending on its physical size. Data processing, 3D reconstruction, and narrative design typically take 3 to 7 working days before final publication.',
-    category: 'Timeline',
-  },
-  {
-    q: 'Who owns the finished experience?',
-    a: 'You own the deliverables and raw data archives. Cloud hosting on the RCAAS platform is included for an initial annual term, and you can keep, embed, or export your files at any point.',
-    category: 'Ownership & Hosting',
   },
 ];
 

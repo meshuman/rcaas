@@ -340,7 +340,8 @@ export const CaptureLidarCursor: React.FC = () => {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden"
+      // Top of the layer scale (see index.css): above the header and modals, never interactive.
+      className="pointer-events-none fixed inset-0 z-[60] overflow-hidden"
       style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.2s ease-out' }}
       aria-hidden="true"
     >

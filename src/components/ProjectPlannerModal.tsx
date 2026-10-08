@@ -81,6 +81,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       'Heritage & Sacred Site',
                       'Real Estate & Villa',
                       'Commercial / Retail',
+                      'Factory & Industrial',
                       'Civil / Infrastructure',
                     ].map((type) => (
                       <button

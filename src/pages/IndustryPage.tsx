@@ -213,6 +213,12 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
           </span>
         </nav>
 
+        {industry.draft && (
+          <div role="note" className="mb-8 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50 px-5 py-3.5 text-xs font-mono text-amber-900 leading-relaxed">
+            Draft · copy written from our confirmed services and awaiting approval. Hidden from search until reviewed.
+          </div>
+        )}
+
         {/* 1. HERO + ANSWER SUMMARY */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-20 sm:mb-24">
           <div className="lg:col-span-7">

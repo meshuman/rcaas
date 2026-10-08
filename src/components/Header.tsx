@@ -199,6 +199,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                     <div className="text-zinc-500 text-[11px]">Sell and design from reality</div>
                   </button>
                   <button
+                    onClick={() => handleNav('/industries/factories/')}
+                    className="w-full rounded-md px-3 py-2 text-left text-xs transition-colors hover:bg-zinc-100"
+                  >
+                    <div className="font-semibold text-ink">Factories</div>
+                    <div className="text-zinc-500 text-[11px]">Plan and maintain your plant from reality</div>
+                  </button>
+                  <button
                     onClick={() => handleNav('/industries/heritage-culture/')}
                     className="w-full rounded-md px-3 py-2 text-left text-xs transition-colors hover:bg-rose-50/60"
                   >
@@ -211,6 +218,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                   >
                     <div className="font-semibold text-ink">Government &amp; Municipalities</div>
                     <div className="text-zinc-500 text-[11px]">City 3D data and public engagement</div>
+                  </button>
+                  <button
+                    onClick={() => handleNav('/industries/non-life-insurance/')}
+                    className="w-full rounded-md px-3 py-2 text-left text-xs transition-colors hover:bg-zinc-100"
+                  >
+                    <div className="font-semibold text-ink">Non-life Insurance</div>
+                    <div className="text-zinc-500 text-[11px]">Measured records for risk and claims</div>
                   </button>
                 </motion.div>
               )}

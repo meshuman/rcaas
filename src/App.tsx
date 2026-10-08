@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RoutePath } from './types';
-import { SITE_METADATA } from './data/siteData';
+import { SITE_METADATA, INDUSTRIES } from './data/siteData';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { ProjectPlannerModal } from './components/ProjectPlannerModal';
@@ -163,7 +163,7 @@ export default function App() {
       metaDesc = industry.metaDescription;
     } else if (currentPath.startsWith('/industries')) {
       title = 'Immersive Experiences by Industry | RCAAS';
-      metaDesc = 'How RCAAS helps hotels, schools, property developers, heritage sites and municipalities in Nepal turn real places into experiences that drive action.';
+      metaDesc = 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities and insurers in Nepal with 3D experiences and data.';
     } else if (isCaseStudy(resolveCaseStudy(currentPath.split(/[?#]/)[0]))) {
       const study = resolveCaseStudy(currentPath.split(/[?#]/)[0]) as CaseStudyContent;
       title = study.titleTag;
@@ -233,7 +233,8 @@ export default function App() {
       (blogRoute?.kind === 'hub' && !BLOG_LAUNCHED) || (blogRoute?.kind === 'post' && !postIsIndexable(blogRoute.post));
     const caseStudyRoute = resolveCaseStudy(pathOnly);
     const isDraftCaseStudy = isCaseStudy(caseStudyRoute) && !isCaseStudyPublished(caseStudyRoute);
-    const robots = isDraftGuide || isDraftLegal || isDraftBlog || isDraftCaseStudy
+    const isDraftIndustry = Boolean(findIndustryContent(pathOnly)?.draft);
+    const robots = isDraftGuide || isDraftLegal || isDraftBlog || isDraftCaseStudy || isDraftIndustry
       ? 'noindex, nofollow'
       : pathOnly.startsWith('/thank-you')
         ? 'noindex, follow'
@@ -682,46 +683,16 @@ export default function App() {
         '@id': 'https://rcaas.tech/industries/#page',
         url: 'https://rcaas.tech/industries/',
         name: 'Immersive Experiences by Industry | RCAAS',
-        description: 'How RCAAS helps hotels, schools, property developers, heritage sites and municipalities in Nepal turn real places into experiences that drive action.',
+        description: 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities and insurers in Nepal with 3D experiences and data.',
         mainEntity: {
           '@type': 'ItemList',
-          itemListElement: [
-            {
-              '@type': 'ListItem',
-              position: 1,
-              name: 'Hospitality & Tourism',
-              url: 'https://rcaas.tech/industries/hospitality-tourism/',
-              description: 'Fill rooms and inspire visits. Let guests and travellers explore before they book or travel.',
-            },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'Education',
-              url: 'https://rcaas.tech/industries/education/',
-              description: 'Let students walk your campus before they apply. Show classrooms, labs and grounds to families near and far.',
-            },
-            {
-              '@type': 'ListItem',
-              position: 3,
-              name: 'Real Estate & Architecture',
-              url: 'https://rcaas.tech/industries/real-estate-architecture/',
-              description: 'Sell, design and renovate from reality. Give buyers a true sense of space and designers accurate measurements.',
-            },
-            {
-              '@type': 'ListItem',
-              position: 4,
-              name: 'Heritage & Culture',
-              url: 'https://rcaas.tech/industries/heritage-culture/',
-              description: 'Preserve heritage and share it with the world. Create a lasting record people everywhere can explore.',
-            },
-            {
-              '@type': 'ListItem',
-              position: 5,
-              name: 'Government & Municipalities',
-              url: 'https://rcaas.tech/industries/government-municipalities/',
-              description: 'Plan better and bring citizens along. Reliable 3D data for planning, and public experiences people understand.',
-            },
-          ],
+          itemListElement: INDUSTRIES.map((industry, idx) => ({
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: industry.title,
+            url: `https://rcaas.tech${industry.link}`,
+            description: `${industry.goalHeadline} ${industry.summary}`,
+          })),
         },
       });
 

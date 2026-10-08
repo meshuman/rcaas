@@ -13,6 +13,8 @@ export type RoutePath =
   | '/industries/real-estate-architecture/'
   | '/industries/heritage-culture/'
   | '/industries/government-municipalities/'
+  | '/industries/factories/'
+  | '/industries/non-life-insurance/'
   | '/work/'
   | '/work/chilancho-stupa-digital-heritage/'
   | '/work/nepathya-school-college-3d-campus-tour/'

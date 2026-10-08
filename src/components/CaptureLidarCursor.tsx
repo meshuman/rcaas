@@ -14,16 +14,15 @@ interface Point3D {
   maxLife: number;
 }
 
-// LiDAR elevation color palette (Authentic scanning gradient with Loro Crimson accent)
+// LiDAR elevation color palette (Greyscale for more subtle 3D point cloud)
 const LIDAR_COLORS = [
-  '#E11D48', // RCAAS / Loro Signature Crimson
-  '#F43F5E', // Rose
-  '#06B6D4', // Cyan
-  '#3B82F6', // Blue
-  '#10B981', // Emerald
-  '#F59E0B', // Amber
-  '#8B5CF6', // Violet
-  '#09090B', // Pitch contrast
+  '#E4E4E7', // Zinc 200
+  '#D4D4D8', // Zinc 300
+  '#A1A1AA', // Zinc 400
+  '#71717A', // Zinc 500
+  '#52525B', // Zinc 600
+  '#3F3F46', // Zinc 700
+  '#27272A', // Zinc 800
 ];
 
 export const CaptureLidarCursor: React.FC = () => {
@@ -204,7 +203,7 @@ export const CaptureLidarCursor: React.FC = () => {
 
         // Draw faint LiDAR range radar ring
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(225, 29, 72, 0.15)'; // Crimson faint ring
+        ctx.strokeStyle = 'rgba(161, 161, 170, 0.25)'; // Grey faint ring
         ctx.lineWidth = 1;
         ctx.setLineDash([2, 4]);
         ctx.arc(cx, cy, 32, 0, Math.PI * 2);
@@ -288,9 +287,9 @@ export const CaptureLidarCursor: React.FC = () => {
           ctx.arc(p.px, p.py, p.size, 0, Math.PI * 2);
           ctx.fill();
 
-          // Subtle glow for crimson signature points
-          if (p.color === '#E11D48') {
-            ctx.shadowColor = '#E11D48';
+          // Subtle glow for prominent grey points
+          if (p.color === '#A1A1AA') {
+            ctx.shadowColor = '#A1A1AA';
             ctx.shadowBlur = 4;
             ctx.beginPath();
             ctx.arc(p.px, p.py, p.size * 0.8, 0, Math.PI * 2);
@@ -302,7 +301,7 @@ export const CaptureLidarCursor: React.FC = () => {
         // Connect cursor center to 3 nearest points with laser scan traces
         for (let k = 0; k < Math.min(3, projectedPoints.length); k++) {
           const pt = projectedPoints[k];
-          ctx.strokeStyle = '#E11D48';
+          ctx.strokeStyle = '#71717A';
           ctx.globalAlpha = 0.25;
           ctx.beginPath();
           ctx.moveTo(cx, cy);
@@ -361,35 +360,40 @@ export const CaptureLidarCursor: React.FC = () => {
       >
         {/* Reticle Container (Centers on cursor point) */}
         <div
-          className={`relative -left-1/2 -top-1/2 flex items-center justify-center transition-transform duration-200 ease-out ${
-            isHovered ? 'scale-110' : isClicking ? 'scale-90' : 'scale-100'
+          className={`relative -left-1/2 -top-1/2 flex items-center justify-center transition-all duration-300 ease-out ${
+            isHovered ? 'scale-125' : isClicking ? 'scale-90' : 'scale-100'
           }`}
-          style={{ width: '44px', height: '44px' }}
+          style={{ width: '64px', height: '64px' }}
         >
+          {/* Target Circle (Visible on hover like a shooting crosshair) */}
+          <div className={`absolute inset-0 rounded-full border-[2px] transition-all duration-300 ease-out ${
+            isHovered ? 'border-accent scale-100 opacity-100' : 'border-zinc-900 scale-125 opacity-0'
+          }`} />
+
           {/* 4-Corner Viewfinder Capture Brackets */}
           <div className="absolute inset-0">
             {/* Top-Left Bracket */}
             <span
-              className={`absolute left-0 top-0 h-2.5 w-2.5 border-l-2 border-t-2 transition-colors duration-150 ${
-                isHovered ? 'border-accent' : 'border-zinc-900'
+              className={`absolute left-0 top-0 h-4 w-4 border-l-[3px] border-t-[3px] transition-all duration-300 ${
+                isHovered ? 'border-accent -translate-x-1 -translate-y-1' : 'border-zinc-900'
               }`}
             />
             {/* Top-Right Bracket */}
             <span
-              className={`absolute right-0 top-0 h-2.5 w-2.5 border-r-2 border-t-2 transition-colors duration-150 ${
-                isHovered ? 'border-accent' : 'border-zinc-900'
+              className={`absolute right-0 top-0 h-4 w-4 border-r-[3px] border-t-[3px] transition-all duration-300 ${
+                isHovered ? 'border-accent translate-x-1 -translate-y-1' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Left Bracket */}
             <span
-              className={`absolute bottom-0 left-0 h-2.5 w-2.5 border-b-2 border-l-2 transition-colors duration-150 ${
-                isHovered ? 'border-accent' : 'border-zinc-900'
+              className={`absolute bottom-0 left-0 h-4 w-4 border-b-[3px] border-l-[3px] transition-all duration-300 ${
+                isHovered ? 'border-accent -translate-x-1 translate-y-1' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Right Bracket */}
             <span
-              className={`absolute bottom-0 right-0 h-2.5 w-2.5 border-b-2 border-r-2 transition-colors duration-150 ${
-                isHovered ? 'border-accent' : 'border-zinc-900'
+              className={`absolute bottom-0 right-0 h-4 w-4 border-b-[3px] border-r-[3px] transition-all duration-300 ${
+                isHovered ? 'border-accent translate-x-1 translate-y-1' : 'border-zinc-900'
               }`}
             />
           </div>
@@ -398,21 +402,21 @@ export const CaptureLidarCursor: React.FC = () => {
           <div className="relative flex items-center justify-center">
             {/* Horizontal Hair */}
             <div
-              className={`h-[1px] w-3 transition-colors duration-150 ${
-                isHovered ? 'bg-accent' : 'bg-zinc-800'
+              className={`h-[2px] transition-all duration-300 ${
+                isHovered ? 'w-10 bg-accent' : 'w-4 bg-zinc-800'
               }`}
             />
             {/* Vertical Hair */}
             <div
-              className={`absolute h-3 w-[1px] transition-colors duration-150 ${
-                isHovered ? 'bg-accent' : 'bg-zinc-800'
+              className={`absolute w-[2px] transition-all duration-300 ${
+                isHovered ? 'h-10 bg-accent' : 'h-4 bg-zinc-800'
               }`}
             />
             {/* Center LiDAR Laser Dot */}
             <div
-              className={`absolute h-1.5 w-1.5 rounded-full transition-transform duration-150 ${
+              className={`absolute h-2 w-2 rounded-full transition-transform duration-300 ${
                 isHovered
-                  ? 'bg-accent scale-125 shadow-[0_0_8px_#E11D48]'
+                  ? 'bg-accent scale-[1.5] shadow-[0_0_12px_#E11D48]'
                   : isClicking
                   ? 'bg-zinc-950 scale-150'
                   : 'bg-accent'

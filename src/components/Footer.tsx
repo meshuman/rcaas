@@ -129,6 +129,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               </li>
               <li>
                 <button
+                  onClick={() => onNavigate('/industries/factories/')}
+                  className="hover:text-ink text-left transition-colors"
+                >
+                  Factories
+                </button>
+              </li>
+              <li>
+                <button
                   onClick={() => onNavigate('/industries/heritage-culture/')}
                   className="text-accent font-medium hover:underline text-left transition-colors"
                 >
@@ -141,6 +149,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   className="hover:text-ink text-left transition-colors"
                 >
                   Government &amp; Municipalities
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/industries/non-life-insurance/')}
+                  className="hover:text-ink text-left transition-colors"
+                >
+                  Non-life Insurance
                 </button>
               </li>
             </ul>

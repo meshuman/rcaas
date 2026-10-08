@@ -7,6 +7,7 @@ import {
   Clapperboard,
   Compass,
   Drone,
+  Factory,
   Glasses,
   GraduationCap,
   Handshake,
@@ -51,7 +52,7 @@ const GROUP_ICONS: Record<string, LucideIcon> = {
   'working-together': Handshake,
 };
 
-const TOPIC_ICONS: LucideIcon[] = [Ruler, ScanLine, Drone, Box, Glasses, Clapperboard, Landmark, Hotel, GraduationCap, MonitorPlay];
+const TOPIC_ICONS: LucideIcon[] = [Ruler, ScanLine, Drone, Box, Glasses, Clapperboard, Landmark, Hotel, GraduationCap, Factory, ShieldCheck, MonitorPlay];
 
 const updatedLabel = new Date(`${FAQ_UPDATED}T00:00:00`).toLocaleDateString('en-GB', {
   day: 'numeric',

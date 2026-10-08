@@ -108,6 +108,16 @@ export const INDUSTRIES: Industry[] = [
     badge: 'Real Estate & Architecture',
   },
   {
+    id: 'factories',
+    slug: 'factories',
+    title: 'Factories',
+    goalHeadline: 'Plan, maintain and show your plant from reality.',
+    whoItsFor: 'Factories, manufacturing plants, warehouses, industrial estates',
+    summary: 'Measured records for layout and maintenance, and tours that show your facility.',
+    link: '/industries/factories/',
+    badge: 'Factories',
+  },
+  {
     id: 'heritage-culture',
     slug: 'heritage-culture',
     title: 'Heritage & Culture',
@@ -127,6 +137,16 @@ export const INDUSTRIES: Industry[] = [
     summary: 'Reliable 3D data for planning, and public experiences people understand.',
     link: '/industries/government-municipalities/',
     badge: 'Government & Municipalities',
+  },
+  {
+    id: 'non-life-insurance',
+    slug: 'non-life-insurance',
+    title: 'Non-life Insurance',
+    goalHeadline: 'See the risk. Document the loss.',
+    whoItsFor: 'Non-life insurers, reinsurers, loss adjusters, risk surveyors',
+    summary: 'Measured 3D records of insured properties for underwriting, claims and loss adjusting.',
+    link: '/industries/non-life-insurance/',
+    badge: 'Non-life Insurance',
   },
 ];
 

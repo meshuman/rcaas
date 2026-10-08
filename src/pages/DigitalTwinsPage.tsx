@@ -347,6 +347,20 @@ const WHO_ITS_FOR = [
     linkHref: '/industries/government-municipalities/' as RoutePath,
     linkText: 'Municipal solutions →',
   },
+  {
+    role: 'Factories & Facility Teams',
+    benefit: 'Measured records of plants and sites for layout, retrofit and maintenance.',
+    detail: 'Plan new lines and equipment against the plant as it really is, not drawings that are out of date.',
+    linkHref: '/industries/factories/' as RoutePath,
+    linkText: 'Factory solutions →',
+  },
+  {
+    role: 'Insurers & Loss Adjusters',
+    benefit: 'Measured 3D records of insured properties before and after a loss.',
+    detail: 'Support underwriting surveys and claims with a site record that several parties can review from a link.',
+    linkHref: '/industries/non-life-insurance/' as RoutePath,
+    linkText: 'Insurance solutions →',
+  },
 ];
 
 const FAQS = [

@@ -18,10 +18,11 @@ export const GOALS: { label: string; types: string[] }[] = [
   { label: 'More bookings or visits', types: ['hospitality', '3d-tour', 'immersive'] },
   { label: 'More applications or enrolments', types: ['education'] },
   { label: 'Sell or lease property', types: ['real-estate'] },
-  { label: 'Design or renovation data', types: ['digital-twin', 'laser-scanning'] },
+  { label: 'Design or renovation data', types: ['digital-twin', 'laser-scanning', 'factories'] },
   { label: 'Mapping or survey', types: ['drone-mapping', 'government'] },
   { label: 'Preserve heritage', types: ['heritage', 'research'] },
   { label: 'Films or storytelling', types: ['storytelling'] },
+  { label: 'Risk surveys or claims records', types: ['insurance'] },
   { label: 'Platform early access', types: ['platform'] },
   { label: 'Partnership', types: ['partnership'] },
   { label: 'Something else / a question', types: ['project', 'question'] },
@@ -39,6 +40,7 @@ const PLACE_TYPES = [
   'Heritage site or museum',
   'Public space or municipality',
   'Office or venue',
+  'Factory or industrial site',
   'Other',
 ];
 

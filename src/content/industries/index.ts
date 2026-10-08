@@ -4,11 +4,13 @@ import { education } from './education';
 import { realEstateArchitecture } from './real-estate-architecture';
 import { heritageCulture } from './heritage-culture';
 import { governmentMunicipalities } from './government-municipalities';
+import { factories } from './factories';
+import { nonLifeInsurance } from './non-life-insurance';
 
 export type { IndustryContent, IndustryItem, IndustryLink, IndustryTrack } from './types';
 
 // Industry pages built from final copy.
-export const INDUSTRY_CONTENT: IndustryContent[] = [hospitalityTourism, education, realEstateArchitecture, heritageCulture, governmentMunicipalities];
+export const INDUSTRY_CONTENT: IndustryContent[] = [hospitalityTourism, education, realEstateArchitecture, factories, heritageCulture, governmentMunicipalities, nonLifeInsurance];
 
 export const findIndustryContent = (path: string) => {
   const match = path.match(/^\/industries\/([a-z0-9-]+)\/?$/);

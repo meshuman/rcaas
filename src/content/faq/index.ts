@@ -35,7 +35,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         question: 'Who do you work with?',
         answer:
-          'Hotels and tourism organisations, schools and colleges, property developers and architects, heritage specialists and museums, and municipalities. In short, anyone who needs people to see, understand or measure a real place.',
+          'Hotels and tourism organisations, schools and colleges, property developers and architects, factories and industrial sites, heritage specialists and museums, municipalities, and non-life insurers. In short, anyone who needs people to see, understand or measure a real place.',
       },
       {
         question: 'Where do you work?',
@@ -167,6 +167,8 @@ export const FAQ_TOPICS: { topic: string; path: RoutePath }[] = [
   { topic: 'Heritage and sacred sites', path: '/industries/heritage-culture/#faq' as RoutePath },
   { topic: 'Hotels', path: '/industries/hospitality-tourism/#faq' as RoutePath },
   { topic: 'Schools and colleges', path: '/industries/education/#faq' as RoutePath },
+  { topic: 'Factories', path: '/industries/factories/#faq' as RoutePath },
+  { topic: 'Non-life insurance', path: '/industries/non-life-insurance/#faq' as RoutePath },
   { topic: 'Our 3D platform', path: '/platform/#faq' as RoutePath },
 ];
 

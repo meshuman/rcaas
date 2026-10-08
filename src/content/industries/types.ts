@@ -32,6 +32,8 @@ export interface IndustryTrack {
 export interface IndustryContent {
   slug: string;
   name: string;
+  // Draft copy awaiting approval: page shows a notice and is marked noindex.
+  draft?: boolean;
   titleTag: string;
   metaDescription: string;
   h1: string;

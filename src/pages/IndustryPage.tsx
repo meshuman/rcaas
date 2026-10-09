@@ -52,7 +52,11 @@ const QuestionStack: React.FC<{ questions: string[] }> = ({ questions }) => {
         ))}
         <button
           type="button"
-          onClick={() => setAnswered((a) => !a)}
+          onClick={() => {
+            // First press ticks the questions, then carries the visitor to the real place that answers them.
+            if (!answered) window.setTimeout(() => document.getElementById('live-example')?.scrollIntoView({ behavior: 'smooth' }), 650);
+            setAnswered((a) => !a);
+          }}
           aria-pressed={answered}
           className={`mt-2 w-full rounded-xl px-4 py-3 text-sm font-semibold transition-colors ${
             answered ? 'bg-emerald-500 text-white' : 'bg-ink text-white hover:bg-zinc-800'

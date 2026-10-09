@@ -6,6 +6,7 @@ import { SpotlightCard } from '../components/SpotlightCard';
 import { ValueChainGraphic } from '../components/ValueChainGraphic';
 import { CurvedArchCarousel } from '../components/CurvedArchCarousel';
 import { OneCaptureMultiUseVisualizer } from '../components/OneCaptureMultiUseVisualizer';
+import { eyebrowClass, pageShellClass } from '../components/ui';
 
 interface ServicesPageProps {
   currentPath: RoutePath;
@@ -41,7 +42,7 @@ const PILLARS_COPY: PillarDetail[] = [
     image: IMAGES.baseraHotel,
     badge: 'Web 3D & VR',
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
         <ellipse cx="12" cy="12" rx="4" ry="9" strokeWidth="1.5" />
         <line x1="3" y1="12" x2="21" y2="12" strokeWidth="1.5" />
@@ -83,7 +84,7 @@ const PILLARS_COPY: PillarDetail[] = [
     image: IMAGES.chilanchoStupa,
     badge: '4K Cinematic',
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth="1.75" />
         <line x1="3" y1="10" x2="21" y2="10" strokeWidth="1.5" />
         <polygon points="10,12 15,14.5 10,17" fill="currentColor" strokeWidth="0" />
@@ -125,7 +126,7 @@ const PILLARS_COPY: PillarDetail[] = [
     image: IMAGES.laserField,
     badge: '±5mm SLAM LiDAR',
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
         <polygon points="12,6 15,12 12,10 9,12" fill="currentColor" strokeWidth="0" />
         <polygon points="12,18 9,12 12,14 15,12" fill="currentColor" opacity="0.4" strokeWidth="0" />
@@ -261,7 +262,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
     : GOALS_MATRIX.filter((g) => g.bestFit.toLowerCase().includes(activeGoalFilter));
 
   return (
-    <div className="py-16 md:py-24 bg-[#FFFFFF] text-[#09090B] relative">
+    <div className={pageShellClass}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb: Home › What we create */}
@@ -278,7 +279,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             type="button"
             onClick={() => onNavigate('/services/')}
             className={`transition-colors ${
-              currentPath === '/services/' ? 'text-[#09090B] font-semibold' : 'hover:text-zinc-900'
+              currentPath === '/services/' ? 'text-ink font-semibold' : 'hover:text-zinc-900'
             }`}
           >
             What we create
@@ -286,7 +287,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           {isImmersive && (
             <>
               <span className="text-zinc-400" aria-hidden="true">›</span>
-              <span className="text-[#E11D48] font-semibold">
+              <span className="text-accent font-semibold">
                 {is3DTours ? '3D Virtual Tours' : 'Immersive Experiences'}
               </span>
             </>
@@ -294,13 +295,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           {isStorytelling && (
             <>
               <span className="text-zinc-400" aria-hidden="true">›</span>
-              <span className="text-[#E11D48] font-semibold">Visual Storytelling</span>
+              <span className="text-accent font-semibold">Visual Storytelling</span>
             </>
           )}
           {isDigitalTwins && (
             <>
               <span className="text-zinc-400" aria-hidden="true">›</span>
-              <span className="text-[#E11D48] font-semibold">
+              <span className="text-accent font-semibold">
                 {isLaserScanning
                   ? '3D Laser Scanning'
                   : isDroneMapping
@@ -317,9 +318,9 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-sm"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-sm"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
             <span>Services Hub · Reality Capture as a Service</span>
           </motion.div>
 
@@ -327,7 +328,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance"
+            className="text-4xl sm:text-6xl font-bold tracking-tight text-ink font-display text-balance"
           >
             What we create
           </motion.h1>
@@ -336,7 +337,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-5 text-base sm:text-lg text-[#52525B] leading-relaxed max-w-3xl text-balance"
+            className="mt-5 text-base sm:text-lg text-muted leading-relaxed max-w-3xl text-balance"
           >
             Every project starts with a real place and a clear goal: more bookings, more applications, a better design, a lasting record. From one visit to your site, we can create three kinds of work. Most clients combine them.
           </motion.p>
@@ -371,10 +372,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         <section id="pillars" className="mb-24 sm:mb-32">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+              <span className={eyebrowClass}>
                 Core Capabilities
               </span>
-              <h2 className="mt-1 text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+              <h2 className="mt-1 text-2xl sm:text-3xl font-bold text-ink font-display">
                 The three pillars
               </h2>
             </div>
@@ -400,7 +401,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                   <SpotlightCard
                     className={`overflow-hidden h-full flex flex-col justify-between border-zinc-200 bg-gradient-to-b from-white via-white to-zinc-50/60 shadow-sm transition-all duration-300 ${
                       isHoveredOrTargeted
-                        ? 'shadow-xl border-zinc-300 ring-1 ring-[#E11D48]/20 -translate-y-1'
+                        ? 'shadow-xl border-zinc-300 ring-1 ring-accent/20 -translate-y-1'
                         : 'hover:shadow-lg hover:border-zinc-300'
                     }`}
                   >
@@ -413,19 +414,19 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                           className="w-full h-full object-cover object-center filter brightness-[0.9] contrast-[1.05] transition-transform duration-700 hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#09090B]/90 via-[#09090B]/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent" />
                         
                         {/* Top Overlay Badges */}
                         <div className="absolute top-4 inset-x-4 flex items-center justify-between">
                           {/* Circular Top Icon */}
-                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/95 backdrop-blur-md border border-white/20 shadow-md">
+                          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/95 border border-white/20 shadow-md">
                             {pillar.iconSvg}
                           </div>
 
                           {/* Index Counter Badge */}
-                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 font-mono text-[11px] text-white font-bold">
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/75 border border-white/20 font-mono text-[11px] text-white font-bold">
                             <span>PILLAR</span>
-                            <span className="text-[#E11D48]">{pillar.number}</span>
+                            <span className="text-accent">{pillar.number}</span>
                           </div>
                         </div>
 
@@ -434,7 +435,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                           <span className="text-xs font-mono font-semibold text-rose-300">
                             {pillar.promise}
                           </span>
-                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/20 backdrop-blur-md text-white">
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/30 text-white">
                             {pillar.badge}
                           </span>
                         </div>
@@ -442,21 +443,21 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
 
                       {/* Card Content Body */}
                       <div className="p-6 sm:p-7">
-                        <h2 className="text-2xl font-bold text-[#09090B] font-display">
+                        <h2 className="text-2xl font-bold text-ink font-display">
                           {pillar.title}
                         </h2>
 
-                        <p className="mt-3 text-sm text-[#52525B] leading-relaxed">
+                        <p className="mt-3 text-sm text-muted leading-relaxed">
                           {pillar.body}
                         </p>
 
                         {/* Helps you callout */}
                         <div className="mt-5 rounded-lg bg-zinc-50 border border-zinc-200/90 p-4">
                           <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500 font-semibold mb-1">
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+                            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                             Helps you
                           </div>
-                          <p className="text-xs text-[#09090B] font-medium leading-relaxed">
+                          <p className="text-xs text-ink font-medium leading-relaxed">
                             {pillar.helpsYou}
                           </p>
                         </div>
@@ -469,12 +470,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                           <ul className="space-y-2.5 text-xs">
                             {pillar.includes.map((inc) => (
                               <li key={inc.label} className="flex items-center gap-2.5">
-                                <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] flex-shrink-0" />
+                                <span className="h-1.5 w-1.5 rounded-full bg-accent flex-shrink-0" />
                                 {inc.isRoute ? (
                                   <button
                                     type="button"
                                     onClick={() => onNavigate(inc.href as RoutePath)}
-                                    className="text-zinc-700 hover:text-[#E11D48] hover:underline font-mono transition-colors text-left"
+                                    className="text-zinc-700 hover:text-accent hover:underline font-mono transition-colors text-left"
                                   >
                                     {inc.label} &rarr;
                                   </button>
@@ -495,7 +496,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                       <button
                         type="button"
                         onClick={() => onNavigate(pillar.exploreLink)}
-                        className="flex items-center justify-between w-full pt-4 text-xs font-semibold text-[#09090B] hover:text-[#E11D48] transition-colors group"
+                        className="flex items-center justify-between w-full pt-4 text-xs font-semibold text-ink hover:text-accent transition-colors group"
                       >
                         <span>{pillar.exploreLabel}</span>
                         <span className="transform group-hover:translate-x-1 transition-transform font-mono text-base">&rarr;</span>
@@ -509,15 +510,15 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </section>
 
         {/* 3. One visit, many uses #one-capture */}
-        <section id="one-capture" className="mb-24 sm:mb-32 rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] p-6 sm:p-12 shadow-sm">
+        <section id="one-capture" className="mb-24 sm:mb-32 rounded-2xl border border-line bg-gradient-to-b from-surface to-white p-6 sm:p-12 shadow-sm">
           <div className="max-w-3xl mb-10">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               The Reality Advantage
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display text-balance">
               One capture, many uses
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
+            <p className="mt-4 text-sm sm:text-base text-muted leading-relaxed text-balance">
               We capture your place once, carefully and accurately. From that single capture we can build a 3D tour for your website, a VR version for events, a film for social media and measured data for your architect. You get more from one visit, and everything stays consistent.
             </p>
           </div>
@@ -536,13 +537,13 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         {/* 4. Which is right for you? #choose */}
         <section id="choose" className="mb-24 sm:mb-32">
           <div className="max-w-3xl mb-8">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Decision Guide
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display text-balance">
               Which is right for you?
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#52525B]">
+            <p className="mt-3 text-sm sm:text-base text-muted">
               Start with your goal. We'll recommend the mix.
             </p>
           </div>
@@ -562,7 +563,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                   key={f.id}
                   type="button"
                   onClick={() => setActiveGoalFilter(f.id)}
-                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-[#E11D48]/30 ${
+                  className={`relative px-3.5 py-1.5 rounded-full text-xs font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-accent/30 ${
                     isActive
                       ? 'text-white font-semibold'
                       : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700'
@@ -571,7 +572,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                   {isActive && (
                     <motion.div
                       layoutId="activeGoalFilterTab"
-                      className="absolute inset-0 bg-[#09090B] rounded-full z-0"
+                      className="absolute inset-0 bg-ink rounded-full z-0"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -581,29 +582,29 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             })}
           </div>
 
-          <div className="overflow-hidden rounded-xl border border-[#E4E4E7] bg-[#FFFFFF] shadow-sm">
+          <div className="overflow-hidden rounded-xl border border-line bg-white shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
-                  <tr className="border-b border-[#E4E4E7] bg-zinc-50/80 text-zinc-600 font-mono text-xs">
+                  <tr className="border-b border-line bg-zinc-50/80 text-zinc-600 font-mono text-xs">
                     <th className="py-3.5 px-5 font-semibold">Your goal</th>
                     <th className="py-3.5 px-5 font-semibold">Best fit</th>
                     <th className="py-3.5 px-5 font-semibold">Example of what you get</th>
                     <th className="py-3.5 px-5 font-semibold text-right">Action</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E4E4E7]">
+                <tbody className="divide-y divide-line">
                   {filteredGoals.map((item) => (
                     <tr
                       key={item.goal}
                       className="hover:bg-zinc-50/60 transition-colors"
                     >
-                      <td className="py-4 px-5 font-semibold text-[#09090B]">
+                      <td className="py-4 px-5 font-semibold text-ink">
                         {item.goal}
                       </td>
                       <td className="py-4 px-5">
-                        <span className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[#BE123C] bg-rose-50/70 px-2.5 py-1 rounded border border-rose-200/60">
-                          <span className="h-1 w-1 rounded-full bg-[#E11D48]" />
+                        <span className="inline-flex items-center gap-1.5 font-mono text-xs font-medium text-accent-strong bg-rose-50/70 px-2.5 py-1 rounded border border-rose-200/60">
+                          <span className="h-1 w-1 rounded-full bg-accent" />
                           {item.bestFit}
                         </span>
                       </td>
@@ -614,7 +615,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                         <button
                           type="button"
                           onClick={() => onNavigate('/contact/')}
-                          className="font-mono text-xs font-semibold text-[#E11D48] hover:underline"
+                          className="font-mono text-xs font-semibold text-accent hover:underline"
                         >
                           Plan this &rarr;
                         </button>
@@ -630,10 +631,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         {/* 5. Ways to start #ways-to-start */}
         <section id="ways-to-start" className="mb-24 sm:mb-32">
           <div className="max-w-3xl mb-10">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Project Starters
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display text-balance">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display text-balance">
               Ways to start
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-zinc-500 font-mono">
@@ -649,12 +650,12 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                 transition={{ duration: 0.25 }}
                 className={`relative flex flex-col justify-between rounded-xl border p-6 sm:p-8 transition-all duration-300 ${
                   pkg.popular
-                    ? 'border-[#E11D48] bg-gradient-to-b from-white to-rose-50/30 shadow-md ring-1 ring-[#E11D48]/30'
-                    : 'border-[#E4E4E7] bg-gradient-to-b from-white to-zinc-50/50 shadow-sm hover:border-zinc-300 hover:shadow-md'
+                    ? 'border-accent bg-gradient-to-b from-white to-rose-50/30 shadow-md ring-1 ring-accent/30'
+                    : 'border-line bg-gradient-to-b from-white to-zinc-50/50 shadow-sm hover:border-zinc-300 hover:shadow-md'
                 }`}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-3 right-6 bg-[#E11D48] text-white text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
+                  <div className="absolute -top-3 right-6 bg-accent text-white text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
                     Most Popular
                   </div>
                 )}
@@ -663,7 +664,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                   {/* Circular Top Icon & Index Counter Badge */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center justify-center w-11 h-11 rounded-full border border-zinc-200 bg-white shadow-sm">
-                      <span className="font-mono text-xs font-bold text-[#E11D48]">
+                      <span className="font-mono text-xs font-bold text-accent">
                         {pkg.number}
                       </span>
                     </div>
@@ -672,11 +673,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-[#09090B] font-display">
+                  <h3 className="text-xl font-bold text-ink font-display">
                     {pkg.name}
                   </h3>
 
-                  <div className="mt-2 text-xs font-mono text-[#BE123C] font-medium">
+                  <div className="mt-2 text-xs font-mono text-accent-strong font-medium">
                     For: {pkg.forWho}
                   </div>
 
@@ -697,7 +698,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                     className={`w-full text-center text-xs font-semibold py-3 px-4 rounded-lg transition-colors ${
                       pkg.popular
                         ? 'loro-btn-primary'
-                        : 'border border-zinc-300 bg-white hover:border-[#E11D48] hover:text-[#E11D48]'
+                        : 'border border-zinc-300 bg-white hover:border-accent hover:text-accent'
                     }`}
                   >
                     Ask for a quote &rarr;
@@ -707,14 +708,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
             ))}
           </div>
 
-          <div className="rounded-xl bg-zinc-50 border border-zinc-200 p-5 text-xs text-[#52525B] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="rounded-xl bg-zinc-50 border border-zinc-200 p-5 text-xs text-muted flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <p>
               <strong className="text-zinc-900 font-semibold">Note:</strong> Every project is quoted to its size and goal. Prices shown are starting points.
             </p>
             <button
               type="button"
               onClick={() => onNavigate('/contact/')}
-              className="text-xs font-semibold text-[#E11D48] hover:underline whitespace-nowrap self-start sm:self-auto"
+              className="text-xs font-semibold text-accent hover:underline whitespace-nowrap self-start sm:self-auto"
             >
               Ask for a quote &rarr;
             </button>
@@ -722,15 +723,15 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </section>
 
         {/* Toolkit reference (§12 Verification) */}
-        <div id="toolkit" className="rounded-xl border border-[#E4E4E7] bg-white p-6 sm:p-8 mb-24 sm:mb-32 shadow-sm">
+        <div id="toolkit" className="rounded-xl border border-line bg-white p-6 sm:p-8 mb-24 sm:mb-32 shadow-sm">
           <div className="max-w-2xl mb-8">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Rigor &amp; Tooling
             </span>
-            <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+            <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-ink font-display">
               Field &amp; Studio Toolkit
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-[#52525B]">
+            <p className="mt-2 text-xs sm:text-sm text-muted">
               Every tool in our kit serves a distinct phase in the reality-capture value chain.
             </p>
           </div>
@@ -738,7 +739,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-[#E4E4E7] text-zinc-500 font-mono">
+                <tr className="border-b border-line text-zinc-500 font-mono">
                   <th className="pb-3 font-medium">Domain / Phase</th>
                   <th className="pb-3 font-medium">What It Does For You</th>
                   <th className="pb-3 font-medium">Representative Tools &amp; Hardware</th>
@@ -747,9 +748,9 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
               <tbody className="divide-y divide-zinc-200 font-mono text-[11px]">
                 {TOOLKIT.map((t) => (
                   <tr key={t.category} className="hover:bg-zinc-50 transition-colors">
-                    <td className="py-3.5 font-bold text-[#09090B]">{t.category}</td>
+                    <td className="py-3.5 font-bold text-ink">{t.category}</td>
                     <td className="py-3.5 text-zinc-600 font-sans">{t.whatItDoesForYou}</td>
-                    <td className="py-3.5 text-[#BE123C]">{t.examples.join(', ')}</td>
+                    <td className="py-3.5 text-accent-strong">{t.examples.join(', ')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -758,15 +759,15 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </div>
 
         {/* 6. Proof with CurvedArchCarousel ("See it in action") */}
-        <section id="proof" className="mb-24 sm:mb-32 rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-white p-6 sm:p-12 shadow-sm">
+        <section id="proof" className="mb-24 sm:mb-32 rounded-2xl border border-line bg-gradient-to-b from-surface to-white p-6 sm:p-12 shadow-sm">
           <div className="max-w-2xl mb-8">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-[#E11D48] font-semibold">
+            <span className={eyebrowClass}>
               Delivered Work
             </span>
-            <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#09090B] font-display text-balance">
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-ink font-display text-balance">
               See it in action
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
+            <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed text-balance">
               Explore projects we've delivered for heritage sites, schools, colleges and hotels.
             </p>
           </div>
@@ -791,18 +792,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
         </section>
 
         {/* 7. CTA band */}
-        <section id="cta-band" className="rounded-2xl border border-[#E4E4E7] bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] p-8 sm:p-14 text-center shadow-md">
+        <section id="cta-band" className="rounded-2xl border border-line bg-gradient-to-b from-surface to-white p-8 sm:p-14 text-center shadow-md">
           <div className="max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-zinc-200 bg-white text-xs font-mono text-zinc-600 mb-5 shadow-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
               <span>Free consultation &amp; custom proposal</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#09090B] font-display text-balance">
+            <h2 className="text-3xl sm:text-4xl font-bold text-ink font-display text-balance">
               Not sure where to start?
             </h2>
 
-            <p className="mt-4 text-sm sm:text-base text-[#52525B] leading-relaxed text-balance">
+            <p className="mt-4 text-sm sm:text-base text-muted leading-relaxed text-balance">
               Tell us about your place and what you want people to do. We'll suggest the right mix and send a clear proposal.
             </p>
 

@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath, CaseStudy } from '../types';
 import { CASE_STUDIES, SITE_METADATA } from '../data/siteData';
+import { findCaseStudy } from '../content/work';
+import { CaseStudyPage } from './CaseStudyPage';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
+import { pageShellClass } from '../components/ui';
 
 interface WorkPageProps {
   currentPath: RoutePath;
@@ -37,6 +40,12 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
     };
   }, [activeModalProject]);
 
+  // /work/{slug}/ renders the story-led case study template (src/content/work).
+  const caseStudy = findCaseStudy(currentPath.split(/[?#]/)[0].replace(/^\/work\//, '').replace(/\/$/, ''));
+  if (caseStudy) {
+    return <CaseStudyPage key={caseStudy.slug} study={caseStudy} onNavigate={onNavigate} />;
+  }
+
   const handleOpen3DModal = (project: CaseStudy) => {
     setActiveModalProject(project);
     // Fire analytical event if telemetry is present
@@ -53,7 +62,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
     : CASE_STUDIES.filter((c) => c.tag === filterTag);
 
   return (
-    <div className="py-16 md:py-24 bg-white text-[#09090B]">
+    <div className={pageShellClass}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb Navigation */}
@@ -74,107 +83,12 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
           {currentProject && (
             <>
               <span className="text-zinc-400">›</span>
-              <span className="text-[#E11D48] font-semibold">{currentProject.title}</span>
+              <span className="text-accent font-semibold">{currentProject.title}</span>
             </>
           )}
         </nav>
 
-        {currentProject ? (
-          /* ==============================================================
-             SINGLE CASE STUDY VIEW
-             ============================================================== */
-          <div>
-            {/* Hero Header */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-3xl mb-12"
-            >
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-zinc-100 border border-zinc-200/80 text-xs font-mono text-zinc-700 uppercase tracking-wider mb-4">
-                <span className="text-[#E11D48] font-semibold">{currentProject.tag}</span>
-                <span className="text-zinc-300">·</span>
-                <span>{currentProject.location}</span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display">
-                {currentProject.title}
-              </h1>
-              <p className="mt-4 text-base sm:text-lg text-[#52525B] leading-relaxed">
-                {currentProject.line}
-              </p>
-            </motion.div>
-
-            {/* Interactive 3D Viewer */}
-            <div className="mb-14 rounded-xl overflow-hidden border border-zinc-200 shadow-xs">
-              <div className="bg-zinc-100 px-4 py-2.5 border-b border-zinc-200 flex items-center justify-between text-xs font-mono text-zinc-600">
-                <span>Interactive 3D Walkthrough Model</span>
-                <span className="text-[#E11D48] font-semibold">Gaussian Splats · Zero App Required</span>
-              </div>
-              <SplatEmbed initialDemo={currentProject.embedDemoId} autoStart={true} />
-            </div>
-
-            {/* Case Study Details Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">01 · Goal</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Client Objective</h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#52525B]">
-                  {currentProject.clientGoal}
-                </p>
-              </SpotlightCard>
-
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">02 · What We Created</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Delivered Assets</h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#52525B]">
-                  {currentProject.whatWeCreated || 'Interactive 3D experience and measured survey records.'}
-                </p>
-                <div className="mt-4 space-y-1.5 text-xs text-zinc-700">
-                  {currentProject.deliverables.map((d) => (
-                    <div key={d} className="flex items-center gap-1.5">
-                      <span className="text-[#E11D48] font-semibold">✓</span>
-                      <span>{d}</span>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
-
-              <SpotlightCard className="p-6">
-                <span className="text-xs font-mono text-[#E11D48] uppercase tracking-wider font-semibold">03 · Technology</span>
-                <h3 className="mt-2 text-base font-bold text-[#09090B] font-display">Equipment &amp; Tools</h3>
-                <div className="mt-3 space-y-1.5 text-xs text-[#52525B] font-mono">
-                  {currentProject.techUsed.map((t) => (
-                    <div key={t} className="flex items-center gap-1.5">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
-                      <span>{t}</span>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
-            </div>
-
-            {/* Navigation and CTA */}
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-zinc-200 pt-8">
-              <button
-                onClick={() => onNavigate('/work/')}
-                className="text-xs font-mono text-zinc-600 hover:text-zinc-950 flex items-center gap-1.5 transition-colors"
-              >
-                <span>&larr;</span>
-                <span>Back to all work</span>
-              </button>
-
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => onNavigate('/contact/')}
-                  className="loro-btn-primary px-5 py-2.5 text-xs uppercase tracking-wider"
-                >
-                  Plan your experience &rarr;
-                </button>
-              </div>
-            </div>
-
-          </div>
-        ) : (
+        {(
           /* ==============================================================
              OUR WORK SHOWCASE HUB (/work/) - SPEC §6.7
              ============================================================== */
@@ -186,13 +100,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-3xl mb-12 sm:mb-14"
             >
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                 Portfolio &amp; Showcase
               </span>
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display">
                 Step inside our work
               </h1>
-              <p className="mt-4 text-base sm:text-xl text-[#52525B] leading-relaxed">
+              <p className="mt-4 text-base sm:text-xl text-muted leading-relaxed">
                 Every project here started with a real place and a clear goal. Open any of them, move around, and see what your audience would see.
               </p>
 
@@ -204,7 +118,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     onClick={() => setFilterTag(tag)}
                     className={`px-3 py-1.5 text-xs font-mono rounded transition-all cursor-pointer ${
                       filterTag === tag
-                        ? 'bg-[#E11D48] text-white font-medium shadow-xs'
+                        ? 'bg-accent text-white font-medium shadow-xs'
                         : 'bg-zinc-100 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200'
                     }`}
                   >
@@ -217,13 +131,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 2. EXPERIENCE SHOWCASE (#showcase) */}
             <section id="showcase" className="mb-20">
               <div className="mb-6">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-1">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-1">
                   Interactive Spatial Models
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display">
                   Explore in 3D
                 </h2>
-                <p className="mt-1 text-xs sm:text-sm text-[#52525B]">
+                <p className="mt-1 text-xs sm:text-sm text-muted">
                   Tap any place to open it. Nothing to install.
                 </p>
               </div>
@@ -246,10 +160,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
 
                       {/* Top Badges */}
                       <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono">
-                        <span className="px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-white border border-white/20">
+                        <span className="px-2.5 py-1 rounded bg-black/75 text-white border border-white/20">
                           {project.tag}
                         </span>
-                        <span className="px-2 py-0.5 rounded bg-[#E11D48]/90 text-white text-[10px] uppercase font-semibold">
+                        <span className="px-2 py-0.5 rounded bg-accent/90 text-white text-[10px] uppercase font-semibold">
                           Explorable 3D
                         </span>
                       </div>
@@ -273,7 +187,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                           </button>
                           <button
                             onClick={() => onNavigate(`/work/${project.slug}/` as RoutePath)}
-                            className="px-3 py-2 text-xs uppercase tracking-wider font-mono text-zinc-300 hover:text-white bg-white/10 hover:bg-white/20 rounded backdrop-blur-sm transition-colors cursor-pointer"
+                            className="px-3 py-2 text-xs uppercase tracking-wider font-mono text-zinc-300 hover:text-white bg-white/30 hover:bg-white/30 rounded transition-colors cursor-pointer"
                           >
                             Case story
                           </button>
@@ -293,10 +207,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 3. THE STORIES BEHIND THEM (#stories) */}
             <section id="stories" className="mb-20 pt-8 border-t border-zinc-200">
               <div className="mb-8">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-1">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-1">
                   Context, Scope &amp; Craft
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display">
                   The stories behind them
                 </h2>
               </div>
@@ -312,22 +226,22 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     <div>
                       {/* Tag & Location */}
                       <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-3">
-                        <span className="text-[#E11D48] font-semibold">{project.tag}</span>
+                        <span className="text-accent font-semibold">{project.tag}</span>
                         <span>{project.location}</span>
                       </div>
 
                       {/* Project Title */}
-                      <h3 className="text-xl font-bold text-[#09090B] font-display group-hover:text-[#E11D48] transition-colors">
+                      <h3 className="text-xl font-bold text-ink font-display group-hover:text-accent transition-colors">
                         {project.title}
                       </h3>
 
                       {/* Goal */}
-                      <div className="mt-3 text-xs leading-relaxed text-[#52525B]">
+                      <div className="mt-3 text-xs leading-relaxed text-muted">
                         <span className="font-semibold text-zinc-700">Goal:</span> {project.clientGoal}
                       </div>
 
                       {/* What we created */}
-                      <div className="mt-2 text-xs leading-relaxed text-[#52525B]">
+                      <div className="mt-2 text-xs leading-relaxed text-muted">
                         <span className="font-semibold text-zinc-700">What we created:</span> {project.whatWeCreated || 'Interactive 3D tour model.'}
                       </div>
                       
@@ -336,7 +250,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
 
                     {/* Link */}
                     <div className="mt-6 pt-4 border-t border-zinc-200/80 flex items-center justify-between text-xs font-medium text-zinc-700">
-                      <span className="text-[#E11D48] font-semibold group-hover:underline">
+                      <span className="text-accent font-semibold group-hover:underline">
                         Read the story →
                       </span>
                       <span className="text-zinc-400 group-hover:translate-x-0.5 transition-transform">
@@ -371,13 +285,13 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
             {/* 6. CTA BAND */}
             <section className="rounded-xl border border-zinc-200 bg-zinc-50/70 p-8 sm:p-12 shadow-xs">
               <div className="max-w-2xl">
-                <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold block mb-2">
+                <span className="text-xs font-mono uppercase tracking-wider text-accent font-semibold block mb-2">
                   Initiate a Capture
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-[#09090B] font-display tracking-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-ink font-display tracking-tight">
                   Your place could be next
                 </h2>
-                <p className="mt-3 text-sm sm:text-base text-[#52525B] leading-relaxed">
+                <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed">
                   Tell us about your place and what you want people to do. We'll show you what's possible and send a clear proposal.
                 </p>
                 <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -426,7 +340,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
               {/* Modal Header */}
               <div className="px-5 py-3.5 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/90 text-white">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-pulse" />
+                  <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
                   <span className="font-bold text-sm sm:text-base font-display">{activeModalProject.title}</span>
                   <span className="text-xs font-mono text-zinc-400 hidden sm:inline">· {activeModalProject.location}</span>
                 </div>
@@ -456,7 +370,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                     setActiveModalProject(null);
                     onNavigate(`/work/${slug}/` as RoutePath);
                   }}
-                  className="text-[#E11D48] hover:text-rose-400 font-semibold"
+                  className="text-accent hover:text-rose-400 font-semibold"
                 >
                   View full case study →
                 </button>

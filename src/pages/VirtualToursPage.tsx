@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
+import { FaqList } from '../components/GuideParts';
+import { buttonClass, eyebrowClass } from '../components/ui';
 
 interface VirtualToursPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -194,7 +196,6 @@ const FAQS: FaqItem[] = [
 
 export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, onOpenPlanner }) => {
   const [activeSector, setActiveSector] = useState<string>('hospitality');
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [selectedScene, setSelectedScene] = useState<'basera' | 'chilancho'>('basera');
 
   const selectedSectorData = SECTOR_USE_CASES.find((s) => s.id === activeSector) || SECTOR_USE_CASES[0];
@@ -207,7 +208,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
   };
 
   return (
-    <div className="py-14 sm:py-20 md:py-24 bg-[#FFFFFF] text-[#09090B] relative font-['Comfortaa',ui-sans-serif,system-ui,sans-serif]">
+    <div className="py-14 sm:py-20 md:py-24 bg-white text-ink relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* 1. BREADCRUMB NAVIGATION */}
@@ -236,7 +237,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             Immersive Experiences
           </button>
           <span className="text-zinc-400" aria-hidden="true">›</span>
-          <span className="text-[#E11D48] font-semibold" aria-current="page">
+          <span className="text-accent font-semibold" aria-current="page">
             3D Virtual Tours
           </span>
         </nav>
@@ -248,9 +249,9 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-6 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-6 shadow-xs"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span className="font-semibold text-zinc-900">3D Virtual Tours</span>
               <span className="text-zinc-400">·</span>
               <span>Capability</span>
@@ -260,9 +261,9 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#09090B] font-display text-balance mb-6 leading-[1.12]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display text-balance mb-6 leading-[1.12]"
             >
-              3D virtual tours that let people <span className="text-[#E11D48]">explore before they visit.</span>
+              3D virtual tours that let people <span className="text-accent">explore before they visit.</span>
             </motion.h1>
 
             <motion.p
@@ -284,7 +285,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/contact/')}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'md')}
               >
                 <span>Plan your 3D tour</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -293,9 +294,9 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => scrollToAnchor('live-tour')}
-                className="inline-flex items-center justify-center px-5 py-3.5 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs active:scale-[0.98]"
+                className={buttonClass('secondary', 'md')}
               >
-                <svg className="w-4 h-4 text-[#E11D48] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-accent mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -304,13 +305,13 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             </motion.div>
 
             {/* Trust highlights */}
-            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-[#E4E4E7] text-xs font-mono text-zinc-600">
+            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-line text-xs font-mono text-zinc-600">
               <div className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 <span>Zero app install</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 <span>Photorealistic 6DoF movement</span>
               </div>
               <div className="flex items-center gap-2">
@@ -322,7 +323,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
 
           {/* Hero Visual Card */}
           <div className="lg:col-span-5">
-            <div className="relative rounded-2xl overflow-hidden border border-[#E4E4E7] bg-[#FAFAFA] p-3 shadow-lg group">
+            <div className="relative rounded-2xl overflow-hidden border border-line bg-surface p-3 shadow-lg group">
               <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-zinc-900">
                 <img
                   src={IMAGES.tourInterface}
@@ -331,19 +332,19 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md border border-[#E4E4E7] px-3 py-1 rounded-md text-xs font-mono text-zinc-900 flex items-center gap-2 shadow-xs">
-                  <span className="h-2 w-2 rounded-full bg-[#E11D48] animate-ping" />
+                <div className="absolute top-4 left-4 bg-white/90 border border-line px-3 py-1 rounded-md text-xs font-mono text-zinc-900 flex items-center gap-2 shadow-xs">
+                  <span className="h-2 w-2 rounded-full bg-accent animate-ping" />
                   <span>Real-Scale 3D Walkthrough</span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md border border-[#E4E4E7] p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                <div className="absolute bottom-4 left-4 right-4 bg-white/95 border border-line p-3.5 rounded-xl flex items-center justify-between shadow-sm">
                   <div>
                     <p className="text-xs font-semibold text-zinc-900 font-display">Continuous Free Exploration</p>
                     <p className="text-[11px] text-zinc-500 font-mono">Mobile, tablet & desktop ready</p>
                   </div>
                   <button
                     onClick={() => scrollToAnchor('live-tour')}
-                    className="px-3 py-1.5 bg-[#E11D48] hover:bg-[#BE123C] text-white rounded-md text-xs font-medium transition-colors"
+                    className="px-3 py-1.5 bg-accent hover:bg-accent-strong text-white rounded-md text-xs font-medium transition-colors"
                   >
                     Launch Demo
                   </button>
@@ -356,12 +357,12 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 2. KEY FACTS GRID */}
         <section className="mb-20 sm:mb-24">
           <div className="mb-8">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">At a Glance</span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#09090B] font-display mt-1">Key delivery facts</h2>
+            <span className={eyebrowClass}>At a Glance</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">Key delivery facts</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">What you get</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Hosted 3D tour & shareable link</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -369,7 +370,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Works on</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Any modern web browser</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -377,7 +378,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Time on site</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">A few hours to one day</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -385,7 +386,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Ready in</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">3 to 7 working days</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -393,7 +394,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Pricing basis</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Project-based transparent quotes</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -401,7 +402,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Where</span>
               <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Across Nepal & abroad</h3>
               <p className="text-xs text-zinc-600 leading-relaxed">
@@ -415,11 +416,11 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         <section id="live-tour" className="mb-20 sm:mb-28 scroll-mt-20">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-3 shadow-xs">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-3 shadow-xs">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                 <span>Live tour · #live-tour</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display">
                 Move through it yourself
               </h2>
               <p className="text-zinc-600 text-sm sm:text-base mt-2 max-w-2xl">
@@ -428,13 +429,13 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             </div>
 
             {/* Scene Selector Switcher */}
-            <div className="flex items-center gap-2 p-1 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] self-start md:self-auto">
+            <div className="flex items-center gap-2 p-1 rounded-lg border border-line bg-surface self-start md:self-auto">
               <button
                 type="button"
                 onClick={() => setSelectedScene('basera')}
                 className={`px-4 py-2 rounded-md text-xs font-medium transition-all ${
                   selectedScene === 'basera'
-                    ? 'bg-[#E11D48] text-white shadow-xs'
+                    ? 'bg-accent text-white shadow-xs'
                     : 'text-zinc-600 hover:text-zinc-900'
                 }`}
               >
@@ -445,7 +446,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 onClick={() => setSelectedScene('chilancho')}
                 className={`px-4 py-2 rounded-md text-xs font-medium transition-all ${
                   selectedScene === 'chilancho'
-                    ? 'bg-[#E11D48] text-white shadow-xs'
+                    ? 'bg-accent text-white shadow-xs'
                     : 'text-zinc-600 hover:text-zinc-900'
                 }`}
               >
@@ -455,11 +456,11 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           </div>
 
           {/* Interactive SplatEmbed Viewer */}
-          <div className="rounded-2xl overflow-hidden border border-[#E4E4E7] bg-[#09090B] shadow-xl">
+          <div className="rounded-2xl overflow-hidden border border-line bg-ink shadow-xl">
             <SplatEmbed key={selectedScene} initialDemo={selectedScene} />
           </div>
 
-          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 bg-[#FAFAFA] border border-[#E4E4E7] p-4 rounded-xl">
+          <div className="mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-600 bg-surface border border-line p-4 rounded-xl">
             <div className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
               <span>Full continuous 6DoF walkthrough · Real spatial capture from Nepal</span>
@@ -468,7 +469,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={onOpenPlanner}
-                className="text-[#E11D48] font-semibold hover:underline"
+                className="text-accent font-semibold hover:underline"
               >
                 Calculate quote for your site →
               </button>
@@ -479,8 +480,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 4. WHY A 3D TOUR (COMPARISON TABLE) */}
         <section className="mb-20 sm:mb-28">
           <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">The Spatial Advantage</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>The Spatial Advantage</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               More than photos, more than 360°
             </h2>
             <p className="text-zinc-600 text-sm sm:text-base mt-3 leading-relaxed">
@@ -489,24 +490,24 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           </div>
 
           {/* Comparison Matrix Table */}
-          <div className="overflow-x-auto rounded-xl border border-[#E4E4E7] bg-white shadow-xs">
+          <div className="overflow-x-auto rounded-xl border border-line bg-white shadow-xs">
             <table className="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr className="border-b border-[#E4E4E7] bg-[#FAFAFA]">
+                <tr className="border-b border-line bg-surface">
                   <th className="p-4 sm:p-5 font-semibold text-zinc-500 w-1/4">Comparison</th>
                   <th className="p-4 sm:p-5 font-semibold text-zinc-700 w-1/4">Photos & video</th>
                   <th className="p-4 sm:p-5 font-semibold text-zinc-700 w-1/4">360° photo tour</th>
-                  <th className="p-4 sm:p-5 font-bold text-[#E11D48] bg-[#FFF1F2] w-1/4 border-l border-[#FECDD3]">
+                  <th className="p-4 sm:p-5 font-bold text-accent bg-accent-tint w-1/4 border-l border-accent-line">
                     3D virtual tour (RCAAS)
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E4E4E7] text-zinc-700">
+              <tbody className="divide-y divide-line text-zinc-700">
                 <tr className="hover:bg-zinc-50/50 transition-colors">
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">How people explore</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Watch what you show them</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Look around from fixed points</td>
-                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-accent-tint/60 border-l border-accent-line">
                     Move freely through the space
                   </td>
                 </tr>
@@ -514,7 +515,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">Sense of size and layout</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Limited (distorted by lenses)</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Partial (fish-eye sphere bubbles)</td>
-                  <td className="p-4 sm:p-5 font-bold text-[#BE123C] bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-accent-strong bg-accent-tint/60 border-l border-accent-line">
                     Close to being there
                   </td>
                 </tr>
@@ -522,7 +523,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">Best at</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Mood, emotion, social media</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Quick, low-cost overviews</td>
-                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-accent-tint/60 border-l border-accent-line">
                     Helping people decide with confidence
                   </td>
                 </tr>
@@ -530,7 +531,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">Freedom of movement</td>
                   <td className="p-4 sm:p-5 text-zinc-500">None (static sequence)</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Click to jump fixed nodes</td>
-                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-accent-tint/60 border-l border-accent-line">
                     Continuous 6DoF walkthrough
                   </td>
                 </tr>
@@ -538,7 +539,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">Measurement capability</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Not possible</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Inaccurate or unavailable</td>
-                  <td className="p-4 sm:p-5 font-bold text-emerald-700 bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-emerald-700 bg-accent-tint/60 border-l border-accent-line">
                     Accurate laser scale verification
                   </td>
                 </tr>
@@ -546,7 +547,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <td className="p-4 sm:p-5 font-semibold text-zinc-900">Secondary uses</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Photo gallery & video reels</td>
                   <td className="p-4 sm:p-5 text-zinc-500">Virtual tour only</td>
-                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-[#FFF1F2]/60 border-l border-[#FECDD3]">
+                  <td className="p-4 sm:p-5 font-bold text-zinc-900 bg-accent-tint/60 border-l border-accent-line">
                     VR headsets, fly-through films & CAD data
                   </td>
                 </tr>
@@ -554,13 +555,13 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             </table>
           </div>
 
-          <div className="mt-5 flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA]">
+          <div className="mt-5 flex flex-col md:flex-row md:items-center justify-between gap-4 p-5 rounded-xl border border-line bg-surface">
             <p className="text-xs sm:text-sm text-zinc-600">
               <span className="font-semibold text-zinc-900">Note:</span> The best results often combine them. From one capture we can also produce fly-through films and social clips. See{' '}
               <button
                 type="button"
                 onClick={() => onNavigate('/services/visual-storytelling/')}
-                className="text-[#E11D48] font-semibold hover:underline"
+                className="text-accent font-semibold hover:underline"
               >
                 Visual Storytelling
               </button>
@@ -571,7 +572,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/learn/3d-virtual-tour-vs-360-tour-vs-video/')}
-                className="text-zinc-700 hover:text-[#E11D48] transition-colors flex items-center gap-1.5"
+                className="text-zinc-700 hover:text-accent transition-colors flex items-center gap-1.5"
               >
                 <span>Read the full comparison</span>
                 <span>→</span>
@@ -583,11 +584,11 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 5. INTERACTIVE FEATURES SIMULATION COMPONENT */}
         <section className="mb-20 sm:mb-28">
           <div className="max-w-3xl mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-[#FAFAFA] text-xs font-mono text-zinc-700 mb-3 shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-surface text-xs font-mono text-zinc-700 mb-3 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span>Interactive Features Simulator</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display">
               Try the built-in tour features
             </h2>
             <p className="text-zinc-600 text-sm sm:text-base mt-2">
@@ -602,8 +603,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 6. WHAT YOU RECEIVE */}
         <section className="mb-20 sm:mb-28">
           <div className="max-w-2xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Deliverables</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>Deliverables</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               What you receive
             </h2>
             <p className="text-zinc-600 text-sm sm:text-base mt-2">
@@ -615,11 +616,11 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             {DELIVERABLES.map((item) => (
               <SpotlightCard
                 key={item.id}
-                className="p-6 rounded-xl border border-[#E4E4E7] bg-white hover:border-zinc-300 transition-colors shadow-xs flex flex-col justify-between"
+                className="p-6 rounded-xl border border-line bg-white hover:border-zinc-300 transition-colors shadow-xs flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono text-[#E11D48] font-bold px-2 py-0.5 rounded bg-[#FFF1F2] border border-[#FECDD3]">
+                    <span className="text-xs font-mono text-accent font-bold px-2 py-0.5 rounded bg-accent-tint border border-accent-line">
                       {item.number}
                     </span>
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
@@ -631,10 +632,10 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   <p className="text-xs text-zinc-600 leading-relaxed mb-6">{item.description}</p>
                 </div>
 
-                <div className="pt-4 border-t border-[#E4E4E7] space-y-2">
+                <div className="pt-4 border-t border-line space-y-2">
                   {item.features.map((feat, i) => (
                     <div key={i} className="flex items-start gap-2 text-xs text-zinc-600">
-                      <svg className="w-3.5 h-3.5 text-[#E11D48] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{feat}</span>
@@ -649,8 +650,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 7. WHO IT HELPS (#use-cases) */}
         <section id="use-cases" className="mb-20 sm:mb-28 scroll-mt-20">
           <div className="max-w-3xl mb-10">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Sectors</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>Sectors</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               Built for spaces where people need to see before they commit
             </h2>
             <p className="text-zinc-600 text-sm sm:text-base mt-2">
@@ -667,8 +668,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 onClick={() => setActiveSector(sector.id)}
                 className={`px-5 py-2.5 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   activeSector === sector.id
-                    ? 'bg-[#E11D48] text-white shadow-xs'
-                    : 'bg-[#FAFAFA] text-zinc-700 hover:bg-zinc-100 border border-[#E4E4E7]'
+                    ? 'bg-accent text-white shadow-xs'
+                    : 'bg-surface text-zinc-700 hover:bg-zinc-100 border border-line'
                 }`}
               >
                 {sector.name}
@@ -677,10 +678,10 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           </div>
 
           {/* Active Sector Card */}
-          <div className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-6 sm:p-8 shadow-xs">
+          <div className="rounded-2xl border border-line bg-surface p-6 sm:p-8 shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-7">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white border border-[#E4E4E7] text-[#E11D48] text-xs font-mono font-semibold mb-4">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-white border border-line text-accent text-xs font-mono font-semibold mb-4">
                   <span>{selectedSectorData.tag}</span>
                 </div>
 
@@ -689,24 +690,24 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 </h3>
 
                 <div className="space-y-3 mb-6">
-                  <div className="p-3.5 rounded-lg bg-white border border-[#E4E4E7]">
+                  <div className="p-3.5 rounded-lg bg-white border border-line">
                     <p className="text-xs font-semibold text-rose-700 mb-1">The Challenge:</p>
                     <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{selectedSectorData.challenge}</p>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-white border border-[#E4E4E7]">
+                  <div className="p-3.5 rounded-lg bg-white border border-line">
                     <p className="text-xs font-semibold text-indigo-700 mb-1">Our 3D Solution:</p>
                     <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{selectedSectorData.solution}</p>
                   </div>
 
-                  <div className="p-3.5 rounded-lg bg-white border border-[#E4E4E7]">
+                  <div className="p-3.5 rounded-lg bg-white border border-line">
                     <p className="text-xs font-semibold text-emerald-700 mb-1">Concrete Outcome:</p>
                     <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">{selectedSectorData.outcome}</p>
                   </div>
                 </div>
 
                 {selectedSectorData.sampleClient && (
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-[#E4E4E7]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-line">
                     <div className="text-xs font-mono text-zinc-600">
                       <span className="text-zinc-900 font-semibold">Real client:</span> {selectedSectorData.sampleClient}
                     </div>
@@ -715,7 +716,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                       <button
                         type="button"
                         onClick={() => onNavigate(selectedSectorData.casePath!)}
-                        className="text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] flex items-center gap-1 transition-colors self-start sm:self-auto font-mono"
+                        className="text-xs font-semibold text-accent hover:text-accent-strong flex items-center gap-1 transition-colors self-start sm:self-auto font-mono"
                       >
                         <span>View case study</span>
                         <span>→</span>
@@ -727,14 +728,14 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
 
               {/* Sector image */}
               <div className="lg:col-span-5">
-                <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-[#E4E4E7] group shadow-xs">
+                <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-line group shadow-xs">
                   <img
                     src={selectedSectorData.image}
                     alt={selectedSectorData.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-xs font-medium text-white bg-black/60 backdrop-blur-md p-2.5 rounded-lg border border-white/10 font-mono">
+                  <div className="absolute bottom-3 left-3 right-3 text-xs font-medium text-white bg-black/75 p-2.5 rounded-lg border border-white/10 font-mono">
                     {selectedSectorData.sampleClient || selectedSectorData.name}
                   </div>
                 </div>
@@ -746,8 +747,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 8. HOW WE MAKE IT (#process) */}
         <section id="process" className="mb-20 sm:mb-28 scroll-mt-20">
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Workflow</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>Workflow</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               From site visit to live tour in four straightforward steps
             </h2>
             <p className="text-zinc-600 text-sm sm:text-base mt-2">
@@ -756,9 +757,9 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-white shadow-xs flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-white shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-9 h-9 rounded-lg bg-[#FFF1F2] border border-[#FECDD3] flex items-center justify-center text-[#E11D48] font-bold text-sm mb-4 font-mono">
+                <div className="w-9 h-9 rounded-lg bg-accent-tint border border-accent-line flex items-center justify-center text-accent font-bold text-sm mb-4 font-mono">
                   01
                 </div>
                 <h3 className="text-base font-bold text-zinc-900 font-display mb-2">Preparation & briefing</h3>
@@ -766,15 +767,15 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   We discuss your commercial goals, identify the hero spaces and views to highlight, and schedule the scan during your quietest operational hours.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+              <div className="mt-6 pt-4 border-t border-line text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 <span>Pre-capture checklist</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-white shadow-xs flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-white shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-9 h-9 rounded-lg bg-[#FFF1F2] border border-[#FECDD3] flex items-center justify-center text-[#E11D48] font-bold text-sm mb-4 font-mono">
+                <div className="w-9 h-9 rounded-lg bg-accent-tint border border-accent-line flex items-center justify-center text-accent font-bold text-sm mb-4 font-mono">
                   02
                 </div>
                 <h3 className="text-base font-bold text-zinc-900 font-display mb-2">On-site reality capture</h3>
@@ -782,15 +783,15 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   Our engineers capture the premises with handheld mobile SLAM LiDAR and drone aerial photography. Takes between 2 hours and 1 day with zero guest disruption.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-line text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 <span>Zero guest interruption</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-white shadow-xs flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-white shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-9 h-9 rounded-lg bg-[#FFF1F2] border border-[#FECDD3] flex items-center justify-center text-[#E11D48] font-bold text-sm mb-4 font-mono">
+                <div className="w-9 h-9 rounded-lg bg-accent-tint border border-accent-line flex items-center justify-center text-accent font-bold text-sm mb-4 font-mono">
                   03
                 </div>
                 <h3 className="text-base font-bold text-zinc-900 font-display mb-2">3D reconstruction & enrich</h3>
@@ -798,15 +799,15 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   We reconstruct the continuous space into photorealistic 3D using Gaussian splatting, calibrate lighting, configure interactive hotspots, floor plans and links.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-line text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
                 <span>Private preview review</span>
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-white shadow-xs flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-white shadow-xs flex flex-col justify-between">
               <div>
-                <div className="w-9 h-9 rounded-lg bg-[#FFF1F2] border border-[#FECDD3] flex items-center justify-center text-[#E11D48] font-bold text-sm mb-4 font-mono">
+                <div className="w-9 h-9 rounded-lg bg-accent-tint border border-accent-line flex items-center justify-center text-accent font-bold text-sm mb-4 font-mono">
                   04
                 </div>
                 <h3 className="text-base font-bold text-zinc-900 font-display mb-2">Delivery, embed & launch</h3>
@@ -814,7 +815,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                   You receive your final hosted link, responsive iframe snippet, QR code assets, and our technical team assists your web team in going live.
                 </p>
               </div>
-              <div className="mt-6 pt-4 border-t border-[#E4E4E7] text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
+              <div className="mt-6 pt-4 border-t border-line text-[11px] font-mono text-zinc-500 flex items-center gap-1.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
                 <span>Integration guidance</span>
               </div>
@@ -825,8 +826,8 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         {/* 9. FREQUENTLY ASKED QUESTIONS (#faq) */}
         <section id="faq" className="mb-20 sm:mb-28 scroll-mt-20">
           <div className="max-w-3xl mx-auto mb-10 text-center">
-            <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">Answers</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+            <span className={eyebrowClass}>Answers</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
               Frequently asked questions
             </h2>
             <p className="text-zinc-600 text-sm mt-2">
@@ -834,54 +835,15 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-3">
-            {FAQS.map((faq, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl border border-[#E4E4E7] bg-white overflow-hidden shadow-xs"
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full p-5 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                >
-                  <span className="text-sm sm:text-base font-semibold text-zinc-900 font-display">{faq.question}</span>
-                  <div
-                    className={`w-6 h-6 rounded bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center text-zinc-500 shrink-0 transition-transform ${
-                      openFaqIndex === idx ? 'rotate-180 text-[#E11D48]' : ''
-                    }`}
-                  >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </div>
-                </button>
-
-                <AnimatePresence>
-                  {openFaqIndex === idx && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="p-5 pt-0 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-[#E4E4E7]">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
+          <FaqList items={FAQS} />
         </section>
 
         {/* 10. RELATED CAPABILITIES & COMBINATIONS */}
         <section className="mb-20 sm:mb-28">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-[#E11D48] font-semibold">One Capture, Multiple Media</span>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#09090B] font-display mt-1">
+              <span className={eyebrowClass}>One Capture, Multiple Media</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink font-display mt-1">
                 Combine with related capabilities
               </h2>
             </div>
@@ -891,9 +853,9 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono text-[#E11D48] font-semibold uppercase">Media & Reach</span>
+                <span className="text-xs font-mono text-accent font-semibold uppercase">Media & Reach</span>
                 <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Visual Storytelling</h3>
                 <p className="text-xs text-zinc-600 leading-relaxed mb-6">
                   Turn your 3D capture into cinematic fly-through films, social media reels, and guided narrative walkthroughs with voiceover.
@@ -902,16 +864,16 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/services/visual-storytelling/')}
-                className="text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] flex items-center gap-1 transition-colors self-start font-mono"
+                className="text-xs font-semibold text-accent hover:text-accent-strong flex items-center gap-1 transition-colors self-start font-mono"
               >
                 <span>Explore Visual Storytelling</span>
                 <span>→</span>
               </button>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono text-[#E11D48] font-semibold uppercase">Presence & Events</span>
+                <span className="text-xs font-mono text-accent font-semibold uppercase">Presence & Events</span>
                 <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">VR Headset Experiences</h3>
                 <p className="text-xs text-zinc-600 leading-relaxed mb-6">
                   Put visitors inside your space using VR headsets at international trade fairs, education expos, and hotel sales suites.
@@ -920,16 +882,16 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/services/immersive-experiences/')}
-                className="text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] flex items-center gap-1 transition-colors self-start font-mono"
+                className="text-xs font-semibold text-accent hover:text-accent-strong flex items-center gap-1 transition-colors self-start font-mono"
               >
                 <span>Explore VR Experiences</span>
                 <span>→</span>
               </button>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] hover:border-zinc-300 transition-colors flex flex-col justify-between">
+            <div className="p-6 rounded-xl border border-line bg-surface hover:border-zinc-300 transition-colors flex flex-col justify-between">
               <div>
-                <span className="text-xs font-mono text-[#E11D48] font-semibold uppercase">Survey & Engineering</span>
+                <span className="text-xs font-mono text-accent font-semibold uppercase">Survey & Engineering</span>
                 <h3 className="text-base font-bold text-zinc-900 font-display mt-1 mb-2">Digital Twins & Survey</h3>
                 <p className="text-xs text-zinc-600 leading-relaxed mb-6">
                   Extract measured CAD drawings, BIM models, and point clouds for renovation, architecture, and structural heritage conservation.
@@ -938,7 +900,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/services/digital-twins/')}
-                className="text-xs font-semibold text-[#E11D48] hover:text-[#BE123C] flex items-center gap-1 transition-colors self-start font-mono"
+                className="text-xs font-semibold text-accent hover:text-accent-strong flex items-center gap-1 transition-colors self-start font-mono"
               >
                 <span>Explore Digital Twins</span>
                 <span>→</span>
@@ -948,14 +910,14 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
         </section>
 
         {/* 11. CALL TO ACTION BAND */}
-        <section className="rounded-2xl border border-[#E4E4E7] bg-[#FAFAFA] p-8 sm:p-12 text-center relative overflow-hidden">
+        <section className="rounded-2xl border border-line bg-surface p-8 sm:p-12 text-center relative overflow-hidden">
           <div className="max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-[#E4E4E7] bg-white text-xs font-mono text-zinc-700 mb-6 shadow-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-line bg-white text-xs font-mono text-zinc-700 mb-6 shadow-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
               <span>Let People Step Inside</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#09090B] font-display mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink font-display mb-4">
               Ready to let people explore your place?
             </h2>
 
@@ -967,7 +929,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               <button
                 type="button"
                 onClick={() => onNavigate('/contact/')}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-lg bg-[#E11D48] text-white font-medium text-sm hover:bg-[#BE123C] transition-colors shadow-sm active:scale-[0.98]"
+                className={buttonClass('primary', 'lg', 'w-full sm:w-auto')}
               >
                 <span>Plan your 3D tour</span>
                 <span className="ml-2 font-mono" aria-hidden="true">→</span>
@@ -977,7 +939,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
                 href={`https://wa.me/${SITE_METADATA.phone.replace(/[^0-9]/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg border border-[#E4E4E7] bg-white text-zinc-900 font-medium text-sm hover:bg-zinc-50 hover:border-zinc-300 transition-colors shadow-xs active:scale-[0.98]"
+                className={buttonClass('secondary', 'lg', 'w-full sm:w-auto')}
               >
                 <svg className="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />

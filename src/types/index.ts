@@ -13,6 +13,8 @@ export type RoutePath =
   | '/industries/real-estate-architecture/'
   | '/industries/heritage-culture/'
   | '/industries/government-municipalities/'
+  | '/industries/factories/'
+  | '/industries/non-life-insurance/'
   | '/work/'
   | '/work/chilancho-stupa-digital-heritage/'
   | '/work/nepathya-school-college-3d-campus-tour/'
@@ -28,7 +30,9 @@ export type RoutePath =
   | '/faq/'
   | '/contact/'
   | '/privacy/'
-  | '/terms/';
+  | '/terms/'
+  | '/thank-you/'
+  | '/blog/';
 
 export interface Pillar {
   id: string;
@@ -74,14 +78,6 @@ export interface ToolkitItem {
   category: string;
   whatItDoesForYou: string;
   examples: string[];
-}
-
-export interface TeamMember {
-  name: string;
-  discipline: 'Engineering' | 'Game Development';
-  role: string;
-  bio: string;
-  linkedin: string;
 }
 
 export interface PlaceholderItem {

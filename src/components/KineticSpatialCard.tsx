@@ -167,7 +167,7 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
         transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
         transition: isHovered ? 'transform 0.1s ease-out' : 'transform 0.5s ease-out',
       }}
-      className={`group relative overflow-hidden rounded-xl border border-[#E4E4E7] bg-white shadow-sm hover:shadow-xl transition-shadow cursor-pointer ${className}`}
+      className={`group relative overflow-hidden rounded-xl border border-line bg-white shadow-sm hover:shadow-xl transition-shadow cursor-pointer ${className}`}
     >
       {/* 1. Kinetic Motion Visual Container */}
       <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-zinc-950">
@@ -204,12 +204,12 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
 
         {/* Top Badges */}
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-          <span className="rounded px-2.5 py-1 text-[11px] font-mono font-medium bg-white/90 text-zinc-900 shadow-sm backdrop-blur-md border border-white/40">
+          <span className="rounded px-2.5 py-1 text-[11px] font-mono font-medium bg-white/90 text-zinc-900 shadow-sm border border-white/40">
             {tag}
           </span>
 
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 border border-white/20 text-[10px] font-mono text-zinc-200 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48] animate-pulse" />
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/70 border border-white/20 text-[10px] font-mono text-zinc-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
             <span>3D FLYTHROUGH</span>
           </div>
         </div>
@@ -217,7 +217,7 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
         {/* Bottom Floating Telemetry Indicator on Image */}
         <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono text-zinc-300 pointer-events-none">
           <div className="flex items-center gap-2">
-            <span className="text-[#FB7185] font-semibold">{location}</span>
+            <span className="text-accent-soft font-semibold">{location}</span>
           </div>
           <div className="text-[10px] text-zinc-400 bg-black/60 px-2 py-0.5 rounded border border-white/10">
             POS: {(mousePos.x * 20).toFixed(1)}m, {(mousePos.y * 10).toFixed(1)}m
@@ -229,10 +229,10 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
       <div className="p-6">
         <div className="flex items-center justify-between text-xs font-mono text-zinc-500 mb-1">
           <span>{badge || 'CASE STUDY'}</span>
-          <span className="group-hover:text-[#E11D48] transition-colors">EXPLORE 3D &rarr;</span>
+          <span className="group-hover:text-accent transition-colors">EXPLORE 3D &rarr;</span>
         </div>
 
-        <h3 className="text-xl font-bold text-zinc-950 font-display group-hover:text-[#E11D48] transition-colors">
+        <h3 className="text-xl font-bold text-zinc-950 font-display group-hover:text-accent transition-colors">
           {title}
         </h3>
 
@@ -241,12 +241,12 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
         </p>
 
         {/* Bottom Interactive CTA Strip */}
-        <div className="mt-5 flex items-center justify-between pt-4 border-t border-[#E4E4E7] text-xs font-semibold text-zinc-900">
+        <div className="mt-5 flex items-center justify-between pt-4 border-t border-line text-xs font-semibold text-zinc-900">
           <span className="flex items-center gap-1.5 text-zinc-700">
             <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
             <span>Step inside experience</span>
           </span>
-          <span className="group-hover:translate-x-1.5 transition-transform text-[#E11D48] font-mono">
+          <span className="group-hover:translate-x-1.5 transition-transform text-accent font-mono">
             Enter Tour &rarr;
           </span>
         </div>

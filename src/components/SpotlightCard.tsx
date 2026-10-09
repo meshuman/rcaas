@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 interface SpotlightCardProps {
   children: React.ReactNode;
   className?: string;
+  contentClassName?: string;
   onClick?: () => void;
   spotlightColor?: string;
 }
@@ -10,6 +11,7 @@ interface SpotlightCardProps {
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = '',
+  contentClassName = '',
   onClick,
   spotlightColor = 'rgba(225, 29, 72, 0.04)',
 }) => {
@@ -33,7 +35,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative overflow-hidden rounded-lg border border-[#E4E4E7] bg-[#FFFFFF] shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#A1A1AA] hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] active:scale-[0.99] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-line bg-white shadow-[0_1px_3px_0_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-line-strong hover:shadow-[0_8px_24px_-6px_rgba(0,0,0,0.08)] active:scale-[0.99] ${className}`}
     >
       {/* Subtle cursor spotlight glow */}
       <div
@@ -43,7 +45,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
           background: `radial-gradient(400px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
         }}
       />
-      <div className="relative z-10">{children}</div>
+      <div className={`relative z-10 ${contentClassName}`}>{children}</div>
     </div>
   );
 };

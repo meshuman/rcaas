@@ -24,20 +24,20 @@ export const InfiniteMarquee: React.FC<InfiniteMarqueeProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`relative w-full overflow-hidden border-y border-[#E4E4E7] bg-[#FAFAFA] py-3.5 ${className}`}>
+    <div className={`relative w-full overflow-hidden border-y border-line bg-surface py-3.5 ${className}`}>
       
       {/* Side Vignettes */}
-      <div className="pointer-events-none absolute left-0 inset-y-0 w-24 bg-gradient-to-r from-[#FAFAFA] to-transparent z-10" />
-      <div className="pointer-events-none absolute right-0 inset-y-0 w-24 bg-gradient-to-l from-[#FAFAFA] to-transparent z-10" />
+      <div className="pointer-events-none absolute left-0 inset-y-0 w-24 bg-gradient-to-r from-surface to-transparent z-10" />
+      <div className="pointer-events-none absolute right-0 inset-y-0 w-24 bg-gradient-to-l from-surface to-transparent z-10" />
 
       {/* Infinite Scrolling Track */}
       <div className="animate-loro-marquee flex items-center">
         {[...items, ...items, ...items].map((text, idx) => (
           <div key={idx} className="flex items-center gap-5 px-5 shrink-0">
-            <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-[#52525B] hover:text-[#09090B] transition-colors">
+            <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-muted hover:text-ink transition-colors">
               {text}
             </span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#E11D48]" />
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           </div>
         ))}
       </div>

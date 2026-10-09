@@ -4,6 +4,20 @@
   --font-sans: 'Comfortaa', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: 'Comfortaa', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Colour tokens: use these names (bg-accent, text-ink, border-line…) instead of hex values. */
+  --color-accent: #E11D48;
+  --color-accent-strong: #BE123C;
+  --color-accent-soft: #FB7185;
+  --color-accent-tint: #FFF1F2;
+  --color-accent-line: #FECDD3;
+  --color-ink: #09090B;
+  --color-muted: #52525B;
+  --color-line: #E4E4E7;
+  --color-line-hover: #D4D4D8;
+  --color-line-strong: #A1A1AA;
+  --color-surface: #FAFAFA;
+  --color-surface-sunken: #F4F4F5;
 }
 
 @layer base {
@@ -29,6 +43,9 @@
     --accent-loro: #E11D48;
     --accent-loro-glow: rgba(225, 29, 72, 0.15);
   }
+
+  /* Layer scale (z-index): content 0–20 · sticky sub-nav 30 · fixed mobile bar 40 ·
+     header and modals 50 · custom cursor 60. Avoid one-off values outside this scale. */
 
   *, ::before, ::after {
     box-sizing: border-box;
@@ -64,7 +81,7 @@
 /* Loro Labs Technical Editorial Surface Styles (Refined for Pristine White & Light Mode) */
 .loro-card {
   background-color: #FFFFFF;
-  border: 1px solid #E4E4E7;
+  border: 1px solid var(--color-line);
   border-radius: 0.5rem; /* rounded-lg (sharp & defined) */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -72,7 +89,7 @@
 
 .loro-card:hover {
   background-color: #FFFFFF;
-  border-color: #A1A1AA;
+  border-color: var(--color-line-strong);
   box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
 }
 
@@ -83,13 +100,13 @@
 
 .loro-tag-red {
   background-color: rgba(225, 29, 72, 0.08);
-  color: #BE123C;
+  color: var(--color-accent-strong);
   border: 1px solid rgba(225, 29, 72, 0.2);
 }
 
 /* Tactile Micro-Interactions */
 .loro-btn-primary {
-  background-color: #E11D48;
+  background-color: var(--color-accent);
   color: #FFFFFF;
   border-radius: 0.5rem;
   font-weight: 600;
@@ -98,7 +115,7 @@
 }
 
 .loro-btn-primary:hover {
-  background-color: #BE123C;
+  background-color: var(--color-accent-strong);
   box-shadow: 0 4px 16px -2px rgba(225, 29, 72, 0.45);
 }
 
@@ -108,16 +125,16 @@
 
 .loro-btn-secondary {
   background-color: #FFFFFF;
-  color: #09090B;
-  border: 1px solid #E4E4E7;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line);
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .loro-btn-secondary:hover {
-  background-color: #F4F4F5;
-  border-color: #D4D4D8;
+  background-color: var(--color-surface-sunken);
+  border-color: var(--color-line-hover);
 }
 
 .loro-btn-secondary:active {
@@ -160,11 +177,11 @@
   background: #FAFAFA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
+  background: var(--color-line-hover);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A1A1AA;
+  background: var(--color-line-strong);
 }
 
 /* Custom Capture & 3D LiDAR Cursor Support */

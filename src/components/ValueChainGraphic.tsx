@@ -22,7 +22,7 @@ const STEPS: ValueChainStep[] = [
     badge: 'Reality Intake',
     specs: ['Sub-centimetre terrestrial LiDAR', 'Centimetre-grade RTK aerial passes', 'Zero disruption to ongoing operations'],
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="3" strokeWidth="2" />
         <path strokeWidth="1.75" strokeLinecap="round" d="M3 12h3m12 0h3M12 3v3m0 12v3" />
         <circle cx="12" cy="12" r="8" strokeWidth="1.2" strokeDasharray="2 2" />
@@ -38,7 +38,7 @@ const STEPS: ValueChainStep[] = [
     badge: 'Geometry & Light',
     specs: ['200,000 pts/sec unified point clouds', 'Cleaned geometry ready for CAD/BIM', '3D Gaussian radiance reconstruction'],
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
       </svg>
     ),
@@ -52,7 +52,7 @@ const STEPS: ValueChainStep[] = [
     badge: 'Narrative Layer',
     specs: ['Scripted cinematic camera paths', 'Spatial hotspot waypoint architecture', 'Bilingual English & Nepali narration'],
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
       </svg>
     ),
@@ -66,7 +66,7 @@ const STEPS: ValueChainStep[] = [
     badge: 'Omni-channel',
     specs: ['Zero-app instant browser streaming', 'Standalone Meta Quest & Vision Pro builds', 'Standardized DWG, DXF & IFC formats'],
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
       </svg>
     ),
@@ -80,7 +80,7 @@ const STEPS: ValueChainStep[] = [
     badge: 'Results',
     specs: ['Real-time visitor heatmaps & dwell time', 'Direct booking and lead conversion tracking', 'Permanent digital archive certification'],
     iconSvg: (
-      <svg className="w-5 h-5 text-[#E11D48]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
@@ -102,7 +102,7 @@ export const ValueChainGraphic: React.FC = () => {
         >
           {/* Animated Laser Pulse Beam */}
           <motion.div
-            className="w-48 h-full bg-gradient-to-r from-transparent via-[#E11D48] to-transparent"
+            className="w-48 h-full bg-gradient-to-r from-transparent via-accent to-transparent"
             animate={{
               x: ['-100%', '600%'],
             }}
@@ -126,9 +126,9 @@ export const ValueChainGraphic: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className={`group relative text-left flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E11D48] ${
+                className={`group relative text-left flex flex-col justify-between rounded-xl border p-4 sm:p-5 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                   isSelected
-                    ? 'border-[#E11D48] bg-white shadow-lg shadow-rose-950/5 ring-1 ring-[#E11D48]/30 -translate-y-1'
+                    ? 'border-accent bg-white shadow-lg shadow-rose-950/5 ring-1 ring-accent/30 -translate-y-1'
                     : 'border-zinc-200 bg-gradient-to-b from-white to-zinc-50/60 shadow-sm hover:border-zinc-300 hover:bg-white hover:-translate-y-0.5'
                 }`}
               >
@@ -136,7 +136,7 @@ export const ValueChainGraphic: React.FC = () => {
                 {isSelected && (
                   <motion.div
                     layoutId="activeValueChainPip"
-                    className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-1 bg-[#E11D48] rounded-full shadow-sm"
+                    className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-1 bg-accent rounded-full shadow-sm"
                   />
                 )}
 
@@ -147,7 +147,7 @@ export const ValueChainGraphic: React.FC = () => {
                     <div
                       className={`flex items-center justify-center w-10 h-10 rounded-full border transition-all ${
                         isSelected
-                          ? 'border-[#E11D48] bg-rose-50/70 shadow-sm'
+                          ? 'border-accent bg-rose-50/70 shadow-sm'
                           : 'border-zinc-200 bg-white group-hover:border-zinc-300 shadow-sm'
                       }`}
                     >
@@ -156,14 +156,14 @@ export const ValueChainGraphic: React.FC = () => {
 
                     {/* Step number & Phase tag */}
                     <div className="flex items-center gap-1.5 font-mono text-[11px]">
-                      <span className={isSelected ? 'text-[#E11D48] font-bold' : 'text-zinc-500 font-semibold'}>
+                      <span className={isSelected ? 'text-accent font-bold' : 'text-zinc-500 font-semibold'}>
                         {step.number}
                       </span>
                       <span className="text-zinc-300">/</span>
                       <span
                         className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded ${
                           isSelected
-                            ? 'bg-rose-100/70 text-[#BE123C]'
+                            ? 'bg-rose-100/70 text-accent-strong'
                             : 'bg-zinc-100 text-zinc-600'
                         }`}
                       >
@@ -175,14 +175,14 @@ export const ValueChainGraphic: React.FC = () => {
                   {/* Title */}
                   <h3
                     className={`text-sm font-bold font-display transition-colors ${
-                      isSelected ? 'text-[#09090B]' : 'text-zinc-900 group-hover:text-[#E11D48]'
+                      isSelected ? 'text-ink' : 'text-zinc-900 group-hover:text-accent'
                     }`}
                   >
                     {step.title}
                   </h3>
 
                   {/* Detail */}
-                  <p className="mt-2 text-xs leading-relaxed text-[#52525B] line-clamp-3">
+                  <p className="mt-2 text-xs leading-relaxed text-muted line-clamp-3">
                     {step.detail}
                   </p>
                 </div>
@@ -191,7 +191,7 @@ export const ValueChainGraphic: React.FC = () => {
                 <div className="mt-4 pt-3 border-t border-zinc-100">
                   <div
                     className={`font-mono text-[10px] truncate transition-colors ${
-                      isSelected ? 'text-[#BE123C] font-semibold' : 'text-zinc-400 group-hover:text-zinc-600'
+                      isSelected ? 'text-accent-strong font-semibold' : 'text-zinc-400 group-hover:text-zinc-600'
                     }`}
                   >
                     {step.tools}
@@ -214,7 +214,7 @@ export const ValueChainGraphic: React.FC = () => {
           className="mt-4 rounded-xl border border-zinc-200/90 bg-white p-4 sm:p-5 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
         >
           <div className="flex items-start sm:items-center gap-3.5">
-            <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#E11D48]/10 text-[#E11D48] font-mono text-xs font-bold border border-[#E11D48]/20">
+            <div className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent font-mono text-xs font-bold border border-accent/20">
               {selectedStep.number}
             </div>
             <div>
@@ -222,7 +222,7 @@ export const ValueChainGraphic: React.FC = () => {
                 <span className="text-xs font-bold text-zinc-900">
                   Phase {selectedStep.number}: {selectedStep.title}
                 </span>
-                <span className="font-mono text-[10px] text-[#BE123C] bg-rose-50 px-2 py-0.5 rounded border border-rose-200/60 font-semibold">
+                <span className="font-mono text-[10px] text-accent-strong bg-rose-50 px-2 py-0.5 rounded border border-rose-200/60 font-semibold">
                   {selectedStep.badge}
                 </span>
               </div>
@@ -238,7 +238,7 @@ export const ValueChainGraphic: React.FC = () => {
                 key={spec}
                 className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-zinc-50 border border-zinc-200 font-mono text-[11px] text-zinc-700 font-medium"
               >
-                <span className="h-1 w-1 rounded-full bg-[#E11D48]" />
+                <span className="h-1 w-1 rounded-full bg-accent" />
                 {spec}
               </span>
             ))}

@@ -575,7 +575,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full rounded-xl overflow-hidden border border-[#E4E4E7] bg-[#09090B] shadow-2xl select-none"
+      className="relative w-full rounded-xl overflow-hidden border border-line bg-ink shadow-2xl select-none"
     >
       {/* 1. Real-time 3D Walkthrough Viewport Canvas */}
       <div className="relative h-[380px] sm:h-[480px] md:h-[540px] w-full cursor-grab active:cursor-grabbing">
@@ -585,17 +585,17 @@ export const SpatialWalkthroughHero: React.FC = () => {
         <div className="pointer-events-none absolute inset-0 bg-radial from-transparent via-transparent to-black/60" />
 
         {/* Technical Corner Brackets */}
-        <div className="pointer-events-none absolute top-4 left-4 h-5 w-5 border-t-2 border-l-2 border-[#E11D48]/80" />
-        <div className="pointer-events-none absolute top-4 right-4 h-5 w-5 border-t-2 border-r-2 border-[#E11D48]/80" />
-        <div className="pointer-events-none absolute bottom-4 left-4 h-5 w-5 border-b-2 border-l-2 border-[#E11D48]/80" />
-        <div className="pointer-events-none absolute bottom-4 right-4 h-5 w-5 border-b-2 border-r-2 border-[#E11D48]/80" />
+        <div className="pointer-events-none absolute top-4 left-4 h-5 w-5 border-t-2 border-l-2 border-accent/80" />
+        <div className="pointer-events-none absolute top-4 right-4 h-5 w-5 border-t-2 border-r-2 border-accent/80" />
+        <div className="pointer-events-none absolute bottom-4 left-4 h-5 w-5 border-b-2 border-l-2 border-accent/80" />
+        <div className="pointer-events-none absolute bottom-4 right-4 h-5 w-5 border-b-2 border-r-2 border-accent/80" />
 
         {/* 2. Top Technical Status Bar */}
         <div className="absolute top-4 inset-x-6 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-          <div className="flex items-center gap-2 rounded-md bg-black/75 px-3 py-1.5 border border-white/10 text-white backdrop-blur-md shadow-sm">
+          <div className="flex items-center gap-2 rounded-md bg-black/75 px-3 py-1.5 border border-white/10 text-white shadow-sm">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E11D48] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E11D48]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
             </span>
             <span className="font-semibold tracking-wider text-[11px] uppercase">
               {cameraMode === 'dolly' ? 'Live Cinematic Dolly Tour' : cameraMode === 'lidar' ? 'SLAM LiDAR Elevation Scan' : 'Manual Viewport Control'}
@@ -605,11 +605,11 @@ export const SpatialWalkthroughHero: React.FC = () => {
           </div>
 
           {/* Mode Switcher Tabs */}
-          <div className="flex items-center gap-1 rounded-md bg-black/75 p-1 border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1 rounded-md bg-black/75 p-1 border border-white/10">
             <button
               onClick={() => setCameraMode('dolly')}
               className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                cameraMode === 'dolly' ? 'bg-[#E11D48] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                cameraMode === 'dolly' ? 'bg-accent text-white shadow-sm' : 'text-zinc-400 hover:text-white'
               }`}
             >
               Dolly Tour
@@ -617,7 +617,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
             <button
               onClick={() => setCameraMode('lidar')}
               className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                cameraMode === 'lidar' ? 'bg-[#E11D48] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                cameraMode === 'lidar' ? 'bg-accent text-white shadow-sm' : 'text-zinc-400 hover:text-white'
               }`}
             >
               LiDAR Scan
@@ -625,7 +625,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
             <button
               onClick={() => setCameraMode('manual')}
               className={`px-2.5 py-1 text-[11px] font-medium rounded transition-colors ${
-                cameraMode === 'manual' ? 'bg-[#E11D48] text-white shadow-sm' : 'text-zinc-400 hover:text-white'
+                cameraMode === 'manual' ? 'bg-accent text-white shadow-sm' : 'text-zinc-400 hover:text-white'
               }`}
             >
               Free Drag
@@ -637,14 +637,14 @@ export const SpatialWalkthroughHero: React.FC = () => {
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <div className="relative flex items-center justify-center opacity-60">
             <div className="h-10 w-10 rounded-full border border-white/20 border-dashed animate-[spin_16s_linear_infinite]" />
-            <div className="absolute h-2 w-2 rounded-full bg-[#E11D48]" />
+            <div className="absolute h-2 w-2 rounded-full bg-accent" />
             <div className="absolute h-0.5 w-6 bg-white/30" />
             <div className="absolute h-6 w-0.5 bg-white/30" />
           </div>
         </div>
 
         {/* 4. Left Telemetry Readout (Aviation & Survey HUD) */}
-        <div className="pointer-events-none absolute left-6 top-20 hidden md:flex flex-col gap-1 text-[11px] font-mono text-zinc-300 bg-black/60 p-2.5 rounded border border-white/10 backdrop-blur-md">
+        <div className="pointer-events-none absolute left-6 top-20 hidden md:flex flex-col gap-1 text-[11px] font-mono text-zinc-300 bg-black/75 p-2.5 rounded border border-white/10">
           <div className="text-[10px] uppercase text-zinc-400 font-semibold tracking-wider mb-0.5">
             Spatial Telemetry
           </div>
@@ -662,7 +662,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
           </div>
           <div className="flex items-center justify-between gap-4">
             <span className="text-zinc-400">SURVEY ACC</span>
-            <span className="text-[#FB7185] font-semibold">{telemetry.accuracy}</span>
+            <span className="text-accent-soft font-semibold">{telemetry.accuracy}</span>
           </div>
           <div className="flex items-center justify-between gap-4">
             <span className="text-zinc-400">SPLATS</span>
@@ -672,7 +672,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
 
         {/* 5. Bottom Waypoints Bar (Interactive Jump Points) */}
         <div className="absolute bottom-16 inset-x-6 flex items-center justify-between gap-2 overflow-x-auto pb-1">
-          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10">
             <span className="text-[10px] font-mono uppercase text-zinc-400 px-2 font-semibold hidden sm:inline">
               Waypoints:
             </span>
@@ -692,7 +692,7 @@ export const SpatialWalkthroughHero: React.FC = () => {
           </div>
 
           {/* Speed & Pause Controls */}
-          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-1.5 bg-black/80 p-1.5 rounded-lg border border-white/10">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
               className="px-2.5 py-1 text-xs font-mono text-zinc-200 hover:text-white rounded hover:bg-white/10"

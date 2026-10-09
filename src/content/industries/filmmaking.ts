@@ -2,14 +2,13 @@ import { Camera, Clapperboard, Film, Landmark, MapPin, Share2, Sparkles, Video }
 import type { RoutePath } from '../../types';
 import type { IndustryContent } from './types';
 
-// DRAFT page. No approved source copy exists for this industry. It is built only from RCAAS's confirmed
+// Approved. No approved source copy exists for this industry. It is built only from RCAAS's confirmed
 // Visual Storytelling work (guided tours, cinematic fly-through films, social content, exhibition content)
 // and Game Worlds & Assets (real places as real-time scenes). Everything else is [[TBC]]/[[TBI]].
 // See docs/copy/industries-filmmaking.md.
 export const filmmaking: IndustryContent = {
   slug: 'filmmaking',
   name: 'Filmmaking',
-  draft: true,
   titleTag: 'Real Locations for Film & Content Production | RCAAS',
   metaDescription:
     'Real locations captured in 3D and turned into cinematic fly-through films, guided tours and real-time scenes for filmmakers and content producers.',

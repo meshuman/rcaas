@@ -2,13 +2,12 @@ import { Box, Boxes, Cpu, Film, Gamepad2, Landmark, Package, Sparkles, Zap } fro
 import type { RoutePath } from '../../types';
 import type { IndustryContent } from './types';
 
-// DRAFT page. The core claims come from the supplied "Game Worlds & Assets" copy (real locations, objects and
+// Approved. The core claims come from the supplied "Game Worlds & Assets" copy (real locations, objects and
 // heritage sites captured as Gaussian splats; game-ready environments and props; Unreal, Unity and real-time).
 // Everything else is marked [[TBC]]/[[TBI]] until approved. See docs/copy/industries-gaming.md.
 export const gaming: IndustryContent = {
   slug: 'gaming',
   name: 'Gaming',
-  draft: true,
   titleTag: 'Game Worlds & Assets from Real Places | RCAAS',
   metaDescription:
     'Real locations and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time scenes.',

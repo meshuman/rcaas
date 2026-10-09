@@ -56,7 +56,7 @@ export const CaptureLidarCursor: React.FC = () => {
       // Golden spiral distribution on a sphere
       const phi = Math.acos(-1 + (2 * i) / NUM_ORBIT_POINTS);
       const theta = Math.sqrt(NUM_ORBIT_POINTS * Math.PI) * phi;
-      const radius = 24 + (i % 5) * 6; // Radii from 24px to 48px
+      const radius = 12 + (i % 5) * 3; // Radii from 12px to 24px
 
       initialPoints.push({
         x: radius * Math.sin(phi) * Math.cos(theta),
@@ -66,7 +66,7 @@ export const CaptureLidarCursor: React.FC = () => {
         vy: (Math.random() - 0.5) * 0.4,
         vz: (Math.random() - 0.5) * 0.4,
         color: LIDAR_COLORS[i % LIDAR_COLORS.length],
-        size: 1.5 + (i % 3) * 0.7,
+        size: 0.9 + (i % 3) * 0.4,
         alpha: 0.6 + Math.random() * 0.4,
         life: 1,
         maxLife: 1,
@@ -165,7 +165,7 @@ export const CaptureLidarCursor: React.FC = () => {
         if (speed > 1.2) {
           const spawnCount = Math.min(Math.floor(speed * 0.5), 3);
           for (let s = 0; s < spawnCount; s++) {
-            const spread = 8;
+            const spread = 4;
             trailPointsRef.current.push({
               x: posRef.current.x + (Math.random() - 0.5) * spread - vx * 0.5,
               y: posRef.current.y + (Math.random() - 0.5) * spread - vy * 0.5,
@@ -190,7 +190,7 @@ export const CaptureLidarCursor: React.FC = () => {
             ctx.globalAlpha = Math.max(0, tp.alpha * 0.7);
             
             // Draw square/diamond point typical of raw LiDAR point clouds
-            const pSize = 1.6;
+            const pSize = 1.2;
             ctx.fillRect(tp.x - pSize / 2, tp.y - pSize / 2, pSize, pSize);
           }
         }
@@ -199,14 +199,14 @@ export const CaptureLidarCursor: React.FC = () => {
         // Render 3D orbiting LiDAR constellation around capture mark
         const cx = posRef.current.x;
         const cy = posRef.current.y;
-        const FOV = 220; // Perspective focal length
+        const FOV = 110; // Perspective focal length
 
         // Draw faint LiDAR range radar ring
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(161, 161, 170, 0.25)'; // Grey faint ring
         ctx.lineWidth = 1;
         ctx.setLineDash([2, 4]);
-        ctx.arc(cx, cy, 32, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 16, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
 
@@ -214,7 +214,7 @@ export const CaptureLidarCursor: React.FC = () => {
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(9, 9, 11, 0.08)';
         ctx.lineWidth = 0.75;
-        ctx.arc(cx, cy, 54, 0, Math.PI * 2);
+        ctx.arc(cx, cy, 27, 0, Math.PI * 2);
         ctx.stroke();
 
         // Project and sort 3D points by z-depth for correct rendering
@@ -264,8 +264,8 @@ export const CaptureLidarCursor: React.FC = () => {
             const p1 = projectedPoints[i];
             const p2 = projectedPoints[j];
             const distSq = (p1.px - p2.px) ** 2 + (p1.py - p2.py) ** 2;
-            if (distSq < 28 * 28) {
-              const alpha = (1 - Math.sqrt(distSq) / 28) * 0.18;
+            if (distSq < 14 * 14) {
+              const alpha = (1 - Math.sqrt(distSq) / 14) * 0.18;
               ctx.strokeStyle = p1.color;
               ctx.globalAlpha = alpha;
               ctx.beginPath();
@@ -355,18 +355,17 @@ export const CaptureLidarCursor: React.FC = () => {
         className="pointer-events-none absolute left-0 top-0 will-change-transform"
         style={{
           transform: `translate3d(${mousePos.x}px, ${mousePos.y}px, 0)`,
-          transition: 'transform 0.06s cubic-bezier(0.1, 0.9, 0.2, 1)',
-        }}
+                  }}
       >
         {/* Reticle Container (Centers on cursor point) */}
         <div
-          className={`relative -left-1/2 -top-1/2 flex items-center justify-center transition-all duration-300 ease-out ${
+          className={`relative -translate-x-1/2 -translate-y-1/2 flex items-center justify-center transition-all duration-300 ease-out ${
             isHovered ? 'scale-125' : isClicking ? 'scale-90' : 'scale-100'
           }`}
-          style={{ width: '64px', height: '64px' }}
+          style={{ width: '32px', height: '32px' }}
         >
           {/* Target Circle (Visible on hover like a shooting crosshair) */}
-          <div className={`absolute inset-0 rounded-full border-[2px] transition-all duration-300 ease-out ${
+          <div className={`absolute inset-0 rounded-full border-[1.5px] transition-all duration-300 ease-out ${
             isHovered ? 'border-accent scale-100 opacity-100' : 'border-zinc-900 scale-125 opacity-0'
           }`} />
 
@@ -374,26 +373,26 @@ export const CaptureLidarCursor: React.FC = () => {
           <div className="absolute inset-0">
             {/* Top-Left Bracket */}
             <span
-              className={`absolute left-0 top-0 h-4 w-4 border-l-[3px] border-t-[3px] transition-all duration-300 ${
-                isHovered ? 'border-accent -translate-x-1 -translate-y-1' : 'border-zinc-900'
+              className={`absolute left-0 top-0 h-2 w-2 border-l-2 border-t-2 transition-all duration-300 ${
+                isHovered ? 'border-accent -translate-x-0.5 -translate-y-0.5' : 'border-zinc-900'
               }`}
             />
             {/* Top-Right Bracket */}
             <span
-              className={`absolute right-0 top-0 h-4 w-4 border-r-[3px] border-t-[3px] transition-all duration-300 ${
-                isHovered ? 'border-accent translate-x-1 -translate-y-1' : 'border-zinc-900'
+              className={`absolute right-0 top-0 h-2 w-2 border-r-2 border-t-2 transition-all duration-300 ${
+                isHovered ? 'border-accent translate-x-0.5 -translate-y-0.5' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Left Bracket */}
             <span
-              className={`absolute bottom-0 left-0 h-4 w-4 border-b-[3px] border-l-[3px] transition-all duration-300 ${
-                isHovered ? 'border-accent -translate-x-1 translate-y-1' : 'border-zinc-900'
+              className={`absolute bottom-0 left-0 h-2 w-2 border-b-2 border-l-2 transition-all duration-300 ${
+                isHovered ? 'border-accent -translate-x-0.5 translate-y-0.5' : 'border-zinc-900'
               }`}
             />
             {/* Bottom-Right Bracket */}
             <span
-              className={`absolute bottom-0 right-0 h-4 w-4 border-b-[3px] border-r-[3px] transition-all duration-300 ${
-                isHovered ? 'border-accent translate-x-1 translate-y-1' : 'border-zinc-900'
+              className={`absolute bottom-0 right-0 h-2 w-2 border-b-2 border-r-2 transition-all duration-300 ${
+                isHovered ? 'border-accent translate-x-0.5 translate-y-0.5' : 'border-zinc-900'
               }`}
             />
           </div>
@@ -402,21 +401,21 @@ export const CaptureLidarCursor: React.FC = () => {
           <div className="relative flex items-center justify-center">
             {/* Horizontal Hair */}
             <div
-              className={`h-[2px] transition-all duration-300 ${
-                isHovered ? 'w-10 bg-accent' : 'w-4 bg-zinc-800'
+              className={`h-px transition-all duration-300 ${
+                isHovered ? 'w-5 bg-accent' : 'w-2 bg-zinc-800'
               }`}
             />
             {/* Vertical Hair */}
             <div
-              className={`absolute w-[2px] transition-all duration-300 ${
-                isHovered ? 'h-10 bg-accent' : 'h-4 bg-zinc-800'
+              className={`absolute w-px transition-all duration-300 ${
+                isHovered ? 'h-5 bg-accent' : 'h-2 bg-zinc-800'
               }`}
             />
             {/* Center LiDAR Laser Dot */}
             <div
-              className={`absolute h-2 w-2 rounded-full transition-transform duration-300 ${
+              className={`absolute h-1 w-1 rounded-full transition-transform duration-300 ${
                 isHovered
-                  ? 'bg-accent scale-[1.5] shadow-[0_0_12px_#E11D48]'
+                  ? 'bg-accent scale-[1.5] shadow-[0_0_6px_#E11D48]'
                   : isClicking
                   ? 'bg-zinc-950 scale-150'
                   : 'bg-accent'
@@ -426,7 +425,7 @@ export const CaptureLidarCursor: React.FC = () => {
 
           {/* Micro HUD Coordinate Readout Tag (Top Right) */}
           <div
-            className="absolute -top-6 -right-16 select-none rounded bg-white/90 px-1.5 py-0.5 font-mono text-[9px] font-semibold text-zinc-700 shadow-sm border border-zinc-200 backdrop-blur-sm whitespace-nowrap"
+            className="absolute -top-4 -right-12 select-none rounded bg-white/90 px-1.5 py-0.5 font-mono text-[8px] font-semibold text-zinc-700 shadow-sm border border-zinc-200 backdrop-blur-sm whitespace-nowrap"
             style={{ letterSpacing: '0.02em' }}
           >
             <span className="text-accent mr-1">XYZ</span>
@@ -435,7 +434,7 @@ export const CaptureLidarCursor: React.FC = () => {
 
           {/* Target Capture Status Badge (Bottom Right when hovering) */}
           {isHovered && (
-            <div className="absolute -bottom-6 -right-14 select-none rounded bg-zinc-950 px-1.5 py-0.5 font-mono text-[8px] font-bold text-white shadow-md flex items-center gap-1 border border-zinc-800 whitespace-nowrap">
+            <div className="absolute -bottom-4 -right-10 select-none rounded bg-zinc-950 px-1.5 py-0.5 font-mono text-[8px] font-bold text-white shadow-md flex items-center gap-1 border border-zinc-800 whitespace-nowrap">
               <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
               <span>CAPTURE</span>
             </div>

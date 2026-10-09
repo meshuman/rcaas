@@ -20,8 +20,8 @@ Intro
 H1: Frequently asked questions Body: Quick answers to what people ask us most. Can't find yours? Ask us directly. Jump links: Getting started · Cost and timeline · Your audience's experience · Ownership, privacy and hosting · Working together · More answers by topic
 
 Group 1 — Getting started #getting-started
-Q: What does RCAAS Technology do? We turn real places into immersive experiences and stories. Our engineers and game developers capture buildings, campuses, properties and heritage sites with advanced laser and aerial scanning, then create 3D tours, VR, AR, films and measured digital twins from them.
-Q: Who do you work with? Hotels and tourism organisations, schools and colleges, property developers and architects, factories and industrial sites, heritage specialists and museums, municipalities, and non-life insurers. In short, anyone who needs people to see, understand or measure a real place.
+Q: What does RCAAS Technology do? We turn real places into immersive experiences and stories. Our engineers and game developers capture buildings, campuses, properties and heritage sites with advanced laser and aerial scanning, then create 3D tours, VR, AR, films, measured digital twins and game-ready environments and assets from them.
+Q: Who do you work with? Hotels and tourism organisations, schools and colleges, property developers and architects, factories and industrial sites, heritage specialists and museums, municipalities, non-life insurers, and game studios. In short, anyone who needs people to see, understand or measure a real place.
 Q: Where do you work? We are based in Kathmandu and work across Nepal. [[TBC: "We also take on projects abroad."]] For remote sites, we plan travel, equipment and timing in advance.
 Q: How do I start? Tell us about your place and what you want people to do after seeing it. We'll suggest the right experience, then send a clear proposal with scope, timeline and price. Link: Plan your experience → /contact/?type=project
 Q: What's the difference between a 3D tour and a 360° tour? A 360° tour is a set of panoramic photos you jump between. A 3D tour is a full model of the place that people move through freely and see from any angle. Link: Full comparison → /learn/3d-virtual-tour-vs-360-tour-vs-video/
@@ -76,6 +76,8 @@ Factories (added 8 Oct 2026)
 /industries/factories/#faq
 Non-life insurance (added 8 Oct 2026)
 /industries/non-life-insurance/#faq
+Game worlds and assets (added 9 Oct 2026)
+/services/game-worlds-assets/#faq
 Our 3D platform
 /platform/#faq
 

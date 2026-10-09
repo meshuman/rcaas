@@ -82,7 +82,7 @@ const PILLARS_COPY: PillarDetail[] = [
     body: 'Guided tours, cinematic fly-through films and social content made from your 3D capture, shaped around what you want your audience to feel and do.',
     helpsYou: 'Run campaigns, raise awareness, attract funding and engage the public.',
     image: IMAGES.chilanchoStupa,
-    badge: '4K Cinematic',
+    badge: 'Films & guided tours',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <rect x="3" y="5" width="18" height="14" rx="2" strokeWidth="1.75" />
@@ -124,7 +124,7 @@ const PILLARS_COPY: PillarDetail[] = [
     body: 'Accurate 3D records of buildings, sites and landscapes, captured with advanced laser and aerial scanning, ready for design, planning and preservation.',
     helpsYou: 'Design with confidence, cut repeat site visits, plan better and preserve what matters.',
     image: IMAGES.laserField,
-    badge: '±5mm SLAM LiDAR',
+    badge: 'Laser & aerial capture',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <circle cx="12" cy="12" r="9" strokeWidth="1.75" />
@@ -157,6 +157,34 @@ const PILLARS_COPY: PillarDetail[] = [
     exploreLink: '/services/digital-twins/',
     exploreLabel: 'Explore digital twins',
   },
+  {
+    id: 'game-worlds-assets',
+    number: '04',
+    slug: 'game-worlds-assets',
+    title: 'Game Worlds & Assets',
+    promise: 'Real places. Ready to play.',
+    body: 'Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences.',
+    helpsYou: 'Build game worlds, assets and real-time scenes from places players recognise.',
+    image: IMAGES.vrPreview,
+    badge: 'Unreal & Unity',
+    iconSvg: (
+      <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <rect x="3" y="7" width="18" height="10" rx="5" strokeWidth="1.75" />
+        <line x1="8" y1="10" x2="8" y2="14" strokeWidth="1.5" />
+        <line x1="6" y1="12" x2="10" y2="12" strokeWidth="1.5" />
+        <circle cx="15.5" cy="11" r="1" fill="currentColor" strokeWidth="0" />
+        <circle cx="17.5" cy="13" r="1" fill="currentColor" strokeWidth="0" />
+      </svg>
+    ),
+    includes: [
+      { label: '3D asset generation', href: '/services/game-worlds-assets/', isRoute: true },
+      { label: 'Game development', href: '/services/game-worlds-assets/', isRoute: true },
+      { label: 'Gaussian splat assets', href: '/services/game-worlds-assets/', isRoute: true },
+      { label: 'Real-time scenes', href: '/services/game-worlds-assets/', isRoute: true },
+    ],
+    exploreLink: '/services/game-worlds-assets/',
+    exploreLabel: 'Explore game worlds & assets',
+  },
 ];
 
 interface GoalMatch {
@@ -164,7 +192,7 @@ interface GoalMatch {
   bestFit: string;
   example: string;
   primaryPillarId: string;
-  sectorTag: 'bookings' | 'education' | 'property' | 'architecture' | 'heritage' | 'planning';
+  sectorTag: 'bookings' | 'education' | 'property' | 'architecture' | 'heritage' | 'planning' | 'games';
 }
 
 const GOALS_MATRIX: GoalMatch[] = [
@@ -209,6 +237,13 @@ const GOALS_MATRIX: GoalMatch[] = [
     example: '3D base data for planning and visuals residents understand',
     primaryPillarId: 'digital-twins',
     sectorTag: 'planning',
+  },
+  {
+    goal: 'Build game worlds or assets',
+    bestFit: 'Game Worlds & Assets',
+    example: 'Game-ready environments and props made from a real captured place',
+    primaryPillarId: 'game-worlds-assets',
+    sectorTag: 'games',
   },
 ];
 
@@ -368,7 +403,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
           </motion.div>
         </div>
 
-        {/* 2. The three pillars */}
+        {/* 2. The four pillars */}
         <section id="pillars" className="mb-24 sm:mb-32">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -376,16 +411,16 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
                 Core Capabilities
               </span>
               <h2 className="mt-1 text-2xl sm:text-3xl font-bold text-ink font-display">
-                The three pillars
+                The four pillars
               </h2>
             </div>
             <span className="hidden sm:inline-block text-xs font-mono text-zinc-400">
-              01 · 02 · 03
+              01 · 02 · 03 · 04
             </span>
           </div>
 
           {/* Optimized Pillar Cards with Circular Top Icons, Index Badges, and Gradient Shading */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {PILLARS_COPY.map((pillar, idx) => {
               const isHoveredOrTargeted = highlightedPillar === pillar.id;
               return (
@@ -556,6 +591,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentPath, onNavig
               { id: 'immersive', label: 'Immersive Experiences' },
               { id: 'storytelling', label: 'Visual Storytelling' },
               { id: 'survey', label: 'Digital Twins & Survey' },
+              { id: 'game', label: 'Game Worlds & Assets' },
             ].map((f) => {
               const isActive = activeGoalFilter === f.id;
               return (

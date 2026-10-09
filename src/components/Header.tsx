@@ -6,7 +6,7 @@ import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
 
 // Menu content comes from the site data, so labels match the pages they link to.
 
-// What we create ▾: the three pillars (title + promise) and the most-asked-for capabilities.
+// What we create ▾: the pillars (title + promise) and the most-asked-for capabilities.
 const CAPABILITIES: { label: string; path: RoutePath }[] = [
   { label: '3D virtual tours', path: '/services/immersive-experiences/3d-virtual-tours/' },
   { label: '3D laser scanning', path: '/services/digital-twins/3d-laser-scanning/' },
@@ -163,11 +163,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
         {/* Wordmark */}
         <button
           onClick={() => handleNav('/')}
-          className="flex min-h-11 items-center gap-1.5 pr-2 text-xl font-bold tracking-tight text-ink transition-opacity hover:opacity-90 font-display"
+          className="flex min-h-11 items-center pr-2 transition-opacity hover:opacity-90"
           aria-label="RCAAS Technology, home"
         >
-          <span>RCAAS</span>
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(225,29,72,0.6)] animate-pulse" aria-hidden="true" />
+          <img src="/logo.png" alt="" width="522" height="106" className="h-7 w-auto sm:h-8" />
         </button>
 
         {/* Desktop navigation */}

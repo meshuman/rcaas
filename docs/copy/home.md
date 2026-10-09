@@ -46,6 +46,8 @@ Card 2 — Visual Storytelling
 Card title: Visual Storytelling Promise: Turn your place into a story. Body: Guided tours, cinematic fly-through films and social content made from your 3D capture, shaped around what you want your audience to feel and do. Chips: Guided tours · Fly-through films · Social content · Exhibitions Link: Explore visual storytelling → /services/visual-storytelling/
 Card 3 — Digital Twins & Survey
 Card title: Digital Twins & Survey Promise: Measure, design and plan from reality. Body: Accurate 3D records of buildings, sites and landscapes, captured with advanced laser and aerial scanning, ready for design, planning and preservation. Chips: 3D laser scanning · Drone mapping · As-built data · Survey & GIS Link: Explore digital twins → /services/digital-twins/
+Card 4 — Game Worlds & Assets (added 9 Oct 2026, from supplied Game Worlds & Assets copy)
+Card title: Game Worlds & Assets Promise: Real places. Ready to play. Body: Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences. Chips: Gaussian splat assets · Game environments · Unreal & Unity · Real-time scenes Link: Explore game worlds → /services/game-worlds-assets/
 Build note: Chips for AR, Interactive experiences, Social content and Exhibitions stay only if confirmed (Register E03, E04, E06). Remove any that are not delivered.
 
 4. Built for your goal #industries

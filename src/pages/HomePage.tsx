@@ -152,7 +152,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           
           <div className="max-w-2xl mb-16">
             <span className={eyebrowClass}>
-              Three Pillars
+              Four Pillars
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
               What we create
@@ -162,7 +162,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {PILLARS.map((pillar) => (
               <SpotlightCard
                 key={pillar.id}

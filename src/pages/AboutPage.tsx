@@ -54,10 +54,10 @@ const AT_A_GLANCE: { label: string; value: React.ReactNode }[] = [
       </>
     ),
   },
-  { label: 'What we create', value: 'Immersive experiences · Visual storytelling · Digital twins and survey' },
+  { label: 'What we create', value: 'Immersive experiences · Visual storytelling · Digital twins and survey · Game worlds and assets' },
   {
     label: 'Who we work with',
-    value: 'Hotels and tourism · Schools and colleges · Real estate and architecture · Factories · Heritage and culture · Government and municipalities · Non-life insurance',
+    value: 'Hotels and tourism · Schools and colleges · Real estate and architecture · Factories · Heritage and culture · Government and municipalities · Non-life insurance · Gaming · Filmmaking',
   },
   {
     label: 'Where we work',

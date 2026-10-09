@@ -14,12 +14,12 @@
 
 ## 1. Hero + intro
 - **H1:** What we create
-- **Intro:** Every project starts with a real place and a clear goal: more bookings, more applications, a better design, a lasting record. From one visit to your site, we can create three kinds of work. Most clients combine them.
+- **Intro:** Every project starts with a real place and a clear goal: more bookings, more applications, a better design, a lasting record. From one visit to your site, we can create four kinds of work. Most clients combine them.
 - **Primary CTA:** Plan your experience → `/contact/?type=project`
 
 ---
 
-## 2. The three pillars
+## 2. The four pillars
 
 ### 2.1 Immersive Experiences
 - **H2:** Immersive Experiences
@@ -56,6 +56,16 @@
   - As-built drawings and CAD/BIM-ready data → `/services/digital-twins/#as-built`
   - Survey and GIS → `/services/digital-twins/#survey-gis`
 - **Link:** Explore digital twins → `/services/digital-twins/`
+
+### 2.4 Game Worlds & Assets *(added 9 Oct 2026)*
+- **H2:** Game Worlds & Assets
+- **Promise:** Real places. Ready to play.
+- **Body:** Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences.
+- **Helps you:** Build game worlds from real places, with less manual recreation.
+- **Includes:**
+  - 3D asset generation (on the service page)
+  - Game development (on the service page)
+- **Link:** Explore game worlds → `/services/game-worlds-assets/`
 
 ---
 

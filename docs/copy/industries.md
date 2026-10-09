@@ -32,6 +32,8 @@
 | **Heritage & Culture** | Preserve heritage and share it with the world. | Conservators, researchers, museums, heritage trusts | Create a lasting record people everywhere can explore. | Chilancho Stupa (Kirtipur) | `/industries/heritage-culture/` |
 | **Government & Municipalities** | Plan better and bring citizens along. | Municipalities, planning authorities, infrastructure agencies | Reliable 3D data for planning, and public experiences people understand. | [[TBI: project, or hide line]] | `/industries/government-municipalities/` |
 | **Non-life Insurance** *(added 8 Oct 2026, awaiting approval)* | See the risk. Document the loss. | Non-life insurers, reinsurers, loss adjusters, risk surveyors | Measured 3D records of insured properties for underwriting, claims and loss adjusting. | [[TBI: project, or hide line]] | `/industries/non-life-insurance/` |
+| **Gaming** *(added 9 Oct 2026, draft, awaiting approval)* | Build game worlds from real places. | Game studios, developers, simulation and virtual production teams | Game-ready environments and props made from real locations, objects and heritage sites. | [[TBI: project, or hide line]] | `/industries/gaming/` |
+| **Filmmaking** *(added 9 Oct 2026, draft, awaiting approval)* | Take your camera anywhere in a real place. | Filmmakers, production companies, content creators | Cinematic fly-through films, guided tours and real-time scenes made from real locations. | [[TBI: project, or hide line]] | `/industries/filmmaking/` |
 
 ---
 

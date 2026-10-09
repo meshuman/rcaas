@@ -20,10 +20,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
           <div className="col-span-2 lg:col-span-2">
             <button
               onClick={() => onNavigate('/')}
-              className="flex items-center gap-1.5 py-1 text-xl font-bold tracking-tight text-ink font-display text-left"
+              className="flex items-center py-1 text-left"
+              aria-label="RCAAS Technology, home"
             >
-              <span>RCAAS</span>
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
+              <img src="/logo.png" alt="" width="522" height="106" loading="lazy" decoding="async" className="h-8 w-auto" />
             </button>
             <p className="mt-4 max-w-sm text-xs leading-relaxed text-zinc-600">
               {SITE_METADATA.boilerplate}
@@ -94,6 +94,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   Drone Mapping
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/services/game-worlds-assets/')}
+                  className="hover:text-ink text-left transition-colors block py-2.5"
+                >
+                  Game Worlds &amp; Assets
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -157,6 +165,22 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Non-life Insurance
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/industries/gaming/')}
+                  className="hover:text-ink text-left transition-colors block py-2.5"
+                >
+                  Gaming
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/industries/filmmaking/')}
+                  className="hover:text-ink text-left transition-colors block py-2.5"
+                >
+                  Filmmaking
                 </button>
               </li>
             </ul>

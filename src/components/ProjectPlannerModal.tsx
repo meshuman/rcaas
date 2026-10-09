@@ -82,6 +82,7 @@ export const ProjectPlannerModal: React.FC<ProjectPlannerModalProps> = ({ isOpen
                       'Real Estate & Villa',
                       'Commercial / Retail',
                       'Factory & Industrial',
+                      'Game / Real-time Asset',
                       'Civil / Infrastructure',
                     ].map((type) => (
                       <button

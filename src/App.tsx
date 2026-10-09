@@ -10,6 +10,7 @@ import { CaptureLidarCursor } from './components/CaptureLidarCursor';
 // Pages
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
+import { GameWorldsPage, GAME_WORLDS, GAME_WORLDS_FAQS } from './pages/GameWorldsPage';
 import { ImmersiveExperiencesPage } from './pages/ImmersiveExperiencesPage';
 import { VirtualToursPage } from './pages/VirtualToursPage';
 import { VisualStorytellingPage } from './pages/VisualStorytellingPage';
@@ -140,6 +141,9 @@ export default function App() {
     if (currentPath.startsWith('/services/immersive-experiences/3d-virtual-tours')) {
       title = '3D Virtual Tours in Nepal: Beyond 360° Photos | RCAAS';
       metaDesc = 'Photorealistic 3D virtual tours that people explore freely from a link. For hotels, schools, colleges, property and heritage sites across Nepal.';
+    } else if (currentPath.startsWith('/services/game-worlds-assets')) {
+      title = GAME_WORLDS.titleTag;
+      metaDesc = GAME_WORLDS.metaDescription;
     } else if (currentPath.startsWith('/services/visual-storytelling')) {
       title = 'Fly-Through Films & Visual Storytelling in Nepal | RCAAS';
       metaDesc = 'Guided 3D tours, cinematic fly-through films and social content made from real places, shaped around what you want your audience to feel and do.';
@@ -156,14 +160,14 @@ export default function App() {
       title = 'Immersive 3D, VR & AR Experiences in Nepal | RCAAS';
       metaDesc = 'Photorealistic 3D tours, VR, AR and interactive experiences built from real places in Nepal, designed to help hotels, schools, developers and heritage sites.';
     } else if (currentPath.startsWith('/services')) {
-      title = 'Immersive Experiences, Storytelling & Digital Twins | RCAAS';
+      title = 'Immersive Experiences, Storytelling, Digital Twins & Game Worlds | RCAAS';
     } else if (findIndustryContent(currentPath.split(/[?#]/)[0])) {
       const industry = findIndustryContent(currentPath.split(/[?#]/)[0])!;
       title = industry.titleTag;
       metaDesc = industry.metaDescription;
     } else if (currentPath.startsWith('/industries')) {
       title = 'Immersive Experiences by Industry | RCAAS';
-      metaDesc = 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities and insurers in Nepal with 3D experiences and data.';
+      metaDesc = 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities, insurers, game studios and filmmakers with 3D experiences, data and assets.';
     } else if (isCaseStudy(resolveCaseStudy(currentPath.split(/[?#]/)[0]))) {
       const study = resolveCaseStudy(currentPath.split(/[?#]/)[0]) as CaseStudyContent;
       title = study.titleTag;
@@ -276,6 +280,8 @@ export default function App() {
     const baseOrg: Record<string, unknown> = {
       '@type': 'ProfessionalService',
       '@id': 'https://rcaas.tech/#organization',
+      logo: 'https://rcaas.tech/logo.png',
+      image: 'https://rcaas.tech/logo.png',
       name: SITE_METADATA.displayName,
       legalName: SITE_METADATA.legalName,
       alternateName: ['RCAAS', SITE_METADATA.nameMeaning],
@@ -303,6 +309,8 @@ export default function App() {
         'Drone mapping',
         'Digital twins',
         'Heritage documentation',
+        'Game environment and asset development',
+        'Gaussian splat game assets',
       ],
       sameAs: [
         'https://linkedin.com/company/rcaas-technology',
@@ -350,6 +358,40 @@ export default function App() {
             name: '3D Virtual Tours',
             item: 'https://rcaas.tech/services/immersive-experiences/3d-virtual-tours/',
           },
+        ],
+      });
+    } else if (currentPath.startsWith('/services/game-worlds-assets')) {
+      const serviceUrl = 'https://rcaas.tech/services/game-worlds-assets/';
+      graphItems.push({
+        '@type': 'Service',
+        '@id': `${serviceUrl}#service`,
+        url: serviceUrl,
+        name: GAME_WORLDS.titleTag,
+        description: GAME_WORLDS.metaDescription,
+        provider: { '@id': 'https://rcaas.tech/#organization' },
+        areaServed: { '@type': 'Country', name: 'Nepal' },
+        serviceType: 'Game Worlds & Assets',
+      });
+
+      // FAQPage only from resolved Q&As.
+      const resolvedFaqs = GAME_WORLDS_FAQS.filter((faq) => !faq.answer.includes('[['));
+      if (resolvedFaqs.length > 0) {
+        graphItems.push({
+          '@type': 'FAQPage',
+          mainEntity: resolvedFaqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+          })),
+        });
+      }
+
+      graphItems.push({
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://rcaas.tech/' },
+          { '@type': 'ListItem', position: 2, name: 'What we create', item: 'https://rcaas.tech/services/' },
+          { '@type': 'ListItem', position: 3, name: 'Game Worlds & Assets', item: serviceUrl },
         ],
       });
     } else if (currentPath.startsWith('/services/visual-storytelling')) {
@@ -582,7 +624,7 @@ export default function App() {
         '@id': 'https://rcaas.tech/services/#page',
         url: 'https://rcaas.tech/services/',
         name: 'Immersive Experiences, Storytelling & Digital Twins | RCAAS',
-        description: 'What RCAAS creates from real places: immersive 3D tours, VR and AR, visual stories and films, and accurate digital twins for design and planning in Nepal.',
+        description: 'What RCAAS creates from real places: immersive 3D tours, VR and AR, visual stories and films, accurate digital twins for design and planning, and game-ready worlds and assets.',
         mainEntity: {
           '@type': 'ItemList',
           itemListElement: [
@@ -606,6 +648,13 @@ export default function App() {
               name: 'Digital Twins & Survey',
               url: 'https://rcaas.tech/services/digital-twins/',
               description: 'Accurate 3D records of buildings, sites and landscapes, captured with advanced laser and aerial scanning, ready for design, planning and preservation.',
+            },
+            {
+              '@type': 'ListItem',
+              position: 4,
+              name: 'Game Worlds & Assets',
+              url: 'https://rcaas.tech/services/game-worlds-assets/',
+              description: 'Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences.',
             },
           ],
         },
@@ -683,7 +732,7 @@ export default function App() {
         '@id': 'https://rcaas.tech/industries/#page',
         url: 'https://rcaas.tech/industries/',
         name: 'Immersive Experiences by Industry | RCAAS',
-        description: 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities and insurers in Nepal with 3D experiences and data.',
+        description: 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities, insurers and game studios with 3D experiences, data and assets.',
         mainEntity: {
           '@type': 'ItemList',
           itemListElement: INDUSTRIES.map((industry, idx) => ({
@@ -1186,6 +1235,9 @@ export default function App() {
           onOpenPlanner={() => setPlannerOpen(true)}
         />
       );
+    }
+    if (currentPath.startsWith('/services/game-worlds-assets')) {
+      return <GameWorldsPage onNavigate={navigateTo} />;
     }
     if (currentPath.startsWith('/services/visual-storytelling')) {
       return (

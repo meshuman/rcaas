@@ -29,13 +29,13 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         question: 'What does RCAAS Technology do?',
         answer:
-          'We turn real places into immersive experiences and stories. Our engineers and game developers capture buildings, campuses, properties and heritage sites with advanced laser and aerial scanning, then create 3D tours, VR, AR, films and measured digital twins from them.',
+          'We turn real places into immersive experiences and stories. Our engineers and game developers capture buildings, campuses, properties and heritage sites with advanced laser and aerial scanning, then create 3D tours, VR, AR, films, measured digital twins and game-ready worlds and assets from them.',
         onHome: true,
       },
       {
         question: 'Who do you work with?',
         answer:
-          'Hotels and tourism organisations, schools and colleges, property developers and architects, factories and industrial sites, heritage specialists and museums, municipalities, and non-life insurers. In short, anyone who needs people to see, understand or measure a real place.',
+          'Hotels and tourism organisations, schools and colleges, property developers and architects, factories and industrial sites, heritage specialists and museums, municipalities, non-life insurers, game studios, and filmmakers. In short, anyone who needs people to see, understand or measure a real place.',
       },
       {
         question: 'Where do you work?',
@@ -168,7 +168,9 @@ export const FAQ_TOPICS: { topic: string; path: RoutePath }[] = [
   { topic: 'Hotels', path: '/industries/hospitality-tourism/#faq' as RoutePath },
   { topic: 'Schools and colleges', path: '/industries/education/#faq' as RoutePath },
   { topic: 'Factories', path: '/industries/factories/#faq' as RoutePath },
+  { topic: 'Game worlds and assets', path: '/services/game-worlds-assets/#faq' as RoutePath },
   { topic: 'Non-life insurance', path: '/industries/non-life-insurance/#faq' as RoutePath },
+  { topic: 'Filmmaking and production', path: '/industries/filmmaking/#faq' as RoutePath },
   { topic: 'Our 3D platform', path: '/platform/#faq' as RoutePath },
 ];
 

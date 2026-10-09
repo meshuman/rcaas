@@ -72,6 +72,16 @@ export const PILLARS: Pillar[] = [
     link: '/services/digital-twins/',
     iconName: 'Compass',
   },
+  {
+    id: 'game-worlds-assets',
+    slug: 'game-worlds-assets',
+    title: 'Game Worlds & Assets',
+    promise: 'Real places. Ready to play.',
+    body: 'Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences.',
+    chips: ['Gaussian splat assets', 'Game environments', 'Unreal & Unity', 'Real-time scenes'],
+    link: '/services/game-worlds-assets/',
+    iconName: 'Gamepad2',
+  },
 ];
 
 export const INDUSTRIES: Industry[] = [
@@ -147,6 +157,26 @@ export const INDUSTRIES: Industry[] = [
     summary: 'Measured 3D records of insured properties for underwriting, claims and loss adjusting.',
     link: '/industries/non-life-insurance/',
     badge: 'Non-life Insurance',
+  },
+  {
+    id: 'gaming',
+    slug: 'gaming',
+    title: 'Gaming',
+    goalHeadline: 'Build game worlds from real places.',
+    whoItsFor: 'Game studios, developers, simulation and virtual production teams',
+    summary: 'Game-ready environments and props made from real locations, objects and heritage sites.',
+    link: '/industries/gaming/',
+    badge: 'Gaming',
+  },
+  {
+    id: 'filmmaking',
+    slug: 'filmmaking',
+    title: 'Filmmaking',
+    goalHeadline: 'Take your camera anywhere in a real place.',
+    whoItsFor: 'Filmmakers, production companies and content creators',
+    summary: 'Cinematic fly-through films, guided tours and real-time scenes made from real locations.',
+    link: '/industries/filmmaking/',
+    badge: 'Filmmaking',
   },
 ];
 

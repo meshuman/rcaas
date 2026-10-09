@@ -6,7 +6,7 @@
 | Field | Copy |
 |---|---|
 | Title tag | Immersive Experiences by Industry \| RCAAS |
-| Meta description | How RCAAS helps hotels, schools, property developers, heritage sites and municipalities in Nepal turn real places into experiences that drive action. |
+| Meta description | How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities and insurers in Nepal with 3D experiences and data. *(updated 8 Oct 2026 for the two new industries)* |
 | H1 | Built for your goal |
 | Breadcrumb | Home › Industries |
 | OG image | [[TBI: industry collage or hero still]] |
@@ -28,8 +28,10 @@
 | **Hospitality & Tourism** | Fill rooms and inspire visits. | Hotels, resorts, destinations, tourism boards | Let guests and travellers explore before they book or travel. | Basera Boutique Hotel | `/industries/hospitality-tourism/` |
 | **Education** | Let students walk your campus before they apply. | Schools, colleges, universities, technical institutes | Show classrooms, labs and grounds to families near and far. | Nepathya School and College · Madan Ashrit Polytechnic Institute | `/industries/education/` |
 | **Real Estate & Architecture** | Sell, design and renovate from reality. | Developers, agents, architects, interior designers | Give buyers a true sense of space and designers accurate measurements. | [[TBI: project, or hide line]] | `/industries/real-estate-architecture/` |
+| **Factories** *(added 8 Oct 2026, awaiting approval)* | Plan, maintain and show your plant from reality. | Factories, manufacturing plants, warehouses, industrial estates | Measured records for layout and maintenance, and tours that show your facility. | [[TBI: project, or hide line]] | `/industries/factories/` |
 | **Heritage & Culture** | Preserve heritage and share it with the world. | Conservators, researchers, museums, heritage trusts | Create a lasting record people everywhere can explore. | Chilancho Stupa (Kirtipur) | `/industries/heritage-culture/` |
 | **Government & Municipalities** | Plan better and bring citizens along. | Municipalities, planning authorities, infrastructure agencies | Reliable 3D data for planning, and public experiences people understand. | [[TBI: project, or hide line]] | `/industries/government-municipalities/` |
+| **Non-life Insurance** *(added 8 Oct 2026, awaiting approval)* | See the risk. Document the loss. | Non-life insurers, reinsurers, loss adjusters, risk surveyors | Measured 3D records of insured properties for underwriting, claims and loss adjusting. | [[TBI: project, or hide line]] | `/industries/non-life-insurance/` |
 
 ---
 

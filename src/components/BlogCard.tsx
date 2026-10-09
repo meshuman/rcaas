@@ -62,7 +62,7 @@ export const BlogCard: React.FC<{ post: BlogPost; onNavigate: (path: RoutePath) 
       }`}
     >
       <div className={`relative overflow-hidden bg-surface-sunken ${featured ? 'aspect-[16/9] lg:aspect-auto lg:w-3/5' : 'aspect-[16/9]'}`}>
-        <img
+        <img loading="lazy" decoding="async"
           src={post.heroImage.src}
           alt={altText(post.heroImage.alt)}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

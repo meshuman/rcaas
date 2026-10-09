@@ -137,7 +137,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ study, onNavigate 
             >
               <div className="relative rounded-2xl overflow-hidden border border-line bg-surface p-3 shadow-lg">
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-zinc-900">
-                  <img src={study.image} alt={study.imageAlt} className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={study.image} alt={study.imageAlt} className="w-full h-full object-cover" />
                 </div>
               </div>
             </motion.div>
@@ -301,7 +301,7 @@ export const CaseStudyPage: React.FC<CaseStudyPageProps> = ({ study, onNavigate 
           className="group mb-16 grid grid-cols-1 md:grid-cols-12 rounded-2xl border border-line bg-white overflow-hidden hover:border-line-strong hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.18)] transition-all"
         >
           <div className="md:col-span-4 aspect-[16/9] md:aspect-auto overflow-hidden bg-zinc-900">
-            <img src={next.image} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <img loading="lazy" decoding="async" src={next.image} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="md:col-span-8 p-6 sm:p-8 flex items-center justify-between gap-4">
             <div>

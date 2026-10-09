@@ -127,10 +127,10 @@ export const ComparisonTable: React.FC<{
 
   return (
     <>
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-4">
         <SectionHeading eyebrow={eyebrow} title={title} className="" />
 
-        <div className="hidden md:flex items-center gap-2 shrink-0" role="group" aria-label="Highlight a column">
+        <div className="hidden md:flex flex-wrap items-center gap-2" role="group" aria-label="Highlight a column">
           <span className="text-xs font-mono text-zinc-500 mr-1">Highlight:</span>
           {columns.map((column) => (
             <button

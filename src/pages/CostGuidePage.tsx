@@ -348,7 +348,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
                 <motion.div key={project.project} {...fadeUp} transition={{ duration: 0.4, delay: i * 0.06 }}>
                   <SpotlightCard className="h-full group" contentClassName="h-full flex flex-col">
                     <div className="h-32 overflow-hidden bg-zinc-900">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={project.image}
                         alt={project.imageAlt}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -443,7 +443,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
               className="grid grid-cols-1 lg:grid-cols-12 gap-0 rounded-2xl border border-line bg-surface overflow-hidden"
             >
               <div className="lg:col-span-5 relative min-h-[240px] bg-zinc-900">
-                <img
+                <img loading="lazy" decoding="async"
                   src={IMAGES.laserField}
                   alt="Team member capturing a heritage square with a handheld laser scanner"
                   className="absolute inset-0 w-full h-full object-cover"

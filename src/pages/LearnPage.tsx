@@ -94,7 +94,7 @@ const LearnHub: React.FC<{ onNavigate: (path: RoutePath) => void }> = ({ onNavig
                 <a href={guide.path} onClick={goToLink(guide.path)} className="block h-full group">
                   <SpotlightCard className="h-full" contentClassName="h-full flex flex-col">
                     <div className="relative h-52 overflow-hidden bg-zinc-900">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={guide.image}
                         alt={guide.imageAlt}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

@@ -461,7 +461,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
               <motion.div key={audience.title} {...fadeUp} transition={{ duration: 0.45, delay: i * 0.1 }}>
                 <SpotlightCard className="h-full group" contentClassName="h-full flex flex-col">
                   <div className="relative h-52 overflow-hidden bg-zinc-900">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={audience.image}
                       alt={audience.imageAlt}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -545,7 +545,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
             >
               {section.image && (
                 <div className="lg:col-span-5 relative min-h-[240px] bg-zinc-900">
-                  <img src={section.image.src} alt={section.image.alt} className="absolute inset-0 w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={section.image.src} alt={section.image.alt} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               )}
               <div className={`${section.image ? 'lg:col-span-7' : 'lg:col-span-12'} p-6 sm:p-10`}>
@@ -698,7 +698,7 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
                 }`}
               >
                 <div className={`aspect-[16/9] overflow-hidden bg-zinc-900 ${industry.proof.cards.length > 1 ? '' : 'md:col-span-5 md:aspect-auto'}`}>
-                  <img src={card.image} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img loading="lazy" decoding="async" src={card.image} alt="" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className={`p-6 sm:p-8 flex flex-col justify-center ${industry.proof.cards.length > 1 ? '' : 'md:col-span-7'}`}>
                   <p className="text-xs font-mono text-zinc-500">

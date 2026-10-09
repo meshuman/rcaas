@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { IMAGES } from '../data/siteData';
+import { startCanvasLoop } from '../lib/canvasLoop';
 
 interface SplatEmbedProps {
   initialDemo?: 'chilancho' | 'basera' | 'nepathya' | 'madan';
@@ -129,7 +130,6 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
     let width = (canvas.width = canvas.parentElement?.clientWidth || 800);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 520);
 
@@ -182,13 +182,12 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
       ctx.arc(cx + driftX, cy + driftY, 14, 0, Math.PI * 2);
       ctx.stroke();
 
-      animId = requestAnimationFrame(renderFacade);
     };
 
-    animId = requestAnimationFrame(renderFacade);
+    const stopLoop = startCanvasLoop(canvas, renderFacade);
 
     return () => {
-      cancelAnimationFrame(animId);
+      stopLoop();
       window.removeEventListener('resize', handleResize);
     };
   }, [isLoaded]);
@@ -201,7 +200,6 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
     let width = (canvas.width = canvas.parentElement?.clientWidth || 800);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 520);
 
@@ -321,13 +319,35 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
 
     seedPoints();
 
-    // Mouse handlers
-    const onMouseDown = (e: MouseEvent) => {
-      motionRef.current.isDragging = true;
-      motionRef.current.lastMouseX = e.clientX;
-      motionRef.current.lastMouseY = e.clientY;
+    // Pointer handlers: one pointer orbits (mouse, finger or pen); two fingers pinch to zoom.
+    // The canvas uses touch-action: pan-y, so vertical swipes still scroll the page.
+    const pointers = new Map<number, { x: number; y: number }>();
+    let pinchStartDistance = 0;
+    let pinchStartZoom = 1;
+    const pinchDistance = () => {
+      const [a, b] = Array.from(pointers.values());
+      return Math.hypot(a.x - b.x, a.y - b.y) || 1;
     };
-    const onMouseMove = (e: MouseEvent) => {
+    const onPointerDown = (e: PointerEvent) => {
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      canvas.setPointerCapture?.(e.pointerId);
+      if (pointers.size === 1) {
+        motionRef.current.isDragging = true;
+        motionRef.current.lastMouseX = e.clientX;
+        motionRef.current.lastMouseY = e.clientY;
+      } else if (pointers.size === 2) {
+        motionRef.current.isDragging = false;
+        pinchStartDistance = pinchDistance();
+        pinchStartZoom = motionRef.current.targetZoom;
+      }
+    };
+    const onPointerMove = (e: PointerEvent) => {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (pointers.size === 2) {
+        motionRef.current.targetZoom = Math.max(0.4, Math.min(2.5, pinchStartZoom * (pinchDistance() / pinchStartDistance)));
+        return;
+      }
       if (!motionRef.current.isDragging) return;
       const dx = e.clientX - motionRef.current.lastMouseX;
       const dy = e.clientY - motionRef.current.lastMouseY;
@@ -336,17 +356,27 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
       motionRef.current.lastMouseX = e.clientX;
       motionRef.current.lastMouseY = e.clientY;
     };
-    const onMouseUp = () => {
-      motionRef.current.isDragging = false;
+    const onPointerEnd = (e: PointerEvent) => {
+      pointers.delete(e.pointerId);
+      if (pointers.size === 0) {
+        motionRef.current.isDragging = false;
+      } else if (pointers.size === 1) {
+        // Back to one finger: carry on orbiting from where it is.
+        const [rest] = Array.from(pointers.values());
+        motionRef.current.isDragging = true;
+        motionRef.current.lastMouseX = rest.x;
+        motionRef.current.lastMouseY = rest.y;
+      }
     };
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
       motionRef.current.targetZoom = Math.max(0.4, Math.min(2.5, motionRef.current.targetZoom - e.deltaY * 0.0015));
     };
 
-    canvas.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('pointerdown', onPointerDown);
+    canvas.addEventListener('pointermove', onPointerMove);
+    canvas.addEventListener('pointerup', onPointerEnd);
+    canvas.addEventListener('pointercancel', onPointerEnd);
     canvas.addEventListener('wheel', onWheel, { passive: false });
 
     let lastTime = performance.now();
@@ -479,17 +509,17 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
         }
       }
 
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    animationFrameId = requestAnimationFrame(render);
+    const stopLoop = startCanvasLoop(canvas, render);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      stopLoop();
       window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onMouseUp);
+      canvas.removeEventListener('pointerdown', onPointerDown);
+      canvas.removeEventListener('pointermove', onPointerMove);
+      canvas.removeEventListener('pointerup', onPointerEnd);
+      canvas.removeEventListener('pointercancel', onPointerEnd);
       canvas.removeEventListener('wheel', onWheel);
     };
   }, [isLoaded, activeSpaceId, renderMode, motionMode]);
@@ -538,7 +568,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
     <div
       ref={containerRef}
       className={`relative w-full overflow-hidden rounded-xl border border-zinc-800 bg-[#0E0E12] shadow-2xl ${
-        isFullscreen ? 'h-screen rounded-none' : 'h-[520px]'
+        isFullscreen ? 'h-dvh rounded-none' : 'h-[520px]'
       }`}
     >
       {!isLoaded ? (
@@ -611,7 +641,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
       ) : (
         /* Live Interactive 3D Canvas Walkthrough Mode */
         <div className="relative h-full w-full select-none">
-          <canvas ref={canvasRef} className="h-full w-full cursor-grab active:cursor-grabbing" />
+          <canvas ref={canvasRef} className="h-full w-full cursor-grab active:cursor-grabbing touch-pan-y select-none" />
 
           {/* Top Control Bar */}
           <div className="absolute top-4 inset-x-4 flex flex-wrap items-center justify-between gap-3 pointer-events-none z-20">

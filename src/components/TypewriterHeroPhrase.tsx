@@ -163,7 +163,7 @@ export const TypewriterHeroPhrase: React.FC = () => {
 
   return (
     <span
-      className="block mt-1 sm:mt-0 sm:inline-grid grid-cols-1 grid-rows-1 text-left align-baseline relative font-bold text-accent"
+      className="grid mt-1 sm:mt-0 sm:inline-grid grid-cols-1 grid-rows-1 justify-items-center sm:justify-items-start align-baseline relative font-bold text-accent"
       aria-hidden="true"
     >
       {/* 

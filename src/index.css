@@ -217,3 +217,68 @@
   animation: laserSquareBlink 0.88s steps(1, end) infinite;
 }
 
+
+/* MOBILE: phone behaviour that utility classes should not override. */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* No 300ms tap delay or double-tap zoom on controls. */
+button, a, summary, label, select, [role="button"], [role="tab"] {
+  touch-action: manipulation;
+}
+
+/* iOS zooms the page when a field with text under 16px is focused (phones and tablets). */
+@media (pointer: coarse) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), select, textarea {
+    font-size: 16px;
+  }
+}
+
+/* Respect the visitor's reduced-motion setting. */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* MOBILE-TARGETS: phones get a legible text floor and finger-sized hit areas. */
+@media (max-width: 1023px) {
+  .text-\[9px\] { font-size: 11px; }
+  .text-\[10px\] { font-size: 11px; }
+  .text-\[11px\] { font-size: 12px; }
+}
+
+@media (pointer: coarse) {
+  /* Breadcrumb links: the row is 44px tall and each link fills it. */
+  nav[aria-label="Breadcrumb"] {
+    min-height: 44px;
+    align-items: stretch;
+  }
+  nav[aria-label="Breadcrumb"] > :is(button, a) {
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 2px;
+  }
+  nav[aria-label="Breadcrumb"] > span {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Bare text-link buttons (no padding of their own) get a 40px tall hit area. */
+  main button:not([class^="p-"]):not([class*=" p-"]):not([class*="px-"]):not([class*="py-"]):not([class*="pt-"]):not([class*="pb-"]):not([role="tab"]):not([role="radio"]):not([class*="absolute"]):not([aria-pressed]) {
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Standalone arrow links (inline-flex, no padding) get the same hit area. */
+  main a[class*="inline-flex"]:not([class*="px-"]):not([class*="py-"]):not([class*="absolute"]) {
+    min-height: 40px;
+    align-items: center;
+  }
+}

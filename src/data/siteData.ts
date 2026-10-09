@@ -27,18 +27,18 @@ export const SITE_METADATA = {
 };
 
 export const IMAGES = {
-  chilanchoStupa: '/assets/images/hero_chilancho_stupa_3d_1791383627390.jpg',
-  baseraHotel: '/assets/images/basera_boutique_hotel_3d_1791383644902.jpg',
-  nepathyaCampus: '/assets/images/nepathya_college_campus_3d_1791383661112.jpg',
-  madanAshrit: '/assets/images/madan_ashrit_polytechnic_3d_1791383678299.jpg',
-  laserField: '/assets/images/rcaas_laser_scanner_field_1791383691610.jpg',
-  vrPreview: '/assets/images/vr_experience_preview_1791447636847.jpg',
-  arPreview: '/assets/images/ar_interactive_preview_1791447649159.jpg',
-  tourInterface: '/assets/images/virtual_tour_interface_1791450805134.jpg',
-  filmCinematography: '/assets/images/virtual_cinematography_1791451395847.jpg',
-  changeOverTime: '/assets/images/conservation_change_time_1791451416655.jpg',
-  pointCloudSurvey: '/assets/images/point_cloud_cad_survey_1791451909905.jpg',
-  droneSurveyField: '/assets/images/drone_aerial_survey_field_1791453798876.jpg',
+  chilanchoStupa: '/assets/images/hero_chilancho_stupa_3d_1791383627390.webp',
+  baseraHotel: '/assets/images/basera_boutique_hotel_3d_1791383644902.webp',
+  nepathyaCampus: '/assets/images/nepathya_college_campus_3d_1791383661112.webp',
+  madanAshrit: '/assets/images/madan_ashrit_polytechnic_3d_1791383678299.webp',
+  laserField: '/assets/images/rcaas_laser_scanner_field_1791383691610.webp',
+  vrPreview: '/assets/images/vr_experience_preview_1791447636847.webp',
+  arPreview: '/assets/images/ar_interactive_preview_1791447649159.webp',
+  tourInterface: '/assets/images/virtual_tour_interface_1791450805134.webp',
+  filmCinematography: '/assets/images/virtual_cinematography_1791451395847.webp',
+  changeOverTime: '/assets/images/conservation_change_time_1791451416655.webp',
+  pointCloudSurvey: '/assets/images/point_cloud_cad_survey_1791451909905.webp',
+  droneSurveyField: '/assets/images/drone_aerial_survey_field_1791453798876.webp',
 };
 
 export const PILLARS: Pillar[] = [

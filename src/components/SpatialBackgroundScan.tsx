@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { startCanvasLoop } from '../lib/canvasLoop';
 
 export const SpatialBackgroundScan: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -9,7 +10,6 @@ export const SpatialBackgroundScan: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
     let width = 0;
     let height = 0;
 
@@ -48,19 +48,18 @@ export const SpatialBackgroundScan: React.FC = () => {
       ctx.fillStyle = grad;
       ctx.fillRect(0, sweepY - 30, width, 60);
 
-      animId = requestAnimationFrame(render);
     };
 
-    animId = requestAnimationFrame(render);
+    const stopLoop = startCanvasLoop(canvas, render);
 
     return () => {
-      cancelAnimationFrame(animId);
+      stopLoop();
       window.removeEventListener('resize', resize);
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="hidden md:block fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <canvas ref={canvasRef} className="h-full w-full opacity-60" />
     </div>
   );

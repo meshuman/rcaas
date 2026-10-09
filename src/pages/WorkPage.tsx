@@ -151,7 +151,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
                   >
                     {/* Poster Image */}
                     <div className="relative aspect-16/10 w-full overflow-hidden bg-zinc-900">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={project.heroImage}
                         alt={project.posterAlt || `3D view of ${project.title}`}
                         className="h-full w-full object-cover object-center opacity-85 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-100"
@@ -334,7 +334,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ currentPath, onNavigate, onO
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-5xl max-h-[90vh] bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl flex flex-col"
+              className="relative w-full max-w-5xl max-h-[90dvh] bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl flex flex-col"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}

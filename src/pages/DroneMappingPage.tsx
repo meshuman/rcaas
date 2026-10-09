@@ -194,7 +194,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
   }, []);
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen selection:bg-accent selection:text-white">
+    <div className="bg-white text-zinc-900 min-h-dvh selection:bg-accent selection:text-white">
       {/* 1. HERO + ANSWER SUMMARY */}
       <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-zinc-200 overflow-hidden">
         {/* Subtle grid backdrop */}
@@ -358,14 +358,14 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
       <nav aria-label="Section anchors" className="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-zinc-200 py-3 overflow-x-auto shadow-xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 sm:space-x-3 text-xs font-mono whitespace-nowrap">
           <span className="text-zinc-400 uppercase text-[10px] tracking-wider mr-2 hidden sm:inline">Jump to:</span>
-          <a href="#showcase" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#showcase</a>
-          <a href="#why-drone" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#why-drone</a>
-          <a href="#deliverables" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#deliverables</a>
-          <a href="#uses" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#uses</a>
-          <a href="#process" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#process</a>
-          <a href="#toolkit" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#toolkit</a>
-          <a href="#more-value" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#more-value</a>
-          <a href="#faq" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#faq</a>
+          <a href="#showcase" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#showcase</a>
+          <a href="#why-drone" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#why-drone</a>
+          <a href="#deliverables" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#deliverables</a>
+          <a href="#uses" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#uses</a>
+          <a href="#process" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#process</a>
+          <a href="#toolkit" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#toolkit</a>
+          <a href="#more-value" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#more-value</a>
+          <a href="#faq" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#faq</a>
         </div>
       </nav>
 
@@ -445,7 +445,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           ) : (
             <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-zinc-950 text-white shadow-lg">
               <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
-                <img
+                <img loading="lazy" decoding="async"
                   src={showcaseMode === 'ortho' ? IMAGES.droneSurveyField : IMAGES.pointCloudSurvey}
                   alt={showcaseMode === 'ortho' ? 'True-scale aerial orthomosaic map' : 'Digital surface model elevation gradient'}
                   className="w-full h-full object-cover opacity-90 transition-opacity duration-300"
@@ -828,7 +828,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
 
           <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-white grid grid-cols-1 lg:grid-cols-12 shadow-xs">
             <div className="lg:col-span-7 aspect-video lg:aspect-auto relative overflow-hidden">
-              <img
+              <img loading="lazy" decoding="async"
                 src={IMAGES.chilanchoStupa}
                 alt="Chilancho Stupa Aerial Drone Documentation"
                 className="w-full h-full object-cover"

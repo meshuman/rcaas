@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { startCanvasLoop } from '../lib/canvasLoop';
 
 interface KineticSpatialCardProps {
   imageSrc: string;
@@ -52,7 +53,6 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
     let width = (canvas.width = canvas.parentElement?.clientWidth || 360);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 240);
 
@@ -139,13 +139,12 @@ export const KineticSpatialCard: React.FC<KineticSpatialCardProps> = ({
       ctx.fillStyle = grad;
       ctx.fillRect(0, scanY - 18, width, 36);
 
-      animId = requestAnimationFrame(render);
     };
 
-    animId = requestAnimationFrame(render);
+    const stopLoop = startCanvasLoop(canvas, render);
 
     return () => {
-      cancelAnimationFrame(animId);
+      stopLoop();
       window.removeEventListener('resize', handleResize);
     };
   }, [isHovered]);

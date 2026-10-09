@@ -506,7 +506,7 @@ export const ImmersiveExperiencesPage: React.FC<ImmersiveExperiencesPageProps> =
                       
                       {/* Image Preview Container */}
                       <div className="relative aspect-[16/10] rounded-lg overflow-hidden border border-white/15 mb-6 group">
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={cap.image}
                           alt={cap.title}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"

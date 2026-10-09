@@ -1172,6 +1172,9 @@ export default function App() {
   }, [currentPath]);
 
   // Route selector
+  const showMobileBar =
+    SITE_METADATA.contactConfirmed && !currentPath.startsWith('/contact') && !currentPath.startsWith('/thank-you');
+
   const renderCurrentPage = () => {
     if (currentPath === '/') {
       return <HomePage onNavigate={navigateTo} onOpenPlanner={() => setPlannerOpen(true)} />;
@@ -1296,7 +1299,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-white text-zinc-950">
+    <div className={`flex min-h-dvh flex-col bg-white text-zinc-950 ${showMobileBar ? 'pb-16 sm:pb-0' : ''}`}>
       
       {/* 3D LiDAR & Capture Mark Cursor */}
       <CaptureLidarCursor />
@@ -1319,24 +1322,27 @@ export default function App() {
         onOpenRegister={() => setRegisterOpen(true)}
       />
 
-      {/* Mobile Sticky Action Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-40 flex items-center justify-between border-t border-line bg-white/95 px-4 py-2.5 backdrop-blur-lg sm:hidden text-zinc-900 shadow-sm">
-        <button
-          onClick={() => setPlannerOpen(true)}
-          className="loro-btn-primary px-4 py-2 text-xs font-semibold"
-        >
-          Plan your experience
-        </button>
-        <a
-          href={SITE_METADATA.whatsappUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="loro-btn-secondary px-3 py-2 text-xs font-medium flex items-center gap-1.5"
-        >
-          <span>WhatsApp</span>
-          <span>↗</span>
-        </a>
-      </div>
+      {/* Mobile Sticky Action Bar: needs a confirmed WhatsApp number (Register G06), and is left off
+          the contact and thank-you pages, where it would cover the form. */}
+      {showMobileBar && (
+        <div className="fixed bottom-0 inset-x-0 z-40 flex items-center gap-2 border-t border-line bg-white/95 px-4 py-2.5 backdrop-blur-lg sm:hidden text-zinc-900 shadow-sm">
+          <button
+            onClick={() => setPlannerOpen(true)}
+            className="loro-btn-primary flex-1 min-h-11 px-4 text-sm font-semibold"
+          >
+            Plan your experience
+          </button>
+          <a
+            href={SITE_METADATA.whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="loro-btn-secondary min-h-11 px-4 text-sm font-medium flex items-center gap-1.5"
+          >
+            <span>WhatsApp</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      )}
 
       {/* Modals */}
       <ProjectPlannerModal

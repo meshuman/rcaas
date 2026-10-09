@@ -390,7 +390,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ currentPath, onNavigat
                   required
                   checked={consent}
                   onChange={(e) => setConsent(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-zinc-300 accent-accent shrink-0"
+                  className="mt-0.5 h-5 w-5 rounded border-zinc-300 accent-accent shrink-0"
                 />
                 <label htmlFor="c-consent" className="text-xs text-zinc-600 leading-relaxed">
                   I agree to RCAAS Technology contacting me about my enquiry. See our{' '}

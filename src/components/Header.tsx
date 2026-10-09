@@ -163,7 +163,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
         {/* Wordmark */}
         <button
           onClick={() => handleNav('/')}
-          className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-ink transition-opacity hover:opacity-90 font-display"
+          className="flex min-h-11 items-center gap-1.5 pr-2 text-xl font-bold tracking-tight text-ink transition-opacity hover:opacity-90 font-display"
           aria-label="RCAAS Technology, home"
         >
           <span>RCAAS</span>
@@ -257,7 +257,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
           >
             Explore a live tour
           </button>
-          <button onClick={openPlanner} className="loro-btn-primary px-3 sm:px-4 py-2 text-[11px] sm:text-xs font-semibold">
+          <button onClick={openPlanner} className="loro-btn-primary min-h-10 px-4 py-2 text-xs font-semibold">
             <span className="sm:hidden">Plan</span>
             <span className="hidden sm:inline">Plan your experience</span>
           </button>

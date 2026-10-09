@@ -460,7 +460,7 @@ export const PlatformPage: React.FC<PlatformPageProps> = ({ onNavigate }) => {
                     required
                     checked={consent}
                     onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-0.5 h-4 w-4 rounded border-line accent-accent"
+                    className="mt-0.5 h-5 w-5 rounded border-line accent-accent"
                   />
                   <label htmlFor="ea-consent" className="text-xs text-zinc-600 leading-relaxed">
                     I agree to be contacted about the RCAAS platform. See our{' '}

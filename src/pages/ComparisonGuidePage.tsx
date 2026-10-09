@@ -395,7 +395,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                 <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] items-center gap-3">
                   <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={IMAGES.filmCinematography}
                         alt="Fly-through film being made from a 3D capture"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -416,7 +416,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
 
                   <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={IMAGES.tourInterface}
                         alt="Full 3D virtual tour open on a website"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

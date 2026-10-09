@@ -23,7 +23,7 @@ export const PlaceholderRegisterModal: React.FC<PlaceholderRegisterModalProps> =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="relative w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden rounded-lg border border-line bg-white shadow-2xl">
+      <div className="relative w-full max-w-4xl max-h-[85dvh] flex flex-col overflow-hidden rounded-lg border border-line bg-white shadow-2xl">
         
         {/* Header */}
         <div className="flex items-center justify-between border-b border-line px-6 py-4 bg-surface">

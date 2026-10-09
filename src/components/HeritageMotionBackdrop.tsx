@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { IMAGES } from '../data/siteData';
+import { startCanvasLoop } from '../lib/canvasLoop';
 
 export const HeritageMotionBackdrop: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -10,7 +11,6 @@ export const HeritageMotionBackdrop: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animId: number;
     let width = (canvas.width = canvas.parentElement?.clientWidth || 800);
     let height = (canvas.height = canvas.parentElement?.clientHeight || 400);
 
@@ -92,20 +92,19 @@ export const HeritageMotionBackdrop: React.FC = () => {
       ctx.lineTo(cx + Math.cos(radarAngle) * 160, cy + Math.sin(radarAngle) * 160);
       ctx.stroke();
 
-      animId = requestAnimationFrame(render);
     };
 
-    animId = requestAnimationFrame(render);
+    const stopLoop = startCanvasLoop(canvas, render);
 
     return () => {
-      cancelAnimationFrame(animId);
+      stopLoop();
       window.removeEventListener('resize', resize);
     };
   }, []);
 
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <img
+      <img loading="lazy" decoding="async"
         src={IMAGES.chilanchoStupa}
         alt="3D model of Chilancho Stupa"
         className="h-full w-full object-cover opacity-12 filter grayscale scale-105 animate-[pulse_8s_ease-in-out_infinite]"

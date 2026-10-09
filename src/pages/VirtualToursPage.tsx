@@ -325,7 +325,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl overflow-hidden border border-line bg-surface p-3 shadow-lg group">
               <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-zinc-900">
-                <img
+                <img loading="lazy" decoding="async"
                   src={IMAGES.tourInterface}
                   alt="3D virtual tour interface walkthrough on modern screen"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -729,7 +729,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
               {/* Sector image */}
               <div className="lg:col-span-5">
                 <div className="relative rounded-xl overflow-hidden aspect-[4/3] border border-line group shadow-xs">
-                  <img
+                  <img loading="lazy" decoding="async"
                     src={selectedSectorData.image}
                     alt={selectedSectorData.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"

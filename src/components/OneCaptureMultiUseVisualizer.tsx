@@ -266,7 +266,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
             >
               {/* Visual Simulated Viewport */}
               <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-950 shadow-inner group">
-                <img
+                <img loading="lazy" decoding="async"
                   src={active.image}
                   alt={active.name}
                   className="w-full h-full object-cover object-center filter brightness-[0.88] contrast-[1.05] transition-transform duration-700"
@@ -443,7 +443,7 @@ export const OneCaptureMultiUseVisualizer: React.FC<VisualizerProps> = ({ onNavi
                   </div>
                   <button
                     onClick={() => onNavigate(active.route)}
-                    className="loro-btn-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider whitespace-nowrap self-start sm:self-auto"
+                    className="loro-btn-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-wider max-w-full text-left sm:whitespace-nowrap self-start sm:self-auto"
                   >
                     {active.buttonText} &rarr;
                   </button>

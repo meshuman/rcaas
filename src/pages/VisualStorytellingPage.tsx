@@ -397,7 +397,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
   }, []);
 
   return (
-    <div className="bg-white text-zinc-900 min-h-screen selection:bg-accent selection:text-white">
+    <div className="bg-white text-zinc-900 min-h-dvh selection:bg-accent selection:text-white">
       {/* 1. HERO + ANSWER SUMMARY */}
       <section className="relative pt-12 pb-16 md:pt-16 md:pb-24 border-b border-zinc-200 overflow-hidden">
         {/* Subtle architectural grid backdrop */}
@@ -548,16 +548,16 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
       <nav aria-label="Section anchors" className="sticky top-16 z-30 bg-white/95 backdrop-blur-md border-b border-zinc-200 py-3 overflow-x-auto shadow-xs">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center space-x-2 sm:space-x-3 text-xs font-mono whitespace-nowrap">
           <span className="text-zinc-400 uppercase text-[10px] tracking-wider mr-2 hidden sm:inline">Jump to:</span>
-          <a href="#showcase" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#showcase</a>
-          <a href="#why-story" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#why-story</a>
-          <a href="#guided-tours" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#guided-tours</a>
-          <a href="#films" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#films</a>
-          <a href="#social" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#social</a>
-          <a href="#exhibitions" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#exhibitions</a>
-          <a href="#change-over-time" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#change-over-time</a>
-          <a href="#industries" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#industries</a>
-          <a href="#process" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#process</a>
-          <a href="#faq" className="px-2.5 py-1 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#faq</a>
+          <a href="#showcase" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#showcase</a>
+          <a href="#why-story" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#why-story</a>
+          <a href="#guided-tours" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#guided-tours</a>
+          <a href="#films" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#films</a>
+          <a href="#social" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#social</a>
+          <a href="#exhibitions" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#exhibitions</a>
+          <a href="#change-over-time" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#change-over-time</a>
+          <a href="#industries" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#industries</a>
+          <a href="#process" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#process</a>
+          <a href="#faq" className="px-3 py-2.5 rounded-md bg-zinc-100 hover:bg-zinc-200 text-zinc-800 transition-colors">#faq</a>
         </div>
       </nav>
 
@@ -610,7 +610,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 {!isPlayingFacade ? (
                   // Facade Poster & Click-To-Load State
                   <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 sm:p-8">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={IMAGES.filmCinematography}
                       alt="Basera Boutique Hotel Cinematic Fly-Through"
                       className="absolute inset-0 w-full h-full object-cover opacity-80"
@@ -680,7 +680,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                 ) : (
                   // Active Facade Player State
                   <div className="relative w-full h-full flex flex-col items-center justify-center bg-zinc-950 p-6">
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={aspectRatio === '9:16' ? IMAGES.vrPreview : IMAGES.filmCinematography}
                       alt="Active video preview"
                       className={`h-full object-cover transition-all duration-300 rounded-lg ${
@@ -988,7 +988,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                       {/* Image / Preview */}
                       {cap.image && (
                         <div className="relative rounded-xl overflow-hidden border border-zinc-200 aspect-video mb-6 shadow-xs group">
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={cap.image}
                             alt={cap.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1011,7 +1011,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                           {/* Slider Graphic */}
                           <div className="relative aspect-video rounded-lg overflow-hidden border border-zinc-300 select-none">
                             {/* Before layer */}
-                            <img
+                            <img loading="lazy" decoding="async"
                               src={IMAGES.madanAshrit}
                               alt="Before renovation"
                               className="absolute inset-0 w-full h-full object-cover"
@@ -1025,7 +1025,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                               className="absolute inset-0 overflow-hidden"
                               style={{ width: `${sliderPosition}%` }}
                             >
-                              <img
+                              <img loading="lazy" decoding="async"
                                 src={IMAGES.changeOverTime}
                                 alt="After restoration"
                                 className="absolute inset-0 w-full h-full object-cover"

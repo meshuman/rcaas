@@ -14,13 +14,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         
         {/* Main 5-Column Grid */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-5">
           
           {/* Brand Col */}
-          <div className="lg:col-span-2">
+          <div className="col-span-2 lg:col-span-2">
             <button
               onClick={() => onNavigate('/')}
-              className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-ink font-display text-left"
+              className="flex items-center gap-1.5 py-1 text-xl font-bold tracking-tight text-ink font-display text-left"
             >
               <span>RCAAS</span>
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <span>{SITE_METADATA.phone}</span>
             </div>
             <div className="mt-1.5 text-xs font-mono">
-              <a href={`mailto:${SITE_METADATA.email}`} className="text-zinc-700 hover:text-accent transition-colors">
+              <a href={`mailto:${SITE_METADATA.email}`} className="inline-block py-2.5 text-zinc-700 hover:text-accent transition-colors">
                 {SITE_METADATA.email}
               </a>
             </div>
@@ -45,11 +45,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ink font-mono">
               What we create
             </h4>
-            <ul className="mt-4 space-y-2 text-xs">
+            <ul className="mt-3 text-xs">
               <li>
                 <button
                   onClick={() => onNavigate('/services/immersive-experiences/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Immersive Experiences
                 </button>
@@ -57,7 +57,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/services/immersive-experiences/3d-virtual-tours/')}
-                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line"
+                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line block py-2.5"
                 >
                   3D Virtual Tours
                 </button>
@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/services/visual-storytelling/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Visual Storytelling
                 </button>
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/services/digital-twins/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Digital Twins &amp; Survey
                 </button>
@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/services/digital-twins/3d-laser-scanning/')}
-                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line"
+                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line block py-2.5"
                 >
                   3D Laser Scanning
                 </button>
@@ -89,7 +89,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/services/digital-twins/drone-mapping/')}
-                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line"
+                  className="text-zinc-500 hover:text-ink text-left transition-colors pl-2 border-l border-line block py-2.5"
                 >
                   Drone Mapping
                 </button>
@@ -102,11 +102,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ink font-mono">
               Industries
             </h4>
-            <ul className="mt-4 space-y-2 text-xs">
+            <ul className="mt-3 text-xs">
               <li>
                 <button
                   onClick={() => onNavigate('/industries/hospitality-tourism/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Hotels &amp; Tourism
                 </button>
@@ -114,7 +114,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/education/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Education &amp; Campuses
                 </button>
@@ -122,7 +122,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/real-estate-architecture/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Real Estate &amp; Architecture
                 </button>
@@ -130,7 +130,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/factories/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Factories
                 </button>
@@ -138,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/heritage-culture/')}
-                  className="text-accent font-medium hover:underline text-left transition-colors"
+                  className="text-accent font-medium hover:underline text-left transition-colors block py-2.5"
                 >
                   Heritage &amp; Culture (Flagship)
                 </button>
@@ -146,7 +146,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/government-municipalities/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Government &amp; Municipalities
                 </button>
@@ -154,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/industries/non-life-insurance/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Non-life Insurance
                 </button>
@@ -167,11 +167,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-ink font-mono">
               Company &amp; Know-how
             </h4>
-            <ul className="mt-4 space-y-2 text-xs">
+            <ul className="mt-3 text-xs">
               <li>
                 <button
                   onClick={() => onNavigate('/about/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   About RCAAS
                 </button>
@@ -179,7 +179,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/how-we-work/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   How We Work (5 Steps)
                 </button>
@@ -187,7 +187,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/work/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Case Studies &amp; Projects
                 </button>
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/platform/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Cloud 3D Platform
                 </button>
@@ -203,7 +203,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/learn/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   Guides &amp; Articles
                 </button>
@@ -212,7 +212,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                 <li>
                   <button
                     onClick={() => onNavigate('/blog/')}
-                    className="hover:text-ink text-left transition-colors"
+                    className="hover:text-ink text-left transition-colors block py-2.5"
                   >
                     Blog
                   </button>
@@ -221,7 +221,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/faq/')}
-                  className="hover:text-ink text-left transition-colors"
+                  className="hover:text-ink text-left transition-colors block py-2.5"
                 >
                   FAQ
                 </button>
@@ -229,7 +229,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/contact/')}
-                  className="text-accent font-medium hover:underline text-left transition-colors"
+                  className="text-accent font-medium hover:underline text-left transition-colors block py-2.5"
                 >
                   Contact &amp; Enquiry
                 </button>
@@ -248,14 +248,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
           <div className="flex items-center gap-4">
             <button
               onClick={() => onNavigate('/privacy/')}
-              className="hover:text-ink transition-colors"
+              className="hover:text-ink transition-colors py-2.5 px-1"
             >
               Privacy
             </button>
             <span>·</span>
             <button
               onClick={() => onNavigate('/terms/')}
-              className="hover:text-ink transition-colors"
+              className="hover:text-ink transition-colors py-2.5 px-1"
             >
               Terms
             </button>

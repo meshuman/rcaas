@@ -146,7 +146,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
         {/* Left: Viewport Simulation */}
         <div className="lg:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-zinc-300 bg-zinc-950 shadow-inner group select-none">
           {/* Main Backdrop Image */}
-          <img
+          <img loading="lazy" decoding="async"
             src={IMAGES.baseraHotel}
             alt="Interactive 3D Virtual Tour Space"
             className={`w-full h-full object-cover transition-all duration-700 ${

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
-import { BLOG_LAUNCHED } from '../content/blog';
 
 // Menu content comes from the site data, so labels match the pages they link to.
 
@@ -14,12 +13,12 @@ const CAPABILITIES: { label: string; path: RoutePath }[] = [
   { label: 'Drone mapping', path: '/services/digital-twins/drone-mapping/' },
 ];
 
-// About ▾ (spec §4.1). Blog stays hidden until the blog launches.
+// About ▾ (spec §4.1). Blog is shown before launch at the owner's request (spec: hidden while draft).
 const ABOUT_MENU: { label: string; path: RoutePath }[] = [
   { label: 'About us', path: '/about/' },
   { label: 'How we work', path: '/how-we-work/' },
   { label: 'Learn', path: '/learn/' },
-  ...(BLOG_LAUNCHED ? [{ label: 'Blog', path: '/blog/' as RoutePath }] : []),
+  { label: 'Blog', path: '/blog/' },
   { label: 'FAQ', path: '/faq/' },
   { label: 'Partner with us', path: '/about/#partner' as RoutePath },
   { label: 'Contact', path: '/contact/' },

@@ -34,6 +34,7 @@
 | **Non-life Insurance** *(added 8 Oct 2026, awaiting approval)* | See the risk. Document the loss. | Non-life insurers, reinsurers, loss adjusters, risk surveyors | Measured 3D records of insured properties for underwriting, claims and loss adjusting. | [[TBI: project, or hide line]] | `/industries/non-life-insurance/` |
 | **Gaming** *(added 9 Oct 2026, draft, awaiting approval)* | Build game worlds from real places. | Game studios, developers, simulation and virtual production teams | Game-ready environments and props made from real locations, objects and heritage sites. | [[TBI: project, or hide line]] | `/industries/gaming/` |
 | **Filmmaking** *(added 9 Oct 2026, draft, awaiting approval)* | Take your camera anywhere in a real place. | Filmmakers, production companies, content creators | Cinematic fly-through films, guided tours and real-time scenes made from real locations. | [[TBI: project, or hide line]] | `/industries/filmmaking/` |
+| **Nonprofit & International Development** *(added 10 Oct 2026, written from confirmed services, awaiting approval)* | Show the place. Share the impact. | Nonprofits, NGOs, development agencies, donor-funded programmes | Project sites funders and partners can explore from a link, with measured records before and after. | [[TBI: project, or hide line]] | `/industries/nonprofit-international-development/` |
 
 ---
 

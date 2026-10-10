@@ -13,8 +13,6 @@ interface DemoSpace {
   location: string;
   tag: string;
   clientGoal: string;
-  splatCount: string;
-  accuracy: string;
   coords: string;
   poster: string;
   waypoints: { name: string; rotY: number; rotX: number; zoom: number; camY: number }[];
@@ -27,8 +25,6 @@ const DEMO_SPACES: DemoSpace[] = [
     location: 'Kirtipur, Kathmandu Valley',
     tag: 'Cultural Heritage',
     clientGoal: 'Preserve sacred medieval Newari architecture and share with global researchers and pilgrims.',
-    splatCount: '1,420,000 splats',
-    accuracy: '±4.8mm (SLAM LiDAR)',
     coords: '27°40\'58.4"N 85°16\'41.2"E',
     poster: IMAGES.chilanchoStupa,
     waypoints: [
@@ -44,8 +40,6 @@ const DEMO_SPACES: DemoSpace[] = [
     location: 'Kathmandu, Nepal',
     tag: 'Hospitality',
     clientGoal: 'Let international travelers explore suites and traditional wood-carved courtyards before booking.',
-    splatCount: '980,000 splats',
-    accuracy: '±6.2mm (LiDAR + HDR)',
     coords: '27°41\'24.8"N 85°19\'12.5"E',
     poster: IMAGES.baseraHotel,
     waypoints: [
@@ -60,8 +54,6 @@ const DEMO_SPACES: DemoSpace[] = [
     location: 'Kathmandu, Nepal',
     tag: 'Education',
     clientGoal: 'Allow prospective students and parents to tour modern classrooms and laboratories from anywhere.',
-    splatCount: '1,850,000 splats',
-    accuracy: '±12mm (Aerial RTK + SLAM)',
     coords: '27°42\'10.1"N 85°20\'33.0"E',
     poster: IMAGES.nepathyaCampus,
     waypoints: [
@@ -76,8 +68,6 @@ const DEMO_SPACES: DemoSpace[] = [
     location: 'Nepal',
     tag: 'Vocational Campus',
     clientGoal: 'Showcase specialized engineering bays, robotic workshops, and vocational facilities.',
-    splatCount: '1,210,000 splats',
-    accuracy: '±8.5mm (SLAM LiDAR)',
     coords: '27°38\'44.2"N 85°18\'02.7"E',
     poster: IMAGES.madanAshrit,
     waypoints: [
@@ -591,19 +581,19 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
             <button
               onClick={() => setIsLoaded(true)}
-              className="loro-btn-primary flex items-center gap-3 px-8 py-4 text-sm shadow-[0_0_30px_rgba(225,29,72,0.5)] transform hover:scale-105 transition-transform"
+              className="loro-btn-primary flex items-center gap-3 px-7 py-3.5 text-sm font-semibold"
             >
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
                 <svg className="h-3.5 w-3.5 fill-current text-white ml-0.5" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>
-              <span>Step Inside &amp; Walk Through</span>
+              <span>Step inside</span>
             </button>
 
             <div className="mt-3 flex items-center gap-2 text-xs text-zinc-300 font-mono">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Full Locomotion 3D Engine · Zero App Required</span>
+              <span>Opens in your browser · No app needed</span>
             </div>
 
             <button
@@ -613,7 +603,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
               }}
               className="mt-3 text-xs font-mono text-zinc-400 hover:text-white transition-colors flex items-center gap-1"
             >
-              <span>Open in Fullscreen Theater</span>
+              <span>Open full screen</span>
               <span>↗</span>
             </button>
           </div>
@@ -633,8 +623,6 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
             </div>
 
             <div className="text-right text-xs text-zinc-400 font-mono">
-              <div>{activeSpace.splatCount}</div>
-              <div className="text-accent-soft">{activeSpace.accuracy}</div>
             </div>
           </div>
         </div>
@@ -812,7 +800,7 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
                 {activeSpace.clientGoal}
               </p>
               <div className="mt-2 text-[11px] font-mono text-zinc-400 flex items-center gap-3">
-                <span>Active 60 FPS Engine</span>
+                <span>Live preview</span>
                 <span>·</span>
                 <span>{fps} FPS</span>
                 <span>·</span>
@@ -821,8 +809,6 @@ export const SplatEmbed: React.FC<SplatEmbedProps> = ({ initialDemo = 'chilancho
             </div>
 
             <div className="p-3 rounded-md bg-ink/90 border border-zinc-800 font-mono text-[11px] text-right text-zinc-400 pointer-events-auto">
-              <div className="text-accent-soft font-medium">{activeSpace.accuracy}</div>
-              <div>{activeSpace.splatCount}</div>
               <div>{activeSpace.coords}</div>
             </div>
           </div>

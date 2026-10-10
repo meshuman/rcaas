@@ -282,3 +282,9 @@ button, a, summary, label, select, [role="button"], [role="tab"] {
     align-items: center;
   }
 }
+
+/* Case-study reel: progress line for the story on screen. */
+@keyframes story-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}

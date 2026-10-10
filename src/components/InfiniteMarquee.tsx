@@ -5,18 +5,18 @@ interface InfiniteMarqueeProps {
   className?: string;
 }
 
+// What we capture and what we make. Facts only: no specs, accuracy figures or performance claims.
 const DEFAULT_MARQUEE_ITEMS = [
-  'REALITY CAPTURE AS A SERVICE',
-  '3D GAUSSIAN SPLATTING',
-  'SLAM LIDAR (±5mm)',
-  'KATHMANDU VALLEY',
-  'AERIAL DRONE RTK SURVEY',
-  'ZERO-INSTALL WEB TOURS',
-  'DIGITAL TWINS & BIM',
-  'CULTURAL HERITAGE ARCHIVES',
-  '60 FPS BROWSER ENGINE',
-  'UNREAL ENGINE & WEBRTC',
-  '100% DATA OWNERSHIP',
+  'Hotels and resorts',
+  'Schools and campuses',
+  'Heritage sites',
+  'Property and architecture',
+  'Factories',
+  '3D virtual tours',
+  'VR and AR',
+  'Fly-through films',
+  'Measured digital twins',
+  'Game-ready assets',
 ];
 
 export const InfiniteMarquee: React.FC<InfiniteMarqueeProps> = ({

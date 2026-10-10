@@ -18,6 +18,7 @@ export type RoutePath =
   | '/industries/non-life-insurance/'
   | '/industries/gaming/'
   | '/industries/filmmaking/'
+  | '/industries/nonprofit-international-development/'
   | '/work/'
   | '/work/chilancho-stupa-digital-heritage/'
   | '/work/nepathya-school-college-3d-campus-tour/'

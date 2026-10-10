@@ -28,15 +28,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
             <p className="mt-4 max-w-sm text-xs leading-relaxed text-zinc-600">
               {SITE_METADATA.boilerplate}
             </p>
+            {/* Phone and email show only once confirmed (SITE_METADATA.contactConfirmed); until then, the contact page. */}
             <div className="mt-5 flex items-center gap-3 text-xs font-mono text-zinc-500">
               <span>{SITE_METADATA.location}</span>
-              <span>·</span>
-              <span>{SITE_METADATA.phone}</span>
+              {SITE_METADATA.contactConfirmed && (
+                <>
+                  <span>·</span>
+                  <span>{SITE_METADATA.phone}</span>
+                </>
+              )}
             </div>
             <div className="mt-1.5 text-xs font-mono">
-              <a href={`mailto:${SITE_METADATA.email}`} className="inline-block py-2.5 text-zinc-700 hover:text-accent transition-colors">
-                {SITE_METADATA.email}
-              </a>
+              {SITE_METADATA.contactConfirmed ? (
+                <a href={`mailto:${SITE_METADATA.email}`} className="inline-block py-2.5 text-zinc-700 hover:text-accent transition-colors">
+                  {SITE_METADATA.email}
+                </a>
+              ) : (
+                <button
+                  onClick={() => onNavigate('/contact/')}
+                  className="inline-block py-2.5 text-zinc-700 hover:text-accent transition-colors"
+                >
+                  Get in touch &rarr;
+                </button>
+              )}
             </div>
           </div>
 
@@ -148,7 +162,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   onClick={() => onNavigate('/industries/heritage-culture/')}
                   className="text-accent font-medium hover:underline text-left transition-colors block py-2.5"
                 >
-                  Heritage &amp; Culture (Flagship)
+                  Heritage &amp; Culture
                 </button>
               </li>
               <li>
@@ -183,6 +197,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   Filmmaking
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/industries/nonprofit-international-development/')}
+                  className="hover:text-ink text-left transition-colors block py-2.5"
+                >
+                  Nonprofit & Development
+                </button>
+              </li>
             </ul>
           </div>
 
@@ -205,7 +227,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   onClick={() => onNavigate('/how-we-work/')}
                   className="hover:text-ink text-left transition-colors block py-2.5"
                 >
-                  How We Work (5 Steps)
+                  How We Work
                 </button>
               </li>
               <li>
@@ -245,7 +267,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <li>
                 <button
                   onClick={() => onNavigate('/faq/')}
-                  className="hover:text-ink text-left transition-colors block py-2.5"
+                  className="hover:text-ink text-left transition-colors block min-w-11 py-2.5"
                 >
                   FAQ
                 </button>
@@ -266,7 +288,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
         {/* Lower Legal Bar & Auditor Trigger */}
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-line pt-8 text-xs font-mono text-zinc-500">
           <div>
-            &copy; {new Date().getFullYear()} {SITE_METADATA.legalName}. All rights reserved. Registered in Kathmandu, Nepal.
+            &copy; {new Date().getFullYear()} {SITE_METADATA.legalName.replace(/\.$/, '')}. All rights reserved. Registered in Kathmandu, Nepal.
           </div>
           
           <div className="flex items-center gap-4">
@@ -283,8 +305,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
             >
               Terms
             </button>
-            <span>·</span>
-            {/* Developer / Auditor Mode Button for §13 Register */}
+            {/* Placeholder register (§13): a review tool, shown only in local development. */}
+            {import.meta.env.DEV && <span>·</span>}
+            {import.meta.env.DEV && (
             <button
               onClick={onOpenRegister}
               className="inline-flex items-center gap-1.5 rounded border border-line bg-white px-2 py-1 text-[11px] text-zinc-600 hover:border-zinc-400 hover:text-zinc-950 transition-colors"
@@ -293,6 +316,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
               <span className="h-1.5 w-1.5 rounded-full bg-accent"></span>
               <span>Audit Register (§13)</span>
             </button>
+            )}
           </div>
         </div>
 

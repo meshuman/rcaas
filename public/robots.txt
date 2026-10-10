@@ -23,3 +23,5 @@ Disallow: /
 
 User-agent: Google-Extended
 Disallow: /
+
+Sitemap: https://rcaas.tech/sitemap.xml

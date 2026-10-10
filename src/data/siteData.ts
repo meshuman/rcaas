@@ -39,6 +39,7 @@ export const IMAGES = {
   changeOverTime: '/assets/images/conservation_change_time_1791451416655.webp',
   pointCloudSurvey: '/assets/images/point_cloud_cad_survey_1791451909905.webp',
   droneSurveyField: '/assets/images/drone_aerial_survey_field_1791453798876.webp',
+  surveyTeamField: '/assets/images/point_cloud_cad_survey_1791451909905_1.webp',
 };
 
 export const PILLARS: Pillar[] = [
@@ -177,6 +178,16 @@ export const INDUSTRIES: Industry[] = [
     summary: 'Cinematic fly-through films, guided tours and real-time scenes made from real locations.',
     link: '/industries/filmmaking/',
     badge: 'Filmmaking',
+  },
+  {
+    id: 'nonprofit-international-development',
+    slug: 'nonprofit-international-development',
+    title: 'Nonprofit & International Development',
+    goalHeadline: 'Show the place. Share the impact.',
+    whoItsFor: 'Nonprofits, NGOs, development agencies, donor-funded programmes',
+    summary: 'Project sites funders and partners can explore from a link, with measured records before and after.',
+    link: '/industries/nonprofit-international-development/',
+    badge: 'Nonprofit & Development',
   },
 ];
 

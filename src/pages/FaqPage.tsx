@@ -9,6 +9,7 @@ import {
   Drone,
   Factory,
   Film,
+  HandHeart,
   Gamepad2,
   Glasses,
   GraduationCap,
@@ -54,7 +55,7 @@ const GROUP_ICONS: Record<string, LucideIcon> = {
   'working-together': Handshake,
 };
 
-const TOPIC_ICONS: LucideIcon[] = [Ruler, ScanLine, Drone, Box, Glasses, Clapperboard, Landmark, Hotel, GraduationCap, Factory, Gamepad2, ShieldCheck, Film, MonitorPlay];
+const TOPIC_ICONS: LucideIcon[] = [Ruler, ScanLine, Drone, Box, Glasses, Clapperboard, Landmark, Hotel, GraduationCap, Factory, Gamepad2, ShieldCheck, Film, HandHeart, MonitorPlay];
 
 const updatedLabel = new Date(`${FAQ_UPDATED}T00:00:00`).toLocaleDateString('en-GB', {
   day: 'numeric',

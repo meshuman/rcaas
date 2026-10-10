@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
+import { SITE_METADATA, PILLARS, INDUSTRIES, IMAGES } from '../data/siteData';
+import {
+  Building2,
+  ChevronRight,
+  Clapperboard,
+  Factory,
+  Gamepad2,
+  GraduationCap,
+  HandHeart,
+  Handshake,
+  Hotel,
+  House,
+  Landmark,
+  Ruler,
+  ShieldCheck,
+  Target,
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { CASE_STUDY_CONTENT } from '../content/work';
 import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { HOME_FAQS } from '../content/faq';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InfiniteMarquee } from '../components/InfiniteMarquee';
-import { KineticSpatialCard } from '../components/KineticSpatialCard';
+import { CaseStudyShowcase } from '../components/CaseStudyShowcase';
 import { SpatialBackgroundScan } from '../components/SpatialBackgroundScan';
 import { HeritageMotionBackdrop } from '../components/HeritageMotionBackdrop';
 import { TypewriterHeroPhrase } from '../components/TypewriterHeroPhrase';
-import { FaqList } from '../components/GuideParts';
+import { FaqList, linkHandler } from '../components/GuideParts';
 import { eyebrowClass } from '../components/ui';
 
 // Card copy for "Stories we've told" (docs/copy/home.md §5).
@@ -29,12 +46,107 @@ const HOME_CARD_COPY: Record<string, { tag: string; line: string }> = {
   'basera-boutique-hotel-3d-experience': { tag: 'Hospitality', line: 'A hotel guests can look around before they book.' },
 };
 
+// Icon for each industry card in "Built around your goal".
+const INDUSTRY_ICONS: Record<string, LucideIcon> = {
+  'hospitality-tourism': Hotel,
+  education: GraduationCap,
+  'real-estate-architecture': House,
+  factories: Factory,
+  'heritage-culture': Landmark,
+  'government-municipalities': Building2,
+  'non-life-insurance': ShieldCheck,
+  gaming: Gamepad2,
+  filmmaking: Clapperboard,
+  'nonprofit-international-development': HandHeart,
+};
+
+// Photo for some industry cards in "Built around your goal"; the rest stay text-only for a varied masonry rhythm.
+const INDUSTRY_IMAGES: Record<string, { src: string; tall?: boolean }> = {
+  'hospitality-tourism': { src: IMAGES.baseraHotel, tall: true },
+  education: { src: IMAGES.nepathyaCampus },
+  factories: { src: IMAGES.laserField },
+  'heritage-culture': { src: IMAGES.chilanchoStupa, tall: true },
+  'government-municipalities': { src: IMAGES.droneSurveyField },
+  gaming: { src: IMAGES.vrPreview, tall: true },
+  filmmaking: { src: IMAGES.filmCinematography },
+  'real-estate-architecture': { src: IMAGES.arPreview },
+  'non-life-insurance': { src: IMAGES.surveyTeamField },
+  'nonprofit-international-development': { src: IMAGES.changeOverTime },
+};
+
+// Masonry column count for "Built around your goal": 1 on phones, 2 on tablets, 3 on laptops, 5 on wide screens (two cards per column).
+const COLUMN_QUERIES: [string, number][] = [['(min-width: 1280px)', 5], ['(min-width: 1024px)', 3], ['(min-width: 640px)', 2]];
+const readColumnCount = () =>
+  typeof window === 'undefined' ? 5 : COLUMN_QUERIES.find(([query]) => window.matchMedia(query).matches)?.[1] ?? 1;
+const useColumnCount = () => {
+  const [count, setCount] = useState(readColumnCount);
+  useEffect(() => {
+    const lists = COLUMN_QUERIES.map(([query]) => window.matchMedia(query));
+    const update = () => setCount(readColumnCount());
+    lists.forEach((list) => list.addEventListener('change', update));
+    return () => lists.forEach((list) => list.removeEventListener('change', update));
+  }, []);
+  return count;
+};
+
+// "Why RCAAS" reasons (docs/copy/home.md §7).
+const WHY_POINTS: { title: string; desc: string; icon: LucideIcon }[] = [
+  {
+    title: "Precise, because we're engineers.",
+    desc: 'Every experience is built on accurate measurement, so what people see is true to the place.',
+    icon: Ruler,
+  },
+  {
+    title: "Engaging, because we're game developers.",
+    desc: 'We bring the craft of interactive design, so people stay, explore and remember.',
+    icon: Gamepad2,
+  },
+  {
+    title: 'Story-first, built to act on.',
+    desc: 'Each experience is designed around one goal: the action you want your audience to take.',
+    icon: Target,
+  },
+  {
+    title: 'Here for the long term.',
+    desc: "A Kathmandu team that knows Nepal's places, conditions and people, and stays with you after launch.",
+    icon: Handshake,
+  },
+];
+
+const WHY_FADE = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+};
+
+// Illustrative image for each pillar card in "What we create".
+const PILLAR_VISUALS: Record<string, { image: string; alt: string }> = {
+  'immersive-experiences': { image: IMAGES.tourInterface, alt: 'A 3D virtual tour of a real place open on screen' },
+  'visual-storytelling': { image: IMAGES.filmCinematography, alt: 'A cinematic camera move through a captured place' },
+  'digital-twins': { image: IMAGES.pointCloudSurvey, alt: 'A measured point cloud of a building beside its drawings' },
+  'game-worlds-assets': { image: IMAGES.vrPreview, alt: 'A visitor exploring a real heritage courtyard captured in 3D' },
+};
+
 interface HomePageProps {
   onNavigate: (path: RoutePath) => void;
   onOpenPlanner: () => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner }) => {
+  const industryColumnCount = useColumnCount();
+  const industryColumns = useMemo(() => {
+    // Rough card heights (in column widths) so each card goes to the shortest column.
+    const columns = Array.from({ length: industryColumnCount }, () => ({ height: 0, items: [] as { ind: (typeof INDUSTRIES)[number]; i: number }[] }));
+    INDUSTRIES.forEach((ind, i) => {
+      const image = INDUSTRY_IMAGES[ind.id];
+      const height = (image ? (image.tall ? 0.75 : 0.5) : 0) + 0.65 + ind.summary.length / 350;
+      const target = columns.reduce((min, col) => (col.height < min.height ? col : min), columns[0]);
+      target.items.push({ ind, i });
+      target.height += height;
+    });
+    return columns.map((col) => col.items);
+  }, [industryColumnCount]);
 
 
   const scrollToLive = () => {
@@ -86,14 +198,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
                 onClick={onOpenPlanner}
-                className="loro-btn-primary w-full sm:w-auto px-8 py-3.5 text-xs font-semibold uppercase tracking-wider"
+                className="loro-btn-primary w-full sm:w-auto px-8 py-3.5 text-sm font-semibold"
               >
                 Plan your experience &rarr;
               </button>
               
               <button
                 onClick={scrollToLive}
-                className="loro-btn-secondary w-full sm:w-auto px-7 py-3.5 text-xs font-medium"
+                className="loro-btn-secondary w-full sm:w-auto px-7 py-3.5 text-sm font-medium"
               >
                 <span>Explore a live tour</span>
                 <span className="text-zinc-400 ml-1.5">&darr;</span>
@@ -162,151 +274,154 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {PILLARS.map((pillar) => (
-              <SpotlightCard
-                key={pillar.id}
-                className="flex flex-col justify-between p-7"
-              >
-                <div>
-                  <div className="text-[11px] font-mono text-accent-strong uppercase tracking-wider font-semibold">
-                    {pillar.promise}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+            {PILLARS.map((pillar, i) => {
+              const visual = PILLAR_VISUALS[pillar.id];
+              return (
+                <motion.a
+                  key={pillar.id}
+                  href={pillar.link}
+                  onClick={linkHandler(onNavigate, pillar.link as RoutePath)}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="group flex flex-col sm:flex-row gap-5 sm:gap-7 rounded-[1.75rem] bg-surface p-3 sm:p-4 transition-shadow duration-500 hover:shadow-[0_18px_50px_-24px_rgba(9,9,11,0.25)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  {/* Image panel */}
+                  <div className="relative shrink-0 overflow-hidden rounded-[1.25rem] bg-zinc-200 aspect-[16/10] sm:aspect-auto sm:w-[44%] sm:min-h-[22rem]">
+                    <img
+                      src={visual?.image}
+                      alt={visual?.alt ?? ''}
+                      width={1376}
+                      height={768}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover saturate-50 transition-[transform,filter] duration-700 group-hover:saturate-100 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                    />
+                    {/* Mask: mutes the busy photography so the pillar title stays the focus; it lifts on hover. */}
+                    <div className="absolute inset-0 bg-ink/40 transition-opacity duration-500 group-hover:opacity-0" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" aria-hidden="true" />
+                    <span className="absolute left-4 bottom-4 font-mono text-[11px] font-semibold tracking-[0.2em] text-white/90">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
-                  <h3 className="mt-2 text-2xl font-bold text-ink font-display">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted">
-                    {pillar.body}
-                  </p>
-                  
-                  {/* Clean unboxed chips with typographic separator */}
-                  <div className="mt-6 flex flex-wrap items-center gap-y-1 text-xs text-zinc-500 font-mono">
-                    {pillar.chips.map((chip, i) => (
-                      <React.Fragment key={chip}>
-                        <span className="text-zinc-700">{chip}</span>
-                        {i < pillar.chips.length - 1 && <span className="mx-2 text-zinc-400">·</span>}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                </div>
 
-                <div className="mt-8 pt-5 border-t border-line">
-                  <button
-                    onClick={() => onNavigate(pillar.link as RoutePath)}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-ink hover:text-accent transition-colors"
-                  >
-                    <span>Explore {pillar.title.toLowerCase()}</span>
-                    <span>&rarr;</span>
-                  </button>
-                </div>
-              </SpotlightCard>
-            ))}
+                  {/* Copy */}
+                  <div className="flex flex-1 flex-col px-2 pb-3 sm:px-0 sm:py-3 sm:pr-4">
+                    <span className="text-[11px] font-mono uppercase tracking-[0.2em] text-zinc-500 font-semibold">
+                      {pillar.promise}
+                    </span>
+                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-ink font-display transition-colors group-hover:text-accent-strong">
+                      {pillar.title}
+                    </h3>
+                    <p className="mt-4 text-sm leading-relaxed text-muted">{pillar.body}</p>
+
+                    <span className="mt-auto pt-7 inline-flex items-center gap-2.5 text-sm font-semibold text-accent-strong">
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-white transition-transform duration-300 group-hover:translate-x-1">
+                        <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                      Explore {pillar.title.toLowerCase()}
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
           </div>
 
         </div>
       </section>
 
       {/* 4. Built for your goal #industries */}
-      <section id="industries" className="py-24 border-t border-line bg-surface">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-2xl mb-16">
-            <span className={eyebrowClass}>
+      <section id="industries" className="relative overflow-hidden py-24 sm:py-28 bg-ink">
+        {/* Backdrop: a small, pre-blurred photograph under a dark wash */}
+        <img
+          src="/assets/images/industries_backdrop_blur.webp"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/55 to-ink/80" aria-hidden="true" />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-14">
+            <span className="text-xs font-mono uppercase tracking-wider text-accent-soft font-semibold">
               Industry Solutions
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-white font-display">
               Built around your goal
             </h2>
-            <p className="mt-4 text-base text-muted leading-relaxed">
+            <p className="mt-4 text-base text-zinc-300 leading-relaxed">
               Tell us what you want people to do. We will design the experience around it.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {INDUSTRIES.map((ind) => (
-              <SpotlightCard
-                key={ind.id}
-                onClick={() => onNavigate(ind.link as RoutePath)}
-                className="cursor-pointer p-6"
-              >
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-ink font-semibold">{ind.title}</span>
-                  <span className="text-zinc-500 text-[11px] bg-zinc-100 px-2 py-0.5 rounded">{ind.badge}</span>
-                </div>
+          {/* Masonry: image cards and text cards of different heights, each placed in the shortest column */}
+          <div className="flex items-start gap-4 xl:gap-4">
+            {industryColumns.map((column, c) => (
+              <div key={c} className="flex min-w-0 flex-1 flex-col gap-4">
+            {column.map(({ ind, i }) => {
+              const Icon = INDUSTRY_ICONS[ind.id] ?? Building2;
+              const image = INDUSTRY_IMAGES[ind.id];
+              return (
+                <motion.a
+                  key={ind.id}
+                  href={ind.link}
+                  onClick={linkHandler(onNavigate, ind.link as RoutePath)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.55, delay: (i % 4) * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  className="group flex overflow-hidden rounded-2xl bg-white shadow-[0_18px_40px_-24px_rgba(0,0,0,0.6)] sm:block transition-transform duration-500 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                >
+                  {image && (
+                    <div className={`relative w-24 shrink-0 overflow-hidden bg-zinc-200 sm:w-auto ${image.tall ? 'sm:aspect-[4/3]' : 'sm:aspect-[2/1]'}`}>
+                      <img
+                        src={image.src}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 h-full w-full object-cover saturate-50 transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] group-hover:saturate-100"
+                      />
+                      {/* Mask: mutes the photograph so the card's words lead; it lifts on hover. */}
+                      <div className="absolute inset-0 bg-ink/40 transition-opacity duration-500 group-hover:opacity-0" aria-hidden="true" />
+                    </div>
+                  )}
 
-                <h3 className="mt-3 text-lg font-bold text-ink font-display hover:text-accent transition-colors">
-                  {ind.goalHeadline}
-                </h3>
+                  <div className="min-w-0 flex-1 p-4 sm:p-5">
+                    <p className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] font-semibold text-zinc-500">
+                      <Icon className="h-3.5 w-3.5 text-accent" strokeWidth={1.8} aria-hidden="true" />
+                      {ind.title}
+                    </p>
+                    <h3 className="mt-3 text-lg font-bold tracking-tight text-ink font-display leading-snug transition-colors group-hover:text-accent-strong">
+                      {ind.goalHeadline}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted">{ind.summary}</p>
 
-                <p className="mt-3 text-xs leading-relaxed text-muted">
-                  {ind.summary}
-                </p>
-
-                <div className="mt-6 flex items-center justify-between pt-4 border-t border-line text-xs">
-                  <span className="text-zinc-500 font-mono text-[11px]">
-                    {ind.proof ? `Proof: ${ind.proof.split(',')[0]}` : 'Explore solutions'}
-                  </span>
-                  <span className="font-semibold text-zinc-700">&rarr;</span>
-                </div>
-              </SpotlightCard>
+                    <div className="mt-4 flex items-center justify-between gap-3 border-t border-line pt-3">
+                      <span className="min-w-0 truncate text-[11px] text-zinc-500">
+                        For <span className="font-medium text-zinc-700">{ind.whoItsFor}</span>
+                      </span>
+                      <ChevronRight className="h-4 w-4 shrink-0 text-zinc-400 transition-[color,transform] duration-300 group-hover:translate-x-1 group-hover:text-accent" aria-hidden="true" />
+                    </div>
+                  </div>
+                </motion.a>
+              );
+            })}
+              </div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* 5. Stories we've told #work */}
-      <section id="work" className="py-24 border-t border-line bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
-            <div>
-              <span className={eyebrowClass}>
-                Case Studies
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
-                Stories we've told
-              </h2>
-              <p className="mt-3 text-base text-muted">
-                Real places, real clients, each with a clear goal.
-              </p>
-            </div>
-            <div>
-              <button
-                onClick={() => onNavigate('/work/')}
-                className="loro-btn-secondary px-4 py-2 text-xs font-semibold"
-              >
-                <span>See all our work</span>
-                <span className="ml-1.5">&rarr;</span>
-              </button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {CASE_STUDY_CONTENT.map((study) => (
-              <KineticSpatialCard
-                key={study.slug}
-                imageSrc={study.image}
-                title={study.name}
-                location={study.location ?? 'Location to be confirmed'}
-                tag={HOME_CARD_COPY[study.slug].tag}
-                line={HOME_CARD_COPY[study.slug].line}
-                onClick={() => onNavigate(`/work/${study.slug}/` as RoutePath)}
-              />
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 6. How it works #how-it-works */}
+      {/* 5. How it works #how-it-works */}
       <section id="how-it-works" className="py-24 border-t border-line bg-surface">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
             <div>
               <span className={eyebrowClass}>
-                Five-Step Value Chain
+                How it works
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
                 From real place to finished experience
@@ -373,60 +488,113 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
         </div>
       </section>
 
-      {/* 7. Why RCAAS #why-rcaas */}
-      <section id="why-rcaas" className="py-24 border-t border-line bg-white">
+      {/* 6. Why RCAAS #why-rcaas */}
+      <section id="why-rcaas" className="py-24 sm:py-28 border-t border-line bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          
-          <div className="max-w-3xl mb-16">
-            <span className={eyebrowClass}>
-              The RCAAS Advantage
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-ink font-display">
-              Why RCAAS
-            </h2>
-            <p className="mt-4 text-base text-muted leading-relaxed">
-              {SITE_METADATA.boilerplate}{' '}
-              <Placeholder>[[TBC: add "RCAAS stands for Reality Capture as a Service." here]]</Placeholder>
-            </p>
+          <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-12">
+
+            {/* Statement */}
+            <motion.div {...WHY_FADE} className="lg:col-span-5 lg:pt-2">
+              <span className={eyebrowClass}>The RCAAS Advantage</span>
+              <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink font-display leading-[1.02]">
+                Why RCAAS
+              </h2>
+              <p className="mt-6 max-w-md text-sm sm:text-base text-muted leading-relaxed">
+                {SITE_METADATA.boilerplate}{' '}
+                <Placeholder>[[TBC: add "RCAAS stands for Reality Capture as a Service." here]]</Placeholder>
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
+                <button
+                  type="button"
+                  onClick={onOpenPlanner}
+                  className="group inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
+                >
+                  Plan your experience
+                  <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </button>
+                <a
+                  href="/about/"
+                  onClick={linkHandler(onNavigate, '/about/')}
+                  className="group inline-flex items-center gap-1 text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
+                >
+                  Meet the team
+                  <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Reasons: one list in reading order; on wider screens it splits into two staggered columns with a hairline between. */}
+            <div className="relative lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 sm:pb-20">
+              <span className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-line sm:block" aria-hidden="true" />
+              {WHY_POINTS.map((point, i) => {
+                const Icon = point.icon;
+                const left = i % 2 === 0;
+                return (
+                  <motion.div
+                    key={point.title}
+                    {...WHY_FADE}
+                    transition={{ duration: 0.6, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
+                    className={`flex gap-5 py-8 border-line ${i === 0 ? '' : 'border-t'} ${
+                      left ? 'sm:pr-8 lg:pr-10 sm:translate-y-20' : 'sm:pl-8 lg:pl-10'
+                    } ${i >= 2 ? 'sm:border-t' : 'sm:border-t-0 sm:pt-0'}`}
+                  >
+                    <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      <Icon className="h-6 w-6" strokeWidth={1.6} aria-hidden="true" />
+                      <span className="absolute -right-1 -bottom-1 h-3 w-3 rounded-full bg-accent ring-2 ring-white" aria-hidden="true" />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-bold tracking-tight text-ink font-display leading-snug">{point.title}</h3>
+                      <p className="mt-2.5 text-sm leading-relaxed text-muted">{point.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Stories we've told #work (placed after Why RCAAS) */}
+      <section id="work" className="py-24 sm:py-28 bg-ink text-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-14 gap-4">
+            <div className="max-w-2xl">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent-soft font-semibold">
+                Case Studies
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl mt-2 font-bold tracking-tight text-white font-display">
+                Stories we've told
+              </h2>
+              <p className="mt-3 text-base text-zinc-400">
+                Real places, real clients, each with a clear goal.
+              </p>
+            </div>
+            <div>
+              <button
+                onClick={() => onNavigate('/work/')}
+                className="text-xs font-mono font-semibold text-accent-soft hover:text-white transition-colors flex items-center gap-1.5"
+              >
+                <span>See all our work</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                title: "Precise, because we're engineers.",
-                desc: 'Every experience is built on accurate measurement, so what people see is true to the place.',
-              },
-              {
-                title: "Engaging, because we're game developers.",
-                desc: 'We bring the craft of interactive design, so people stay, explore and remember.',
-              },
-              {
-                title: 'Story-first, built to act on.',
-                desc: 'Each experience is designed around one goal: the action you want your audience to take.',
-              },
-              {
-                title: 'Here for the long term.',
-                desc: "A Kathmandu team that knows Nepal's places, conditions and people, and stays with you after launch.",
-              },
-            ].map((point, idx) => (
-              <SpotlightCard
-                key={idx}
-                className="p-7 flex items-start gap-4"
-              >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-surface-sunken border border-line text-ink font-mono text-xs font-bold">
-                  0{idx + 1}
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-ink font-display">
-                    {point.title}
-                  </h3>
-                  <p className="mt-2 text-xs leading-relaxed text-muted">
-                    {point.desc}
-                  </p>
-                </div>
-              </SpotlightCard>
-            ))}
-          </div>
+          <CaseStudyShowcase
+            onNavigate={onNavigate}
+            studies={CASE_STUDY_CONTENT.map((study) => ({
+              slug: study.slug,
+              title: study.name,
+              image: study.image,
+              imageAlt: study.imageAlt,
+              tag: HOME_CARD_COPY[study.slug].tag,
+              line: HOME_CARD_COPY[study.slug].line,
+              location: study.location ?? 'Location to be confirmed',
+              path: `/work/${study.slug}/` as RoutePath,
+            }))}
+          />
 
         </div>
       </section>
@@ -479,7 +647,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           <div className="mt-8 text-center">
             <button
               onClick={() => onNavigate('/faq/')}
-              className="text-xs font-mono font-semibold text-ink hover:text-accent transition-colors"
+              className="text-xs font-mono font-semibold text-accent hover:text-accent-strong transition-colors"
             >
               More questions &rarr;
             </button>
@@ -502,7 +670,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
               onClick={onOpenPlanner}
-              className="loro-btn-primary w-full sm:w-auto px-8 py-3.5 text-xs font-semibold uppercase tracking-wider"
+              className="loro-btn-primary w-full sm:w-auto px-8 py-3.5 text-sm font-semibold"
             >
               Plan your experience &rarr;
             </button>
@@ -510,7 +678,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
               href={SITE_METADATA.whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="loro-btn-secondary w-full sm:w-auto px-7 py-3.5 text-xs font-medium"
+              className="loro-btn-secondary w-full sm:w-auto px-7 py-3.5 text-sm font-medium"
             >
               <span>Chat on WhatsApp</span>
               <span className="ml-1 text-zinc-400">↗</span>

@@ -16,7 +16,7 @@ RCAAS (Reality Capture as a Service) turns real places into 3D tours, VR, AR and
 - Learn & Blog: https://rcaas.tech/learn/
 
 ## Target Audience
-Hotels, real estate developers, educational institutions, construction firms, game studios, filmmakers, and heritage sites seeking to digitize physical spaces.
+Hotels, real estate developers, educational institutions, construction firms, game studios, filmmakers, nonprofits and development organisations, and heritage sites seeking to digitize physical spaces.
 
 ## Positioning
 RCAAS is the leading reality capture and 3D immersive experience provider in Nepal. We don't just capture photos; we create digital twins and interactive 3D spaces that allow users to walk through and experience locations remotely.

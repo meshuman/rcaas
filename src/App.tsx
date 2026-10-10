@@ -167,7 +167,7 @@ export default function App() {
       metaDesc = industry.metaDescription;
     } else if (currentPath.startsWith('/industries')) {
       title = 'Immersive Experiences by Industry | RCAAS';
-      metaDesc = 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities, insurers, game studios and filmmakers with 3D experiences, data and assets.';
+      metaDesc = 'How RCAAS helps hotels, schools, developers, factories, heritage sites, municipalities, insurers, game studios, filmmakers and nonprofits with 3D experiences, data and assets.';
     } else if (isCaseStudy(resolveCaseStudy(currentPath.split(/[?#]/)[0]))) {
       const study = resolveCaseStudy(currentPath.split(/[?#]/)[0]) as CaseStudyContent;
       title = study.titleTag;

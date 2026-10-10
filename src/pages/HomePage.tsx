@@ -3,23 +3,15 @@ import { motion } from 'motion/react';
 import { RoutePath } from '../types';
 import { SITE_METADATA, PILLARS, INDUSTRIES, IMAGES } from '../data/siteData';
 import {
-  Building2,
   ChevronRight,
-  Clapperboard,
-  Factory,
   Gamepad2,
-  GraduationCap,
-  HandHeart,
   Handshake,
-  Hotel,
-  House,
-  Landmark,
   Ruler,
-  ShieldCheck,
   Target,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { CASE_STUDY_CONTENT } from '../content/work';
+import { industryIcon } from '../data/icons';
 import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { HOME_FAQS } from '../content/faq';
 import { SplatEmbed } from '../components/SplatEmbed';
@@ -46,19 +38,6 @@ const HOME_CARD_COPY: Record<string, { tag: string; line: string }> = {
   'basera-boutique-hotel-3d-experience': { tag: 'Hospitality', line: 'A hotel guests can look around before they book.' },
 };
 
-// Icon for each industry card in "Built around your goal".
-const INDUSTRY_ICONS: Record<string, LucideIcon> = {
-  'hospitality-tourism': Hotel,
-  education: GraduationCap,
-  'real-estate-architecture': House,
-  factories: Factory,
-  'heritage-culture': Landmark,
-  'government-municipalities': Building2,
-  'non-life-insurance': ShieldCheck,
-  gaming: Gamepad2,
-  filmmaking: Clapperboard,
-  'nonprofit-international-development': HandHeart,
-};
 
 // Photo for some industry cards in "Built around your goal"; the rest stay text-only for a varied masonry rhythm.
 const INDUSTRY_IMAGES: Record<string, { src: string; tall?: boolean }> = {
@@ -361,7 +340,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             {industryColumns.map((column, c) => (
               <div key={c} className="flex min-w-0 flex-1 flex-col gap-4">
             {column.map(({ ind, i }) => {
-              const Icon = INDUSTRY_ICONS[ind.id] ?? Building2;
+              const Icon = industryIcon(ind.id);
               const image = INDUSTRY_IMAGES[ind.id];
               return (
                 <motion.a

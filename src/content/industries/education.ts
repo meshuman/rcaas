@@ -17,8 +17,8 @@ import {
   Share2,
   Trophy,
 } from 'lucide-react';
+import { IMG } from '../../data/images';
 import type { RoutePath } from '../../types';
-import { IMAGES } from '../../data/siteData';
 import type { IndustryContent } from './types';
 
 export const education: IndustryContent = {
@@ -101,7 +101,7 @@ export const education: IndustryContent = {
         line: 'A campus tour families can take from home.',
         pending: '[[TBI: result once data exists]]',
         path: '/work/nepathya-school-college-3d-campus-tour/',
-        image: IMAGES.nepathyaCampus,
+        image: IMG['industry-education/nepathya-school-and-college'],
       },
       {
         name: 'Madan Ashrit Polytechnic Institute [[TBC: official name]]',
@@ -109,7 +109,7 @@ export const education: IndustryContent = {
         line: 'Workshops and labs prospective students can explore for themselves.',
         pending: '[[TBI: result]]',
         path: '/work/madan-ashrit-polytechnic-3d-campus-tour/',
-        image: IMAGES.madanAshrit,
+        image: IMG['industry-education/madan-ashrit-polytechnic-institute-tbc-official'],
       },
     ],
   },

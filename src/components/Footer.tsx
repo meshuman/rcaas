@@ -205,6 +205,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenRegister }) =>
                   Nonprofit & Development
                 </button>
               </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('/industries/banking-financial-institutions/')}
+                  className="hover:text-ink text-left transition-colors block py-2.5"
+                >
+                  Banks & Financial Institutions
+                </button>
+              </li>
             </ul>
           </div>
 

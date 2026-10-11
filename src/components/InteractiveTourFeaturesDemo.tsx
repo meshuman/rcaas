@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion, AnimatePresence } from 'motion/react';
-import { IMAGES } from '../data/siteData';
 
 interface Hotspot {
   id: string;
@@ -147,7 +147,7 @@ export const InteractiveTourFeaturesDemo: React.FC = () => {
         <div className="lg:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-zinc-300 bg-zinc-950 shadow-inner group select-none">
           {/* Main Backdrop Image */}
           <img loading="lazy" decoding="async"
-            src={IMAGES.baseraHotel}
+            src={IMG['interactive-tour-features-demo/interactive-3d-virtual-tour-space']}
             alt="Interactive 3D Virtual Tour Space"
             className={`w-full h-full object-cover transition-all duration-700 ${
               viewMode === 'dollhouse' ? 'scale-105 filter brightness-90 saturate-75' : 'scale-100'

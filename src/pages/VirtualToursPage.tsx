@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
@@ -112,7 +113,7 @@ const SECTOR_USE_CASES: SectorUseCase[] = [
     outcome: 'Greater booking confidence, lower cancellation rates, and significantly higher direct bookings through your own website instead of third-party OTAs.',
     sampleClient: 'Basera Boutique Hotel, Babarmahal, Kathmandu',
     casePath: '/work/basera-boutique-hotel-3d-experience/',
-    image: IMAGES.baseraHotel,
+    image: IMG['virtual-tours/hotels-resorts'],
   },
   {
     id: 'education',
@@ -124,7 +125,7 @@ const SECTOR_USE_CASES: SectorUseCase[] = [
     outcome: 'Reassures parents during admissions cycles, expands applicant recruitment across all provinces and diaspora families, and drives higher enrolment conversion.',
     sampleClient: 'Nepathya College, Tilottama',
     casePath: '/work/nepathya-school-college-3d-campus-tour/',
-    image: IMAGES.nepathyaCampus,
+    image: IMG['virtual-tours/schools-colleges'],
   },
   {
     id: 'real-estate',
@@ -135,7 +136,7 @@ const SECTOR_USE_CASES: SectorUseCase[] = [
     solution: 'Immersive 3D walkthroughs of show apartments, penthouse suites, and commercial corporate floors accessible from a simple link sent via WhatsApp or email.',
     outcome: 'Enables remote buyers to inspect room orientations and sightlines, filter out non-serious inquiries, and close lease agreements with complete confidence.',
     sampleClient: 'Contemporary Residential Showroom & Apartments',
-    image: IMAGES.tourInterface,
+    image: IMG['virtual-tours/commercial-residential-property'],
   },
   {
     id: 'heritage',
@@ -147,7 +148,7 @@ const SECTOR_USE_CASES: SectorUseCase[] = [
     outcome: 'Creates a permanent, archival-grade digital twin for restoration architects while allowing the global public to step inside cultural landmarks online.',
     sampleClient: 'Chilancho Stupa (16th Century Buddhist Complex, Kirtipur)',
     casePath: '/work/chilancho-stupa-digital-heritage/',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['virtual-tours/cultural-heritage-museums'],
   },
 ];
 
@@ -326,7 +327,7 @@ export const VirtualToursPage: React.FC<VirtualToursPageProps> = ({ onNavigate, 
             <div className="relative rounded-2xl overflow-hidden border border-line bg-surface p-3 shadow-lg group">
               <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-zinc-900">
                 <img loading="lazy" decoding="async"
-                  src={IMAGES.tourInterface}
+                  src={IMG['virtual-tours/3d-virtual-tour-interface-walkthrough-on-modern']}
                   alt="3D virtual tour interface walkthrough on modern screen"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />

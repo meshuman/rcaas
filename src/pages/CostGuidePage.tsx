@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import {
   ArrowRight,
@@ -22,7 +23,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RoutePath } from '../types';
-import { IMAGES, SITE_METADATA } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { isGuidePublished, readingMinutes } from '../data/guides';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
@@ -114,31 +115,31 @@ const COST_FACTORS: CostFactor[] = [
 const TYPICAL_PROJECTS: { project: string; image: string; imageAlt: string; includes: string }[] = [
   {
     project: 'Boutique hotel tour',
-    image: IMAGES.baseraHotel,
+    image: IMG['cost-guide/showcase-1'],
     imageAlt: 'Photorealistic 3D view of a boutique hotel',
     includes: '[[TBI: e.g. lobby, 3–5 room types, restaurant]]',
   },
   {
     project: 'School or college campus tour',
-    image: IMAGES.nepathyaCampus,
+    image: IMG['cost-guide/showcase-2'],
     imageAlt: 'Photorealistic 3D view of a college campus',
     includes: '[[TBI: e.g. entrance, classrooms, labs, grounds]]',
   },
   {
     project: 'Show flat or property',
-    image: IMAGES.tourInterface,
+    image: IMG['cost-guide/showcase-3'],
     imageAlt: 'A 3D tour of an interior open on a screen',
     includes: '[[TBI]]',
   },
   {
     project: 'Heritage site documentation',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['cost-guide/showcase-4'],
     imageAlt: 'Photorealistic 3D scene of Chilancho Stupa',
     includes: '[[TBI: e.g. structure inside and out, drone coverage, measured record]]',
   },
   {
     project: 'Tour + fly-through film',
-    image: IMAGES.filmCinematography,
+    image: IMG['cost-guide/showcase-5'],
     imageAlt: 'Fly-through film being made from a 3D scene',
     includes: '[[TBI]]',
   },
@@ -444,7 +445,7 @@ export const CostGuidePage: React.FC<CostGuidePageProps> = ({ onNavigate }) => {
             >
               <div className="lg:col-span-5 relative min-h-[240px] bg-zinc-900">
                 <img loading="lazy" decoding="async"
-                  src={IMAGES.laserField}
+                  src={IMG['cost-guide/team-member-capturing-a-heritage-square-with-a-h']}
                   alt="Team member capturing a heritage square with a handheld laser scanner"
                   className="absolute inset-0 w-full h-full object-cover"
                 />

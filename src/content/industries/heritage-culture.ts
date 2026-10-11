@@ -1,6 +1,6 @@
 import { Globe, GraduationCap, Handshake, Heart, Microscope, Users } from 'lucide-react';
+import { IMG } from '../../data/images';
 import type { RoutePath } from '../../types';
-import { IMAGES } from '../../data/siteData';
 import type { IndustryContent } from './types';
 
 // Flagship industry page: measured record (Digital Twins) + story (Visual Storytelling) + public access (Immersive Experiences).
@@ -88,7 +88,7 @@ export const heritageCulture: IndustryContent = {
       body: 'We turn heritage records into experiences: 3D tours that open in any browser, guided journeys that tell the story of each shrine and carving, VR for exhibitions, and films for awareness and fundraising campaigns. Students, researchers, visitors and the global diaspora can explore Nepal\'s heritage from wherever they are. [[TBC: "We are exploring subscription access to heritage 3D models so people around the world can experience Nepal\'s cultural sites." — publish only if you want this stated now (Register H04).]]',
       icon: Globe,
       layout: 'feature',
-      image: { src: IMAGES.vrPreview, alt: 'Visitor in a VR headset exploring a 3D heritage courtyard' },
+      image: { src: IMG['industry-heritage-culture/a-record-is-more-valuable-when-people-can-see-it'], alt: 'Visitor in a VR headset exploring a 3D heritage courtyard' },
       links: [
         { label: 'Immersive Experiences', path: '/services/immersive-experiences/' },
         { label: 'Visual Storytelling', path: '/services/visual-storytelling/' },
@@ -130,7 +130,7 @@ export const heritageCulture: IndustryContent = {
         line: 'A cultural monument documented in 3D to preserve its form, proportions and detail.',
         pending: '[[TBI: significance, who commissioned it, results]]',
         path: '/work/chilancho-stupa-digital-heritage/',
-        image: IMAGES.chilanchoStupa,
+        image: IMG['industry-heritage-culture/chilancho-stupa'],
       },
     ],
   },

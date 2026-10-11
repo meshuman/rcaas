@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import {
   ArrowRight,
@@ -22,7 +23,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { TEAM_MEMBERS, isMemberPublished } from '../content/team';
 import type { TeamMember } from '../content/team';
 import { Placeholder } from '../components/Placeholder';
@@ -57,7 +58,7 @@ const AT_A_GLANCE: { label: string; value: React.ReactNode }[] = [
   { label: 'What we create', value: 'Immersive experiences · Visual storytelling · Digital twins and survey · Game worlds and assets' },
   {
     label: 'Who we work with',
-    value: 'Hotels and tourism · Schools and colleges · Real estate and architecture · Factories · Heritage and culture · Government and municipalities · Non-life insurance · Gaming · Filmmaking · Nonprofit and international development',
+    value: 'Hotels and tourism · Schools and colleges · Real estate and architecture · Factories · Heritage and culture · Government and municipalities · Non-life insurance · Gaming · Filmmaking · Nonprofit and international development · Banks and financial institutions',
   },
   {
     label: 'Where we work',
@@ -363,7 +364,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           >
             <div className="lg:col-span-5 relative min-h-[260px] bg-zinc-900">
               <img loading="lazy" decoding="async"
-                src={IMAGES.changeOverTime}
+                src={IMG['about/a-heritage-courtyard-during-restoration-and-the']}
                 alt="A heritage courtyard during restoration, and the same courtyard being scanned"
                 className="absolute inset-0 w-full h-full object-cover"
               />
@@ -417,8 +418,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             {/* Visual: the two halves meeting around one story and goal */}
             <div className="lg:col-span-7 relative grid grid-cols-1 sm:grid-cols-2 gap-4" aria-hidden="true">
               {[
-                { title: 'Engineers', line: 'Measured, checked and true to the place', icon: Crosshair, image: IMAGES.droneSurveyField },
-                { title: 'Game developers', line: 'Smooth, interactive and memorable', icon: Gamepad2, image: IMAGES.vrPreview },
+                { title: 'Engineers', line: 'Measured, checked and true to the place', icon: Crosshair, image: IMG['about/game-developers'] },
+                { title: 'Game developers', line: 'Smooth, interactive and memorable', icon: Gamepad2, image: IMG['about/engineers'] },
               ].map((half, i) => {
                 const Icon = half.icon;
                 return (

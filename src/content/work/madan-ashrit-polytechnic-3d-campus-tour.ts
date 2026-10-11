@@ -1,4 +1,4 @@
-import { IMAGES } from '../../data/siteData';
+import { IMG } from '../../data/images';
 import type { CaseStudyContent } from './types';
 
 // Register W03. Official name and spelling still [[TBC]].
@@ -11,7 +11,7 @@ export const madanAshrit: CaseStudyContent = {
   h1: 'Madan Ashrit Polytechnic Institute: hands-on learning, made visible',
   heroResult: 'Workshops and labs prospective students can explore for themselves.',
   industryLabel: 'Education',
-  image: IMAGES.madanAshrit,
+  image: IMG['case-madan-ashrit-polytechnic/madan-ashrit-polytechnic-institute'],
   imageAlt: '3D view of Madan Ashrit Polytechnic Institute',
   placeType: 'CollegeOrUniversity',
   placeName: 'Madan Ashrit Polytechnic Institute',

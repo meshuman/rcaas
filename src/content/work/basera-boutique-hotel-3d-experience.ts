@@ -1,4 +1,4 @@
-import { IMAGES } from '../../data/siteData';
+import { IMG } from '../../data/images';
 import type { CaseStudyContent } from './types';
 
 // Register W04.
@@ -11,7 +11,7 @@ export const basera: CaseStudyContent = {
   h1: 'Basera Boutique Hotel: arrive before you arrive',
   heroResult: 'Guests can look around the hotel before they book.',
   industryLabel: 'Hospitality & Tourism',
-  image: IMAGES.baseraHotel,
+  image: IMG['case-basera-boutique-hotel/basera-boutique-hotel'],
   imageAlt: '3D view of Basera Boutique Hotel',
   placeType: 'Hotel',
   placeName: 'Basera Boutique Hotel',

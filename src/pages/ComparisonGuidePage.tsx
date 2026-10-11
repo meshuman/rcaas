@@ -1,9 +1,9 @@
 import React from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { ArrowRight, Box, Check, Film, Orbit } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RoutePath } from '../types';
-import { IMAGES } from '../data/siteData';
 import { isGuidePublished, readingMinutes } from '../data/guides';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
@@ -396,7 +396,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                   <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
                       <img loading="lazy" decoding="async"
-                        src={IMAGES.filmCinematography}
+                        src={IMG['comparison-guide/fly-through-film-being-made-from-a-3d-capture']}
                         alt="Fly-through film being made from a 3D capture"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
@@ -417,7 +417,7 @@ export const ComparisonGuidePage: React.FC<ComparisonGuidePageProps> = ({ onNavi
                   <figure className="rounded-xl border border-line bg-white overflow-hidden shadow-xs group">
                     <div className="relative aspect-[4/3] overflow-hidden bg-zinc-900">
                       <img loading="lazy" decoding="async"
-                        src={IMAGES.tourInterface}
+                        src={IMG['comparison-guide/full-3d-virtual-tour-open-on-a-website']}
                         alt="Full 3D virtual tour open on a website"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />

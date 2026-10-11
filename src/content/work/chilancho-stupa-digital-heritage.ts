@@ -1,4 +1,4 @@
-import { IMAGES } from '../../data/siteData';
+import { IMG } from '../../data/images';
 import type { CaseStudyContent } from './types';
 
 // Register W01.
@@ -11,7 +11,7 @@ export const chilanchoStupa: CaseStudyContent = {
   h1: 'Chilancho Stupa: a lasting 3D record of a cultural monument',
   heroResult: 'A historic stupa recorded in measurable 3D, ready to be studied and shared.',
   industryLabel: 'Heritage & Culture',
-  image: IMAGES.chilanchoStupa,
+  image: IMG['case-chilancho-stupa/chilancho-stupa'],
   imageAlt: '3D view of Chilancho Stupa',
   placeType: 'LandmarksOrHistoricalBuildings',
   placeName: 'Chilancho Stupa',

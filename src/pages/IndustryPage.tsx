@@ -69,6 +69,86 @@ const QuestionStack: React.FC<{ questions: string[] }> = ({ questions }) => {
   );
 };
 
+// Dated captures of one site (a timeline) and the evidence bridge between documented and actual progress.
+const ProgressEvidence: React.FC<{ progress: NonNullable<IndustryContent['progress']> }> = ({ progress }) => (
+  <section id={progress.id} className="mb-20 sm:mb-24 scroll-mt-24">
+    <SectionHeading eyebrow={progress.eyebrow} title={progress.title} className="max-w-3xl" />
+    <p className="mt-4 max-w-3xl text-base text-zinc-600 leading-relaxed">
+      <WithPlaceholders text={progress.intro} />
+    </p>
+
+    {/* Timeline: one dated capture per step */}
+    <ol className="relative mt-10 grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-5">
+      <span className="pointer-events-none absolute left-5 top-5 bottom-5 w-px bg-line md:left-5 md:right-5 md:top-5 md:bottom-auto md:h-px md:w-auto" aria-hidden="true" />
+      {progress.steps.map((step, i) => {
+        const Icon = step.icon;
+        return (
+          <motion.li
+            key={step.label}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex gap-4 md:block"
+          >
+            <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line bg-white text-accent shadow-xs">
+              <Icon className="h-4.5 w-4.5" strokeWidth={1.7} aria-hidden="true" />
+            </span>
+            <div className="md:mt-4">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-400">{String(i + 1).padStart(2, '0')}</p>
+              <h3 className="mt-1 font-display text-lg font-bold tracking-tight text-ink">{step.label}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                <WithPlaceholders text={step.line} />
+              </p>
+            </div>
+          </motion.li>
+        );
+      })}
+    </ol>
+
+    {/* Evidence bridge: what the file says, what the field shows */}
+    <div className="mt-12 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
+      {[progress.documented, progress.field].map((side, i) => (
+        <motion.div
+          key={side.title}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.55, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className={`rounded-2xl p-6 sm:p-7 ${i === 0 ? 'border border-line bg-surface lg:order-1' : 'bg-ink text-white lg:order-3'}`}
+        >
+          <p className={`font-mono text-[11px] font-semibold uppercase tracking-[0.16em] ${i === 0 ? 'text-zinc-500' : 'text-accent-soft'}`}>
+            {i === 0 ? 'On paper' : 'In the field'}
+          </p>
+          <h3 className={`mt-2 font-display text-xl font-bold tracking-tight ${i === 0 ? 'text-ink' : 'text-white'}`}>{side.title}</h3>
+          <ul className="mt-4 space-y-2.5">
+            {side.items.map((item) => (
+              <li key={item} className={`flex items-start gap-2.5 text-sm leading-relaxed ${i === 0 ? 'text-zinc-700' : 'text-zinc-300'}`}>
+                <Check className={`mt-0.5 h-4 w-4 shrink-0 ${i === 0 ? 'text-accent' : 'text-accent-soft'}`} aria-hidden="true" />
+                <span>
+                  <WithPlaceholders text={item} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      ))}
+
+      {/* The link between them */}
+      <div className="flex items-center justify-center lg:order-2 lg:w-44 lg:flex-col" aria-hidden="true">
+        <span className="hidden h-8 w-px bg-line lg:block lg:flex-1" />
+        <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent text-white shadow-sm">
+          <ScanLine className="h-5 w-5" strokeWidth={1.7} />
+        </span>
+        <span className="hidden h-8 w-px bg-line lg:block lg:flex-1" />
+      </div>
+    </div>
+    <p className="mx-auto mt-6 max-w-2xl text-center text-base font-medium text-ink text-balance">
+      <WithPlaceholders text={progress.bridge} />
+    </p>
+  </section>
+);
+
 const TrackSection: React.FC<{ track: IndustryTrack; onNavigate: (path: RoutePath) => void }> = ({ track, onNavigate }) => {
   const dark = track.tone === 'dark';
   const Icon = track.icon;
@@ -338,6 +418,9 @@ export const IndustryPage: React.FC<IndustryPageProps> = ({ industry, onNavigate
           </dl>
         </section>
         )}
+
+        {/* PROGRESS OVER TIME (optional): dated captures beside the documented record */}
+        {industry.progress && <ProgressEvidence progress={industry.progress} />}
 
         {/* AUDIENCE TRACKS (optional): one section per audience, light and dark */}
         {industry.tracks?.map((track) => (

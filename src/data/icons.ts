@@ -1,4 +1,5 @@
 import {
+  Banknote,
   Building2,
   Clapperboard,
   Compass,
@@ -27,6 +28,7 @@ export const INDUSTRY_ICONS: Record<string, LucideIcon> = {
   gaming: Gamepad2,
   filmmaking: Clapperboard,
   'nonprofit-international-development': HandHeart,
+  'banking-financial-institutions': Banknote,
 };
 
 // One icon per pillar, keyed by PILLARS[].iconName.

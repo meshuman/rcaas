@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath } from '../types';
-import { IMAGES } from '../data/siteData';
 
 interface Hotspot {
   id: string;
@@ -45,7 +45,7 @@ const DELIVERABLES: DeliverableOutput[] = [
     ],
     route: '/services/immersive-experiences/3d-virtual-tours/',
     buttonText: 'Explore 3D Virtual Tours',
-    image: IMAGES.baseraHotel,
+    image: IMG['one-capture-multi-use-visualizer/compatibility'],
     overlayStyle: 'tour',
     hotspots: [
       { id: 'h1', x: 38, y: 46, title: 'Central Courtyard Waypoint', telemetry: '360° HDR · 16K Panorama' },
@@ -68,7 +68,7 @@ const DELIVERABLES: DeliverableOutput[] = [
     ],
     route: '/services/visual-storytelling/',
     buttonText: 'Explore Visual Storytelling',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['one-capture-multi-use-visualizer/formats'],
     overlayStyle: 'film',
     hotspots: [
       { id: 'h1', x: 50, y: 38, title: 'Dome Orbit Keyframe', telemetry: '4K ProRes 422 · Shutter 1/120' },
@@ -91,7 +91,7 @@ const DELIVERABLES: DeliverableOutput[] = [
     ],
     route: '/services/immersive-experiences/',
     buttonText: 'Explore VR Experiences',
-    image: IMAGES.nepathyaCampus,
+    image: IMG['one-capture-multi-use-visualizer/hardware'],
     overlayStyle: 'vr',
     hotspots: [
       { id: 'h1', x: 42, y: 52, title: 'Teleport Node A (Main Quad)', telemetry: '6DoF Physical Boundary Active' },
@@ -114,7 +114,7 @@ const DELIVERABLES: DeliverableOutput[] = [
     ],
     route: '/services/digital-twins/3d-laser-scanning/',
     buttonText: 'Explore Digital Twins & Survey',
-    image: IMAGES.laserField,
+    image: IMG['one-capture-multi-use-visualizer/datum'],
     overlayStyle: 'bim',
     hotspots: [
       { id: 'h1', x: 48, y: 40, title: 'LiDAR Registration Station #04', telemetry: '±4.2mm Terrestrial SLAM' },

@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, PILLARS, INDUSTRIES, IMAGES } from '../data/siteData';
+import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
 import {
   ChevronRight,
   Gamepad2,
@@ -11,7 +12,6 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { CASE_STUDY_CONTENT } from '../content/work';
-import { industryIcon } from '../data/icons';
 import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { HOME_FAQS } from '../content/faq';
 import { SplatEmbed } from '../components/SplatEmbed';
@@ -41,16 +41,17 @@ const HOME_CARD_COPY: Record<string, { tag: string; line: string }> = {
 
 // Photo for some industry cards in "Built around your goal"; the rest stay text-only for a varied masonry rhythm.
 const INDUSTRY_IMAGES: Record<string, { src: string; tall?: boolean }> = {
-  'hospitality-tourism': { src: IMAGES.baseraHotel, tall: true },
-  education: { src: IMAGES.nepathyaCampus },
-  factories: { src: IMAGES.laserField },
-  'heritage-culture': { src: IMAGES.chilanchoStupa, tall: true },
-  'government-municipalities': { src: IMAGES.droneSurveyField },
-  gaming: { src: IMAGES.vrPreview, tall: true },
-  filmmaking: { src: IMAGES.filmCinematography },
-  'real-estate-architecture': { src: IMAGES.arPreview },
-  'non-life-insurance': { src: IMAGES.surveyTeamField },
-  'nonprofit-international-development': { src: IMAGES.changeOverTime },
+  'hospitality-tourism': { src: IMG['home/industry-hospitality-tourism'], tall: true },
+  education: { src: IMG['home/industry-education'] },
+  factories: { src: IMG['home/industry-factories'] },
+  'heritage-culture': { src: IMG['home/industry-heritage-culture'], tall: true },
+  'government-municipalities': { src: IMG['home/industry-government-municipalities'] },
+  gaming: { src: IMG['home/industry-gaming'], tall: true },
+  filmmaking: { src: IMG['home/industry-filmmaking'] },
+  'real-estate-architecture': { src: IMG['home/industry-real-estate-architecture'] },
+  'non-life-insurance': { src: IMG['home/industry-non-life-insurance'] },
+  'banking-financial-institutions': { src: IMG['home/industry-banking-financial-institutions'] },
+  'nonprofit-international-development': { src: IMG['home/industry-nonprofit-international-development'] },
 };
 
 // Masonry column count for "Built around your goal": 1 on phones, 2 on tablets, 3 on laptops, 5 on wide screens (two cards per column).
@@ -101,10 +102,10 @@ const WHY_FADE = {
 
 // Illustrative image for each pillar card in "What we create".
 const PILLAR_VISUALS: Record<string, { image: string; alt: string }> = {
-  'immersive-experiences': { image: IMAGES.tourInterface, alt: 'A 3D virtual tour of a real place open on screen' },
-  'visual-storytelling': { image: IMAGES.filmCinematography, alt: 'A cinematic camera move through a captured place' },
-  'digital-twins': { image: IMAGES.pointCloudSurvey, alt: 'A measured point cloud of a building beside its drawings' },
-  'game-worlds-assets': { image: IMAGES.vrPreview, alt: 'A visitor exploring a real heritage courtyard captured in 3D' },
+  'immersive-experiences': { image: IMG['home/immersive-experiences'], alt: 'A 3D virtual tour of a real place open on screen' },
+  'visual-storytelling': { image: IMG['home/visual-storytelling'], alt: 'A cinematic camera move through a captured place' },
+  'digital-twins': { image: IMG['home/digital-twins'], alt: 'A measured point cloud of a building beside its drawings' },
+  'game-worlds-assets': { image: IMG['home/game-worlds-assets'], alt: 'A visitor exploring a real heritage courtyard captured in 3D' },
 };
 
 interface HomePageProps {
@@ -313,15 +314,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
 
       {/* 4. Built for your goal #industries */}
       <section id="industries" className="relative overflow-hidden py-24 sm:py-28 bg-ink">
-        {/* Backdrop: a small, pre-blurred photograph under a dark wash */}
-        <img
-          src="/assets/images/industries_backdrop_blur.webp"
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/55 to-ink/80" aria-hidden="true" />
-
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mb-14">
             <span className="text-xs font-mono uppercase tracking-wider text-accent-soft font-semibold">
@@ -340,7 +332,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
             {industryColumns.map((column, c) => (
               <div key={c} className="flex min-w-0 flex-1 flex-col gap-4">
             {column.map(({ ind, i }) => {
-              const Icon = industryIcon(ind.id);
               const image = INDUSTRY_IMAGES[ind.id];
               return (
                 <motion.a
@@ -368,11 +359,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                   )}
 
                   <div className="min-w-0 flex-1 p-4 sm:p-5">
-                    <p className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] font-semibold text-zinc-500">
-                      <Icon className="h-3.5 w-3.5 text-accent" strokeWidth={1.8} aria-hidden="true" />
-                      {ind.title}
-                    </p>
-                    <h3 className="mt-3 text-lg font-bold tracking-tight text-ink font-display leading-snug transition-colors group-hover:text-accent-strong">
+                    <h3 className="text-lg font-bold tracking-tight text-ink font-display leading-snug transition-colors group-hover:text-accent-strong">
+                      <span className="sr-only">{ind.title}: </span>
                       {ind.goalHeadline}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted">{ind.summary}</p>

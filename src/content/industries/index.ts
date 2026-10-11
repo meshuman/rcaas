@@ -9,11 +9,12 @@ import { nonLifeInsurance } from './non-life-insurance';
 import { gaming } from './gaming';
 import { filmmaking } from './filmmaking';
 import { nonprofitInternationalDevelopment } from './nonprofit-international-development';
+import { bankingFinancialInstitutions } from './banking-financial-institutions';
 
 export type { IndustryContent, IndustryItem, IndustryLink, IndustryTrack } from './types';
 
 // Industry pages built from final copy.
-export const INDUSTRY_CONTENT: IndustryContent[] = [hospitalityTourism, education, realEstateArchitecture, factories, heritageCulture, governmentMunicipalities, nonLifeInsurance, gaming, filmmaking, nonprofitInternationalDevelopment];
+export const INDUSTRY_CONTENT: IndustryContent[] = [hospitalityTourism, education, realEstateArchitecture, factories, heritageCulture, governmentMunicipalities, nonLifeInsurance, gaming, filmmaking, nonprofitInternationalDevelopment, bankingFinancialInstitutions];
 
 export const findIndustryContent = (path: string) => {
   const match = path.match(/^\/industries\/([a-z0-9-]+)\/?$/);

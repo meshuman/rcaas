@@ -1,4 +1,4 @@
-import { IMAGES } from '../../data/siteData';
+import { IMG } from '../../data/images';
 import type { CaseStudyContent } from './types';
 
 // Register W02.
@@ -11,7 +11,7 @@ export const nepathya: CaseStudyContent = {
   h1: 'Nepathya School and College: a campus families can explore from home',
   heroResult: 'A campus visit any family can take, from anywhere.',
   industryLabel: 'Education',
-  image: IMAGES.nepathyaCampus,
+  image: IMG['case-nepathya-school-college/nepathya-school-and-college'],
   imageAlt: '3D view of the Nepathya School and College campus',
   placeType: 'EducationalOrganization',
   placeName: 'Nepathya School and College',

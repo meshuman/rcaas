@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { IMAGES } from '../data/siteData';
 
 export interface ArchCardItem {
   id: string;
@@ -25,7 +25,7 @@ const DEFAULT_CARDS: ArchCardItem[] = [
     category: 'Heritage & Preservation',
     location: 'Kirtipur, Kathmandu',
     metric: '±5mm sub-centimetre precision',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['curved-arch-carousel/sacred-unesco-zone-monument'],
     link: '/work/chilancho-stupa-digital-heritage/',
     deliverables: ['3D Gaussian Splat', 'Point Cloud Archive', '4K Aerial Film'],
   },
@@ -37,7 +37,7 @@ const DEFAULT_CARDS: ArchCardItem[] = [
     category: 'Hospitality & Tourism',
     location: 'Kathmandu, Nepal',
     metric: '100% direct booking embed',
-    image: IMAGES.baseraHotel,
+    image: IMG['curved-arch-carousel/heritage-courtyard-deluxe-suites'],
     link: '/work/basera-boutique-hotel-3d-experience/',
     deliverables: ['Photorealistic 3D Tour', 'VR Showroom', 'Ad Video Cuts'],
   },
@@ -49,7 +49,7 @@ const DEFAULT_CARDS: ArchCardItem[] = [
     category: 'Education & Academics',
     location: 'Kathmandu Valley',
     metric: 'Admissions walkthrough portal',
-    image: IMAGES.nepathyaCampus,
+    image: IMG['curved-arch-carousel/comprehensive-4-block-campus'],
     link: '/work/nepathya-school-college-3d-campus-tour/',
     deliverables: ['Interactive Campus Map', 'STEM Lab Waypoints', 'Fly-Through Story'],
   },
@@ -61,7 +61,7 @@ const DEFAULT_CARDS: ArchCardItem[] = [
     category: 'Vocational & Technical',
     location: 'Nepal',
     metric: 'Equipment-level digital twin',
-    image: IMAGES.madanAshrit,
+    image: IMG['curved-arch-carousel/12-technical-engineering-bays'],
     link: '/work/madan-ashrit-polytechnic-3d-campus-tour/',
     deliverables: ['Workshop Digital Twin', 'CAD Floor Plans', 'Equipment Tags'],
   },
@@ -73,7 +73,7 @@ const DEFAULT_CARDS: ArchCardItem[] = [
     category: 'Digital Twins & Survey',
     location: 'Alpine & Urban Sites, Nepal',
     metric: '200k pts/sec real-time registration',
-    image: IMAGES.laserField,
+    image: IMG['curved-arch-carousel/real-time-precision-geomatics'],
     link: '/services/digital-twins/3d-laser-scanning/',
     deliverables: ['SLAM LiDAR Scans', 'RTK Drone Mapping', 'BIM-Ready Geometry'],
   },

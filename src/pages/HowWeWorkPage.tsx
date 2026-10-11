@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import {
   ArrowLeft,
@@ -26,7 +27,7 @@ import {
   Scale,
 } from 'lucide-react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { buttonClass, eyebrowClass } from '../components/ui';
@@ -52,7 +53,7 @@ const PROCESS: ProcessStep[] = [
     number: '01',
     title: 'Discover',
     icon: Search,
-    image: IMAGES.baseraHotel,
+    image: IMG['how-we-work/discover'],
     imageAlt: 'Photorealistic 3D view of a hotel, the kind of place a project starts from',
     whatHappens:
       "We start with your goal, not the technology. Who is your audience? What should they feel, notice and do? Where will they see the experience? We agree the area, the level of detail, the deliverables, the timeline and, if you'll need measurements, the accuracy.",
@@ -64,7 +65,7 @@ const PROCESS: ProcessStep[] = [
     number: '02',
     title: 'Capture',
     icon: ScanLine,
-    image: IMAGES.laserField,
+    image: IMG['how-we-work/capture'],
     imageAlt: 'Team member walking through a heritage square with a handheld laser scanner',
     whatHappens:
       'Our team visits the site and uses the right method for each part of it: handheld laser scanning for interiors and detail, aerial capture for roofs and large areas, and photography for photorealistic 3D. Where accuracy matters, we tie everything to ground control. We capture overlapping data so gaps can be filled without coming back.',
@@ -76,7 +77,7 @@ const PROCESS: ProcessStep[] = [
     number: '03',
     title: 'Create',
     icon: Layers,
-    image: IMAGES.pointCloudSurvey,
+    image: IMG['how-we-work/create'],
     imageAlt: 'Point cloud of a scanned building being processed in the studio',
     whatHappens:
       'Back in the studio, engineers process and align the data and check it against control. Game developers turn the capture into the experience: a 3D tour, a VR scene, an interactive app or the raw material for a film. Together we shape the story: the path people take and the moments that matter.',
@@ -90,7 +91,7 @@ const PROCESS: ProcessStep[] = [
     number: '04',
     title: 'Launch',
     icon: Rocket,
-    image: IMAGES.tourInterface,
+    image: IMG['how-we-work/launch'],
     imageAlt: 'A published 3D virtual tour open on a screen',
     whatHappens:
       'We publish the experience and deliver your files. We help you place it where your audience is: your website, social media, booking or admissions pages, events and QR codes.',
@@ -100,7 +101,7 @@ const PROCESS: ProcessStep[] = [
     number: '05',
     title: 'Measure and evolve',
     icon: RefreshCw,
-    image: IMAGES.changeOverTime,
+    image: IMG['how-we-work/measure-and-evolve'],
     imageAlt: 'A heritage courtyard during restoration, and the same courtyard being rescanned',
     whatHappens: (
       <>
@@ -138,7 +139,7 @@ const DISCIPLINES = [
     heading: 'Our engineers',
     tag: 'Engineering precision',
     icon: Crosshair,
-    image: IMAGES.droneSurveyField,
+    image: IMG['how-we-work/our-engineers'],
     imageAlt: 'Engineer setting up a survey drone and GNSS receiver on a hillside',
     items: ENGINEERS,
   },
@@ -146,7 +147,7 @@ const DISCIPLINES = [
     heading: 'Our game developers',
     tag: 'Game-development craft',
     icon: Gamepad2,
-    image: IMAGES.vrPreview,
+    image: IMG['how-we-work/our-game-developers'],
     imageAlt: 'Visitor in a VR headset exploring a 3D courtyard shown on a large screen',
     items: GAME_DEVELOPERS,
   },
@@ -291,7 +292,7 @@ const EXPLAINERS: {
   {
     title: 'Gaussian splatting',
     body: 'Traditional 3D models are built from surfaces and often look flat or artificial. Gaussian splatting builds a scene from millions of tiny, soft points of colour and light, so the result looks like a photograph you can walk around in. We pair it with laser measurements, so it is not only beautiful but true to size.',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['how-we-work/gaussian-splatting'],
     imageAlt: 'Photorealistic 3D scene of Chilancho Stupa',
     linkLabel: 'What is Gaussian splatting?',
     linkPath: '/learn/what-is-gaussian-splatting/',
@@ -299,7 +300,7 @@ const EXPLAINERS: {
   {
     title: 'SLAM laser scanning',
     body: 'SLAM stands for simultaneous localisation and mapping. The scanner fires laser pulses while we walk and works out where it is as it goes, producing a dense 3D map of everything around it in minutes, without setting up a tripod at each position.',
-    image: IMAGES.pointCloudSurvey,
+    image: IMG['how-we-work/slam-laser-scanning'],
     imageAlt: 'Dense 3D point cloud map of a building produced by laser scanning',
     linkLabel: 'More on 3D laser scanning',
     linkPath: '/services/digital-twins/3d-laser-scanning/#what-is-slam' as RoutePath,

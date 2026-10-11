@@ -1,3 +1,4 @@
+import { IMG } from './images';
 import { Pillar, Industry, CaseStudy, ToolkitItem, PlaceholderItem } from '../types';
 
 export const SITE_METADATA = {
@@ -24,22 +25,6 @@ export const SITE_METADATA = {
   foundingYear: null as string | null,
   boilerplate:
     'RCAAS Technology is a Kathmandu-based reality capture and immersive experience company. Our engineers and game developers capture real places with advanced laser and aerial scanning, then turn them into 3D tours, VR, AR and visual stories that help organisations win customers, engage audiences and preserve what matters.',
-};
-
-export const IMAGES = {
-  chilanchoStupa: '/assets/images/hero_chilancho_stupa_3d_1791383627390.webp',
-  baseraHotel: '/assets/images/basera_boutique_hotel_3d_1791383644902.webp',
-  nepathyaCampus: '/assets/images/nepathya_college_campus_3d_1791383661112.webp',
-  madanAshrit: '/assets/images/madan_ashrit_polytechnic_3d_1791383678299.webp',
-  laserField: '/assets/images/rcaas_laser_scanner_field_1791383691610.webp',
-  vrPreview: '/assets/images/vr_experience_preview_1791447636847.webp',
-  arPreview: '/assets/images/ar_interactive_preview_1791447649159.webp',
-  tourInterface: '/assets/images/virtual_tour_interface_1791450805134.webp',
-  filmCinematography: '/assets/images/virtual_cinematography_1791451395847.webp',
-  changeOverTime: '/assets/images/conservation_change_time_1791451416655.webp',
-  pointCloudSurvey: '/assets/images/point_cloud_cad_survey_1791451909905.webp',
-  droneSurveyField: '/assets/images/drone_aerial_survey_field_1791453798876.webp',
-  surveyTeamField: '/assets/images/point_cloud_cad_survey_1791451909905_1.webp',
 };
 
 export const PILLARS: Pillar[] = [
@@ -189,6 +174,16 @@ export const INDUSTRIES: Industry[] = [
     link: '/industries/nonprofit-international-development/',
     badge: 'Nonprofit & Development',
   },
+  {
+    id: 'banking-financial-institutions',
+    slug: 'banking-financial-institutions',
+    title: 'Banks & Financial Institutions',
+    goalHeadline: 'See the progress. Check it against the paper.',
+    whoItsFor: 'Banks, financial institutions, lenders and credit teams',
+    summary: 'Dated 3D captures of a financed site, set beside the documented progress.',
+    link: '/industries/banking-financial-institutions/',
+    badge: 'Banking',
+  },
 ];
 
 export const CASE_STUDIES: CaseStudy[] = [
@@ -202,7 +197,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientGoal: "Preserve a cultural monument's form, proportions and detail.",
     whatWeCreated: 'A measured 3D record and a photorealistic model.',
     posterAlt: '3D view of Chilancho Stupa',
-    heroImage: IMAGES.chilanchoStupa,
+    heroImage: IMG['case-cards/chilancho-stupa'],
     embedDemoId: 'chilancho',
     deliverables: ['Gaussian Splatting Web Tour', 'Point Cloud Archive (LAS)', 'Orthoimagery Map', 'Archival Dossier'],
     techUsed: ['XGRIDS Lixel Kitty K1', 'DJI Mavic 3E RTK', 'CyberColor', 'LCC Studio'],
@@ -217,7 +212,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientGoal: 'Let families explore the campus before they visit.',
     whatWeCreated: 'An interactive 3D campus tour.',
     posterAlt: '3D view of Nepathya School and College campus',
-    heroImage: IMAGES.nepathyaCampus,
+    heroImage: IMG['case-cards/nepathya-school-and-college'],
     embedDemoId: 'nepathya',
     deliverables: ['Web 3D Virtual Tour', 'Admissions Hotspots & Forms', '4K Cinematic Fly-Through Video'],
     techUsed: ['SLAM LiDAR Handheld Scanner', 'Aerial Photogrammetry', 'RCAAS Web Platform'],
@@ -232,7 +227,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientGoal: "Show workshops and labs that photos can't convey.",
     whatWeCreated: "An interactive 3D tour of the institute's facilities.",
     posterAlt: '3D view of workshops at Madan Ashrit Polytechnic Institute',
-    heroImage: IMAGES.madanAshrit,
+    heroImage: IMG['case-cards/madan-ashrit-polytechnic-institute'],
     embedDemoId: 'madan',
     deliverables: ['Interactive Workshop Walkthrough', 'Technical Equipment Tags', 'Mobile Web Experience'],
     techUsed: ['LiDAR Surveying', 'High-Res HDR Imaging', 'Web 3D Engine'],
@@ -247,7 +242,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     clientGoal: "Let guests feel the hotel's atmosphere before they book.",
     whatWeCreated: 'A photorealistic, explorable 3D experience on our platform.',
     posterAlt: '3D view of Basera Boutique Hotel',
-    heroImage: IMAGES.baseraHotel,
+    heroImage: IMG['case-cards/basera-boutique-hotel'],
     embedDemoId: 'basera',
     deliverables: ['3D Suite & Courtyard Walkthrough', 'Booking Engine Hotspot Integration', 'VR Headset Exhibition Tour'],
     techUsed: ['SLAM LiDAR', 'Gaussian Splat Reconstruction', 'Unreal Engine Virtual Production'],

@@ -1,9 +1,10 @@
 import React from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { ArrowRight, Box, Cpu, Gamepad2, Layers, Package, ScanLine, Sparkles } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { Placeholder, WithPlaceholders } from '../components/Placeholder';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
@@ -160,7 +161,7 @@ export const GameWorldsPage: React.FC<GameWorldsPageProps> = ({ onNavigate }) =>
             <div className="rounded-2xl overflow-hidden border border-line bg-surface p-3 shadow-lg">
               <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-zinc-900">
                 <img
-                  src={IMAGES.vrPreview}
+                  src={IMG['game-worlds/a-visitor-exploring-a-real-heritage-courtyard-ca']}
                   alt="A visitor exploring a real heritage courtyard captured in 3D"
                   width="1376"
                   height="768"

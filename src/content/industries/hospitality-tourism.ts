@@ -12,8 +12,8 @@ import {
   QrCode,
   Share2,
 } from 'lucide-react';
+import { IMG } from '../../data/images';
 import type { RoutePath } from '../../types';
-import { IMAGES } from '../../data/siteData';
 import type { IndustryContent } from './types';
 
 export const hospitalityTourism: IndustryContent = {
@@ -70,7 +70,7 @@ export const hospitalityTourism: IndustryContent = {
       title: 'For hotels and resorts',
       body: 'Show every room type, the view, the restaurant, the spa and your event spaces as they really are. Use one tour on your website, booking pages, social media and in replies to enquiries.',
       capture: ['rooms and suites', 'lobby and lounges', 'restaurant and bar', 'pool, spa and gardens', 'event and conference spaces', 'rooftop and views'],
-      image: IMAGES.baseraHotel,
+      image: IMG['industry-hospitality-tourism/for-hotels-and-resorts'],
       imageAlt: '3D view of a boutique hotel',
       icon: BedDouble,
     },
@@ -78,7 +78,7 @@ export const hospitalityTourism: IndustryContent = {
       title: 'For destinations and tourism boards',
       body: 'Let international travellers stand inside a temple courtyard, walk a heritage town or see a viewpoint before they plan their trip. Use VR at fairs and visitor centres, and 3D tours in destination campaigns online.',
       capture: ['heritage squares and monuments', 'museums and cultural sites', 'trails and viewpoints [[TBC]]', 'visitor centres'],
-      image: IMAGES.chilanchoStupa,
+      image: IMG['industry-hospitality-tourism/for-destinations-and-tourism-boards'],
       imageAlt: '3D view of a heritage monument',
       icon: Landmark,
     },
@@ -103,7 +103,7 @@ export const hospitalityTourism: IndustryContent = {
         line: 'A hotel sells atmosphere. We built an explorable 3D experience so guests can look around before they book.',
         pending: '[[TBI: result once data exists]]',
         path: '/work/basera-boutique-hotel-3d-experience/',
-        image: IMAGES.baseraHotel,
+        image: IMG['industry-hospitality-tourism/basera-boutique-hotel'],
       },
     ],
   },

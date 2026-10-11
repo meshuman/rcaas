@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { InteractiveTourFeaturesDemo } from '../components/InteractiveTourFeaturesDemo';
@@ -52,7 +53,7 @@ const CAPABILITIES: CapabilitySection[] = [
       'Handheld laser scanning and aerial capture, reconstructed as photorealistic 3D (Gaussian splatting) and published on our platform.',
     actionLink: '/services/immersive-experiences/3d-virtual-tours/',
     actionLabel: 'Explore 3D virtual tours',
-    image: IMAGES.baseraHotel,
+    image: IMG['immersive-experiences/showcase-1'],
   },
   {
     id: 'vr',
@@ -78,7 +79,7 @@ const CAPABILITIES: CapabilitySection[] = [
     ],
     madeWith:
       'Your 3D capture dataset, mesh-optimised for 90 FPS rendering on headsets including Meta Quest 3, Apple Vision Pro, and HTC Vive.',
-    image: IMAGES.vrPreview,
+    image: IMG['immersive-experiences/showcase-2'],
   },
   {
     id: 'ar',
@@ -104,7 +105,7 @@ const CAPABILITIES: CapabilitySection[] = [
     ],
     madeWith:
       'High-density surface reconstruction, ultra-compressed WebAR polygon meshes, and WebXR browser camera tracking pipelines.',
-    image: IMAGES.arPreview,
+    image: IMG['immersive-experiences/showcase-3'],
   },
   {
     id: 'interactive',
@@ -130,7 +131,7 @@ const CAPABILITIES: CapabilitySection[] = [
     ],
     madeWith:
       'Unreal Engine 5 and WebGL spatial runtime, combining photogrammetric reality capture with real-time interactive physics and audio.',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['immersive-experiences/showcase-4'],
   },
 ];
 

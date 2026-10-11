@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { IMG } from '../data/images';
 import { motion, AnimatePresence } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, TOOLKIT, IMAGES } from '../data/siteData';
+import { SITE_METADATA, TOOLKIT } from '../data/siteData';
 import { SpotlightCard } from '../components/SpotlightCard';
 import { ValueChainGraphic } from '../components/ValueChainGraphic';
 import { CurvedArchCarousel } from '../components/CurvedArchCarousel';
@@ -39,7 +40,7 @@ const PILLARS_COPY: PillarDetail[] = [
     promise: 'Let people step inside.',
     body: 'Photorealistic 3D tours that open from a link, VR that puts visitors on site, and interactive experiences built with game-engine tools.',
     helpsYou: 'Win bookings, applications, sales enquiries and visits.',
-    image: IMAGES.baseraHotel,
+    image: IMG['services/immersive-experiences'],
     badge: 'Web 3D & VR',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +82,7 @@ const PILLARS_COPY: PillarDetail[] = [
     promise: 'Turn your place into a story.',
     body: 'Guided tours, cinematic fly-through films and social content made from your 3D capture, shaped around what you want your audience to feel and do.',
     helpsYou: 'Run campaigns, raise awareness, attract funding and engage the public.',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['services/visual-storytelling'],
     badge: 'Films & guided tours',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -123,7 +124,7 @@ const PILLARS_COPY: PillarDetail[] = [
     promise: 'Measure, design and plan from reality.',
     body: 'Accurate 3D records of buildings, sites and landscapes, captured with advanced laser and aerial scanning, ready for design, planning and preservation.',
     helpsYou: 'Design with confidence, cut repeat site visits, plan better and preserve what matters.',
-    image: IMAGES.laserField,
+    image: IMG['services/digital-twins-survey'],
     badge: 'Laser & aerial capture',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +166,7 @@ const PILLARS_COPY: PillarDetail[] = [
     promise: 'Real places. Ready to play.',
     body: 'Real locations, objects and heritage sites captured as Gaussian splats and turned into game-ready environments and props for Unreal, Unity and real-time experiences.',
     helpsYou: 'Build game worlds, assets and real-time scenes from places players recognise.',
-    image: IMAGES.vrPreview,
+    image: IMG['services/game-worlds-assets'],
     badge: 'Unreal & Unity',
     iconSvg: (
       <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">

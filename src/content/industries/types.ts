@@ -46,6 +46,17 @@ export interface IndustryContent {
   challenge?: { id?: string; eyebrow?: string; title: string; body: string; more?: string[] };
   experience?: { eyebrow?: string; title: string; items: IndustryItem[]; links: IndustryLink[] };
   tracks?: IndustryTrack[];
+  // Progress over time: dated captures of one site, set beside the documented record of the same work.
+  progress?: {
+    id: string;
+    eyebrow: string;
+    title: string;
+    intro: string;
+    steps: { label: string; line: string; icon: LucideIcon }[];
+    documented: { title: string; items: string[] };
+    field: { title: string; items: string[] };
+    bridge: string;
+  };
   // Two audiences served by one capture, shown side by side.
   twoLives?: {
     id: string;

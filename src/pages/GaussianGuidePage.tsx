@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import {
   ArrowRight,
@@ -20,7 +21,6 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RoutePath } from '../types';
-import { IMAGES } from '../data/siteData';
 import { readingMinutes } from '../data/guides';
 import { Placeholder } from '../components/Placeholder';
 import { SpotlightCard } from '../components/SpotlightCard';
@@ -167,31 +167,31 @@ const USES: { use: string; why: string; image: string; imageAlt: string }[] = [
   {
     use: 'Hotel and property tours',
     why: 'Guests and buyers see the real atmosphere, not a rendering',
-    image: IMAGES.baseraHotel,
+    image: IMG['gaussian-guide/runs-in-a-browser'],
     imageAlt: 'Photorealistic 3D view of a hotel',
   },
   {
     use: 'Campus tours',
     why: 'Families explore classrooms, labs and grounds as they really are',
-    image: IMAGES.nepathyaCampus,
+    image: IMG['gaussian-guide/showcase-1'],
     imageAlt: 'Photorealistic 3D view of a college campus',
   },
   {
     use: 'Heritage sites and museums',
     why: 'Carvings, textures and settings are preserved photographically',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['gaussian-guide/showcase-2'],
     imageAlt: 'Photorealistic 3D scene of Chilancho Stupa',
   },
   {
     use: 'VR experiences',
     why: 'Real places become immersive scenes for headsets',
-    image: IMAGES.vrPreview,
+    image: IMG['gaussian-guide/showcase-3'],
     imageAlt: 'Visitor in a VR headset exploring a 3D courtyard',
   },
   {
     use: 'Films and renders',
     why: 'Camera moves through a photorealistic scene, from one capture',
-    image: IMAGES.filmCinematography,
+    image: IMG['gaussian-guide/showcase-4'],
     imageAlt: 'Fly-through film being made from a 3D scene',
   },
 ];
@@ -553,8 +553,8 @@ export const GaussianGuidePage: React.FC<GaussianGuidePageProps> = ({ onNavigate
 
               <div className="lg:col-span-7 grid grid-cols-[1fr_auto_1fr] items-center gap-3" aria-hidden="true">
                 {[
-                  { image: IMAGES.pointCloudSurvey, title: 'Laser scanning', line: 'Accuracy' },
-                  { image: IMAGES.chilanchoStupa, title: 'Gaussian splatting', line: 'Visual experience' },
+                  { image: IMG['gaussian-guide/showcase-5'], title: 'Laser scanning', line: 'Accuracy' },
+                  { image: IMG['gaussian-guide/laser-scanning'], title: 'Gaussian splatting', line: 'Visual experience' },
                 ].map((item, i) => (
                   <React.Fragment key={item.title}>
                     {i === 1 && (

@@ -1,8 +1,9 @@
 import React from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { ArrowRight, Check } from 'lucide-react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { Placeholder } from '../components/Placeholder';
 import { linkHandler, pageShellClass, primaryButtonClass, secondaryButtonClass } from '../components/GuideParts';
 
@@ -11,9 +12,9 @@ interface ThankYouPageProps {
 }
 
 const WORK_PREVIEWS = [
-  { name: 'Chilancho Stupa', image: IMAGES.chilanchoStupa },
-  { name: 'Basera Boutique Hotel', image: IMAGES.baseraHotel },
-  { name: 'Nepathya School and College', image: IMAGES.nepathyaCampus },
+  { name: 'Chilancho Stupa', image: IMG['thank-you/nepathya-school-and-college'] },
+  { name: 'Basera Boutique Hotel', image: IMG['thank-you/chilancho-stupa'] },
+  { name: 'Nepathya School and College', image: IMG['thank-you/basera-boutique-hotel'] },
 ];
 
 // /thank-you/ is noindex, follow (set in App).

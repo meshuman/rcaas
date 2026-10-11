@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { IMG } from '../data/images';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ArrowUpRight, ChevronDown, ChevronRight } from 'lucide-react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, PILLARS, INDUSTRIES, IMAGES } from '../data/siteData';
+import { SITE_METADATA, PILLARS, INDUSTRIES } from '../data/siteData';
 import { PILLAR_ICONS, industryIcon } from '../data/icons';
 
 // Menu content comes from the site data, so labels match the pages they link to.
@@ -358,7 +359,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                     </div>
                     <div className="col-span-4">
                       <FeatureCard
-                        image={IMAGES.chilanchoStupa}
+                        image={IMG['menu/live-tour-card']}
                         eyebrow="Step inside"
                         title="Walk through a real place in 3D, right in your browser."
                         action="Explore a live tour"
@@ -399,7 +400,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                     </div>
                     <div className="col-span-4">
                       <FeatureCard
-                        image={IMAGES.baseraHotel}
+                        image={IMG['menu/industries-card']}
                         eyebrow="Not sure where you fit?"
                         title="Tell us what you want people to do. We'll design around it."
                         action="Plan your experience"
@@ -423,7 +424,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenP
                     ))}
                     <div className="col-span-4">
                       <FeatureCard
-                        image={IMAGES.droneSurveyField}
+                        image={IMG['menu/guide-card']}
                         eyebrow="Guide"
                         title="Planning a 3D experience: cost and timeline"
                         action="Read the guide"

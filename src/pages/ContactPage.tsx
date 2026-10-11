@@ -24,6 +24,7 @@ export const GOALS: { label: string; types: string[] }[] = [
   { label: 'Films or storytelling', types: ['storytelling', 'filmmaking'] },
   { label: 'Risk surveys or claims records', types: ['insurance'] },
   { label: 'Game worlds or assets', types: ['gaming', 'game-assets'] },
+  { label: 'Track site progress for a loan or facility', types: ['banking', 'finance'] },
   { label: 'Show a project site to funders or partners', types: ['nonprofit', 'development'] },
   { label: 'Platform early access', types: ['platform'] },
   { label: 'Partnership', types: ['partnership'] },

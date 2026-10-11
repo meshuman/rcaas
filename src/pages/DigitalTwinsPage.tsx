@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
 import { buttonClass } from '../components/ui';
@@ -56,7 +57,7 @@ const CAPABILITIES: CapabilityItem[] = [
       'Handheld SLAM laser scanners such as the XGRIDS Lixel Kitty K1, operating at hundreds of thousands of laser pulses per second.',
     linkText: 'Explore 3D laser scanning',
     linkHref: '/services/digital-twins/3d-laser-scanning/',
-    image: IMAGES.laserField,
+    image: IMG['digital-twins/showcase-1'],
     specDetails: {
       accuracyProfile: 'Millimeter-scale relative measurement accuracy',
       primaryFormats: 'E57, LAS, LAZ, PTS, RCP',
@@ -87,7 +88,7 @@ const CAPABILITIES: CapabilityItem[] = [
       'Survey drones such as the DJI Mavic 3 Enterprise, equipped with a 4/3 CMOS mechanical shutter camera and RTK precision positioning.',
     linkText: 'Explore drone mapping',
     linkHref: '/services/digital-twins/drone-mapping/',
-    image: IMAGES.pointCloudSurvey,
+    image: IMG['digital-twins/showcase-2'],
     specDetails: {
       accuracyProfile: 'Sub-centimeter Ground Sample Distance (GSD) calibrated with GCPs',
       primaryFormats: 'GeoTIFF, LAS, OBJ, DXF contours, PDF',
@@ -117,7 +118,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Autodesk Revit, AutoCAD, and specialized point-cloud extraction pipelines drafted by qualified architectural technicians.',
-    image: IMAGES.tourInterface,
+    image: IMG['digital-twins/showcase-3'],
     specDetails: {
       accuracyProfile: 'Drafted to agreed Level of Detail (LOD 200/300) from scan data',
       primaryFormats: 'DWG, DXF, RVT, IFC, Vector PDF',
@@ -147,7 +148,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Multi-constellation survey-grade GNSS receivers (RTK/PPK), total stations, and calibrated ground control targets.',
-    image: IMAGES.chilanchoStupa,
+    image: IMG['digital-twins/showcase-4'],
     specDetails: {
       accuracyProfile: 'Tied to geodetic control networks with millimeter closure',
       primaryFormats: 'GeoPackage, ESRI Shapefile (.shp), GeoTIFF, CSV, DWG',
@@ -179,7 +180,7 @@ const CAPABILITIES: CapabilityItem[] = [
       'Non-invasive laser scanning, close-range photogrammetry, and aerial imaging with zero physical contact or site disturbance.',
     linkText: 'Explore digital heritage',
     linkHref: '/industries/heritage-culture/',
-    image: IMAGES.madanAshrit,
+    image: IMG['digital-twins/showcase-5'],
     specDetails: {
       accuracyProfile: 'Millimeter spatial resolution preserving subtle masonry detail',
       primaryFormats: 'E57, LAS, OBJ, GeoTIFF, PDF Reports',
@@ -662,7 +663,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
             <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-zinc-950 text-white shadow-lg">
               <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
                 <img loading="lazy" decoding="async"
-                  src={IMAGES.pointCloudSurvey}
+                  src={IMG['digital-twins/lidar-point-cloud-cad-cross-section-view']}
                   alt="LiDAR Point cloud CAD cross section view"
                   className="w-full h-full object-cover opacity-85"
                 />
@@ -1224,7 +1225,7 @@ export const DigitalTwinsPage: React.FC<DigitalTwinsPageProps> = ({ onNavigate }
           <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-zinc-50 grid grid-cols-1 lg:grid-cols-12 shadow-xs">
             <div className="lg:col-span-7 aspect-video lg:aspect-auto relative overflow-hidden">
               <img loading="lazy" decoding="async"
-                src={IMAGES.chilanchoStupa}
+                src={IMG['digital-twins/chilancho-stupa-3d-documentation']}
                 alt="Chilancho Stupa 3D documentation"
                 className="w-full h-full object-cover"
               />

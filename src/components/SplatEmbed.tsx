@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { IMAGES } from '../data/siteData';
+import { IMG } from '../data/images';
 import { startCanvasLoop } from '../lib/canvasLoop';
 
 interface SplatEmbedProps {
@@ -26,7 +26,7 @@ const DEMO_SPACES: DemoSpace[] = [
     tag: 'Cultural Heritage',
     clientGoal: 'Preserve sacred medieval Newari architecture and share with global researchers and pilgrims.',
     coords: '27°40\'58.4"N 85°16\'41.2"E',
-    poster: IMAGES.chilanchoStupa,
+    poster: IMG['splat-embed/chilancho-stupa'],
     waypoints: [
       { name: 'Courtyard Approach', rotY: 0, rotX: 0.25, zoom: 0.9, camY: 0 },
       { name: 'Sacred Chaitya', rotY: 1.2, rotX: 0.35, zoom: 1.3, camY: 20 },
@@ -41,7 +41,7 @@ const DEMO_SPACES: DemoSpace[] = [
     tag: 'Hospitality',
     clientGoal: 'Let international travelers explore suites and traditional wood-carved courtyards before booking.',
     coords: '27°41\'24.8"N 85°19\'12.5"E',
-    poster: IMAGES.baseraHotel,
+    poster: IMG['splat-embed/basera-boutique-hotel'],
     waypoints: [
       { name: 'Traditional Courtyard', rotY: 0.4, rotX: 0.2, zoom: 1.0, camY: 0 },
       { name: 'Heritage Suites', rotY: 1.8, rotX: 0.3, zoom: 1.4, camY: -20 },
@@ -55,7 +55,7 @@ const DEMO_SPACES: DemoSpace[] = [
     tag: 'Education',
     clientGoal: 'Allow prospective students and parents to tour modern classrooms and laboratories from anywhere.',
     coords: '27°42\'10.1"N 85°20\'33.0"E',
-    poster: IMAGES.nepathyaCampus,
+    poster: IMG['splat-embed/nepathya-school-college'],
     waypoints: [
       { name: 'Academic Quad', rotY: 0, rotX: 0.3, zoom: 0.9, camY: 0 },
       { name: 'Science Labs', rotY: 2.1, rotX: 0.25, zoom: 1.3, camY: 15 },
@@ -69,7 +69,7 @@ const DEMO_SPACES: DemoSpace[] = [
     tag: 'Vocational Campus',
     clientGoal: 'Showcase specialized engineering bays, robotic workshops, and vocational facilities.',
     coords: '27°38\'44.2"N 85°18\'02.7"E',
-    poster: IMAGES.madanAshrit,
+    poster: IMG['splat-embed/madan-ashrit-polytechnic'],
     waypoints: [
       { name: 'Robotics Workshop', rotY: 0.5, rotX: 0.2, zoom: 1.1, camY: 0 },
       { name: 'Fabrication Hall', rotY: 2.4, rotX: 0.35, zoom: 1.3, camY: 10 },

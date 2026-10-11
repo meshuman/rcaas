@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { IMAGES } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
 import { buttonClass } from '../components/ui';
@@ -446,7 +446,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
             <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-zinc-950 text-white shadow-lg">
               <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
                 <img loading="lazy" decoding="async"
-                  src={showcaseMode === 'ortho' ? IMAGES.droneSurveyField : IMAGES.pointCloudSurvey}
+                  src={showcaseMode === 'ortho' ? IMG['drone-mapping/showcase-ortho'] : IMG['drone-mapping/showcase-point-cloud']}
                   alt={showcaseMode === 'ortho' ? 'True-scale aerial orthomosaic map' : 'Digital surface model elevation gradient'}
                   className="w-full h-full object-cover opacity-90 transition-opacity duration-300"
                 />
@@ -829,7 +829,7 @@ export const DroneMappingPage: React.FC<DroneMappingPageProps> = ({ onNavigate }
           <div className="border border-zinc-200 rounded-2xl overflow-hidden bg-white grid grid-cols-1 lg:grid-cols-12 shadow-xs">
             <div className="lg:col-span-7 aspect-video lg:aspect-auto relative overflow-hidden">
               <img loading="lazy" decoding="async"
-                src={IMAGES.chilanchoStupa}
+                src={IMG['drone-mapping/chilancho-stupa-aerial-drone-documentation']}
                 alt="Chilancho Stupa Aerial Drone Documentation"
                 className="w-full h-full object-cover"
               />

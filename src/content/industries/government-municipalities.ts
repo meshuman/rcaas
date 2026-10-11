@@ -13,8 +13,8 @@ import {
   TrendingUp,
   Users,
 } from 'lucide-react';
+import { IMG } from '../../data/images';
 import type { RoutePath } from '../../types';
-import { IMAGES } from '../../data/siteData';
 import type { IndustryContent } from './types';
 
 export const governmentMunicipalities: IndustryContent = {
@@ -108,7 +108,7 @@ export const governmentMunicipalities: IndustryContent = {
         line: 'A cultural monument documented in 3D to preserve its form, proportions and detail.',
         pending: '[[TBI: municipal or public-sector project]]',
         path: '/work/chilancho-stupa-digital-heritage/',
-        image: IMAGES.chilanchoStupa,
+        image: IMG['industry-government-municipalities/chilancho-stupa'],
       },
     ],
   },

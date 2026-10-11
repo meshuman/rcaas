@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { IMG } from '../data/images';
 import { motion } from 'motion/react';
 import { RoutePath } from '../types';
-import { SITE_METADATA, IMAGES } from '../data/siteData';
+import { SITE_METADATA } from '../data/siteData';
 import { SplatEmbed } from '../components/SplatEmbed';
 import { FaqList } from '../components/GuideParts';
 import { buttonClass } from '../components/ui';
@@ -55,7 +56,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Handheld SLAM LiDAR capture, calibrated 3D Gaussian splatting, smooth Bezier spline flight paths, and WebGL spatial runtime.',
-    image: IMAGES.tourInterface,
+    image: IMG['visual-storytelling/showcase-1'],
     specDetails: {
       format: 'Interactive WebGL / WebXR',
       duration: 'Self-paced or 2–4 min automated walkthrough',
@@ -87,7 +88,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Millimeter-accurate 3D reconstruction, virtual camera path physics, professional keyframe cinematography, DaVinci Resolve color grading, and acoustic mixing.',
-    image: IMAGES.filmCinematography,
+    image: IMG['visual-storytelling/showcase-2'],
     specDetails: {
       format: 'MP4 / ProRes 422 HQ (4K UHD 60fps)',
       duration: '60 to 90 seconds (plus 15s teaser cuts)',
@@ -119,7 +120,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Virtual camera renders rendered at native mobile resolutions with rapid pacing, sound sync, and motion graphic callouts.',
-    image: IMAGES.vrPreview,
+    image: IMG['visual-storytelling/showcase-3'],
     specDetails: {
       format: 'H.265 / H.264 vertical video',
       duration: '6 to 15 seconds per reel',
@@ -151,7 +152,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Ultra-high-bitrate render engines, touch-optimised WebGL user interfaces, and robust offline kiosk software architecture.',
-    image: IMAGES.madanAshrit,
+    image: IMG['visual-storytelling/showcase-4'],
     specDetails: {
       format: 'Custom Touch Kiosk / 4K Seamless Video Loop',
       duration: 'Continuous loop with instant touch override',
@@ -182,7 +183,7 @@ const CAPABILITIES: CapabilityItem[] = [
     ],
     madeWith:
       'Survey-grade georeferenced repeat LiDAR scans, coordinate-locked virtual camera trajectories, and custom dual-view WebGL shaders.',
-    image: IMAGES.changeOverTime,
+    image: IMG['visual-storytelling/showcase-5'],
     specDetails: {
       format: 'Interactive HTML5 Slider & Split-Screen 4K Video',
       duration: 'Interactive user drag / 30s synchronised video',
@@ -611,7 +612,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                   // Facade Poster & Click-To-Load State
                   <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 sm:p-8">
                     <img loading="lazy" decoding="async"
-                      src={IMAGES.filmCinematography}
+                      src={IMG['visual-storytelling/basera-boutique-hotel-cinematic-fly-through']}
                       alt="Basera Boutique Hotel Cinematic Fly-Through"
                       className="absolute inset-0 w-full h-full object-cover opacity-80"
                     />
@@ -681,7 +682,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                   // Active Facade Player State
                   <div className="relative w-full h-full flex flex-col items-center justify-center bg-zinc-950 p-6">
                     <img loading="lazy" decoding="async"
-                      src={aspectRatio === '9:16' ? IMAGES.vrPreview : IMAGES.filmCinematography}
+                      src={aspectRatio === '9:16' ? IMG['visual-storytelling/active-video-preview'] : IMG['visual-storytelling/active-video-preview-2']}
                       alt="Active video preview"
                       className={`h-full object-cover transition-all duration-300 rounded-lg ${
                         aspectRatio === '9:16' ? 'max-w-xs aspect-[9/16]' : 'w-full'
@@ -1012,7 +1013,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                           <div className="relative aspect-video rounded-lg overflow-hidden border border-zinc-300 select-none">
                             {/* Before layer */}
                             <img loading="lazy" decoding="async"
-                              src={IMAGES.madanAshrit}
+                              src={IMG['visual-storytelling/before-renovation']}
                               alt="Before renovation"
                               className="absolute inset-0 w-full h-full object-cover"
                             />
@@ -1026,7 +1027,7 @@ export const VisualStorytellingPage: React.FC<VisualStorytellingPageProps> = ({ 
                               style={{ width: `${sliderPosition}%` }}
                             >
                               <img loading="lazy" decoding="async"
-                                src={IMAGES.changeOverTime}
+                                src={IMG['visual-storytelling/after-restoration']}
                                 alt="After restoration"
                                 className="absolute inset-0 w-full h-full object-cover"
                                 style={{ width: '100%', maxWidth: 'none' }}

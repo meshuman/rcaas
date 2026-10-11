@@ -351,10 +351,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenPlanner })
                         alt=""
                         loading="lazy"
                         decoding="async"
-                        className="absolute inset-0 h-full w-full object-cover saturate-50 transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05] group-hover:saturate-100"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
                       />
-                      {/* Mask: mutes the photograph so the card's words lead; it lifts on hover. */}
-                      <div className="absolute inset-0 bg-ink/40 transition-opacity duration-500 group-hover:opacity-0" aria-hidden="true" />
                     </div>
                   )}
 
